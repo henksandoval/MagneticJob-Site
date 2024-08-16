@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { homeRoutes } from './features/home/home.routes';
+import { homeRoutes } from './useCases/home/home.routes';
 
 export const routes: Routes = [
   ...homeRoutes,

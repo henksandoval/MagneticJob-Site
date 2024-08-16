@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@core/*": ["src/app/core/*"],
+      "@homeComponent/*": ["src/app/useCases/home/components/*"],
+      "@homeModel/*": ["src/app/useCases/home/shared/models/*"],
+      "@homeService/*": ["src/app/useCases/home/shared/services/*"]
+    }
+  }
+}
