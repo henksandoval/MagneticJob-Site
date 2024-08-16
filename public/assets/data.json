@@ -1,0 +1,37 @@
+{
+	"about":{
+		"description": "¡Hello! I'm John Doe, a passionate web developer who loves creating dynamic, easy-to-use websites. I have over 5 years of experience in the technology industry, working with a variety of clients to make their visions a reality.",
+		"text": "UI/UX Designer & Web Developer.",
+		"hobbies": "In my free time I enjoy hiking, reading science fiction novels, and experimenting with new technologies. I am always eager to learn new things and take on exciting challenges.",
+		"birthday": "16/05/1995",
+		"website": "www.example.com",
+		"phoneNumber": "+34641051233",
+		"city": "Zaragoza, España",
+		"age": "29",
+		"Degree": "Master",
+		"email": "alexandrai.marvala@gmail.com",
+		"freelance": "Available",
+		"workExperience": "Developed and maintained web applications for various clients, focusing on front-end development and user experience. Assisted in the development of websites and applications, learning best practices and improving coding skills."
+	},
+	"facts": {
+		"description": "I can solve a Rubik's Cube in under a minute.",
+		"happyClients": "Happy Clients",
+		"projects": "Projects",
+		"hoursOfSupport": "Hours Of Support",
+		"Awards": "Awards"	
+	},
+	"skills": {
+		"description": "Technical language skills such as",
+		"html": "HTML",
+		"css": "CSS",
+		"javaScript": "JavaScript",
+		"php": "PHP",
+		"WordPressCMS": "WordPress/CMS",
+		"photoshop": "Photoshop"
+	},
+	"contact": {
+		"direction": "Calle Reina Fabiola, 20 9B, Zaragoza - España",
+		"email": "alexandrai.marvala@gmail.com",
+		"phoneNumber": "+34641051233"
+	}
+}
