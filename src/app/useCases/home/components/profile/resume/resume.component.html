@@ -1,14 +1,15 @@
 <section id="resume" class="resume">
   <div class="container" data-aos="fade-up" *ngIf="profile$ | async as profile">
-    <div class="section-title">
-      <h2>{{profile.resume?.titles?.resume}}</h2>
-      <p>{{profile.resume?.titles?.profil}}
-      </p>
-    </div>
+    <ng-container *ngIf="profile.titles as titles">
+      <div class="section-title">
+        <h2>{{profile.titles.resume}}</h2>
+        <p>{{profile.summary?.about}}
+      </div>
+    </ng-container>
     <ng-container *ngIf="profile.summary as summary">
       <div class="row">
         <div class="col-lg-6">
-          <h3 class="resume-title">{{profile.resume?.titles?.summary}}</h3>
+          <h3 class="resume-title">{{profile.titles?.summary}}</h3>
           <div class="resume-item pb-0">
             <h4>{{summary.name}}</h4>
             <p>
@@ -26,7 +27,7 @@
       </div>
     </ng-container>
     <ng-container *ngIf="profile.education as education">
-      <h3 class="resume-title">{{profile.resume?.titles?.education}}</h3>
+      <h3 class="resume-title">{{profile.titles?.education}}</h3>
       <div class="resume-item" *ngFor="let education of education.academicBackground">
         <h4>{{education.experience}}</h4>
         <h5>{{education.startdate}}</h5>
@@ -38,7 +39,7 @@
     </ng-container>
     <ng-container *ngIf="profile.workExperience as workExperience">
       <div class="col-lg-6">
-        <h3 class="resume-title">{{profile.resume?.titles?.workExperience}}</h3>
+        <h3 class="resume-title">{{profile.titles?.workExperience}}</h3>
         <div class="resume-item" *ngFor="let workExperience of workExperience.position">
           <h4>{{workExperience.position}}</h4>
           <h5>{{workExperience.startdate}}</h5>
