@@ -6,55 +6,59 @@
         <p>{{resume.titles.profil}}
         </p>
       </div>
-
+    </ng-container>
+    <ng-container *ngIf="profile.sumary as sumary">
       <div class="row">
         <div class="col-lg-6">
-          <h3 class="resume-title">{{resume.titles.summary}}</h3>
+          <h3 class="resume-title">{{profile.resume?.titles?.summary}}</h3>
           <div class="resume-item pb-0">
-            <h4>{{resume.sumary.name}}</h4>
+            <h4>{{sumary.name}}</h4>
             <p>
-              <em>{{resume.sumary.summary}}</em>
+              <em>{{sumary.summary}}</em>
             </p>
-            <div *ngFor="let resume of resume.sumary.contact">
+            <div *ngFor="let sumary of sumary.contact">
               <ul>
-                <li>{{resume.location}}</li>
-                <li>{{resume.phoneNumber}}</li>
-                <li>{{resume.aliceBarkle}}</li>
+                <li>{{sumary.location}}</li>
+                <li>{{sumary.phoneNumber}}</li>
+                <li>{{sumary.aliceBarkle}}</li>
               </ul>
             </div>
           </div>
-
-          <h3 class="resume-title">{{resume.titles.education}}</h3>
-          <div class="resume-item" *ngFor="let resume of resume.education.detail">
-            <h4>{{resume.experience}}</h4>
-            <h5>{{resume.startdate}}</h5>
-            <p><em>{{resume.Academy}}</em></p>
-            <p>
-              {{resume.description}}
-            </p>
-          </div>
         </div>
-        <div class="col-lg-6">
-          <h3 class="resume-title">{{resume.titles.workExperience}}</h3>
-          <div class="resume-item" *ngFor="let resume of resume.workExperience.experienceposition">
-            <h4>{{resume.position}}</h4>
-            <h5>{{resume.startdate}}</h5>
-            <p><em>{{resume.location}}</em></p>
-            <ul>
-              <li>
-                {{resume.communicationDesignLeadership}}
-              </li>
-              <li>
-                {{resume.teamLeadership}}
-              </li>
-              <li>
-                {{resume.designQualityAssurance}}
-              </li>
-              <li>
-                {{resume.expertiseArea}}
-              </li>
-            </ul>
-          </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="profile.education as education">
+      <h3 class="resume-title">{{profile.resume?.titles?.education}}</h3>
+      <div class="resume-item" *ngFor="let education of education.detail">
+        <h4>{{education.experience}}</h4>
+        <h5>{{education.startdate}}</h5>
+        <p><em>{{education.Academy}}</em></p>
+        <p>
+          {{education.description}}
+        </p>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="profile.workExperience as workExperience">
+      <div class="col-lg-6">
+        <h3 class="resume-title">{{profile.resume?.titles?.workExperience}}</h3>
+        <div class="resume-item" *ngFor="let workExperience of workExperience.position">
+          <h4>{{workExperience.position}}</h4>
+          <h5>{{workExperience.startdate}}</h5>
+          <p><em>{{workExperience.location}}</em></p>
+          <ul>
+            <li>
+              {{workExperience.communicationDesignLeadership}}
+            </li>
+            <li>
+              {{workExperience.teamLeadership}}
+            </li>
+            <li>
+              {{workExperience.designQualityAssurance}}
+            </li>
+            <li>
+              {{workExperience.expertiseArea}}
+            </li>
+          </ul>
         </div>
       </div>
     </ng-container>
