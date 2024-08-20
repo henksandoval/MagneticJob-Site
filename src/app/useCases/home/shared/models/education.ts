@@ -1,10 +1,5 @@
-export interface Education {
-  detail: Detail[];
-}
+import { academicBackground } from "./academicBackground";
 
-export interface Detail {
-  experience: string;
-  startdate: string;
-  Academy: string;
-  description: string;
+export interface Education {
+  academicBackground: academicBackground[];
 }
