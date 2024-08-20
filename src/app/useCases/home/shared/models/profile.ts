@@ -5,7 +5,8 @@ import { Contact } from "./contact";
 import { Education } from "./education";
 import { Resume } from "./resume";
 import { Skills } from "./skills";
-import { Sumary } from "./sumary";
+import { Summary } from "./summary";
+
 
 export interface Profile {
 	birthday?: string;
@@ -16,5 +17,5 @@ export interface Profile {
 	resume?: Resume;
 	workExperience?: WorkExperience;
 	education?: Education;
-	sumary?: Sumary;
+	summary?: Summary;
 }
