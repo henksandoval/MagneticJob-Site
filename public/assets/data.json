@@ -38,7 +38,7 @@
 			"workExperience": "Professional Experience"
 		}
 	},
-	"sumary": {
+	"summary": {
 		"name": "Brandon Johnson",
 		"summary": "Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.",
 		"contact": [
@@ -50,7 +50,7 @@
 		]
 	},
 	"education": {
-		"detail": [
+		"academicBackground": [
 			{
 				"experience": "Master of Fine Arts & Graphic Design",
 				"startdate": "2015 - 2016",
