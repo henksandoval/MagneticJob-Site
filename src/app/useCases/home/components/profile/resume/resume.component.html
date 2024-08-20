@@ -1,12 +1,10 @@
 <section id="resume" class="resume">
   <div class="container" data-aos="fade-up" *ngIf="profile$ | async as profile">
-    <ng-container *ngIf="profile.resume as resume">
-      <div class="section-title">
-        <h2>{{resume.titles.resume}}</h2>
-        <p>{{resume.titles.profil}}
-        </p>
-      </div>
-    </ng-container>
+    <div class="section-title">
+      <h2>{{profile.resume?.titles?.resume}}</h2>
+      <p>{{profile.resume?.titles?.profil}}
+      </p>
+    </div>
     <ng-container *ngIf="profile.sumary as sumary">
       <div class="row">
         <div class="col-lg-6">
