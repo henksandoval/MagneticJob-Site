@@ -8,6 +8,8 @@ import { ProfileService } from '../../../shared/services/profile/profile.service
 import '@testing-library/jest-dom';
 import { Summary } from '../../../shared/models/summary';
 import { ContactProfile } from '../../../shared/models/contactProfile';
+import { Education } from '../../../shared/models/education';
+import { AcademicBackground } from '../../../shared/models/academicBackground';
 
 const mockTitles: Titles = {
   resume: 'Historial test',
@@ -25,13 +27,25 @@ const mockContactProfile: ContactProfile = {
 const mockSummary: Summary = {
   about: 'I am a software developer',
   name: 'Brahando test',
-  introduction: 'Innovative and deadline-driven Graphic Designer with 3+ years ',
+  introduction: 'Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.',
   contact: [mockContactProfile],
 };
+
+const mockAcademicBackground: AcademicBackground = {
+  experience:'Master of Fine Arts & Graphic Design, test',
+    startdate: '2015 - 2012000',
+    Academy: 'Rochester Institute',
+    description: 'Qui deserunt veniam.'
+}
+
+const mockEducation: Education = {
+  academicBackground: [mockAcademicBackground]
+}
 
 const mockProfile: Profile = {
   titles: mockTitles,
   summary: mockSummary,
+  education: mockEducation,
 };
 
 const mockProfileService = {
@@ -81,5 +95,4 @@ describe('ResumeComponent', () => {
       expect(screen.getByText(mockContact.aliceBarkle)).toBeInTheDocument();
     });
   });
-
 });
