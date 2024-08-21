@@ -21,11 +21,11 @@ variables:
   resourceGroupName: "HasDev"
 
 stages:
-  - stage: Deploy
-    displayName: Deploy to Azure App Service
+  - stage: DownloadArtifact
+    displayName: "Download Build Artifact"
     jobs:
-      - job: Deploy
-        displayName: Deploy
+      - job: Download
+        displayName: "Download"
         steps:
           - task: DownloadPipelineArtifact@2
             displayName: "Download Artifact"
@@ -36,6 +36,12 @@ stages:
               buildVersionToDownload: "latest"
               targetPath: "$(Pipeline.Workspace)"
 
+  - stage: PrepareDeployment
+    displayName: "Prepare for Deployment"
+    jobs:
+      - job: Prepare
+        displayName: "Prepare"
+        steps:
           - script: |
               echo "Checking files in $(Pipeline.Workspace)/BuildId"
               ls -l $(Pipeline.Workspace)/BuildId
@@ -45,6 +51,12 @@ stages:
               echo "$(containerRegistry)/$(imageRepository):$buildId"
             displayName: "Read Build ID"
 
+  - stage: Deploy
+    displayName: "Deploy to Azure App Service"
+    jobs:
+      - job: Deploy
+        displayName: "Deploy"
+        steps:
           - task: AzureWebAppContainer@1
             displayName: "Deploy to Azure Web App for Containers"
             inputs:
