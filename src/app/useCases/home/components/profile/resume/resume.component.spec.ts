@@ -63,4 +63,9 @@ describe('ResumeComponent', () => {
     expect(screen.getByText(mockTitles.summary)).toBeInTheDocument();
   });
 
+  it('should show the name', async () => {
+    await renderComponent();
+    expect(screen.getByTestId('name')).toHaveTextContent(mockSummary.name);
+  });
+
 });
