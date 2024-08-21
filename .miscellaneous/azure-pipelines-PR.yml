@@ -6,26 +6,39 @@ trigger:
 pool:
   vmImage: "ubuntu-latest"
 
-steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: "18.x"
-    displayName: "Install Node.js"
+stages:
+  - stage: Install_and_Lint
+    displayName: "Installation and Linting"
+    jobs:
+      - job: Install
+        displayName: "Install Dependencies"
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: "20.x"
+            displayName: "Install Node.js"
+          - script: npm install
+            displayName: "Install dependencies"
 
-  - script: npm install
-    displayName: "Install dependencies"
+      - job: Lint
+        displayName: "Run Prettier"
+        steps:
+          - script: npm run lint:prettier
+            displayName: "Run Prettier"
 
-  - script: npm run lint:prettier
-    displayName: "Run Prettier"
-
-  - script: npm run test:coverage
-    displayName: "Run tests with coverage"
-
-  - task: PublishTestResults@2
-    displayName: "Publish Test Results"
-    condition: succeededOrFailed()
-    inputs:
-      testResultsFormat: "JUnit"
-      testResultsFiles: "**/test-results/jest-junit.xml"
-      mergeTestResults: true
-      testRunTitle: "Unit Tests"
+  - stage: Test
+    displayName: "Unit Testing"
+    jobs:
+      - job: UnitTests
+        displayName: "Run Tests"
+        steps:
+          - script: npm run test:coverage
+            displayName: "Run tests with coverage"
+          - task: PublishTestResults@2
+            displayName: "Publish Test Results"
+            condition: succeededOrFailed()
+            inputs:
+              testResultsFormat: "JUnit"
+              testResultsFiles: "**/test-results/jest-junit.xml"
+              mergeTestResults: true
+              testRunTitle: "Unit Tests"
