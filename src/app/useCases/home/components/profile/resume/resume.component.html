@@ -27,12 +27,10 @@
     <ng-container *ngIf="profile.education as education">
       <h3 class="resume-title">{{profile.titles?.education}}</h3>
       <div class="resume-item" *ngFor="let education of education.academicBackground">
-        <h4>{{education.experience}}</h4>
-        <h5>{{education.startdate}}</h5>
-        <p><em>{{education.Academy}}</em></p>
-        <p>
-          {{education.description}}
-        </p>
+        <h4 data-testid="experience">{{education.experience}}</h4>
+        <h5 data-testid="startdate">{{education.startdate}}</h5>
+        <p data-testid="Academy"><em>{{education.Academy}}</em></p>
+        <p data-testid="description">{{education.description}}</p>
       </div>
     </ng-container>
     <ng-container *ngIf="profile.workExperience as workExperience">
