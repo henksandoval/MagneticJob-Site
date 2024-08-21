@@ -21,8 +21,11 @@ steps:
   - script: npm run test:coverage
     displayName: "Run tests with coverage"
 
-  - task: PublishCodeCoverageResults@1
+  - task: PublishTestResults@2
+    displayName: "Publish Test Results"
+    condition: succeededOrFailed()
     inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: "coverage/cobertura-reporter/cobertura-coverage.xml"
-    displayName: "Publish code coverage"
+      testResultsFormat: "JUnit"
+      testResultsFiles: "**/test-results/jest-junit.xml"
+      mergeTestResults: true
+      testRunTitle: "Unit Tests"
