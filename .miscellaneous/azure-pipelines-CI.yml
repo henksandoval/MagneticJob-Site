@@ -5,7 +5,7 @@ resources:
 - repo: self
 
 variables:
-  dockerRegistryServiceConnection: '90720430-d62a-42b4-a871-73709ee6d74d'
+  dockerRegistryServiceConnection: 'Azure Container Registry Connection'
   imageRepository: 'mysitefrontend'
   containerRegistry: 'hasacr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/dockerfile'
@@ -31,3 +31,12 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+
+    - script: echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildId.txt
+      displayName: 'Save Build ID'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'BuildId'
+        publishLocation: 'Container'
