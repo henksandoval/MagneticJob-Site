@@ -5,12 +5,13 @@ import { ResumeComponent } from './resume.component';
 import { render, screen } from '@testing-library/angular';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
+import '@testing-library/jest-dom';
 
 const mockTitles: Titles = {
   resume: 'Historial test',
   summary: 'Sumaria',
   education: 'Educacion',
-  workExperience: 'Experiencia profesional',
+  workExperience: 'Experiencia profesional'
 };
 
 const mockProfile: Profile = {
@@ -33,6 +34,6 @@ const renderComponent = async () => {
 describe('ResumeComponent', () => {
     it('Must show profile history', async () => {
         await renderComponent();
-        expect(screen.getByText('resume')).toHaveTextContent(mockTitles.resume);
+        expect(screen.getByTestId('resume')).toHaveTextContent(mockTitles.resume);
     })
 })
