@@ -22,7 +22,7 @@ stages:
       inputs:
         buildType: 'specific'
         project: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-        definition: '52'
+        definition: '54'
         buildVersionToDownload: 'latest'
         targetPath: '$(Pipeline.Workspace)'
 
