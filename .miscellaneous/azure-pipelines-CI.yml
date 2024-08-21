@@ -16,13 +16,13 @@ variables:
 
 stages:
   - stage: Build
-    displayName: Build and push stage
+    displayName: "Build Image"
     jobs:
       - job: Build
-        displayName: Build
+        displayName: "Build"
         steps:
           - task: Docker@2
-            displayName: Build and push an image to container registry
+            displayName: "Build and push an image to container registry"
             inputs:
               command: buildAndPush
               repository: $(imageRepository)
@@ -31,6 +31,12 @@ stages:
               tags: |
                 $(tag)
 
+  - stage: PublishArtifacts
+    displayName: "Publish Artifacts"
+    jobs:
+      - job: PublishBuildId
+        displayName: "Publish Build ID"
+        steps:
           - script: echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildId.txt
             displayName: "Save Build ID"
 
