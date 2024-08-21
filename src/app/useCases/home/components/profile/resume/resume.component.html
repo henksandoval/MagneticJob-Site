@@ -13,13 +13,13 @@
           <div class="resume-item pb-0">
             <h4 data-testid="name">{{summary.name}}</h4>
             <p>
-              <em data-testid="summary">{{summary.Introduction}}</em>
-            </p>
-            <ul *ngFor="let contact of summary.contact">
-              <li data-testid="location">{{contact.location}}</li>
-              <li data-testid="phoneNumber">{{contact.phoneNumber}}</li>
-              <li data-testid="aliceBarkle">{{contact.aliceBarkle}}</li>
-            </ul>
+              <em data-testid="Introduction">{{summary.Introduction}}</em>
+            </p> 
+              <ul *ngFor="let contact of summary.contact">
+                <li data-testid="location">{{contact.location}}</li>
+                <li data-testid="phoneNumber">{{contact.phoneNumber}}</li>
+                <li data-testid="aliceBarkle">{{contact.aliceBarkle}}</li>
+              </ul>
           </div>
         </div>
       </div>
