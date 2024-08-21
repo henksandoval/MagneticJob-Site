@@ -20,6 +20,6 @@ describe('HomeComponent', () => {
     expect(screen.getByTestId('header')).toBeTruthy();
     expect(screen.getByTestId('cover')).toBeTruthy();
     expect(screen.getByTestId('profile')).toBeTruthy();
-    expect(screen.getByTestId('footer')).toBeTruthy();
+    expect(screen.getByTestId('footerrr')).toBeTruthy();
   });
 });
