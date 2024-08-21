@@ -1,53 +1,66 @@
 trigger: none
 
+pool:
+  vmImage: "ubuntu-latest"
+
 resources:
   pipelines:
-  - pipeline: azure-pipelines-CI
-    source: FrontEnd/CI
-    project: MySite
-    trigger: 
-      branches:
-        include: 
-        - develop
+    - pipeline: azure-pipelines-CI
+      source: FrontEnd/CI
+      project: MySite
+      trigger:
+        branches:
+          include:
+            - develop
 
 variables:
-  azureResourceServiceConnection: 'Azure Resource Manager Connection'
-  imageRepository: 'mysitefrontend'
-  containerRegistry: 'hasacr.azurecr.io'
-  appServiceName: 'hsandoval'
-  resourceGroupName: 'HasDev'
+  azureResourceServiceConnection: "Azure Resource Manager Connection"
+  imageRepository: "mysitefrontend"
+  containerRegistry: "hasacr.azurecr.io"
+  appServiceName: "hsandoval"
+  resourceGroupName: "HasDev"
 
 stages:
-- stage: Deploy
-  displayName: Deploy to Azure App Service
-  jobs:
-  - job: Deploy
-    displayName: Deploy
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: DownloadPipelineArtifact@2
-      displayName: 'Download Artifact'
-      inputs:
-        buildType: 'specific'
-        project: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-        definition: '54'
-        buildVersionToDownload: 'latest'
-        targetPath: '$(Pipeline.Workspace)'
+  - stage: DownloadArtifact
+    displayName: "Download Build Artifact"
+    jobs:
+      - job: Download
+        displayName: "Download"
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: "Download Artifact"
+            inputs:
+              buildType: "specific"
+              project: "4c1f4cba-da43-4422-a077-8b7a47bb1cf2"
+              definition: "54"
+              buildVersionToDownload: "latest"
+              targetPath: "$(Pipeline.Workspace)"
 
-    - script: |
-        echo "Checking files in $(Pipeline.Workspace)/BuildId"
-        ls -l $(Pipeline.Workspace)/BuildId
-        buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
-        echo "Build ID: $buildId"
-        echo "##vso[task.setvariable variable=buildId]$buildId"
-        echo "$(containerRegistry)/$(imageRepository):$buildId"
-      displayName: 'Read Build ID'
+  - stage: PrepareDeployment
+    displayName: "Prepare for Deployment"
+    jobs:
+      - job: Prepare
+        displayName: "Prepare"
+        steps:
+          - script: |
+              echo "Checking files in $(Pipeline.Workspace)/BuildId"
+              ls -l $(Pipeline.Workspace)/BuildId
+              buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
+              echo "Build ID: $buildId"
+              echo "##vso[task.setvariable variable=buildId]$buildId"
+              echo "$(containerRegistry)/$(imageRepository):$buildId"
+            displayName: "Read Build ID"
 
-    - task: AzureWebAppContainer@1
-      displayName: 'Deploy to Azure Web App for Containers'
-      inputs:
-        azureSubscription: $(azureResourceServiceConnection)
-        appName: $(appServiceName)
-        resourceGroupName: $(resourceGroupName)
-        imageName: $(containerRegistry)/$(imageRepository):$(buildId)
+  - stage: Deploy
+    displayName: "Deploy to Azure App Service"
+    jobs:
+      - job: Deploy
+        displayName: "Deploy"
+        steps:
+          - task: AzureWebAppContainer@1
+            displayName: "Deploy to Azure Web App for Containers"
+            inputs:
+              azureSubscription: $(azureResourceServiceConnection)
+              appName: $(appServiceName)
+              resourceGroupName: $(resourceGroupName)
+              imageName: $(containerRegistry)/$(imageRepository):$(buildId)
