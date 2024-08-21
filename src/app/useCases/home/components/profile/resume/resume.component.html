@@ -2,7 +2,7 @@
   <div class="container" data-aos="fade-up" *ngIf="profile$ | async as profile">
     <ng-container *ngIf="profile.titles as titles">
       <div class="section-title">
-        <h2>{{titles.resume}}</h2>
+        <h2 data-testid="resume">{{titles.resume}}</h2>
         <p>{{profile.summary?.about}}
       </div>
     </ng-container>
