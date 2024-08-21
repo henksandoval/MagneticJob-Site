@@ -25,7 +25,7 @@ const mockContactProfile: ContactProfile = {
 const mockSummary: Summary = {
   about: 'I am a software developer',
   name: 'Brahando test',
-  Introduction: 'Innovative and deadline-driven Graphic Designer with 3+ years ',
+  introduction: 'Innovative and deadline-driven Graphic Designer with 3+ years ',
   contact: [mockContactProfile],
 };
 
@@ -66,6 +66,11 @@ describe('ResumeComponent', () => {
   it('should show the name', async () => {
     await renderComponent();
     expect(screen.getByTestId('name')).toHaveTextContent(mockSummary.name);
+  });
+
+  it('should show the introduction', async () => {
+    await renderComponent();
+    expect(screen.getByTestId('introduction')).toHaveTextContent(mockSummary.introduction);
   });
 
   it('should render contact list', async () => {
