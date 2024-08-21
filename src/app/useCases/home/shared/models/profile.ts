@@ -1,12 +1,11 @@
 import { Facts } from "./Facts";
-import { WorkExperience } from "./WorkExperience";
 import { About } from "./about";
 import { Contact } from "./contact";
 import { Education } from "./education";
 import { Skills } from "./skills";
 import { Summary } from "./summary";
 import { Titles } from "./titles";
-
+import { WorkExperience } from "./workExperience";
 
 export interface Profile {
 	birthday?: string;
