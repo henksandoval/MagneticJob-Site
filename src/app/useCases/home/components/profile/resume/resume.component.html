@@ -3,23 +3,23 @@
     <ng-container *ngIf="profile.titles as titles">
       <div class="section-title">
         <h2 data-testid="resume">{{titles.resume}}</h2>
-        <p>{{profile.summary?.about}}
+        <p data-testid="about">{{profile.summary?.about}}
       </div>
     </ng-container>
     <ng-container *ngIf="profile.summary as summary">
       <div class="row">
         <div class="col-lg-6">
-          <h3 class="resume-title">{{profile.titles?.summary}}</h3>
+          <h3 data-testid="summary" class="resume-title">{{profile.titles?.summary}}</h3>
           <div class="resume-item pb-0">
-            <h4>{{summary.name}}</h4>
+            <h4 data-testid="name">{{summary.name}}</h4>
             <p>
-              <em>{{summary.summary}}</em>
+              <em data-testid="summary">{{summary.Introduction}}</em>
             </p>
             <div *ngFor="let contact of summary.contact">
               <ul>
-                <li>{{contact.location}}</li>
-                <li>{{contact.phoneNumber}}</li>
-                <li>{{contact.aliceBarkle}}</li>
+                <li data-testid="location">{{contact.location}}</li>
+                <li data-testid="phoneNumber">{{contact.phoneNumber}}</li>
+                <li data-testid="aliceBarkle">{{contact.aliceBarkle}}</li>
               </ul>
             </div>
           </div>
