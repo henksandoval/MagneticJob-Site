@@ -95,4 +95,14 @@ describe('ResumeComponent', () => {
       expect(screen.getByText(mockContact.aliceBarkle)).toBeInTheDocument();
     });
   });
+
+  it('should show all academic backgrounds', async () => {
+    await renderComponent();
+    mockEducation.academicBackground.forEach(mockEducation => {
+      expect(screen.getByText(mockEducation.experience)).toBeInTheDocument();
+      expect(screen.getByText(mockEducation.startdate)).toBeInTheDocument();
+      expect(screen.getByText(mockEducation.Academy)).toBeInTheDocument();
+      expect(screen.getByText(mockEducation.description)).toBeInTheDocument();
+    });
+  });
 });
