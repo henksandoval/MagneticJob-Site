@@ -68,4 +68,13 @@ describe('ResumeComponent', () => {
     expect(screen.getByTestId('name')).toHaveTextContent(mockSummary.name);
   });
 
+  it('should render contact list', async () => {
+    await renderComponent();
+    mockSummary.contact.forEach( mockContact=> {
+      expect(screen.getByText(mockContact.location)).toBeInTheDocument();
+      expect(screen.getByText(mockContact.phoneNumber)).toBeInTheDocument();
+      expect(screen.getByText(mockContact.aliceBarkle)).toBeInTheDocument();
+    });
+  });
+
 });
