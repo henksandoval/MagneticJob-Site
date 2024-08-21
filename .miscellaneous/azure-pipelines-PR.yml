@@ -1,0 +1,28 @@
+trigger:
+  branches:
+    exclude:
+      - "*"
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "18.x"
+    displayName: "Install Node.js"
+
+  - script: npm install
+    displayName: "Install dependencies"
+
+  - script: npm run lint:prettier
+    displayName: "Run Prettier"
+
+  - script: npm run test:coverage
+    displayName: "Run tests with coverage"
+
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: "coverage/cobertura-reporter/cobertura-coverage.xml"
+    displayName: "Publish code coverage"
