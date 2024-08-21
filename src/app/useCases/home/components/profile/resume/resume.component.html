@@ -15,13 +15,11 @@
             <p>
               <em data-testid="summary">{{summary.Introduction}}</em>
             </p>
-            <div *ngFor="let contact of summary.contact">
-              <ul>
-                <li data-testid="location">{{contact.location}}</li>
-                <li data-testid="phoneNumber">{{contact.phoneNumber}}</li>
-                <li data-testid="aliceBarkle">{{contact.aliceBarkle}}</li>
-              </ul>
-            </div>
+            <ul *ngFor="let contact of summary.contact">
+              <li data-testid="location">{{contact.location}}</li>
+              <li data-testid="phoneNumber">{{contact.phoneNumber}}</li>
+              <li data-testid="aliceBarkle">{{contact.aliceBarkle}}</li>
+            </ul>
           </div>
         </div>
       </div>
