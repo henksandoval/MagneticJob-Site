@@ -15,14 +15,14 @@ variables:
   tag: "$(Build.BuildId)"
 
 stages:
-  - stage: Build
-    displayName: "Build Image"
+  - stage: ImageBuild
+    displayName: "Build and Push Docker Image"
     jobs:
-      - job: Build
-        displayName: "Build"
+      - job: BuildImage
+        displayName: "Build and Push Image"
         steps:
           - task: Docker@2
-            displayName: "Build and push an image to container registry"
+            displayName: "Build and Push to Registry"
             inputs:
               command: buildAndPush
               repository: $(imageRepository)
@@ -31,16 +31,17 @@ stages:
               tags: |
                 $(tag)
 
-  - stage: PublishArtifacts
-    displayName: "Publish Artifacts"
+  - stage: PublishArtifact
+    displayName: "Publish Build Artifact"
     jobs:
       - job: PublishBuildId
-        displayName: "Publish Build ID"
+        displayName: "Publish Build ID Artifact"
         steps:
           - script: echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildId.txt
-            displayName: "Save Build ID"
+            displayName: "Save Build ID to File"
 
           - task: PublishBuildArtifacts@1
+            displayName: "Publish Build ID"
             inputs:
               PathtoPublish: "$(Build.ArtifactStagingDirectory)"
               ArtifactName: "BuildId"
