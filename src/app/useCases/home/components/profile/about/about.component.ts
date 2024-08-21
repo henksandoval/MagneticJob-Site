@@ -11,5 +11,6 @@ import { ProfileService } from '../../../shared/services/profile/profile.service
 })
 export class AboutComponent {
   private profileService: ProfileService = inject(ProfileService);
+
   profile$ = this.profileService.profile$;
 }
