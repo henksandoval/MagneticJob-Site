@@ -1,5 +1,14 @@
-trigger:
-- develop
+trigger: none
+
+resources:
+  pipelines:
+  - pipeline: azure-pipelines-CI
+    source: FrontEnd/CI
+    project: MySite
+    trigger: 
+      branches:
+        include: 
+        - develop
 
 variables:
   azureResourceServiceConnection: 'Azure Resource Manager Connection'
