@@ -1,42 +1,47 @@
 trigger:
-- develop
+  - develop
+
+pool:
+  vmImage: "ubuntu-latest"
 
 resources:
-- repo: self
+  - repo: self
 
 variables:
-  dockerRegistryServiceConnection: 'Azure Container Registry Connection'
-  imageRepository: 'mysitefrontend'
-  containerRegistry: 'hasacr.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/dockerfile'
-  tag: '$(Build.BuildId)'
-
-  vmImageName: 'ubuntu-latest'
+  dockerRegistryServiceConnection: "Azure Container Registry Connection"
+  imageRepository: "mysitefrontend"
+  containerRegistry: "hasacr.azurecr.io"
+  dockerfilePath: "$(Build.SourcesDirectory)/dockerfile"
+  tag: "$(Build.BuildId)"
 
 stages:
-- stage: Build
-  displayName: Build and push stage
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+  - stage: Build
+    displayName: "Build Image"
+    jobs:
+      - job: Build
+        displayName: "Build"
+        steps:
+          - task: Docker@2
+            displayName: "Build and push an image to container registry"
+            inputs:
+              command: buildAndPush
+              repository: $(imageRepository)
+              dockerfile: $(dockerfilePath)
+              containerRegistry: $(dockerRegistryServiceConnection)
+              tags: |
+                $(tag)
 
-    - script: echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildId.txt
-      displayName: 'Save Build ID'
+  - stage: PublishArtifacts
+    displayName: "Publish Artifacts"
+    jobs:
+      - job: PublishBuildId
+        displayName: "Publish Build ID"
+        steps:
+          - script: echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildId.txt
+            displayName: "Save Build ID"
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'BuildId'
-        publishLocation: 'Container'
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+              ArtifactName: "BuildId"
+              publishLocation: "Container"
