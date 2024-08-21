@@ -58,4 +58,9 @@ describe('ResumeComponent', () => {
     expect(screen.getByTestId('about')).toHaveTextContent(mockSummary.about);
   });
 
+  it('should show the title summary', async () => {
+    await renderComponent();
+    expect(screen.getByText(mockTitles.summary)).toBeInTheDocument();
+  });
+
 });
