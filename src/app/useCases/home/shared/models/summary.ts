@@ -3,6 +3,6 @@ import { ContactProfile } from "./contactProfile";
 export interface Summary {
   about: string;
   name: string;
-  Introduction: string;
+  introduction: string;
   contact: ContactProfile[];
 }
