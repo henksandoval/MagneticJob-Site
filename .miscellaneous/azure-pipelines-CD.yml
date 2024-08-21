@@ -21,14 +21,14 @@ variables:
   resourceGroupName: "HasDev"
 
 stages:
-  - stage: DownloadArtifact
-    displayName: "Download Build Artifact"
+  - stage: Deployment
+    displayName: "Deploy to Azure App Service"
     jobs:
-      - job: Download
-        displayName: "Download"
+      - job: DeployWebApp
+        displayName: "Deploy Web App"
         steps:
           - task: DownloadPipelineArtifact@2
-            displayName: "Download Artifact"
+            displayName: "Download Build Artifact"
             inputs:
               buildType: "specific"
               project: "4c1f4cba-da43-4422-a077-8b7a47bb1cf2"
@@ -36,12 +36,6 @@ stages:
               buildVersionToDownload: "latest"
               targetPath: "$(Pipeline.Workspace)"
 
-  - stage: PrepareDeployment
-    displayName: "Prepare for Deployment"
-    jobs:
-      - job: Prepare
-        displayName: "Prepare"
-        steps:
           - script: |
               echo "Checking files in $(Pipeline.Workspace)/BuildId"
               ls -l $(Pipeline.Workspace)/BuildId
@@ -49,16 +43,10 @@ stages:
               echo "Build ID: $buildId"
               echo "##vso[task.setvariable variable=buildId]$buildId"
               echo "$(containerRegistry)/$(imageRepository):$buildId"
-            displayName: "Read Build ID"
+            displayName: "Extract Build ID"
 
-  - stage: Deploy
-    displayName: "Deploy to Azure App Service"
-    jobs:
-      - job: Deploy
-        displayName: "Deploy"
-        steps:
           - task: AzureWebAppContainer@1
-            displayName: "Deploy to Azure Web App for Containers"
+            displayName: "Deploy Container to App Service"
             inputs:
               azureSubscription: $(azureResourceServiceConnection)
               appName: $(appServiceName)

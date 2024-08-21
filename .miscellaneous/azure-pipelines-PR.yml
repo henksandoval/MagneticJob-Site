@@ -7,35 +7,28 @@ pool:
   vmImage: "ubuntu-latest"
 
 stages:
-  - stage: Install_and_Lint
-    displayName: "Installation and Linting"
+  - stage: CodeQuality
+    displayName: "Code Quality and Testing"
     jobs:
-      - job: Install
-        displayName: "Install Dependencies"
+      - job: RunChecks
+        displayName: "Run Code Checks"
         steps:
           - task: NodeTool@0
             inputs:
               versionSpec: "20.x"
             displayName: "Install Node.js"
+
           - script: npm install
-            displayName: "Install dependencies"
+            displayName: "Install Project Dependencies"
 
-      - job: Lint
-        displayName: "Run Prettier"
-        steps:
           - script: npm run lint:prettier
-            displayName: "Run Prettier"
+            displayName: "Run Prettier Linter"
 
-  - stage: Test
-    displayName: "Unit Testing"
-    jobs:
-      - job: UnitTests
-        displayName: "Run Tests"
-        steps:
           - script: npm run test:coverage
-            displayName: "Run tests with coverage"
+            displayName: "Run Unit Tests with Coverage"
+
           - task: PublishTestResults@2
-            displayName: "Publish Test Results"
+            displayName: "Publish Unit Test Results"
             condition: succeededOrFailed()
             inputs:
               testResultsFormat: "JUnit"
