@@ -10,6 +10,8 @@ import { Summary } from '../../../shared/models/summary';
 import { ContactProfile } from '../../../shared/models/contactProfile';
 import { Education } from '../../../shared/models/education';
 import { AcademicBackground } from '../../../shared/models/academicBackground';
+import { WorkExperience } from '../../../shared/models/workExperience';
+import { Position } from '../../../shared/models/position';
 
 const mockTitles: Titles = {
   resume: 'Historial test',
@@ -42,10 +44,25 @@ const mockEducation: Education = {
   academicBackground: [mockAcademicBackground]
 }
 
+const mockPosition: Position = {
+  specialist: '',
+  startdate: '',
+  location: '',
+  communicationDesignLeadership: '',
+  teamLeadership: '',
+  designQualityAssurance: '',
+  expertiseArea: ''
+}
+
+const mockWorkExperience: WorkExperience = {
+  position: [mockPosition]
+}
+
 const mockProfile: Profile = {
   titles: mockTitles,
   summary: mockSummary,
   education: mockEducation,
+  workExperience: mockWorkExperience,
 };
 
 const mockProfileService = {
@@ -105,4 +122,17 @@ describe('ResumeComponent', () => {
       expect(screen.getByText(mockEducation.description)).toBeInTheDocument();
     });
   });
+
+  it('should show all work experiences', async () => {
+    for (const mockPosition of mockWorkExperience.position) {
+      expect(await screen.findByText(mockPosition.specialist)).toBeInTheDocument();
+      expect(await screen.findByText(mockPosition.startdate)).toBeInTheDocument();
+      expect(await screen.findByText(mockPosition.location)).toBeInTheDocument();
+      expect(await screen.findByText(mockPosition.communicationDesignLeadership)).toBeInTheDocument();
+      expect(await screen.findByText(mockPosition.teamLeadership)).toBeInTheDocument();
+      expect(await screen.findByText(mockPosition.designQualityAssurance)).toBeInTheDocument();
+      expect(await screen.findByText(mockPosition.expertiseArea)).toBeInTheDocument();
+    }
+  });
 });
+
