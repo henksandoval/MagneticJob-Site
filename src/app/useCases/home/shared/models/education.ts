@@ -1,5 +1,4 @@
-import { academicBackground } from "./academicBackground";
-
+import { AcademicBackground } from "./academicBackground";
 export interface Education {
-  academicBackground: academicBackground[];
+  academicBackground: AcademicBackground[];
 }
