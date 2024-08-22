@@ -1,4 +1,5 @@
-import { Facts } from "./Facts";
+import { Facts } from "./facts";
+import { WorkExperience } from "./workExperience";
 import { About } from "./about";
 import { Contact } from "./contact";
 import { Education } from "./education";
