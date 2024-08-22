@@ -6,7 +6,6 @@ import { Education } from "./education";
 import { Skills } from "./skills";
 import { Summary } from "./summary";
 import { Titles } from "./titles";
-import { WorkExperience } from "./workExperience";
 
 export interface Profile {
 	birthday?: string;
