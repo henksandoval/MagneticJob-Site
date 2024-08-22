@@ -25,7 +25,7 @@
       </div>
     </ng-container>
     <ng-container *ngIf="profile.education as education">
-      <h3 class="resume-title">{{profile.titles?.education}}</h3>
+      <h3  data-testid="education" class="resume-title">{{profile.titles?.education}}</h3>
       <div class="resume-item" *ngFor="let education of education.academicBackground">
         <h4 data-testid="experience">{{education.experience}}</h4>
         <h5 data-testid="startdate">{{education.startdate}}</h5>
@@ -35,24 +35,16 @@
     </ng-container>
     <ng-container *ngIf="profile.workExperience as workExperience">
       <div class="col-lg-6">
-        <h3 class="resume-title">{{profile.titles?.workExperience}}</h3>
+        <h3 data-testid="workExperience" class="resume-title">{{profile.titles?.workExperience}}</h3>
         <div class="resume-item" *ngFor="let workExperience of workExperience.position">
-          <h4>{{workExperience.position}}</h4>
-          <h5>{{workExperience.startdate}}</h5>
-          <p><em>{{workExperience.location}}</em></p>
+          <h4 data-testid="specialist">{{workExperience.specialist}}</h4>
+          <h5 data-testid="startdate">{{workExperience.startdate}}</h5>
+          <p data-testid="location"><em>{{workExperience.location}}</em></p>
           <ul>
-            <li>
-              {{workExperience.communicationDesignLeadership}}
-            </li>
-            <li>
-              {{workExperience.teamLeadership}}
-            </li>
-            <li>
-              {{workExperience.designQualityAssurance}}
-            </li>
-            <li>
-              {{workExperience.expertiseArea}}
-            </li>
+            <li data-testid="communicationDesignLeadership">{{workExperience.communicationDesignLeadership}}</li>
+            <li data-testid="teamLeadership">{{workExperience.teamLeadership}}</li>
+            <li data-testid="designQualityAssurance">{{workExperience.designQualityAssurance}}</li>
+            <li data-testid="expertiseArea">{{workExperience.expertiseArea}}</li>
           </ul>
         </div>
       </div>
