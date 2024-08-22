@@ -66,7 +66,7 @@
 	"workExperience": {
 		"position": [
 			{
-				"position": "Senior graphic design specialist",
+				"specialist": "Senior graphic design specialist",
 				"startdate": "2019 - Present",
 				"location": "Experion, New York, NY",
 				"communicationDesignLeadership": "Lead in the design, development, and implementation of the graphic, layout, and production communication materials",
@@ -75,7 +75,7 @@
 				"expertiseArea": "Oversee the efficient use of production project budgets ranging from $2,000 - $25,000"
 			},
 			{
-				"position": "Graphic design specialist",
+				"specialist": "Graphic design specialist",
 				"startdate": "2017 - 2018",
 				"location": "Stepping Stone Advertising, New York, NY",
 				"communicationDesignLeadership": "Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).",
