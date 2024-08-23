@@ -29,34 +29,35 @@ const mockContactProfile: ContactProfile = {
 const mockSummary: Summary = {
   about: 'I am a software developer',
   name: 'Brahando test',
-  introduction: 'Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.',
+  introduction:
+    'Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.',
   contact: [mockContactProfile],
 };
 
 const mockAcademicBackground: AcademicBackground = {
-  experience:'Master of Fine Arts & Graphic Design, test',
-    startdate: '2015 - 2012000',
-    Academy: 'Rochester Institute',
-    description: 'Qui deserunt veniam.'
-}
+  experience: 'Master of Fine Arts & Graphic Design, test',
+  startdate: '2015 - 2012000',
+  Academy: 'Rochester Institute',
+  description: 'Qui deserunt veniam.',
+};
 
 const mockEducation: Education = {
-  academicBackground: [mockAcademicBackground]
-}
+  academicBackground: [mockAcademicBackground],
+};
 
 const mockPosition: Position = {
-  specialist: '',
-  startdate: '',
-  location: '',
-  communicationDesignLeadership: '',
-  teamLeadership: '',
-  designQualityAssurance: '',
-  expertiseArea: ''
-}
+  specialist: 'Hola',
+  startdate: '2010 - Presene',
+  location: 'NY',
+  communicationDesignLeadership: 'Desarrollo',
+  teamLeadership: 'Amor test',
+  designQualityAssurance: 'Hello word',
+  expertiseArea: '<grafico',
+};
 
 const mockWorkExperience: WorkExperience = {
-  position: [mockPosition]
-}
+  position: [mockPosition],
+};
 
 const mockProfile: Profile = {
   titles: mockTitles,
@@ -101,38 +102,63 @@ describe('ResumeComponent', () => {
 
   it('should show the introduction', async () => {
     await renderComponent();
-    expect(screen.getByTestId('introduction')).toHaveTextContent(mockSummary.introduction);
+    expect(screen.getByTestId('introduction')).toHaveTextContent(
+      mockSummary.introduction,
+    );
   });
 
   it('should render contact list', async () => {
     await renderComponent();
-    mockSummary.contact.forEach( mockContact=> {
-      expect(screen.getByText(mockContact.location)).toBeInTheDocument();
-      expect(screen.getByText(mockContact.phoneNumber)).toBeInTheDocument();
-      expect(screen.getByText(mockContact.aliceBarkle)).toBeInTheDocument();
+    mockSummary.contact.forEach((mockContact) => {
+      checkTexts([
+        mockContact.location,
+        mockContact.phoneNumber,
+        mockContact.aliceBarkle
+      ])
     });
   });
 
   it('should show all academic backgrounds', async () => {
     await renderComponent();
-    mockEducation.academicBackground.forEach(mockEducation => {
-      expect(screen.getByText(mockEducation.experience)).toBeInTheDocument();
-      expect(screen.getByText(mockEducation.startdate)).toBeInTheDocument();
-      expect(screen.getByText(mockEducation.Academy)).toBeInTheDocument();
-      expect(screen.getByText(mockEducation.description)).toBeInTheDocument();
+    mockEducation.academicBackground.forEach((mockEducation) => {
+      checkTexts([
+        mockEducation.experience,
+        mockEducation.startdate,
+        mockEducation.Academy,
+        mockEducation.description,
+      ]);
     });
   });
 
   it('should show all work experiences', async () => {
     for (const mockPosition of mockWorkExperience.position) {
-      expect(await screen.findByText(mockPosition.specialist)).toBeInTheDocument();
-      expect(await screen.findByText(mockPosition.startdate)).toBeInTheDocument();
-      expect(await screen.findByText(mockPosition.location)).toBeInTheDocument();
-      expect(await screen.findByText(mockPosition.communicationDesignLeadership)).toBeInTheDocument();
-      expect(await screen.findByText(mockPosition.teamLeadership)).toBeInTheDocument();
-      expect(await screen.findByText(mockPosition.designQualityAssurance)).toBeInTheDocument();
-      expect(await screen.findByText(mockPosition.expertiseArea)).toBeInTheDocument();
+      expect(
+        await screen.findByText(mockPosition.specialist),
+      ).toBeInTheDocument();
+      expect(
+        await screen.findByText(mockPosition.startdate),
+      ).toBeInTheDocument();
+      expect(
+        await screen.findByText(mockPosition.location),
+      ).toBeInTheDocument();
+      expect(
+        await screen.findByText(mockPosition.communicationDesignLeadership),
+      ).toBeInTheDocument();
+      expect(
+        await screen.findByText(mockPosition.teamLeadership),
+      ).toBeInTheDocument();
+      expect(
+        await screen.findByText(mockPosition.designQualityAssurance),
+      ).toBeInTheDocument();
+      expect(
+        await screen.findByText(mockPosition.expertiseArea),
+      ).toBeInTheDocument();
     }
   });
-});
 
+  async function checkTexts(texts: any) {
+    for (const text of texts) {
+      expect(screen.getByText(text)).toBeInTheDocument();
+    }
+  }
+});
