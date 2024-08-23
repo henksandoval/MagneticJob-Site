@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './portfolio.component.html',
-  styleUrl: './portfolio.component.scss',
+  styles: ``,
 })
 export class PortfolioComponent {}
