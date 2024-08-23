@@ -19,11 +19,11 @@ const mockAbout: About = {
   degree: 'Test Degree',
   email: 'test@example.com',
   freelance: 'Available',
-  workExperience: 'Test Experience'
+  workExperience: 'Test Experience',
 };
 
 const mockProfile: Profile = {
-  about: mockAbout
+  about: mockAbout,
 };
 
 const mockProfileService = {
@@ -41,62 +41,61 @@ const renderComponent = async () => {
 
 describe('AboutComponent', () => {
   it('should display profile description', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('description')).toHaveTextContent(mockAbout.description);
+    await checkTextContentByTestId('description', mockAbout.description);
   });
 
   it('should display profile text', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('about-tittle')).toHaveTextContent(mockAbout.text);
+    await checkTextContentByTestId('about-tittle', mockAbout.text);
   });
 
   it('should display profile hobbies', async () => {
-    await renderComponent();
-    expect(screen.getByText(mockAbout.hobbies)).toBeInTheDocument();
+    await checkTextContentByTestId('hobbies', mockAbout.hobbies);
   });
 
   it('should display profile birthday', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('birthday')).toHaveTextContent(mockAbout.birthday);
+    await checkTextContentByTestId('birthday', mockAbout.birthday);
   });
 
   it('should display profile website', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('website')).toHaveTextContent(mockAbout.website);
+    await checkTextContentByTestId('website', mockAbout.website);
   });
 
   it('should display profile phone number', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('phoneNumber')).toHaveTextContent(mockAbout.phoneNumber.toString());
+    await checkTextContentByTestId(
+      'phoneNumber',
+      mockAbout.phoneNumber.toString(),
+    );
   });
 
   it('should display profile city', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('city')).toHaveTextContent(mockAbout.city);
+    await checkTextContentByTestId('city', mockAbout.city);
   });
 
   it('should display profile age', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('age')).toHaveTextContent(mockAbout.age.toString());
+    await checkTextContentByTestId('age', mockAbout.age.toString());
   });
 
   it('should display profile degree', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('degree')).toHaveTextContent(mockAbout.degree);
+    await checkTextContentByTestId('degree', mockAbout.degree);
   });
 
   it('should display profile email', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('email')).toHaveTextContent(mockAbout.email);
+    await checkTextContentByTestId('email', mockAbout.email);
   });
 
   it('should display profile freelance status', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('freelance-status')).toHaveTextContent(mockAbout.freelance);
+    await checkTextContentByTestId('freelance-status', mockAbout.freelance);
   });
 
   it('should display profile work experience', async () => {
-    await renderComponent();
-    expect(screen.getByTestId('workExperience')).toHaveTextContent(mockAbout.workExperience);
+    await checkTextContentByTestId('workExperience', mockAbout.workExperience);
   });
 });
+
+async function checkTextContentByTestId(
+  id: string,
+  expectedTextContent: string,
+) {
+  await renderComponent();
+  expect(screen.getByTestId(id)).toHaveTextContent(expectedTextContent);
+}
