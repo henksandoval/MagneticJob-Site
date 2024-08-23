@@ -7,12 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    HeaderComponent,
-    CoverComponent,
-    ProfileComponent,
-    FooterComponent,
-  ],
+  imports: [HeaderComponent, CoverComponent, ProfileComponent, FooterComponent],
   templateUrl: './home.component.html',
   styles: ``,
 })

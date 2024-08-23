@@ -61,10 +61,7 @@ describe('AboutComponent', () => {
   });
 
   it('should display profile phone number', async () => {
-    await checkTextContentByTestId(
-      'phoneNumber',
-      mockAbout.phoneNumber.toString(),
-    );
+    await checkTextContentByTestId('phoneNumber', mockAbout.phoneNumber.toString());
   });
 
   it('should display profile city', async () => {
@@ -92,10 +89,7 @@ describe('AboutComponent', () => {
   });
 });
 
-async function checkTextContentByTestId(
-  id: string,
-  expectedTextContent: string,
-) {
+async function checkTextContentByTestId(id: string, expectedTextContent: string) {
   await renderComponent();
   expect(screen.getByTestId(id)).toHaveTextContent(expectedTextContent);
 }

@@ -8,9 +8,7 @@ const homeRoutes = [
       {
         path: 'about',
         loadComponent: () =>
-          import('./components/profile/about/about.component').then(
-            (c) => c.AboutComponent,
-          ),
+          import('./components/profile/about/about.component').then((c) => c.AboutComponent),
       },
     ],
   },
