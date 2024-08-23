@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Profile } from '../../models/profile';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProfileService {
   private profileSource = new BehaviorSubject<Profile | null>(null);
@@ -16,8 +16,7 @@ export class ProfileService {
   }
 
   private loadProfile(): void {
-    this.http.get<Profile>('assets/data.json')
-    .subscribe(data => {
+    this.http.get<Profile>('assets/data.json').subscribe((data) => {
       this.profileSource.next(data);
     });
   }
