@@ -2,49 +2,59 @@
   <div class="container" data-aos="fade-up" *ngIf="profile$ | async as profile">
     <ng-container *ngIf="profile.titles as titles">
       <div class="section-title">
-        <h2 data-testid="resume">{{titles.resume}}</h2>
-        <p data-testid="about">{{profile.summary?.about}}
+        <h2 data-testid="resume">{{ titles.resume }}</h2>
+        <p data-testid="about">{{ profile.summary?.about }}</p>
       </div>
     </ng-container>
     <ng-container *ngIf="profile.summary as summary">
       <div class="row">
         <div class="col-lg-6">
-          <h3 data-testid="summary" class="resume-title">{{profile.titles?.summary}}</h3>
+          <h3 data-testid="summary" class="resume-title">{{ profile.titles?.summary }}</h3>
           <div class="resume-item pb-0">
-            <h4 data-testid="name">{{summary.name}}</h4>
+            <h4 data-testid="name">{{ summary.name }}</h4>
             <p>
-              <em data-testid="introduction">{{summary.introduction}}</em>
-            </p> 
-              <ul *ngFor="let contact of summary.contact">
-                <li data-testid="location">{{contact.location}}</li>
-                <li data-testid="phoneNumber">{{contact.phoneNumber}}</li>
-                <li data-testid="aliceBarkle">{{contact.aliceBarkle}}</li>
-              </ul>
+              <em data-testid="introduction">{{ summary.introduction }}</em>
+            </p>
+            <ul *ngFor="let contact of summary.contact">
+              <li data-testid="location">{{ contact.location }}</li>
+              <li data-testid="phoneNumber">{{ contact.phoneNumber }}</li>
+              <li data-testid="aliceBarkle">{{ contact.aliceBarkle }}</li>
+            </ul>
           </div>
         </div>
       </div>
     </ng-container>
     <ng-container *ngIf="profile.education as education">
-      <h3  data-testid="education" class="resume-title">{{profile.titles?.education}}</h3>
+      <h3 data-testid="education" class="resume-title">{{ profile.titles?.education }}</h3>
       <div class="resume-item" *ngFor="let education of education.academicBackground">
-        <h4 data-testid="experience">{{education.experience}}</h4>
-        <h5 data-testid="startdate">{{education.startdate}}</h5>
-        <p data-testid="Academy"><em>{{education.Academy}}</em></p>
-        <p data-testid="description">{{education.description}}</p>
+        <h4 data-testid="experience">{{ education.experience }}</h4>
+        <h5 data-testid="startdate">{{ education.startdate }}</h5>
+        <p data-testid="Academy">
+          <em>{{ education.Academy }}</em>
+        </p>
+        <p data-testid="description">{{ education.description }}</p>
       </div>
     </ng-container>
     <ng-container *ngIf="profile.workExperience as workExperience">
       <div class="col-lg-6">
-        <h3 data-testid="workExperience" class="resume-title">{{profile.titles?.workExperience}}</h3>
+        <h3 data-testid="workExperience" class="resume-title">
+          {{ profile.titles?.workExperience }}
+        </h3>
         <div class="resume-item" *ngFor="let workExperience of workExperience.position">
-          <h4 data-testid="specialist">{{workExperience.specialist}}</h4>
-          <h5 data-testid="startdate">{{workExperience.startdate}}</h5>
-          <p data-testid="location"><em>{{workExperience.location}}</em></p>
+          <h4 data-testid="specialist">{{ workExperience.specialist }}</h4>
+          <h5 data-testid="startdate">{{ workExperience.startdate }}</h5>
+          <p data-testid="location">
+            <em>{{ workExperience.location }}</em>
+          </p>
           <ul>
-            <li data-testid="communicationDesignLeadership">{{workExperience.communicationDesignLeadership}}</li>
-            <li data-testid="teamLeadership">{{workExperience.teamLeadership}}</li>
-            <li data-testid="designQualityAssurance">{{workExperience.designQualityAssurance}}</li>
-            <li data-testid="expertiseArea">{{workExperience.expertiseArea}}</li>
+            <li data-testid="communicationDesignLeadership">
+              {{ workExperience.communicationDesignLeadership }}
+            </li>
+            <li data-testid="teamLeadership">{{ workExperience.teamLeadership }}</li>
+            <li data-testid="designQualityAssurance">
+              {{ workExperience.designQualityAssurance }}
+            </li>
+            <li data-testid="expertiseArea">{{ workExperience.expertiseArea }}</li>
           </ul>
         </div>
       </div>
