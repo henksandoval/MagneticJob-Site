@@ -6,6 +6,6 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
   standalone: true,
   imports: [NgxPageScrollModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styles: ``,
 })
 export class HeaderComponent {}

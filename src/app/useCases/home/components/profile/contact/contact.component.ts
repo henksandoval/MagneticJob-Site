@@ -7,7 +7,7 @@ import { ProfileService } from '../../../shared/services/profile/profile.service
   standalone: true,
   imports: [NgIf, AsyncPipe],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss',
+  styles: ``,
 })
 export class ContactComponent {
   private profileService: ProfileService = inject(ProfileService);
