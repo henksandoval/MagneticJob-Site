@@ -17,7 +17,7 @@ variables:
   azureResourceServiceConnection: 'Azure Resource Manager Connection'
   imageRepository: 'mysitefrontend'
   containerRegistry: 'hasacr.azurecr.io'
-  appServiceName: 'hsandoval'
+  appServiceName: 'mysitedev'
   resourceGroupName: 'HasDev'
 
 stages:
