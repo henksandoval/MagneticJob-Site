@@ -21,14 +21,16 @@ variables:
 
 stages:
   - stage: DeployDev
-    template: templates/deploy-template.yml
     displayName: 'Deploy to DEV'
     parameters:
       appServiceName: 'mysitedev'
+    jobs:
+      - template: templates/code-quality-template.yml
 
   - stage: DeployPro
     dependsOn: DeployDev
-    template: templates/deploy-template.yml
     displayName: 'Deploy to PRO'
     parameters:
       appServiceName: 'mysitepro'
+    jobs:
+      - template: templates/code-quality-template.yml
