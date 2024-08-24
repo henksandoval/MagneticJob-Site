@@ -22,10 +22,7 @@ const mockProfileService = {
 
 const renderComponent = async () => {
   await render(ResumeComponent, {
-    providers: [
-      provideHttpClientTesting(),
-      { provide: ProfileService, useValue: mockProfileService },
-    ],
+    providers: [provideHttpClientTesting(), { provide: ProfileService, useValue: mockProfileService }],
   });
 };
 
@@ -33,7 +30,7 @@ describe('ResumeComponent', () => {
   beforeEach(async () => {
     await renderComponent();
   });
-  
+
   it('Must show profile history', () => {
     expect(screen.getByTestId('resume')).toHaveTextContent(mockTitles.resume);
   });
@@ -61,7 +58,7 @@ describe('ResumeComponent', () => {
       expect(screen.getByText(mockContact.aliceBarkle)).toBeInTheDocument();
     });
   });
-  
+
   it('should render all records about work experience', () => {
     mockProfile.workExperience.position.forEach((position: Position, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');

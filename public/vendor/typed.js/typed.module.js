@@ -155,11 +155,7 @@ var s = {
         var n = t.substring(s).charAt(0);
         if ('<' === n || '&' === n) {
           var i;
-          for (
-            i = '<' === n ? '>' : ';';
-            t.substring(s + 1).charAt(0) !== i && !(1 + ++s > t.length);
-
-          );
+          for (i = '<' === n ? '>' : ';'; t.substring(s + 1).charAt(0) !== i && !(1 + ++s > t.length); );
           s++;
         }
         return s;
@@ -189,9 +185,7 @@ var s = {
       (s.stop = function () {
         this.typingComplete ||
           this.pause.status ||
-          (this.toggleBlinking(!0),
-          (this.pause.status = !0),
-          this.options.onStop(this.arrayPos, this));
+          (this.toggleBlinking(!0), (this.pause.status = !0), this.options.onStop(this.arrayPos, this));
       }),
       (s.start = function () {
         this.typingComplete ||
@@ -262,8 +256,7 @@ var s = {
               e.timeout = setTimeout(function () {
                 e.toggleBlinking(!1),
                   s >= t.length ? e.doneTyping(t, s) : e.keepTyping(t, s, r),
-                  e.temporaryPause &&
-                    ((e.temporaryPause = !1), e.options.onTypingResumed(e.arrayPos, e));
+                  e.temporaryPause && ((e.temporaryPause = !1), e.options.onTypingResumed(e.arrayPos, e));
               }, i);
             }, i))
           : this.setPauseStatus(t, s, !0);
@@ -373,8 +366,7 @@ var s = {
             (this.cursor.className = 'typed-cursor'),
             this.cursor.setAttribute('aria-hidden', !0),
             (this.cursor.innerHTML = this.cursorChar),
-            this.el.parentNode &&
-              this.el.parentNode.insertBefore(this.cursor, this.el.nextSibling)));
+            this.el.parentNode && this.el.parentNode.insertBefore(this.cursor, this.el.nextSibling)));
       }),
       t
     );
