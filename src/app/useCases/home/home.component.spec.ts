@@ -6,6 +6,7 @@ import { ProfileService } from './shared/services/profile/profile.service';
 
 const mockProfileService = {
   getProfile: jest.fn().mockReturnValue(of({ name: 'Test User' })),
+  loadProfile: jest.fn(),
 };
 
 describe('HomeComponent', () => {
