@@ -12,7 +12,7 @@
     "lint": "eslint",
     "lint:autofix": "run-p lint:fix prettier:write",
     "lint:fix": "eslint --fix",
-    "prettier:write": "prettier --write \"**/*.{ts,html,js,json,md}\""
+    "prettier:write": "prettier --write \"**/*.{ts,html,js,json,md,yml,yaml}\""
   },
   "private": true,
   "dependencies": {
