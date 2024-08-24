@@ -19,8 +19,8 @@ steps:
     displayName: 'Download Build Artifact'
     inputs:
       buildType: 'specific'
-      project: ${{ parameters.buildPipelineId }}
-      definition: ${{ parameters.projectId }}
+      project: ${{ parameters.projectId }}
+      definition: ${{ parameters.buildPipelineId }}
       buildVersionToDownload: 'latest'
       targetPath: '$(Pipeline.Workspace)'
 
