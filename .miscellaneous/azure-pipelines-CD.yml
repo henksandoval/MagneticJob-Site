@@ -26,6 +26,10 @@ stages:
       - template: templates/deploy-template.yml
         parameters:
           appServiceName: 'mysitedev'
+          azureResourceServiceConnection: $(azureResourceServiceConnection)
+          imageRepository: $(imageRepository)
+          containerRegistry: $(containerRegistry)
+          resourceGroupName: $(resourceGroupName)
 
   - stage: DeployPro
     dependsOn: DeployDev
@@ -34,3 +38,7 @@ stages:
       - template: templates/deploy-template.yml
         parameters:
           appServiceName: 'mysitepro'
+          azureResourceServiceConnection: $(azureResourceServiceConnection)
+          imageRepository: $(imageRepository)
+          containerRegistry: $(containerRegistry)
+          resourceGroupName: $(resourceGroupName)
