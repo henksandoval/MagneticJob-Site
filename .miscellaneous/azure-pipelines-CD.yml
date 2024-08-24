@@ -23,22 +23,38 @@ stages:
   - stage: DeployDev
     displayName: 'Deploy to DEV'
     jobs:
-      - template: templates/deploy-template.yml
-        parameters:
-          appServiceName: 'mysitedev'
-          azureResourceServiceConnection: $(azureResourceServiceConnection)
-          imageRepository: $(imageRepository)
-          containerRegistry: $(containerRegistry)
-          resourceGroupName: $(resourceGroupName)
+      - deployment: DeployToDev
+        environment: 'DeployDev'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: templates/deploy-template.yml
+                  parameters:
+                    appServiceName: 'mysitedev'
+                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+                    buildPipelineId: '54'
+                    azureResourceServiceConnection: $(azureResourceServiceConnection)
+                    imageRepository: $(imageRepository)
+                    containerRegistry: $(containerRegistry)
+                    resourceGroupName: $(resourceGroupName)
 
   - stage: DeployPro
     dependsOn: DeployDev
     displayName: 'Deploy to PRO'
     jobs:
-      - template: templates/deploy-template.yml
-        parameters:
-          appServiceName: 'mysitepro'
-          azureResourceServiceConnection: $(azureResourceServiceConnection)
-          imageRepository: $(imageRepository)
-          containerRegistry: $(containerRegistry)
-          resourceGroupName: $(resourceGroupName)
+      - deployment: DeployToPro
+        environment: 'DeployPro'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: templates/deploy-template.yml
+                  parameters:
+                    appServiceName: 'mysitepro'
+                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+                    buildPipelineId: '54'
+                    azureResourceServiceConnection: $(azureResourceServiceConnection)
+                    imageRepository: $(imageRepository)
+                    containerRegistry: $(containerRegistry)
+                    resourceGroupName: $(resourceGroupName)
