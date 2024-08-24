@@ -1,4 +1,8 @@
 parameters:
+  - name: projectId
+    type: string
+  - name: buildPipelineId
+    type: string
   - name: appServiceName
     type: string
   - name: azureResourceServiceConnection
@@ -10,32 +14,29 @@ parameters:
   - name: resourceGroupName
     type: string
 
-jobs:
-  - job: DeployWebApp
-    displayName: 'Deploy Web App'
-    steps:
-      - task: DownloadPipelineArtifact@2
-        displayName: 'Download Build Artifact'
-        inputs:
-          buildType: 'specific'
-          project: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-          definition: '54'
-          buildVersionToDownload: 'latest'
-          targetPath: '$(Pipeline.Workspace)'
+steps:
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download Build Artifact'
+    inputs:
+      buildType: 'specific'
+      project: ${{ parameters.projectId }}
+      definition: ${{ parameters.buildPipelineId }}
+      buildVersionToDownload: 'latest'
+      targetPath: '$(Pipeline.Workspace)'
 
-      - script: |
-          echo "Checking files in $(Pipeline.Workspace)/BuildId"
-          ls -l $(Pipeline.Workspace)/BuildId
-          buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
-          echo "Build ID: $buildId"
-          echo "##vso[task.setvariable variable=buildId]$buildId"
-          echo "${{ parameters.containerRegistry }}/${{ parameters.imageRepository }}:$buildId"
-        displayName: 'Extract Build ID'
+  - script: |
+      echo "Checking files in $(Pipeline.Workspace)/BuildId"
+      ls -l $(Pipeline.Workspace)/BuildId
+      buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
+      echo "Build ID: $buildId"
+      echo "##vso[task.setvariable variable=buildId]$buildId"
+      echo "${{ parameters.containerRegistry }}/${{ parameters.imageRepository }}:$buildId"
+    displayName: 'Extract Build ID'
 
-      - task: AzureWebAppContainer@1
-        displayName: 'Deploy Container to App Service'
-        inputs:
-          azureSubscription: ${{ parameters.azureResourceServiceConnection }}
-          appName: ${{ parameters.appServiceName }}
-          resourceGroupName: ${{ parameters.resourceGroupName }}
-          imageName: ${{ parameters.containerRegistry }}/${{ parameters.imageRepository }}:$(buildId)
+  - task: AzureWebAppContainer@1
+    displayName: 'Deploy Container to App Service'
+    inputs:
+      azureSubscription: ${{ parameters.azureResourceServiceConnection }}
+      appName: ${{ parameters.appServiceName }}
+      resourceGroupName: ${{ parameters.resourceGroupName }}
+      imageName: ${{ parameters.containerRegistry }}/${{ parameters.imageRepository }}:$(buildId)
