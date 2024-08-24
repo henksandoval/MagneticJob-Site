@@ -45,7 +45,6 @@ stages:
 
   - stage: ImageBuild
     displayName: "Build and Push Docker Image"
-    depends: SetVersion
     jobs:
       - job: BuildImage
         displayName: "Build and Push Image"
@@ -72,7 +71,7 @@ stages:
       - job: PublishBuildId
         displayName: "Publish Build ID Artifact"
         steps:
-          - script: echo $(GitVersion.NuGetVersionV2) > $(Build.ArtifactStagingDirectory)/buildId.txt
+          - script: echo $(Tag) > $(Build.ArtifactStagingDirectory)/buildId.txt
             displayName: "Save TagVersion to File"
 
           - task: PublishBuildArtifacts@1
