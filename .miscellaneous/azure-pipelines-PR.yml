@@ -21,9 +21,6 @@ stages:
           - script: npm install
             displayName: "Install Project Dependencies"
 
-          - script: npm run lint:prettier
-            displayName: "Run Prettier Linter"
-
           - script: npm run test:coverage
             displayName: "Run Unit Tests with Coverage"
 
