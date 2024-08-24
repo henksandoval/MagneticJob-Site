@@ -1,5 +1,5 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
 
 @Component({
@@ -9,7 +9,11 @@ import { ProfileService } from '../../../shared/services/profile/profile.service
   templateUrl: './about.component.html',
   styles: ``,
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit {
   private profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
+
+  ngOnInit(): void {
+    this.profileService.loadProfile();
+  }
 }

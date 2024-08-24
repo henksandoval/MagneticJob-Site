@@ -4,21 +4,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Profile } from '../../models/profile';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProfileService {
   private profileSource = new BehaviorSubject<Profile | null>(null);
+  private profileLoaded: boolean = false;
   profile$: Observable<Profile | null> = this.profileSource.asObservable();
-  profileLoaded: boolean = false;
 
-  constructor(private http: HttpClient) {
-    this.loadProfile();
-  }
+  constructor(private http: HttpClient) {}
 
-  private loadProfile(): void {
-    this.http.get<Profile>('assets/data.json')
-    .subscribe(data => {
-      this.profileSource.next(data);
-    });
+  public loadProfile(): void {
+    if (!this.profileLoaded) {
+      this.http.get<Profile>('assets/data.json').subscribe((data) => {
+        this.profileSource.next(data);
+      });
+      this.profileLoaded = true;
+    }
   }
 }

@@ -5,7 +5,7 @@ Licensed under the MIT license.
 https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 */
 (function () {
-  "use strict";
+  'use strict';
 
   var keyCounter = 0;
   var allWaypoints = {};
@@ -13,21 +13,21 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   /* http://imakewebthings.com/waypoints/api/waypoint */
   function Waypoint(options) {
     if (!options) {
-      throw new Error("No options passed to Waypoint constructor");
+      throw new Error('No options passed to Waypoint constructor');
     }
     if (!options.element) {
-      throw new Error("No element option passed to Waypoint constructor");
+      throw new Error('No element option passed to Waypoint constructor');
     }
     if (!options.handler) {
-      throw new Error("No handler option passed to Waypoint constructor");
+      throw new Error('No handler option passed to Waypoint constructor');
     }
 
-    this.key = "waypoint-" + keyCounter;
+    this.key = 'waypoint-' + keyCounter;
     this.options = Waypoint.Adapter.extend({}, Waypoint.defaults, options);
     this.element = this.options.element;
     this.adapter = new Waypoint.Adapter(this.element);
     this.callback = options.handler;
-    this.axis = this.options.horizontal ? "horizontal" : "vertical";
+    this.axis = this.options.horizontal ? 'horizontal' : 'vertical';
     this.enabled = this.options.enabled;
     this.triggerPoint = null;
     this.group = Waypoint.Group.findOrCreate({
@@ -109,13 +109,13 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   /* Public */
   /* http://imakewebthings.com/waypoints/api/destroy-all */
   Waypoint.destroyAll = function () {
-    Waypoint.invokeAll("destroy");
+    Waypoint.invokeAll('destroy');
   };
 
   /* Public */
   /* http://imakewebthings.com/waypoints/api/disable-all */
   Waypoint.disableAll = function () {
-    Waypoint.invokeAll("disable");
+    Waypoint.invokeAll('disable');
   };
 
   /* Public */
@@ -152,16 +152,16 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
     context: window,
     continuous: true,
     enabled: true,
-    group: "default",
+    group: 'default',
     horizontal: false,
     offset: 0,
   };
 
   Waypoint.offsetAliases = {
-    "bottom-in-view": function () {
+    'bottom-in-view': function () {
       return this.context.innerHeight() - this.adapter.outerHeight();
     },
-    "right-in-view": function () {
+    'right-in-view': function () {
       return this.context.innerWidth() - this.adapter.outerWidth();
     },
   };
@@ -169,7 +169,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   window.Waypoint = Waypoint;
 })();
 (function () {
-  "use strict";
+  'use strict';
 
   function requestAnimationFrameShim(callback) {
     window.setTimeout(callback, 1000 / 60);
@@ -185,7 +185,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
     this.element = element;
     this.Adapter = Waypoint.Adapter;
     this.adapter = new this.Adapter(element);
-    this.key = "waypoint-context-" + keyCounter;
+    this.key = 'waypoint-context-' + keyCounter;
     this.didScroll = false;
     this.didResize = false;
     this.oldScroll = {
@@ -211,7 +211,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 
   /* Private */
   Context.prototype.add = function (waypoint) {
-    var axis = waypoint.options.horizontal ? "horizontal" : "vertical";
+    var axis = waypoint.options.horizontal ? 'horizontal' : 'vertical';
     this.waypoints[axis][waypoint.key] = waypoint;
     this.refresh();
   };
@@ -222,7 +222,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
     var verticalEmpty = this.Adapter.isEmptyObject(this.waypoints.vertical);
     var isWindow = this.element == this.element.window;
     if (horizontalEmpty && verticalEmpty && !isWindow) {
-      this.adapter.off(".waypoints");
+      this.adapter.off('.waypoints');
       delete contexts[this.key];
     }
   };
@@ -236,7 +236,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
       self.didResize = false;
     }
 
-    this.adapter.on("resize.waypoints", function () {
+    this.adapter.on('resize.waypoints', function () {
       if (!self.didResize) {
         self.didResize = true;
         Waypoint.requestAnimationFrame(resizeHandler);
@@ -252,7 +252,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
       self.didScroll = false;
     }
 
-    this.adapter.on("scroll.waypoints", function () {
+    this.adapter.on('scroll.waypoints', function () {
       if (!self.didScroll || Waypoint.isTouch) {
         self.didScroll = true;
         Waypoint.requestAnimationFrame(scrollHandler);
@@ -272,14 +272,14 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
       horizontal: {
         newScroll: this.adapter.scrollLeft(),
         oldScroll: this.oldScroll.x,
-        forward: "right",
-        backward: "left",
+        forward: 'right',
+        backward: 'left',
       },
       vertical: {
         newScroll: this.adapter.scrollTop(),
         oldScroll: this.oldScroll.y,
-        forward: "down",
-        backward: "up",
+        forward: 'down',
+        backward: 'up',
       },
     };
 
@@ -371,18 +371,18 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
         contextScroll: isWindow ? 0 : this.oldScroll.x,
         contextDimension: this.innerWidth(),
         oldScroll: this.oldScroll.x,
-        forward: "right",
-        backward: "left",
-        offsetProp: "left",
+        forward: 'right',
+        backward: 'left',
+        offsetProp: 'left',
       },
       vertical: {
         contextOffset: isWindow ? 0 : contextOffset.top,
         contextScroll: isWindow ? 0 : this.oldScroll.y,
         contextDimension: this.innerHeight(),
         oldScroll: this.oldScroll.y,
-        forward: "down",
-        backward: "up",
-        offsetProp: "top",
+        forward: 'down',
+        backward: 'up',
+        offsetProp: 'top',
       },
     };
 
@@ -401,19 +401,17 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
           elementOffset = waypoint.adapter.offset()[axis.offsetProp];
         }
 
-        if (typeof adjustment === "function") {
+        if (typeof adjustment === 'function') {
           adjustment = adjustment.apply(waypoint);
-        } else if (typeof adjustment === "string") {
+        } else if (typeof adjustment === 'string') {
           adjustment = parseFloat(adjustment);
-          if (waypoint.options.offset.indexOf("%") > -1) {
+          if (waypoint.options.offset.indexOf('%') > -1) {
             adjustment = Math.ceil((axis.contextDimension * adjustment) / 100);
           }
         }
 
         contextModifier = axis.contextScroll - axis.contextOffset;
-        waypoint.triggerPoint = Math.floor(
-          elementOffset + contextModifier - adjustment,
-        );
+        waypoint.triggerPoint = Math.floor(elementOffset + contextModifier - adjustment);
         wasBeforeScroll = oldTriggerPoint < axis.oldScroll;
         nowAfterScroll = waypoint.triggerPoint >= axis.oldScroll;
         triggeredBackward = wasBeforeScroll && nowAfterScroll;
@@ -477,7 +475,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   Waypoint.Context = Context;
 })();
 (function () {
-  "use strict";
+  'use strict';
 
   function byTriggerPoint(a, b) {
     return a.triggerPoint - b.triggerPoint;
@@ -497,7 +495,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   function Group(options) {
     this.name = options.name;
     this.axis = options.axis;
-    this.id = this.name + "-" + this.axis;
+    this.id = this.name + '-' + this.axis;
     this.waypoints = [];
     this.clearTriggerQueues();
     groups[this.axis][this.name] = this;
@@ -522,7 +520,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   Group.prototype.flushTriggers = function () {
     for (var direction in this.triggerQueues) {
       var waypoints = this.triggerQueues[direction];
-      var reverse = direction === "up" || direction === "left";
+      var reverse = direction === 'up' || direction === 'left';
       waypoints.sort(reverse ? byReverseTriggerPoint : byTriggerPoint);
       for (var i = 0, end = waypoints.length; i < end; i += 1) {
         var waypoint = waypoints[i];
@@ -582,7 +580,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   Waypoint.Group = Group;
 })();
 (function () {
-  "use strict";
+  'use strict';
 
   var Waypoint = window.Waypoint;
 
@@ -622,7 +620,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
       }
     }
 
-    var eventParts = event.split(".");
+    var eventParts = event.split('.');
     var eventType = eventParts[0];
     var namespace = eventParts[1];
     var element = this.element;
@@ -667,11 +665,10 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   };
 
   NoFrameworkAdapter.prototype.on = function (event, handler) {
-    var eventParts = event.split(".");
+    var eventParts = event.split('.');
     var eventType = eventParts[0];
-    var namespace = eventParts[1] || "__default";
-    var nsHandlers = (this.handlers[namespace] =
-      this.handlers[namespace] || {});
+    var namespace = eventParts[1] || '__default';
+    var nsHandlers = (this.handlers[namespace] = this.handlers[namespace] || {});
     var nsTypeList = (nsHandlers[eventType] = nsHandlers[eventType] || []);
 
     nsTypeList.push(handler);
@@ -718,7 +715,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
     var args = Array.prototype.slice.call(arguments);
 
     function merge(target, obj) {
-      if (typeof target === "object" && typeof obj === "object") {
+      if (typeof target === 'object' && typeof obj === 'object') {
         for (var key in obj) {
           if (obj.hasOwnProperty(key)) {
             target[key] = obj[key];
@@ -748,7 +745,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   };
 
   Waypoint.adapters.push({
-    name: "noframework",
+    name: 'noframework',
     Adapter: NoFrameworkAdapter,
   });
   Waypoint.Adapter = NoFrameworkAdapter;

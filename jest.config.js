@@ -1,16 +1,16 @@
 module.exports = {
-  preset: "jest-preset-angular",
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  preset: 'jest-preset-angular',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   reporters: [
-    "default",
+    'default',
     [
-      "jest-junit",
+      'jest-junit',
       {
-        outputDirectory: "test-results",
-        outputName: "jest-junit.xml",
+        outputDirectory: 'test-results',
+        outputName: 'jest-junit.xml',
       },
     ],
   ],
   collectCoverage: true,
-  coverageReporters: ["lcov"],
+  coverageReporters: ['lcov'],
 };

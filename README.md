@@ -30,5 +30,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 By execute the application with docker
 
-* `docker build . -t mysite`
-* `docker run -p 10200:80 -d --name mysite mysite`
+- `docker build . -t mysite`
+- `docker run -p 10200:80 -d --name mysite mysite`
