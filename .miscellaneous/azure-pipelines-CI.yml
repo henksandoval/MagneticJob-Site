@@ -43,14 +43,21 @@ stages:
           - script: echo "##vso[task.setvariable variable=Tag;isOutput=true]$(gitversion.NuGetVersionV2)"
             displayName: 'Set GitVersion Tag Output Variable'
 
+          - bash: echo "##vso[task.setvariable variable=myStageVal;isOutput=true]this is a stage output variable"
+            name: MyOutputVar
+
   - stage: ImageBuild
+    dependsOn: SetVersion
     displayName: "Build and Push Docker Image"
     jobs:
       - job: BuildImage
         displayName: "Build and Push Image"
         variables:
+          myStageAVar: $[stageDependencies.SetVersion.GitVersion.outputs['MyOutputVar.myStageVal']]
           Tag: $[dependencies.SetVersion.outputs['GitVersion.Tag'] ]
         steps:
+          - bash: echo $(myStageAVar)
+
           - script: |
               echo "GitVersion: $(Tag)"
             displayName: "Check GitVersion"
