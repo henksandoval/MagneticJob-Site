@@ -119,8 +119,7 @@ const getTransitionDurationFromElement = (element) => {
   transitionDuration = transitionDuration.split(',')[0];
   transitionDelay = transitionDelay.split(',')[0];
   return (
-    (Number.parseFloat(transitionDuration) + Number.parseFloat(transitionDelay)) *
-    MILLISECONDS_MULTIPLIER
+    (Number.parseFloat(transitionDuration) + Number.parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER
   );
 };
 const triggerTransitionEnd = (element) => {
@@ -752,9 +751,7 @@ class BaseComponent extends Config {
     return Data.get(getElement(element), this.DATA_KEY);
   }
   static getOrCreateInstance(element, config = {}) {
-    return (
-      this.getInstance(element) || new this(element, typeof config === 'object' ? config : null)
-    );
+    return this.getInstance(element) || new this(element, typeof config === 'object' ? config : null);
   }
   static get VERSION() {
     return VERSION;
@@ -1121,8 +1118,7 @@ class Swipe extends Config {
     execute(this._config.endCallback);
   }
   _move(event) {
-    this._deltaX =
-      event.touches && event.touches.length > 1 ? 0 : event.touches[0].clientX - this._deltaX;
+    this._deltaX = event.touches && event.touches.length > 1 ? 0 : event.touches[0].clientX - this._deltaX;
   }
   _handleSwipe() {
     const absDeltaX = Math.abs(this._deltaX);
@@ -1764,10 +1760,7 @@ class Collapse extends BaseComponent {
 
 EventHandler.on(document, EVENT_CLICK_DATA_API$4, SELECTOR_DATA_TOGGLE$4, function (event) {
   // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
-  if (
-    event.target.tagName === 'A' ||
-    (event.delegateTarget && event.delegateTarget.tagName === 'A')
-  ) {
+  if (event.target.tagName === 'A' || (event.delegateTarget && event.delegateTarget.tagName === 'A')) {
     event.preventDefault();
   }
   for (const element of SelectorEngine.getMultipleElementsFromSelector(this)) {
@@ -2081,10 +2074,7 @@ class Dropdown extends BaseComponent {
     });
   }
   static clearMenus(event) {
-    if (
-      event.button === RIGHT_MOUSE_BUTTON ||
-      (event.type === 'keyup' && event.key !== TAB_KEY$1)
-    ) {
+    if (event.button === RIGHT_MOUSE_BUTTON || (event.type === 'keyup' && event.key !== TAB_KEY$1)) {
       return;
     }
     const openToggles = SelectorEngine.find(SELECTOR_DATA_TOGGLE_SHOWN);
@@ -2161,12 +2151,7 @@ class Dropdown extends BaseComponent {
  * Data API implementation
  */
 
-EventHandler.on(
-  document,
-  EVENT_KEYDOWN_DATA_API,
-  SELECTOR_DATA_TOGGLE$3,
-  Dropdown.dataApiKeydownHandler
-);
+EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$3, Dropdown.dataApiKeydownHandler);
 EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown.dataApiKeydownHandler);
 EventHandler.on(document, EVENT_CLICK_DATA_API$3, Dropdown.clearMenus);
 EventHandler.on(document, EVENT_KEYUP_DATA_API, Dropdown.clearMenus);
@@ -2379,11 +2364,7 @@ class FocusTrap extends Config {
   // Private
   _handleFocusin(event) {
     const { trapElement } = this._config;
-    if (
-      event.target === document ||
-      event.target === trapElement ||
-      trapElement.contains(event.target)
-    ) {
+    if (event.target === document || event.target === trapElement || trapElement.contains(event.target)) {
       return;
     }
     const elements = SelectorEngine.focusableChildren(trapElement);
@@ -2438,11 +2419,7 @@ class ScrollBarHelper {
     const width = this.getWidth();
     this._disableOverFlow();
     // give padding to element to balance the hidden scrollbar width
-    this._setElementAttributes(
-      this._element,
-      PROPERTY_PADDING,
-      (calculatedValue) => calculatedValue + width
-    );
+    this._setElementAttributes(this._element, PROPERTY_PADDING, (calculatedValue) => calculatedValue + width);
     // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
     this._setElementAttributes(
       SELECTOR_FIXED_CONTENT,
@@ -3278,9 +3255,7 @@ class TemplateFactory extends Config {
     templateElement.textContent = content;
   }
   _maybeSanitize(arg) {
-    return this._config.sanitize
-      ? sanitizeHtml(arg, this._config.allowList, this._config.sanitizeFn)
-      : arg;
+    return this._config.sanitize ? sanitizeHtml(arg, this._config.allowList, this._config.sanitizeFn) : arg;
   }
   _resolvePossibleFunction(arg) {
     return execute(arg, [this]);
@@ -3440,11 +3415,7 @@ class Tooltip extends BaseComponent {
   }
   dispose() {
     clearTimeout(this._timeout);
-    EventHandler.off(
-      this._element.closest(SELECTOR_MODAL),
-      EVENT_MODAL_HIDE,
-      this._hideModalHandler
-    );
+    EventHandler.off(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
     if (this._element.getAttribute('data-bs-original-title')) {
       this._element.setAttribute('title', this._element.getAttribute('data-bs-original-title'));
     }
@@ -3460,9 +3431,7 @@ class Tooltip extends BaseComponent {
     }
     const showEvent = EventHandler.trigger(this._element, this.constructor.eventName(EVENT_SHOW$2));
     const shadowRoot = findShadowRoot(this._element);
-    const isInTheDom = (shadowRoot || this._element.ownerDocument.documentElement).contains(
-      this._element
-    );
+    const isInTheDom = (shadowRoot || this._element.ownerDocument.documentElement).contains(this._element);
     if (showEvent.defaultPrevented || !isInTheDom) {
       return;
     }
@@ -3711,11 +3680,7 @@ class Tooltip extends BaseComponent {
         this.hide();
       }
     };
-    EventHandler.on(
-      this._element.closest(SELECTOR_MODAL),
-      EVENT_MODAL_HIDE,
-      this._hideModalHandler
-    );
+    EventHandler.on(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
   }
   _fixTitle() {
     const title = this._element.getAttribute('title');
@@ -3979,8 +3944,7 @@ class ScrollSpy extends BaseComponent {
     // this._element is the observablesContainer and config.target the menu links wrapper
     this._targetLinks = new Map();
     this._observableSections = new Map();
-    this._rootElement =
-      getComputedStyle(this._element).overflowY === 'visible' ? null : this._element;
+    this._rootElement = getComputedStyle(this._element).overflowY === 'visible' ? null : this._element;
     this._activeTarget = null;
     this._observer = null;
     this._previousScrollData = {
@@ -4082,8 +4046,7 @@ class ScrollSpy extends BaseComponent {
         this._clearActiveClass(targetElement(entry));
         continue;
       }
-      const entryIsLowerThanPrevious =
-        entry.target.offsetTop >= this._previousScrollData.visibleEntryTop;
+      const entryIsLowerThanPrevious = entry.target.offsetTop >= this._previousScrollData.visibleEntryTop;
       // if we are scrolling down, pick the bigger offsetTop
       if (userScrollsDown && entryIsLowerThanPrevious) {
         activate(entry);
@@ -4133,10 +4096,9 @@ class ScrollSpy extends BaseComponent {
   _activateParents(target) {
     // Activate dropdown parents
     if (target.classList.contains(CLASS_NAME_DROPDOWN_ITEM)) {
-      SelectorEngine.findOne(
-        SELECTOR_DROPDOWN_TOGGLE$1,
-        target.closest(SELECTOR_DROPDOWN)
-      ).classList.add(CLASS_NAME_ACTIVE$1);
+      SelectorEngine.findOne(SELECTOR_DROPDOWN_TOGGLE$1, target.closest(SELECTOR_DROPDOWN)).classList.add(
+        CLASS_NAME_ACTIVE$1
+      );
       return;
     }
     for (const listGroup of SelectorEngine.parents(target, SELECTOR_NAV_LIST_GROUP)) {
@@ -4149,10 +4111,7 @@ class ScrollSpy extends BaseComponent {
   }
   _clearActiveClass(parent) {
     parent.classList.remove(CLASS_NAME_ACTIVE$1);
-    const activeNodes = SelectorEngine.find(
-      `${SELECTOR_TARGET_LINKS}.${CLASS_NAME_ACTIVE$1}`,
-      parent
-    );
+    const activeNodes = SelectorEngine.find(`${SELECTOR_TARGET_LINKS}.${CLASS_NAME_ACTIVE$1}`, parent);
     for (const node of activeNodes) {
       node.classList.remove(CLASS_NAME_ACTIVE$1);
     }
@@ -4226,8 +4185,7 @@ const NOT_SELECTOR_DROPDOWN_TOGGLE = `:not(${SELECTOR_DROPDOWN_TOGGLE})`;
 const SELECTOR_TAB_PANEL = '.list-group, .nav, [role="tablist"]';
 const SELECTOR_OUTER = '.nav-item, .list-group-item';
 const SELECTOR_INNER = `.nav-link${NOT_SELECTOR_DROPDOWN_TOGGLE}, .list-group-item${NOT_SELECTOR_DROPDOWN_TOGGLE}, [role="tab"]${NOT_SELECTOR_DROPDOWN_TOGGLE}`;
-const SELECTOR_DATA_TOGGLE =
-  '[data-bs-toggle="tab"], [data-bs-toggle="pill"], [data-bs-toggle="list"]'; // TODO: could only be `tab` in v6
+const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="tab"], [data-bs-toggle="pill"], [data-bs-toggle="list"]'; // TODO: could only be `tab` in v6
 const SELECTOR_INNER_ELEM = `${SELECTOR_INNER}, ${SELECTOR_DATA_TOGGLE}`;
 const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-bs-toggle="tab"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="pill"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="list"]`;
 
@@ -4326,9 +4284,7 @@ class Tab extends BaseComponent {
   }
   _keydown(event) {
     if (
-      ![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY, HOME_KEY, END_KEY].includes(
-        event.key
-      )
+      ![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY, HOME_KEY, END_KEY].includes(event.key)
     ) {
       return;
     }
@@ -4414,9 +4370,7 @@ class Tab extends BaseComponent {
 
   // Try to get the inner element (usually the .nav-link)
   _getInnerElement(elem) {
-    return elem.matches(SELECTOR_INNER_ELEM)
-      ? elem
-      : SelectorEngine.findOne(SELECTOR_INNER_ELEM, elem);
+    return elem.matches(SELECTOR_INNER_ELEM) ? elem : SelectorEngine.findOne(SELECTOR_INNER_ELEM, elem);
   }
 
   // Try to get the outer element (usually the .nav-item)

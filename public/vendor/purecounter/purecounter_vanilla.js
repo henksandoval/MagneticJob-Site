@@ -36,10 +36,7 @@
               if (Array.isArray(e)) return n(e);
             })(e) ||
             (function (e) {
-              if (
-                ('undefined' != typeof Symbol && null != e[Symbol.iterator]) ||
-                null != e['@@iterator']
-              )
+              if (('undefined' != typeof Symbol && null != e[Symbol.iterator]) || null != e['@@iterator'])
                 return Array.from(e);
             })(e) ||
             (function (e, t) {
@@ -169,11 +166,7 @@
                 : e;
         }
         function f(e) {
-          for (
-            var t = e.offsetTop, r = e.offsetLeft, n = e.offsetWidth, o = e.offsetHeight;
-            e.offsetParent;
-
-          )
+          for (var t = e.offsetTop, r = e.offsetLeft, n = e.offsetWidth, o = e.offsetHeight; e.offsetParent; )
             (t += (e = e.offsetParent).offsetTop), (r += e.offsetLeft);
           return (
             t >= window.pageYOffset &&
