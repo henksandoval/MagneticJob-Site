@@ -8,7 +8,7 @@ import { Profile } from '../../models/profile';
 })
 export class ProfileService {
   private profileSource = new BehaviorSubject<Profile | null>(null);
-  private profileLoaded: boolean = false;
+  private profileLoaded = false;
   profile$: Observable<Profile | null> = this.profileSource.asObservable();
 
   constructor(private http: HttpClient) {}
