@@ -41,7 +41,7 @@
           {{ profile.titles.workExperience }}
         </h3>
         <div class="resume-item" *ngFor="let workExperience of workExperience.position; index as index">
-          <ng-container *ngIf="((index + 1).toString().padStart(2, '0')) as dataIndex">
+          <ng-container *ngIf="(index + 1).toString().padStart(2, '0') as dataIndex">
             <h4 [attr.data-testid]="'specialist_' + dataIndex">
               {{ workExperience.specialist }}
             </h4>

@@ -14,10 +14,7 @@ const mockProfileService = {
 
 const renderComponent = async () => {
   await render(AboutComponent, {
-    providers: [
-      provideHttpClientTesting(),
-      { provide: ProfileService, useValue: mockProfileService },
-    ],
+    providers: [provideHttpClientTesting(), { provide: ProfileService, useValue: mockProfileService }],
   });
 };
 
