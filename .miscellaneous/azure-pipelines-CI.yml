@@ -53,8 +53,6 @@ stages:
         variables:
           gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]
         steps:
-          - bash: echo $(myStageAVar)
-
           - script: |
               echo "GitVersion: $(gitVersionTag)"
             displayName: "Check GitVersion"
@@ -80,7 +78,11 @@ stages:
       - job: PublishBuildId
         displayName: "Publish Build ID Artifact"
         steps:
-          - script: echo $(Tag) > $(Build.ArtifactStagingDirectory)/buildId.txt
+          - script: |
+              echo "GitVersion: $(gitVersionTag)"
+            displayName: "Check GitVersion"
+        
+          - script: echo $(gitVersionTag) > $(Build.ArtifactStagingDirectory)/buildId.txt
             displayName: "Save TagVersion to File"
 
           - task: PublishBuildArtifacts@1
