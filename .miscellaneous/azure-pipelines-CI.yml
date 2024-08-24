@@ -15,7 +15,12 @@ variables:
   tag: "$(Build.BuildId)"
 
 stages:
+  - stage: CodeQuality
+    displayName: "Code Quality and Testing"
+    jobs:
+      - template: code-quality-template.yml
   - stage: SetVersion
+    dependsOn: CodeQuality
     jobs:
       - job: GitVersion
         displayName: "Set Version"
