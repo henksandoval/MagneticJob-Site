@@ -2,28 +2,28 @@ trigger:
   - develop
 
 pool:
-  vmImage: "ubuntu-latest"
+  vmImage: 'ubuntu-latest'
 
 resources:
   - repo: self
 
 variables:
-  dockerRegistryServiceConnection: "Azure Container Registry Connection"
-  imageRepository: "mysitefrontend"
-  containerRegistry: "hasacr.azurecr.io"
-  dockerfilePath: "$(Build.SourcesDirectory)/dockerfile"
-  tag: "$(Build.BuildId)"
+  dockerRegistryServiceConnection: 'Azure Container Registry Connection'
+  imageRepository: 'mysitefrontend'
+  containerRegistry: 'hasacr.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/dockerfile'
+  tag: '$(Build.BuildId)'
 
 stages:
   - stage: CodeQuality
-    displayName: "Code Quality and Testing"
+    displayName: 'Code Quality and Testing'
     jobs:
-      - template: code-quality-template.yml
+      - template: templates/code-quality-template.yml
   - stage: SetVersion
     dependsOn: CodeQuality
     jobs:
       - job: GitVersion
-        displayName: "Set Version"
+        displayName: 'Set Version'
         steps:
           - checkout: self
             clean: true
@@ -51,19 +51,19 @@ stages:
 
   - stage: ImageBuild
     dependsOn: SetVersion
-    displayName: "Build and Push Docker Image"
+    displayName: 'Build and Push Docker Image'
     jobs:
       - job: BuildImage
-        displayName: "Build and Push Image"
+        displayName: 'Build and Push Image'
         variables:
           gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]
         steps:
           - script: |
               echo "GitVersion: $(gitVersionTag)"
-            displayName: "Check GitVersion"
-        
+            displayName: 'Check GitVersion'
+
           - task: Docker@2
-            displayName: "Build and Push to Registry"
+            displayName: 'Build and Push to Registry'
             inputs:
               command: buildAndPush
               repository: $(imageRepository)
@@ -76,23 +76,23 @@ stages:
     dependsOn:
       - SetVersion
       - ImageBuild
-    displayName: "Publish Build Artifact"
+    displayName: 'Publish Build Artifact'
     variables:
-      gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]    
+      gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]
     jobs:
       - job: PublishBuildId
-        displayName: "Publish Build ID Artifact"
+        displayName: 'Publish Build ID Artifact'
         steps:
           - script: |
               echo "GitVersion: $(gitVersionTag)"
-            displayName: "Check GitVersion"
-        
+            displayName: 'Check GitVersion'
+
           - script: echo $(gitVersionTag) > $(Build.ArtifactStagingDirectory)/buildId.txt
-            displayName: "Save TagVersion to File"
+            displayName: 'Save TagVersion to File'
 
           - task: PublishBuildArtifacts@1
-            displayName: "Publish Build ID"
+            displayName: 'Publish Build ID'
             inputs:
-              PathtoPublish: "$(Build.ArtifactStagingDirectory)"
-              ArtifactName: "BuildId"
-              publishLocation: "Container"
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'BuildId'
+              publishLocation: 'Container'
