@@ -9,7 +9,8 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "lint:prettier": "prettier --write \"**/*.{ts,html,js,json,md}\""
+    "lint:prettier": "prettier --write \"**/*.{ts,html,js,json,md}\"",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -37,12 +38,15 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@types/jest": "^29.5.12",
+    "angular-eslint": "18.3.0",
+    "eslint": "^9.9.0",
     "husky": "^9.1.5",
     "jest": "^29.7.0",
     "jest-junit": "^16.0.0",
     "jest-preset-angular": "^14.2.2",
     "prettier": "3.3.3",
     "ts-jest": "^29.2.4",
-    "typescript": "~5.5.2"
+    "typescript": "~5.5.2",
+    "typescript-eslint": "8.1.0"
   }
 }
