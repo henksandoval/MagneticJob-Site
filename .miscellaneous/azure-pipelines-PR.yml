@@ -7,31 +7,6 @@ pool:
   vmImage: "ubuntu-latest"
 
 stages:
-  - stage: SetVersion
-    jobs:
-      - job: GitVersion
-        displayName: "Set Version"
-        steps:
-          - checkout: self
-            clean: true
-            persistCredentials: true
-            fetchDepth: 0
-            displayName: Disable Shallow fetch
-
-          - task: gitversion/setup@0
-            displayName: 'Install GitVersion'
-            inputs:
-              versionSpec: '5.x'
-
-          - task: gitversion/execute@0
-            displayName: 'Execute GitVersion'
-            inputs:
-              useConfigFile: true
-              configFilePath: 'GitVersion.yml'
-
-          - script: git tag $(GitVersion.NuGetVersionV2) && git push origin --tags
-            displayName: 'Tag commit'
-
   - stage: CodeQuality
     displayName: "Code Quality and Testing"
     jobs:
@@ -48,6 +23,9 @@ stages:
 
           - script: npm run test:coverage
             displayName: "Run Unit Tests with Coverage"
+
+          - checkout: self
+            fetchDepth: 0
 
           - task: SonarCloudPrepare@1
             displayName: "Prepare SonarCloud"
