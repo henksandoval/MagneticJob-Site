@@ -1,4 +1,4 @@
-import { ContactProfile } from "./contactProfile";
+import { ContactProfile } from './contactProfile';
 
 export interface Summary {
   about: string;
