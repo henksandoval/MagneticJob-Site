@@ -68,6 +68,7 @@ const mockProfile: Profile = {
 
 const mockProfileService = {
   profile$: of(mockProfile),
+  loadProfile: jest.fn(),
 };
 
 const renderComponent = async () => {
