@@ -5,8 +5,8 @@ services:
     image: jwilder/nginx-proxy
     restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+      - '443:443'
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - certs:/etc/nginx/certs:ro
@@ -31,9 +31,9 @@ services:
   mysite:
     image: mysite
     build:
-      dockerfile: Dockerfile  
+      dockerfile: Dockerfile
     expose:
-      - "80"
+      - '80'
     environment:
       - VIRTUAL_HOST=mysite.com,www.mysite.com
       - LETSENCRYPT_HOST=mysite.com,www.mysite.com
@@ -41,7 +41,7 @@ services:
     depends_on:
       - nginx-proxy
       - letsencrypt
-volumes: 
+volumes:
   certs:
   html:
   vhostd:
