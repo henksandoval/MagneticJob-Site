@@ -32,6 +32,8 @@ stages:
                 - template: templates/deploy-template.yml
                   parameters:
                     appServiceName: 'mysitedev'
+                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+                    buildPipelineId: '54'
                     azureResourceServiceConnection: $(azureResourceServiceConnection)
                     imageRepository: $(imageRepository)
                     containerRegistry: $(containerRegistry)
@@ -50,6 +52,8 @@ stages:
                 - template: templates/deploy-template.yml
                   parameters:
                     appServiceName: 'mysitepro'
+                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+                    buildPipelineId: '54'
                     azureResourceServiceConnection: $(azureResourceServiceConnection)
                     imageRepository: $(imageRepository)
                     containerRegistry: $(containerRegistry)

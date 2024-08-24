@@ -1,4 +1,8 @@
 parameters:
+  - name: projectId
+    type: string
+  - name: buildPipelineId
+    type: string
   - name: appServiceName
     type: string
   - name: azureResourceServiceConnection
@@ -15,8 +19,8 @@ steps:
     displayName: 'Download Build Artifact'
     inputs:
       buildType: 'specific'
-      project: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-      definition: '54'
+      project: ${{ parameters.buildPipelineId }}
+      definition: ${{ parameters.projectId }}
       buildVersionToDownload: 'latest'
       targetPath: '$(Pipeline.Workspace)'
 
