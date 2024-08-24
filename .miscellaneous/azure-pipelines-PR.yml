@@ -24,9 +24,6 @@ stages:
           - script: npm run test:coverage
             displayName: "Run Unit Tests with Coverage"
 
-          - checkout: self
-            fetchDepth: 0
-
           - task: SonarCloudPrepare@1
             displayName: "Prepare SonarCloud"
             inputs:
