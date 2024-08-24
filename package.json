@@ -9,14 +9,10 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "lint:autofix": "run-p eslint:fix prettier:write",
-    "commit": "git add . && git commit -m 'Commit genérico'",
-    "autocommit": "git add . && git commit -m 'fix(auto): autofix lint errors'",
-    "eslint:fix": "eslint --fix",
-    "prettier:write": "prettier --write \"**/*.{ts,html,js,json,md}\"",
-    "lint:validate": "run-p lint test",
     "lint": "eslint",
-    "prepare": "husky"
+    "lint:autofix": "run-p lint:fix prettier:write",
+    "lint:fix": "eslint --fix",
+    "prettier:write": "prettier --write \"**/*.{ts,html,js,json,md}\""
   },
   "private": true,
   "dependencies": {
