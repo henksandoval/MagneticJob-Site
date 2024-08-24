@@ -40,11 +40,9 @@ stages:
           - script: git tag $(GitVersion.NuGetVersionV2) && git push origin --tags
             displayName: 'Tag commit'
 
-          - script: echo "##vso[task.setvariable variable=Tag;isOutput=true]$(gitversion.NuGetVersionV2)"
+          - script: echo "##vso[task.setvariable variable=tag;isOutput=true]$(gitversion.NuGetVersionV2)"
+            name: GitVersion
             displayName: 'Set GitVersion Tag Output Variable'
-
-          - bash: echo "##vso[task.setvariable variable=myStageVal;isOutput=true]this is a stage output variable"
-            name: MyOutputVar
 
   - stage: ImageBuild
     dependsOn: SetVersion
@@ -53,13 +51,12 @@ stages:
       - job: BuildImage
         displayName: "Build and Push Image"
         variables:
-          myStageAVar: $[stageDependencies.SetVersion.GitVersion.outputs['MyOutputVar.myStageVal']]
-          Tag: $[dependencies.SetVersion.outputs['GitVersion.Tag'] ]
+          gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]
         steps:
           - bash: echo $(myStageAVar)
 
           - script: |
-              echo "GitVersion: $(Tag)"
+              echo "GitVersion: $(gitVersionTag)"
             displayName: "Check GitVersion"
         
           - task: Docker@2
@@ -70,10 +67,15 @@ stages:
               dockerfile: $(dockerfilePath)
               containerRegistry: $(dockerRegistryServiceConnection)
               tags: |
-                $(Tag)
+                $(gitVersionTag)
 
   - stage: PublishArtifact
+    dependsOn:
+      - SetVersion
+      - ImageBuild
     displayName: "Publish Build Artifact"
+    variables:
+      gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]    
     jobs:
       - job: PublishBuildId
         displayName: "Publish Build ID Artifact"
