@@ -23,13 +23,19 @@ stages:
   - stage: DeployDev
     displayName: 'Deploy to DEV'
     jobs:
-      - template: templates/deploy-template.yml
-        parameters:
-          appServiceName: 'mysitedev'
-          azureResourceServiceConnection: $(azureResourceServiceConnection)
-          imageRepository: $(imageRepository)
-          containerRegistry: $(containerRegistry)
-          resourceGroupName: $(resourceGroupName)
+      - deployment: DeployToDev
+        environment: 'DeployDev'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: templates/deploy-template.yml
+                  parameters:
+                    appServiceName: 'mysitedev'
+                    azureResourceServiceConnection: $(azureResourceServiceConnection)
+                    imageRepository: $(imageRepository)
+                    containerRegistry: $(containerRegistry)
+                    resourceGroupName: $(resourceGroupName)
 
   - stage: DeployPro
     dependsOn: DeployDev
