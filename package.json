@@ -9,8 +9,12 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "lint:prettier": "prettier --write \"**/*.{ts,html,js,json,md}\"",
-    "lint": "ng lint"
+    "lint:autofix": "run-p eslint:fix prettier:write",
+    "eslint:fix": "eslint --fix",
+    "prettier:write": "prettier --write \"**/*.{ts,html,js,json,md}\"",
+    "lint:validate": "run-p lint test",
+    "lint": "eslint",
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
@@ -27,9 +31,6 @@
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
-  },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.1.2",
     "@angular/cli": "^18.1.2",
@@ -44,6 +45,7 @@
     "jest": "^29.7.0",
     "jest-junit": "^16.0.0",
     "jest-preset-angular": "^14.2.2",
+    "npm-run-all": "^4.1.5",
     "prettier": "3.3.3",
     "ts-jest": "^29.2.4",
     "typescript": "~5.5.2",
