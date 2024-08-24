@@ -5,8 +5,7 @@ function t() {
       : function (t) {
           for (var s = 1; s < arguments.length; s++) {
             var e = arguments[s];
-            for (var n in e)
-              Object.prototype.hasOwnProperty.call(e, n) && (t[n] = e[n]);
+            for (var n in e) Object.prototype.hasOwnProperty.call(e, n) && (t[n] = e[n]);
           }
           return t;
         }),
@@ -15,10 +14,10 @@ function t() {
 }
 var s = {
     strings: [
-      "These are the default values...",
-      "You know what you should do?",
-      "Use your own!",
-      "Have a great day!",
+      'These are the default values...',
+      'You know what you should do?',
+      'Use your own!',
+      'Have a great day!',
     ],
     stringsElement: null,
     typeSpeed: 0,
@@ -28,16 +27,16 @@ var s = {
     shuffle: !1,
     backDelay: 700,
     fadeOut: !1,
-    fadeOutClass: "typed-fade-out",
+    fadeOutClass: 'typed-fade-out',
     fadeOutDelay: 500,
     loop: !1,
     loopCount: Infinity,
     showCursor: !0,
-    cursorChar: "|",
+    cursorChar: '|',
     autoInsertCss: !0,
     attr: null,
     bindInputFocusEvents: !1,
-    contentType: "html",
+    contentType: 'html',
     onBegin: function (t) {},
     onComplete: function (t) {},
     preStringTyped: function (t, s) {},
@@ -56,9 +55,9 @@ var s = {
     return (
       (n.load = function (e, n, i) {
         if (
-          ((e.el = "string" == typeof i ? document.querySelector(i) : i),
+          ((e.el = 'string' == typeof i ? document.querySelector(i) : i),
           (e.options = t({}, s, n)),
-          (e.isInput = "input" === e.el.tagName.toLowerCase()),
+          (e.isInput = 'input' === e.el.tagName.toLowerCase()),
           (e.attr = e.options.attr),
           (e.bindInputFocusEvents = e.options.bindInputFocusEvents),
           (e.showCursor = !e.isInput && e.options.showCursor),
@@ -79,26 +78,23 @@ var s = {
             return t.trim();
           })),
           (e.stringsElement =
-            "string" == typeof e.options.stringsElement
+            'string' == typeof e.options.stringsElement
               ? document.querySelector(e.options.stringsElement)
               : e.options.stringsElement),
           e.stringsElement)
         ) {
           (e.strings = []),
             (e.stringsElement.style.cssText =
-              "clip: rect(0 0 0 0);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute;white-space:nowrap;width:1px;");
+              'clip: rect(0 0 0 0);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute;white-space:nowrap;width:1px;');
           var r = Array.prototype.slice.apply(e.stringsElement.children),
             o = r.length;
-          if (o)
-            for (var a = 0; a < o; a += 1)
-              e.strings.push(r[a].innerHTML.trim());
+          if (o) for (var a = 0; a < o; a += 1) e.strings.push(r[a].innerHTML.trim());
         }
         for (var u in ((e.strPos = 0),
         (e.currentElContent = this.getCurrentElContent(e)),
         e.currentElContent &&
           e.currentElContent.length > 0 &&
-          ((e.strPos = e.currentElContent.length - 1),
-          e.strings.unshift(e.currentElContent)),
+          ((e.strPos = e.currentElContent.length - 1), e.strings.unshift(e.currentElContent)),
         (e.sequence = []),
         e.strings))
           e.sequence[u] = u;
@@ -111,41 +107,39 @@ var s = {
           (e.pause = {
             status: !1,
             typewrite: !0,
-            curString: "",
+            curString: '',
             curStrPos: 0,
           }),
           (e.typingComplete = !1),
           (e.autoInsertCss = e.options.autoInsertCss),
-          e.autoInsertCss &&
-            (this.appendCursorAnimationCss(e),
-            this.appendFadeOutAnimationCss(e));
+          e.autoInsertCss && (this.appendCursorAnimationCss(e), this.appendFadeOutAnimationCss(e));
       }),
       (n.getCurrentElContent = function (t) {
         return t.attr
           ? t.el.getAttribute(t.attr)
           : t.isInput
             ? t.el.value
-            : "html" === t.contentType
+            : 'html' === t.contentType
               ? t.el.innerHTML
               : t.el.textContent;
       }),
       (n.appendCursorAnimationCss = function (t) {
-        var s = "data-typed-js-cursor-css";
-        if (t.showCursor && !document.querySelector("[" + s + "]")) {
-          var e = document.createElement("style");
-          e.setAttribute(s, "true"),
+        var s = 'data-typed-js-cursor-css';
+        if (t.showCursor && !document.querySelector('[' + s + ']')) {
+          var e = document.createElement('style');
+          e.setAttribute(s, 'true'),
             (e.innerHTML =
-              "\n        .typed-cursor{\n          opacity: 1;\n        }\n        .typed-cursor.typed-cursor--blink{\n          animation: typedjsBlink 0.7s infinite;\n          -webkit-animation: typedjsBlink 0.7s infinite;\n                  animation: typedjsBlink 0.7s infinite;\n        }\n        @keyframes typedjsBlink{\n          50% { opacity: 0.0; }\n        }\n        @-webkit-keyframes typedjsBlink{\n          0% { opacity: 1; }\n          50% { opacity: 0.0; }\n          100% { opacity: 1; }\n        }\n      "),
+              '\n        .typed-cursor{\n          opacity: 1;\n        }\n        .typed-cursor.typed-cursor--blink{\n          animation: typedjsBlink 0.7s infinite;\n          -webkit-animation: typedjsBlink 0.7s infinite;\n                  animation: typedjsBlink 0.7s infinite;\n        }\n        @keyframes typedjsBlink{\n          50% { opacity: 0.0; }\n        }\n        @-webkit-keyframes typedjsBlink{\n          0% { opacity: 1; }\n          50% { opacity: 0.0; }\n          100% { opacity: 1; }\n        }\n      '),
             document.body.appendChild(e);
         }
       }),
       (n.appendFadeOutAnimationCss = function (t) {
-        var s = "data-typed-fadeout-js-css";
-        if (t.fadeOut && !document.querySelector("[" + s + "]")) {
-          var e = document.createElement("style");
-          e.setAttribute(s, "true"),
+        var s = 'data-typed-fadeout-js-css';
+        if (t.fadeOut && !document.querySelector('[' + s + ']')) {
+          var e = document.createElement('style');
+          e.setAttribute(s, 'true'),
             (e.innerHTML =
-              "\n        .typed-fade-out{\n          opacity: 0;\n          transition: opacity .25s;\n        }\n        .typed-cursor.typed-cursor--blink.typed-fade-out{\n          -webkit-animation: 0;\n          animation: 0;\n        }\n      "),
+              '\n        .typed-fade-out{\n          opacity: 0;\n          transition: opacity .25s;\n        }\n        .typed-cursor.typed-cursor--blink.typed-fade-out{\n          -webkit-animation: 0;\n          animation: 0;\n        }\n      '),
             document.body.appendChild(e);
         }
       }),
@@ -157,12 +151,12 @@ var s = {
     var s = t.prototype;
     return (
       (s.typeHtmlChars = function (t, s, e) {
-        if ("html" !== e.contentType) return s;
+        if ('html' !== e.contentType) return s;
         var n = t.substring(s).charAt(0);
-        if ("<" === n || "&" === n) {
+        if ('<' === n || '&' === n) {
           var i;
           for (
-            i = "<" === n ? ">" : ";";
+            i = '<' === n ? '>' : ';';
             t.substring(s + 1).charAt(0) !== i && !(1 + ++s > t.length);
 
           );
@@ -171,15 +165,11 @@ var s = {
         return s;
       }),
       (s.backSpaceHtmlChars = function (t, s, e) {
-        if ("html" !== e.contentType) return s;
+        if ('html' !== e.contentType) return s;
         var n = t.substring(s).charAt(0);
-        if (">" === n || ";" === n) {
+        if ('>' === n || ';' === n) {
           var i;
-          for (
-            i = ">" === n ? "<" : "&";
-            t.substring(s - 1).charAt(0) !== i && !(--s < 0);
-
-          );
+          for (i = '>' === n ? '<' : '&'; t.substring(s - 1).charAt(0) !== i && !(--s < 0); );
           s--;
         }
         return s;
@@ -218,11 +208,10 @@ var s = {
       (s.reset = function (t) {
         void 0 === t && (t = !0),
           clearInterval(this.timeout),
-          this.replaceText(""),
+          this.replaceText(''),
           this.cursor &&
             this.cursor.parentNode &&
-            (this.cursor.parentNode.removeChild(this.cursor),
-            (this.cursor = null)),
+            (this.cursor.parentNode.removeChild(this.cursor), (this.cursor = null)),
           (this.strPos = 0),
           (this.arrayPos = 0),
           (this.curLoop = 0),
@@ -254,7 +243,7 @@ var s = {
               s = n.typeHtmlChars(t, s, e);
               var i = 0,
                 o = t.substring(s);
-              if ("^" === o.charAt(0) && /^\^\d+/.test(o)) {
+              if ('^' === o.charAt(0) && /^\^\d+/.test(o)) {
                 var a = 1;
                 (a += (o = /\d+/.exec(o)[0]).length),
                   (i = parseInt(o)),
@@ -263,13 +252,8 @@ var s = {
                   (t = t.substring(0, s) + t.substring(s + a)),
                   e.toggleBlinking(!0);
               }
-              if ("`" === o.charAt(0)) {
-                for (
-                  ;
-                  "`" !== t.substring(s + r).charAt(0) &&
-                  (r++, !(s + r > t.length));
-
-                );
+              if ('`' === o.charAt(0)) {
+                for (; '`' !== t.substring(s + r).charAt(0) && (r++, !(s + r > t.length)); );
                 var u = t.substring(0, s),
                   p = t.substring(u.length + 1, s + r),
                   c = t.substring(s + r + 1);
@@ -279,16 +263,13 @@ var s = {
                 e.toggleBlinking(!1),
                   s >= t.length ? e.doneTyping(t, s) : e.keepTyping(t, s, r),
                   e.temporaryPause &&
-                    ((e.temporaryPause = !1),
-                    e.options.onTypingResumed(e.arrayPos, e));
+                    ((e.temporaryPause = !1), e.options.onTypingResumed(e.arrayPos, e));
               }, i);
             }, i))
           : this.setPauseStatus(t, s, !0);
       }),
       (s.keepTyping = function (t, s, e) {
-        0 === s &&
-          (this.toggleBlinking(!1),
-          this.options.preStringTyped(this.arrayPos, this));
+        0 === s && (this.toggleBlinking(!1), this.options.preStringTyped(this.arrayPos, this));
         var n = t.substring(0, (s += e));
         this.replaceText(n), this.typewrite(t, s);
       }),
@@ -297,8 +278,7 @@ var s = {
         this.options.onStringTyped(this.arrayPos, this),
           this.toggleBlinking(!0),
           (this.arrayPos === this.strings.length - 1 &&
-            (this.complete(),
-            !1 === this.loop || this.curLoop === this.loopCount)) ||
+            (this.complete(), !1 === this.loop || this.curLoop === this.loopCount)) ||
             (this.timeout = setTimeout(function () {
               e.backspace(t, s);
             }, this.backDelay));
@@ -330,13 +310,10 @@ var s = {
         } else this.setPauseStatus(t, s, !1);
       }),
       (s.complete = function () {
-        this.options.onComplete(this),
-          this.loop ? this.curLoop++ : (this.typingComplete = !0);
+        this.options.onComplete(this), this.loop ? this.curLoop++ : (this.typingComplete = !0);
       }),
       (s.setPauseStatus = function (t, s, e) {
-        (this.pause.typewrite = e),
-          (this.pause.curString = t),
-          (this.pause.curStrPos = s);
+        (this.pause.typewrite = e), (this.pause.curString = t), (this.pause.curStrPos = s);
       }),
       (s.toggleBlinking = function (t) {
         this.cursor &&
@@ -344,8 +321,8 @@ var s = {
             (this.cursorBlinking !== t &&
               ((this.cursorBlinking = t),
               t
-                ? this.cursor.classList.add("typed-cursor--blink")
-                : this.cursor.classList.remove("typed-cursor--blink"))));
+                ? this.cursor.classList.add('typed-cursor--blink')
+                : this.cursor.classList.remove('typed-cursor--blink'))));
       }),
       (s.humanizer = function (t) {
         return Math.round((Math.random() * t) / 2) + t;
@@ -359,11 +336,11 @@ var s = {
       (s.initFadeOut = function () {
         var t = this;
         return (
-          (this.el.className += " " + this.fadeOutClass),
-          this.cursor && (this.cursor.className += " " + this.fadeOutClass),
+          (this.el.className += ' ' + this.fadeOutClass),
+          this.cursor && (this.cursor.className += ' ' + this.fadeOutClass),
           setTimeout(function () {
             t.arrayPos++,
-              t.replaceText(""),
+              t.replaceText(''),
               t.strings.length > t.arrayPos
                 ? t.typewrite(t.strings[t.sequence[t.arrayPos]], 0)
                 : (t.typewrite(t.strings[0], 0), (t.arrayPos = 0));
@@ -375,32 +352,29 @@ var s = {
           ? this.el.setAttribute(this.attr, t)
           : this.isInput
             ? (this.el.value = t)
-            : "html" === this.contentType
+            : 'html' === this.contentType
               ? (this.el.innerHTML = t)
               : (this.el.textContent = t);
       }),
       (s.bindFocusEvents = function () {
         var t = this;
         this.isInput &&
-          (this.el.addEventListener("focus", function (s) {
+          (this.el.addEventListener('focus', function (s) {
             t.stop();
           }),
-          this.el.addEventListener("blur", function (s) {
+          this.el.addEventListener('blur', function (s) {
             (t.el.value && 0 !== t.el.value.length) || t.start();
           }));
       }),
       (s.insertCursor = function () {
         this.showCursor &&
           (this.cursor ||
-            ((this.cursor = document.createElement("span")),
-            (this.cursor.className = "typed-cursor"),
-            this.cursor.setAttribute("aria-hidden", !0),
+            ((this.cursor = document.createElement('span')),
+            (this.cursor.className = 'typed-cursor'),
+            this.cursor.setAttribute('aria-hidden', !0),
             (this.cursor.innerHTML = this.cursorChar),
             this.el.parentNode &&
-              this.el.parentNode.insertBefore(
-                this.cursor,
-                this.el.nextSibling,
-              )));
+              this.el.parentNode.insertBefore(this.cursor, this.el.nextSibling)));
       }),
       t
     );

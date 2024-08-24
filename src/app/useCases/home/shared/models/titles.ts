@@ -1,6 +1,6 @@
 export interface Titles {
-    resume: string;
-    summary: string;
-    education: string;
-    workExperience: string;
-  }
+  resume: string;
+  summary: string;
+  education: string;
+  workExperience: string;
+}
