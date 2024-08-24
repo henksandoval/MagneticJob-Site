@@ -40,22 +40,26 @@
         <h3 data-testid="workExperience" class="resume-title">
           {{ profile.titles.workExperience }}
         </h3>
-        <div class="resume-item" *ngFor="let workExperience of workExperience.position">
-          <h4 data-testid="specialist">{{ workExperience.specialist }}</h4>
-          <h5 data-testid="startdate">{{ workExperience.startdate }}</h5>
-          <p data-testid="location">
-            <em>{{ workExperience.location }}</em>
-          </p>
-          <ul>
-            <li data-testid="communicationDesignLeadership">
-              {{ workExperience.communicationDesignLeadership }}
-            </li>
-            <li data-testid="teamLeadership">{{ workExperience.teamLeadership }}</li>
-            <li data-testid="designQualityAssurance">
-              {{ workExperience.designQualityAssurance }}
-            </li>
-            <li data-testid="expertiseArea">{{ workExperience.expertiseArea }}</li>
-          </ul>
+        <div class="resume-item" *ngFor="let workExperience of workExperience.position; index as index">
+          <ng-container *ngIf="(index + 1).toString().padStart(2, '0') as dataIndex">
+            <h4 [attr.data-testid]="'specialist_' + dataIndex">
+              {{ workExperience.specialist }}
+            </h4>
+            <h5 [attr.data-testid]="'startdate_' + dataIndex">{{ workExperience.startdate }}</h5>
+            <p [attr.data-testid]="'location_' + dataIndex">
+              <em>{{ workExperience.location }}</em>
+            </p>
+            <ul>
+              <li [attr.data-testid]="'communicationDesignLeadership_' + dataIndex">
+                {{ workExperience.communicationDesignLeadership }}
+              </li>
+              <li [attr.data-testid]="'teamLeadership_' + dataIndex">{{ workExperience.teamLeadership }}</li>
+              <li [attr.data-testid]="'designQualityAssurance_' + dataIndex">
+                {{ workExperience.designQualityAssurance }}
+              </li>
+              <li [attr.data-testid]="'expertiseArea_' + dataIndex">{{ workExperience.expertiseArea }}</li>
+            </ul>
+          </ng-container>
         </div>
       </div>
     </ng-container>

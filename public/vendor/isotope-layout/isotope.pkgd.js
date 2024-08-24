@@ -781,10 +781,8 @@
 
   var docElemStyle = document.documentElement.style;
 
-  var transitionProperty =
-    typeof docElemStyle.transition == 'string' ? 'transition' : 'WebkitTransition';
-  var transformProperty =
-    typeof docElemStyle.transform == 'string' ? 'transform' : 'WebkitTransform';
+  var transitionProperty = typeof docElemStyle.transition == 'string' ? 'transition' : 'WebkitTransition';
+  var transformProperty = typeof docElemStyle.transform == 'string' ? 'transform' : 'WebkitTransform';
 
   var transitionEndEvent = {
     WebkitTransition: 'webkitTransitionEnd',
@@ -1352,9 +1350,7 @@
     var queryElement = utils.getQueryElement(element);
     if (!queryElement) {
       if (console) {
-        console.error(
-          'Bad element for ' + this.constructor.namespace + ': ' + (queryElement || element)
-        );
+        console.error('Bad element for ' + this.constructor.namespace + ': ' + (queryElement || element));
       }
       return;
     }
@@ -1707,14 +1703,8 @@
     // add padding and border width if border box
     if (elemSize.isBorderBox) {
       measure += isWidth
-        ? elemSize.paddingLeft +
-          elemSize.paddingRight +
-          elemSize.borderLeftWidth +
-          elemSize.borderRightWidth
-        : elemSize.paddingBottom +
-          elemSize.paddingTop +
-          elemSize.borderTopWidth +
-          elemSize.borderBottomWidth;
+        ? elemSize.paddingLeft + elemSize.paddingRight + elemSize.borderLeftWidth + elemSize.borderRightWidth
+        : elemSize.paddingBottom + elemSize.paddingTop + elemSize.borderTopWidth + elemSize.borderBottomWidth;
     }
 
     measure = Math.max(measure, 0);
@@ -2530,9 +2520,7 @@
     var colSpan = Math[mathMethod](item.size.outerWidth / this.columnWidth);
     colSpan = Math.min(colSpan, this.cols);
     // use horizontal or top column position
-    var colPosMethod = this.options.horizontalOrder
-      ? '_getHorizontalColPosition'
-      : '_getTopColPosition';
+    var colPosMethod = this.options.horizontalOrder ? '_getHorizontalColPosition' : '_getTopColPosition';
     var colPosition = this[colPosMethod](colSpan, item);
     // position the brick
     var position = {
@@ -2675,10 +2663,7 @@
   /* jshint strict: false */ /*globals define, module, require */
   if (typeof define == 'function' && define.amd) {
     // AMD
-    define('isotope-layout/js/layout-modes/masonry', [
-      '../layout-mode',
-      'masonry-layout/masonry',
-    ], factory);
+    define('isotope-layout/js/layout-modes/masonry', ['../layout-mode', 'masonry-layout/masonry'], factory);
   } else if (typeof module == 'object' && module.exports) {
     // CommonJS
     module.exports = factory(require('../layout-mode'), require('masonry-layout'));
@@ -2721,9 +2706,7 @@
   var _getOption = proto._getOption;
   proto._getOption = function (option) {
     if (option == 'fitWidth') {
-      return this.options.isFitWidth !== undefined
-        ? this.options.isFitWidth
-        : this.options.fitWidth;
+      return this.options.isFitWidth !== undefined ? this.options.isFitWidth : this.options.fitWidth;
     }
     return _getOption.apply(this.isotope, arguments);
   };
@@ -2823,8 +2806,7 @@
 
   proto._getItemLayoutPosition = function (item) {
     item.getSize();
-    var x =
-      (this.isotope.size.innerWidth - item.size.outerWidth) * this.options.horizontalAlignment;
+    var x = (this.isotope.size.innerWidth - item.size.outerWidth) * this.options.horizontalAlignment;
     var y = this.y;
     this.y += item.size.outerHeight;
     return { x: x, y: y };
