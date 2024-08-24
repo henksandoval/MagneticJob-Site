@@ -11,13 +11,14 @@ export class ProfileService {
   profile$: Observable<Profile | null> = this.profileSource.asObservable();
   profileLoaded: boolean = false;
 
-  constructor(private http: HttpClient) {
-    this.loadProfile();
-  }
+  constructor(private http: HttpClient) {}
 
-  private loadProfile(): void {
-    this.http.get<Profile>('assets/data.json').subscribe((data) => {
-      this.profileSource.next(data);
-    });
+  public loadProfile(): void {
+    if (!this.profileLoaded) {
+      this.http.get<Profile>('assets/data.json').subscribe((data) => {
+        this.profileSource.next(data);
+      });
+      this.profileLoaded = true;
+    }
   }
 }
