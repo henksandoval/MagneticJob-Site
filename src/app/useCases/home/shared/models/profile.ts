@@ -6,14 +6,15 @@ import { Education } from './education';
 import { Skills } from './skills';
 import { Summary } from './summary';
 import { Titles } from './titles';
+
 export interface Profile {
   birthday?: string;
   contact?: Contact;
-  about?: About;
+  about: About;
   facts?: Facts;
   skills?: Skills;
-  titles?: Titles;
-  workExperience?: WorkExperience;
-  education?: Education;
-  summary?: Summary;
+  titles: Titles;
+  workExperience: WorkExperience;
+  education: Education;
+  summary: Summary;
 }
