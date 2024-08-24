@@ -3,28 +3,9 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { AboutComponent } from './about.component';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
-import { About } from '../../../shared/models/about';
-import { Profile } from '../../../shared/models/profile';
+import { mockAbout } from '../../../shared/tests/mocks/mockAbout';
+import { mockProfile } from '../../../shared/tests/mocks/mockProfile';
 import '@testing-library/jest-dom';
-
-const mockAbout: About = {
-  description: 'Test Description',
-  text: 'Test Text',
-  hobbies: 'Test Hobbies',
-  birthday: '01/01/2000',
-  website: 'https://example.com',
-  phoneNumber: 123456789,
-  city: 'Test City',
-  age: 30,
-  degree: 'Test Degree',
-  email: 'test@example.com',
-  freelance: 'Available',
-  workExperience: 'Test Experience',
-};
-
-const mockProfile: Profile = {
-  about: mockAbout,
-};
 
 const mockProfileService = {
   profile$: of(mockProfile),
