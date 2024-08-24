@@ -41,10 +41,16 @@ stages:
     dependsOn: DeployDev
     displayName: 'Deploy to PRO'
     jobs:
-      - template: templates/deploy-template.yml
-        parameters:
-          appServiceName: 'mysitepro'
-          azureResourceServiceConnection: $(azureResourceServiceConnection)
-          imageRepository: $(imageRepository)
-          containerRegistry: $(containerRegistry)
-          resourceGroupName: $(resourceGroupName)
+      - deployment: DeployToPro
+        environment: 'DeployPro'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: templates/deploy-template.yml
+                  parameters:
+                    appServiceName: 'mysitepro'
+                    azureResourceServiceConnection: $(azureResourceServiceConnection)
+                    imageRepository: $(imageRepository)
+                    containerRegistry: $(containerRegistry)
+                    resourceGroupName: $(resourceGroupName)
