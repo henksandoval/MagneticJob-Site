@@ -15,6 +15,31 @@ variables:
   tag: "$(Build.BuildId)"
 
 stages:
+  - stage: SetVersion
+    jobs:
+      - job: GitVersion
+        displayName: "Set Version"
+        steps:
+          - checkout: self
+            clean: true
+            persistCredentials: true
+            fetchDepth: 0
+            displayName: Disable Shallow fetch
+
+          - task: gitversion/setup@0
+            displayName: 'Install GitVersion'
+            inputs:
+              versionSpec: '5.x'
+
+          - task: gitversion/execute@0
+            displayName: 'Execute GitVersion'
+            inputs:
+              useConfigFile: true
+              configFilePath: 'GitVersion.yml'
+
+          - script: git tag $(GitVersion.NuGetVersionV2) && git push origin --tags
+            displayName: 'Tag commit'
+
   - stage: ImageBuild
     displayName: "Build and Push Docker Image"
     jobs:
@@ -29,7 +54,7 @@ stages:
               dockerfile: $(dockerfilePath)
               containerRegistry: $(dockerRegistryServiceConnection)
               tags: |
-                $(tag)
+                $(GitVersion.NuGetVersionV2)
 
   - stage: PublishArtifact
     displayName: "Publish Build Artifact"
@@ -37,8 +62,8 @@ stages:
       - job: PublishBuildId
         displayName: "Publish Build ID Artifact"
         steps:
-          - script: echo $(Build.BuildId) > $(Build.ArtifactStagingDirectory)/buildId.txt
-            displayName: "Save Build ID to File"
+          - script: echo $(GitVersion.NuGetVersionV2) > $(Build.ArtifactStagingDirectory)/buildId.txt
+            displayName: "Save TagVersion to File"
 
           - task: PublishBuildArtifacts@1
             displayName: "Publish Build ID"
