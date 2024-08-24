@@ -31,10 +31,7 @@
               return typeof o;
             }
           : function (o) {
-              return o &&
-                'function' == typeof Symbol &&
-                o.constructor === Symbol &&
-                o !== Symbol.prototype
+              return o && 'function' == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype
                 ? 'symbol'
                 : typeof o;
             }),
@@ -205,9 +202,7 @@
         return false;
       }
       var matches =
-        typeof elem.matches == 'function'
-          ? elem.matches(selector)
-          : elem.msMatchesSelector(selector);
+        typeof elem.matches == 'function' ? elem.matches(selector) : elem.msMatchesSelector(selector);
       if (matches) {
         return elem;
       }
@@ -278,8 +273,7 @@
   function windowSize() {
     return {
       width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
-      height:
-        window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
+      height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
     };
   }
   function whichAnimationEvent() {
@@ -552,11 +546,7 @@
               document.activeElement && document.activeElement.nodeName
                 ? document.activeElement.nodeName.toLocaleLowerCase()
                 : false;
-            if (
-              activeElement == 'input' ||
-              activeElement == 'textarea' ||
-              activeElement == 'button'
-            ) {
+            if (activeElement == 'input' || activeElement == 'textarea' || activeElement == 'button') {
               return;
             }
           }
@@ -767,9 +757,7 @@
       {
         key: 'widowWidth',
         value: function widowWidth() {
-          return (
-            window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
-          );
+          return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         },
       },
     ]);
@@ -1053,10 +1041,7 @@
     var slideMedia = slide.querySelector('.gslide-media');
     var videoPlayers = this.getAllPlayers();
     addClass(slideContainer, 'gvideo-container');
-    slideMedia.insertBefore(
-      createHTML('<div class="gvideo-wrapper"></div>'),
-      slideMedia.firstChild
-    );
+    slideMedia.insertBefore(createHTML('<div class="gvideo-wrapper"></div>'), slideMedia.firstChild);
     var videoWrapper = slide.querySelector('.gvideo-wrapper');
     injectAssets(this.settings.plyr.css, 'Plyr');
     var url = data.href;
@@ -1111,9 +1096,7 @@
       });
       waitUntil(
         function () {
-          return (
-            slide.querySelector('iframe') && slide.querySelector('iframe').dataset.ready == 'true'
-          );
+          return slide.querySelector('iframe') && slide.querySelector('iframe').dataset.ready == 'true';
         },
         function () {
           _this.resize(slide);
@@ -1368,12 +1351,9 @@
         value: function setSize(data, settings) {
           var element = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
           var defaultWith =
-            data.type == 'video'
-              ? this.checkSize(settings.videosWidth)
-              : this.checkSize(settings.width);
+            data.type == 'video' ? this.checkSize(settings.videosWidth) : this.checkSize(settings.width);
           var defaultHeight = this.checkSize(settings.height);
-          data.width =
-            has(data, 'width') && data.width !== '' ? this.checkSize(data.width) : defaultWith;
+          data.width = has(data, 'width') && data.width !== '' ? this.checkSize(data.width) : defaultWith;
           data.height =
             has(data, 'height') && data.height !== '' ? this.checkSize(data.height) : defaultHeight;
           if (element && data.type == 'image') {
@@ -1535,8 +1515,7 @@
         key: 'slideShortDesc',
         value: function slideShortDesc(string) {
           var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
-          var wordBoundary =
-            arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+          var wordBoundary = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
           var div = document.createElement('div');
           div.innerHTML = string;
           var cleanedString = div.innerText;
@@ -2029,8 +2008,7 @@
 
   function resetSlideMove(slide) {
     var transitionEnd = whichTransitionEvent();
-    var windowWidth =
-      window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     var media = hasClass(slide, 'gslide-media') ? slide : slide.querySelector('.gslide-media');
     var container = closest(media, '.ginner-container');
     var desc = slide.querySelector('.gslide-description');
@@ -2174,10 +2152,7 @@
         if (!mediaImage) {
           return cssTransform(media, 'translate3d('.concat(hDistancePercent, '%, 0, 0)'));
         }
-        cssTransform(
-          media,
-          'translate3d('.concat(hDistancePercent, '%, ').concat(vDistancePercent, '%, 0)')
-        );
+        cssTransform(media, 'translate3d('.concat(hDistancePercent, '%, ').concat(vDistancePercent, '%, 0)'));
       },
       touchEnd: function touchEnd() {
         if (!process) {
@@ -2667,8 +2642,7 @@
           if (index < 0 || index > this.elements.length - 1) {
             return false;
           }
-          var slide =
-            this.slidesContainer && this.slidesContainer.querySelectorAll('.gslide')[index];
+          var slide = this.slidesContainer && this.slidesContainer.querySelectorAll('.gslide')[index];
           if (slide) {
             if (this.getActiveSlideIndex() == index) {
               if (index == this.elements.length - 1) {
@@ -2700,9 +2674,7 @@
             slideConfig: isNil(this.prevActiveSlideIndex)
               ? null
               : this.elements[this.prevActiveSlideIndex].slideConfig,
-            trigger: isNil(this.prevActiveSlideIndex)
-              ? null
-              : this.elements[this.prevActiveSlideIndex].node,
+            trigger: isNil(this.prevActiveSlideIndex) ? null : this.elements[this.prevActiveSlideIndex].node,
             player: this.getSlidePlayerInstance(this.prevActiveSlideIndex),
           };
           var nextData = {
@@ -2720,26 +2692,21 @@
           }
           removeClass(slide, this.effectsClasses);
           if (first) {
-            animateElement(
-              slide,
-              this.settings.cssEfects[this.settings.openEffect]['in'],
-              function () {
-                if (_this4.settings.autoplayVideos) {
-                  _this4.slidePlayerPlay(slide);
-                }
-                _this4.trigger('slide_changed', {
-                  prev: prevData,
-                  current: nextData,
-                });
-                if (isFunction(_this4.settings.afterSlideChange)) {
-                  _this4.settings.afterSlideChange.apply(_this4, [prevData, nextData]);
-                }
+            animateElement(slide, this.settings.cssEfects[this.settings.openEffect]['in'], function () {
+              if (_this4.settings.autoplayVideos) {
+                _this4.slidePlayerPlay(slide);
               }
-            );
+              _this4.trigger('slide_changed', {
+                prev: prevData,
+                current: nextData,
+              });
+              if (isFunction(_this4.settings.afterSlideChange)) {
+                _this4.settings.afterSlideChange.apply(_this4, [prevData, nextData]);
+              }
+            });
           } else {
             var effectName = this.settings.slideEffect;
-            var animIn =
-              effectName !== 'none' ? this.settings.cssEfects[effectName]['in'] : effectName;
+            var animIn = effectName !== 'none' ? this.settings.cssEfects[effectName]['in'] : effectName;
             if (this.prevActiveSlideIndex > this.index) {
               if (this.settings.slideEffect == 'slide') {
                 animIn = this.settings.cssEfects.slideBack['in'];
@@ -3189,8 +3156,7 @@
           var descriptionResize = false;
           if (
             description &&
-            (hasClass(description, 'description-bottom') ||
-              hasClass(description, 'description-top')) &&
+            (hasClass(description, 'description-bottom') || hasClass(description, 'description-top')) &&
             !hasClass(description, 'gabsolute')
           ) {
             descriptionResize = true;
@@ -3216,9 +3182,7 @@
             }
           }
           if (video) {
-            var ratio = has(this.settings.plyr.config, 'ratio')
-              ? this.settings.plyr.config.ratio
-              : '';
+            var ratio = has(this.settings.plyr.config, 'ratio') ? this.settings.plyr.config.ratio : '';
             if (!ratio) {
               var containerWidth = video.clientWidth;
               var containerHeight = video.clientHeight;
