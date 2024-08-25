@@ -4,6 +4,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 resources:
+  repositories:
+    - repository: self
+
   pipelines:
     - pipeline: azure-pipelines-CI
       source: FrontEnd/CI
