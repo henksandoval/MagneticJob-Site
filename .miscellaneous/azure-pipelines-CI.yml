@@ -23,10 +23,9 @@ stages:
   - stage: SetVersion
     dependsOn: CodeQuality
     jobs:
-      jobs:
-        - job: GitVersion
-          displayName: 'Set Version'    
-        - template: templates/execute-gitversion-template.yml
+      - job: GitVersion
+        displayName: 'Set Version'
+      - template: templates/execute-gitversion-template.yml
 
   - stage: ImageBuild
     dependsOn: SetVersion
