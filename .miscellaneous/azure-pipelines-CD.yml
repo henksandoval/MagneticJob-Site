@@ -76,11 +76,6 @@ stages:
             env:
               SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
-      - job: GitVersion
-        dependsOn: MergeChanges
-        displayName: 'Set Version'
-      - template: templates/execute-gitversion-template.yml
-
   - stage: DeployPro
     dependsOn: SetVersionPro
     displayName: 'Deploy to PRO'
