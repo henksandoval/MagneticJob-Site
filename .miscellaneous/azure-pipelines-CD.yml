@@ -76,7 +76,7 @@ stages:
 
       - job: GitVersion
         dependsOn: MergeChanges
-        displayName: 'Set Version'   
+        displayName: 'Set Version'
       - template: templates/execute-gitversion-template.yml
 
   - stage: DeployPro
