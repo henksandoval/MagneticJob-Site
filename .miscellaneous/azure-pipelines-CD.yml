@@ -57,15 +57,15 @@ stages:
             displayName: 'Checkout master Branch'
 
           - script: |
-              echo "Merging develop into master"
-              git merge origin/develop
-            displayName: 'Merge Develop into master'
-
-          - script: |
               echo "Configuring Git"
               git config user.name "Henk Sandoval"
               git config user.email "henk.sandoval@outlook.com"
             displayName: 'Configure Git User'
+
+          - script: |
+              echo "Merging develop into master"
+              git merge origin/develop
+            displayName: 'Merge Develop into master'
 
           - script: |
               echo "Pushing changes"
@@ -75,6 +75,7 @@ stages:
               SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
       - template: templates/execute-gitversion-template.yml
+        dependsOn: MergeChanges
 
   - stage: DeployPro
     dependsOn: SetVersionPro
