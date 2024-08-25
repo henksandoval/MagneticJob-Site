@@ -10,6 +10,9 @@ steps:
     inputs:
       versionSpec: '5.x'
 
+  - script: ls -la /home/vsts/work/1/s/
+    displayName: 'List Files'
+
   - task: gitversion/execute@0
     displayName: 'Execute GitVersion'
     inputs:
