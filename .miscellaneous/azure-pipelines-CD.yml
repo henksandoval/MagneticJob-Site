@@ -41,10 +41,54 @@ stages:
                     containerRegistry: $(containerRegistry)
                     resourceGroupName: $(resourceGroupName)
 
-  - stage: DeployPro
+  - stage: SetVersionPro
     dependsOn: DeployDev
+    jobs:
+      - job: MergeChanges
+        displayName: 'Merge changes to Master'
+        steps:
+          - checkout: self
+            persistCredentials: true
+            fetchDepth: 0
+
+          - script: |
+              echo "Switching to main branch"
+              git checkout master
+            displayName: 'Checkout master Branch'
+
+          - script: |
+              echo "Merging develop into master"
+              git merge origin/develop
+            displayName: 'Merge Develop into master'
+
+          - script: |
+              echo "Configuring Git"
+              git config user.name "Henk Sandoval"
+              git config user.email "henk.sandoval@outlook.com"
+            displayName: 'Configure Git User'
+
+          - script: |
+              echo "Pushing changes"
+              git push origin master
+            displayName: 'Push Changes'
+            env:
+              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+
+      - template: templates/execute-gitversion-template.yml
+
+  - stage: DeployPro
+    dependsOn: SetVersionPro
     displayName: 'Deploy to PRO'
     jobs:
+      - job: BuildImage
+        displayName: 'Build and Push Image'
+        variables:
+          gitVersionTag: $[stageDependencies.SetVersionPro.GitVersion.outputs['GitVersion.tag'] ]
+        steps:
+          - script: |
+              echo "GitVersion: $(gitVersionTag)"
+            displayName: 'Check GitVersion'
+
       - deployment: DeployToPro
         environment: 'DeployPro'
         strategy:
@@ -64,26 +108,3 @@ stages:
                     imageRepository: $(imageRepository)
                     containerRegistry: $(containerRegistry)
                     resourceGroupName: $(resourceGroupName)
-
-                - script: |
-                    echo "Switching to main branch"
-                    git checkout main
-                  displayName: 'Checkout Main Branch'
-
-                - script: |
-                    echo "Merging develop into main"
-                    git merge origin/develop
-                  displayName: 'Merge Develop into Main'
-
-                - script: |
-                    echo "Configuring Git"
-                    git config user.name "Henk Sandoval"
-                    git config user.email "henk.sandoval@outlook.com"
-                  displayName: 'Configure Git User'
-
-                - script: |
-                    echo "Pushing changes"
-                    git push origin main
-                  displayName: 'Push Changes'
-                  env:
-                    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
