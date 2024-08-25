@@ -25,7 +25,8 @@ stages:
     jobs:
       - job: GitVersion
         displayName: 'Set Version'
-      - template: templates/execute-gitversion-template.yml
+        steps:
+          - template: templates/execute-gitversion-template.yml
 
   - stage: ImageBuild
     dependsOn: SetVersion
