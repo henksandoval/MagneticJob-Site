@@ -47,6 +47,10 @@ stages:
       - job: MergeChanges
         displayName: 'Merge changes to Master'
         steps:
+          - checkout: self
+            persistCredentials: true
+            fetchDepth: 0
+
           - script: |
               echo "Switching to main branch"
               git checkout master
@@ -73,9 +77,7 @@ stages:
       - template: templates/execute-gitversion-template.yml
 
   - stage: DeployPro
-    dependsOn:
-      - DeployDev
-      - SetVersionPro
+    dependsOn: SetVersionPro
     displayName: 'Deploy to PRO'
     jobs:
       - job: BuildImage
