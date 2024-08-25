@@ -14,6 +14,8 @@ resources:
             - develop
 
 variables:
+  projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+  buildPipelineId: '54'
   azureResourceServiceConnection: 'Azure Resource Manager Connection'
   imageRepository: 'mysitefrontend'
   containerRegistry: 'hasacr.azurecr.io'
@@ -32,8 +34,8 @@ stages:
                 - template: templates/deploy-template.yml
                   parameters:
                     appServiceName: 'mysitedev'
-                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-                    buildPipelineId: '54'
+                    projectId: $(projectId)
+                    buildPipelineId: $(buildPipelineId)
                     azureResourceServiceConnection: $(azureResourceServiceConnection)
                     imageRepository: $(imageRepository)
                     containerRegistry: $(containerRegistry)
@@ -49,12 +51,39 @@ stages:
           runOnce:
             deploy:
               steps:
+                - checkout: self
+                  persistCredentials: 'true'
+                  fetchDepth: '0'
+
                 - template: templates/deploy-template.yml
                   parameters:
                     appServiceName: 'mysitepro'
-                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-                    buildPipelineId: '54'
+                    projectId: $(projectId)
+                    buildPipelineId: $(buildPipelineId)
                     azureResourceServiceConnection: $(azureResourceServiceConnection)
                     imageRepository: $(imageRepository)
                     containerRegistry: $(containerRegistry)
                     resourceGroupName: $(resourceGroupName)
+
+                - script: |
+                    echo "Switching to main branch"
+                    git checkout main
+                  displayName: 'Checkout Main Branch'
+
+                - script: |
+                    echo "Merging develop into main"
+                    git merge origin/develop
+                  displayName: 'Merge Develop into Main'
+
+                - script: |
+                    echo "Configuring Git"
+                    git config user.name "Henk Sandoval"
+                    git config user.email "henk.sandoval@outlook.com"
+                  displayName: 'Configure Git User'
+
+                - script: |
+                    echo "Pushing changes"
+                    git push origin main
+                  displayName: 'Push Changes'
+                  env:
+                    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
