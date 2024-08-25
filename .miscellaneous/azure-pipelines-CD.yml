@@ -44,9 +44,11 @@ stages:
   - stage: SetVersionPro
     dependsOn: DeployDev
     jobs:
-      - job: MergeChanges
-        displayName: 'Merge changes to Master'
+      - job: GitVersion
+        displayName: 'Set Version'
         steps:
+          - template: templates/execute-gitversion-template.yml
+
           - checkout: self
             persistCredentials: true
             fetchDepth: 0
