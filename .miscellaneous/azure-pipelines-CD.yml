@@ -1,20 +1,17 @@
-trigger: none
+trigger:
+  - develop
 
 pool:
   vmImage: 'ubuntu-latest'
 
 resources:
-  repositories:
-    - repository: self
+  - repo: self
 
-  pipelines:
-    - pipeline: azure-pipelines-CI
-      source: FrontEnd/CI
-      project: MySite
-      trigger:
-        branches:
-          include:
-            - develop
+parameters:
+  - name: currentBranch
+    type: string
+  - name: appServiceName
+    type: string
 
 variables:
   projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
@@ -25,10 +22,10 @@ variables:
   resourceGroupName: 'HasDev'
 
 stages:
-  - stage: DeployDev
-    displayName: 'Deploy to DEV'
+  - stage: Deploy
+    displayName: 'Deploy to App Service'
     jobs:
-      - deployment: DeployToDev
+      - deployment: DeployToAppService
         environment: 'DeployDev'
         strategy:
           runOnce:
@@ -36,75 +33,7 @@ stages:
               steps:
                 - template: templates/deploy-template.yml
                   parameters:
-                    appServiceName: 'mysitedev'
-                    projectId: $(projectId)
-                    buildPipelineId: $(buildPipelineId)
-                    azureResourceServiceConnection: $(azureResourceServiceConnection)
-                    imageRepository: $(imageRepository)
-                    containerRegistry: $(containerRegistry)
-                    resourceGroupName: $(resourceGroupName)
-
-  - stage: SetVersionPro
-    dependsOn: DeployDev
-    jobs:
-      - job: GitVersion
-        displayName: 'Set Version'
-        steps:
-          - template: templates/execute-gitversion-template.yml
-
-          - checkout: self
-            persistCredentials: true
-            fetchDepth: 0
-
-          - script: |
-              echo "Switching to main branch"
-              git checkout master
-            displayName: 'Checkout master Branch'
-
-          - script: |
-              echo "Configuring Git"
-              git config user.name "Henk Sandoval"
-              git config user.email "henk.sandoval@outlook.com"
-            displayName: 'Configure Git User'
-
-          - script: |
-              echo "Merging develop into master"
-              git merge origin/develop
-            displayName: 'Merge Develop into master'
-
-          - script: |
-              echo "Pushing changes"
-              git push origin master
-            displayName: 'Push Changes'
-            env:
-              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-
-  - stage: DeployPro
-    dependsOn: SetVersionPro
-    displayName: 'Deploy to PRO'
-    jobs:
-      - job: BuildImage
-        displayName: 'Build and Push Image'
-        variables:
-          gitVersionTag: $[stageDependencies.SetVersionPro.GitVersion.outputs['GitVersion.tag'] ]
-        steps:
-          - script: |
-              echo "GitVersion: $(gitVersionTag)"
-            displayName: 'Check GitVersion'
-
-      - deployment: DeployToPro
-        environment: 'DeployPro'
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - checkout: self
-                  persistCredentials: 'true'
-                  fetchDepth: '0'
-
-                - template: templates/deploy-template.yml
-                  parameters:
-                    appServiceName: 'mysitepro'
+                    appServiceName: $(appServiceName)
                     projectId: $(projectId)
                     buildPipelineId: $(buildPipelineId)
                     azureResourceServiceConnection: $(azureResourceServiceConnection)
