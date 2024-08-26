@@ -6,7 +6,7 @@ pool:
 resources:
   pipelines:
     - pipeline: continuous-integration
-      source: FrontEnd/CI
+      source: FrontEnd/ContinuousIntegration
       project: MySite
       trigger:
         branches:
