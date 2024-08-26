@@ -37,7 +37,7 @@ branches:
     is-main-branch: false
     pre-release-weight: 30000
   feature:
-    regex: ^features?[/-]
+    regex: ^features?[/-](?<BranchName>.+)
     mode: ContinuousDelivery
     label: '{BranchName}'
     increment: Inherit
