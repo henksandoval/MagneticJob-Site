@@ -28,7 +28,8 @@ branches:
     mode: ContinuousDelivery
     label: beta
     increment: None
-    prevent-increment-of-merged-branch-version: true
+    prevent-increment:
+      of-merged-branch: true
     track-merge-target: false
     source-branches: ['develop', 'main', 'support', 'release']
     tracks-release-branches: false
