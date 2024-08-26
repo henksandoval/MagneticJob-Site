@@ -5,29 +5,29 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
+  appServiceName: 'mysitepro'
   azureResourceServiceConnection: 'Azure Resource Manager Connection'
   imageRepository: 'mysitefrontend'
   containerRegistry: 'hasacr.azurecr.io'
   resourceGroupName: 'HasDev'
-  environmentName: 'dev'
-  appServiceName: 'mysitepro'
+  environmentName: 'DeployPro'
+  environment: 'PRO'
 
 stages:
   - stage: Deploy
-    displayName: 'Deploy to ${{ environmentName }}'
+    displayName: 'Deploy to $[environment]'
     jobs:
       - deployment: Deploy
-        environment: ${{ environmentName }}
+        environment: $(environmentName)
         strategy:
           runOnce:
             deploy:
               steps:
                 - template: templates/deploy-template.yml
                   parameters:
-                    appServiceName: ${{ appServiceName }}
-                    environmentName: ${{ environmentName }}
                     projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
                     buildPipelineId: '54'
+                    appServiceName: $(appServiceName)
                     azureResourceServiceConnection: $(azureResourceServiceConnection)
                     imageRepository: $(imageRepository)
                     containerRegistry: $(containerRegistry)
