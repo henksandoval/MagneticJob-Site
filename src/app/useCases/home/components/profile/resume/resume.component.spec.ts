@@ -8,7 +8,6 @@ import { Position } from '../../../shared/models/position';
 import '@testing-library/jest-dom';
 import { AcademicBackground } from '../../../shared/models/academicBackground';
 
-
 const mockProfileService = {
   profile$: of(mockProfile),
   loadProfile: jest.fn(),
@@ -54,10 +53,12 @@ describe('ResumeComponent', () => {
   });
 
   it('You should get all the records about education.', () => {
-    mockProfile.education.academicBackground.forEach((academicBackground: AcademicBackground, index: number) => {
-    const id: string = (++index).toString().padStart(2, '0');
-    expect(screen.getByTestId('experience_' + id)).toHaveTextContent(academicBackground.experience);
-    });
+    mockProfile.education.academicBackground.forEach(
+      (academicBackground: AcademicBackground, index: number) => {
+        const id: string = (++index).toString().padStart(2, '0');
+        expect(screen.getByTestId('experience_' + id)).toHaveTextContent(academicBackground.experience);
+      }
+    );
   });
 
   it('should render all records about work experience', () => {
