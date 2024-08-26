@@ -4,16 +4,10 @@ import { render, screen } from '@testing-library/angular';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
 import { mockProfile } from '../../../shared/tests/mocks/mockProfile';
-import { Titles } from '../../../shared/models/titles';
 import { Position } from '../../../shared/models/position';
 import '@testing-library/jest-dom';
+import { AcademicBackground } from '../../../shared/models/academicBackground';
 
-const mockTitles: Titles = {
-  resume: 'Historial test',
-  summary: 'Sumaria',
-  education: 'Educacion',
-  workExperience: 'Experiencia profesional',
-};
 
 const mockProfileService = {
   profile$: of(mockProfile),
@@ -32,7 +26,7 @@ describe('ResumeComponent', () => {
   });
 
   it('Must show profile history', () => {
-    expect(screen.getByTestId('resume')).toHaveTextContent(mockTitles.resume);
+    expect(screen.getByTestId('resume')).toHaveTextContent(mockProfile.titles.resume);
   });
 
   it('should show the about', () => {
@@ -40,7 +34,7 @@ describe('ResumeComponent', () => {
   });
 
   it('should show the title summary', () => {
-    expect(screen.getByText(mockTitles.summary)).toBeInTheDocument();
+    expect(screen.getByText(mockProfile.titles.summary)).toBeInTheDocument();
   });
 
   it('should show the name', () => {
@@ -56,6 +50,13 @@ describe('ResumeComponent', () => {
       expect(screen.getByText(mockContact.location)).toBeInTheDocument();
       expect(screen.getByText(mockContact.phoneNumber)).toBeInTheDocument();
       expect(screen.getByText(mockContact.aliceBarkle)).toBeInTheDocument();
+    });
+  });
+
+  it('You should get all the records about education.', () => {
+    mockProfile.education.academicBackground.forEach((academicBackground: AcademicBackground, index: number) => {
+    const id: string = (++index).toString().padStart(2, '0');
+    expect(screen.getByTestId('experience_' + id)).toHaveTextContent(academicBackground.experience);
     });
   });
 
