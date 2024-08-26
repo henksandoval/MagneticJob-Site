@@ -39,7 +39,7 @@ branches:
   feature:
     regex: ^features?[/-]
     mode: ContinuousDelivery
-    label: useBranchName
+    label: '{BranchName}'
     increment: Inherit
     prevent-increment:
       when-current-commit-tagged: false
