@@ -8,12 +8,6 @@ import { Titles } from '../../../shared/models/titles';
 import { Position } from '../../../shared/models/position';
 import '@testing-library/jest-dom';
 
-const mockTitles: Titles = {
-  resume: 'Historial test',
-  summary: 'Sumaria',
-  education: 'Educacion',
-  workExperience: 'Experiencia profesional',
-};
 
 const mockProfileService = {
   profile$: of(mockProfile),
@@ -32,7 +26,7 @@ describe('ResumeComponent', () => {
   });
 
   it('Must show profile history', () => {
-    expect(screen.getByTestId('resume')).toHaveTextContent(mockTitles.resume);
+    expect(screen.getByTestId('resume')).toHaveTextContent(mockProfile.titles.resume);
   });
 
   it('should show the about', () => {
@@ -40,7 +34,7 @@ describe('ResumeComponent', () => {
   });
 
   it('should show the title summary', () => {
-    expect(screen.getByText(mockTitles.summary)).toBeInTheDocument();
+    expect(screen.getByText(mockProfile.titles.summary)).toBeInTheDocument();
   });
 
   it('should show the name', () => {
