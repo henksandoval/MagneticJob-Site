@@ -19,6 +19,7 @@ stages:
     displayName: 'Code Quality and Testing'
     jobs:
       - template: templates/code-quality-template.yml
+
   - stage: SetVersion
     dependsOn: CodeQuality
     jobs:
