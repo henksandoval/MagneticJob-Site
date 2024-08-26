@@ -15,7 +15,7 @@ variables:
 
 stages:
   - stage: Deploy
-    displayName: 'Deploy to $[environment]'
+    displayName: 'Deploy to $(environment)'
     jobs:
       - deployment: Deploy
         environment: $(environmentName)
