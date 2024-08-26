@@ -26,13 +26,15 @@
     </ng-container>
     <ng-container *ngIf="profile.education as education">
       <h3 data-testid="education" class="resume-title">{{ profile.titles.education }}</h3>
-      <div class="resume-item" *ngFor="let education of education.academicBackground">
-        <h4 data-testid="experience">{{ education.experience }}</h4>
-        <h5 data-testid="startdate">{{ education.startdate }}</h5>
-        <p data-testid="Academy">
-          <em>{{ education.Academy }}</em>
-        </p>
-        <p data-testid="description">{{ education.description }}</p>
+      <div class="resume-item" *ngFor="let education of education.academicBackground; index as index">
+        <ng-container *ngIf="(index + 1).toString().padStart(2, '0') as dataIndex">
+          <h4 [attr.data-testid]="'experience_' + dataIndex">{{ education.experience }}</h4>
+          <h5 [attr.data-testid]="'startdate' + dataIndex">{{ education.startdate }}</h5>
+          <p [attr.data-testid]="'Academy' + dataIndex">
+            <em>{{ education.Academy }}</em>
+          </p>
+          <p [attr.data-testid]="'description' + dataIndex">{{ education.description }}</p>
+        </ng-container>
       </div>
     </ng-container>
     <ng-container *ngIf="profile.workExperience as workExperience">
