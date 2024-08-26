@@ -23,7 +23,7 @@ stages:
   - stage: SetVersion
     dependsOn: CodeQuality
     jobs:
-      - job: ExecuteGitVersion
+      - job: GitVersion
         displayName: 'Execute GitVersion'
         steps:
           - template: templates/execute-gitversion-template.yml
