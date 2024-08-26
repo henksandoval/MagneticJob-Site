@@ -8,7 +8,7 @@ steps:
   - task: gitversion/setup@0
     displayName: 'Install GitVersion'
     inputs:
-      versionSpec: '5.x'
+      versionSpec: '6.x'
 
   - script: ls -la /home/vsts/work/1/s/
     displayName: 'List Files'

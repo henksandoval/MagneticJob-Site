@@ -23,32 +23,10 @@ stages:
   - stage: SetVersion
     dependsOn: CodeQuality
     jobs:
-      - job: GitVersion
-        displayName: 'Set Version'
+      - job: ExecuteGitVersion
+        displayName: 'Execute GitVersion'
         steps:
-          - checkout: self
-            clean: true
-            persistCredentials: true
-            fetchDepth: 0
-            displayName: Disable Shallow fetch
-
-          - task: gitversion/setup@0
-            displayName: 'Install GitVersion'
-            inputs:
-              versionSpec: '6.x'
-
-          - task: gitversion/execute@0
-            displayName: 'Execute GitVersion'
-            inputs:
-              useConfigFile: true
-              configFilePath: 'GitVersion.yml'
-
-          - script: git tag $(GitVersion.NuGetVersionV2) && git push origin --tags
-            displayName: 'Tag commit'
-
-          - script: echo "##vso[task.setvariable variable=tag;isOutput=true]$(gitversion.NuGetVersionV2)"
-            name: GitVersion
-            displayName: 'Set GitVersion Tag Output Variable'
+          - template: templates/execute-gitversion-template.yml
 
   - stage: ImageBuild
     dependsOn: SetVersion
