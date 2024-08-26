@@ -9,7 +9,7 @@ branches:
     source-branches: ['develop', 'release']
     tracks-release-branches: false
     is-release-branch: false
-    is-mainline: true
+    is-main-branch: true
     pre-release-weight: 55000
   develop:
     mode: ContinuousDeployment
@@ -21,7 +21,7 @@ branches:
     source-branches: []
     tracks-release-branches: true
     is-release-branch: false
-    is-mainline: false
+    is-main-branch: false
     pre-release-weight: 0
   release:
     regex: ^releases?[/-]
@@ -33,7 +33,7 @@ branches:
     source-branches: ['develop', 'main', 'support', 'release']
     tracks-release-branches: false
     is-release-branch: true
-    is-mainline: false
+    is-main-branch: false
     pre-release-weight: 30000
   feature:
     regex: ^features?[/-]
@@ -46,7 +46,7 @@ branches:
     source-branches: ['develop', 'main', 'release', 'feature', 'support', 'hotfix']
     tracks-release-branches: false
     is-release-branch: false
-    is-mainline: false
+    is-main-branch: false
     pre-release-weight: 30000
   hotfix:
     regex: ^hotfix(es)?[/-]
@@ -59,5 +59,5 @@ branches:
     source-branches: ['develop', 'main', 'support']
     tracks-release-branches: false
     is-release-branch: false
-    is-mainline: false
+    is-main-branch: false
     pre-release-weight: 30000
