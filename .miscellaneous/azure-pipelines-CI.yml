@@ -26,7 +26,29 @@ stages:
       - job: GitVersion
         displayName: 'Set Version'
         steps:
-          - template: templates/execute-gitversion-template.yml
+          - checkout: self
+            clean: true
+            persistCredentials: true
+            fetchDepth: 0
+            displayName: Disable Shallow fetch
+
+          - task: gitversion/setup@0
+            displayName: 'Install GitVersion'
+            inputs:
+              versionSpec: '6.x'
+
+          - task: gitversion/execute@0
+            displayName: 'Execute GitVersion'
+            inputs:
+              useConfigFile: true
+              configFilePath: 'GitVersion.yml'
+
+          - script: git tag $(GitVersion.NuGetVersionV2) && git push origin --tags
+            displayName: 'Tag commit'
+
+          - script: echo "##vso[task.setvariable variable=tag;isOutput=true]$(gitversion.NuGetVersionV2)"
+            name: GitVersion
+            displayName: 'Set GitVersion Tag Output Variable'
 
   - stage: ImageBuild
     dependsOn: SetVersion
