@@ -1,31 +1,29 @@
-trigger:
-  - develop
+trigger: none
 
 pool:
   vmImage: 'ubuntu-latest'
 
 resources:
-  - repo: self
-
-parameters:
-  - name: currentBranch
-    type: string
-  - name: appServiceName
-    type: string
+  pipelines:
+    - pipeline: azure-pipelines-CI
+      source: FrontEnd/CI
+      project: MySite
+      trigger:
+        branches:
+          include:
+            - develop
 
 variables:
-  projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-  buildPipelineId: '54'
   azureResourceServiceConnection: 'Azure Resource Manager Connection'
   imageRepository: 'mysitefrontend'
   containerRegistry: 'hasacr.azurecr.io'
   resourceGroupName: 'HasDev'
 
 stages:
-  - stage: Deploy
-    displayName: 'Deploy to App Service'
+  - stage: DeployDev
+    displayName: 'Deploy to DEV'
     jobs:
-      - deployment: DeployToAppService
+      - deployment: DeployToDev
         environment: 'DeployDev'
         strategy:
           runOnce:
@@ -33,9 +31,29 @@ stages:
               steps:
                 - template: templates/deploy-template.yml
                   parameters:
-                    appServiceName: $(appServiceName)
-                    projectId: $(projectId)
-                    buildPipelineId: $(buildPipelineId)
+                    appServiceName: 'mysitedev'
+                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+                    buildPipelineId: '54'
+                    azureResourceServiceConnection: $(azureResourceServiceConnection)
+                    imageRepository: $(imageRepository)
+                    containerRegistry: $(containerRegistry)
+                    resourceGroupName: $(resourceGroupName)
+
+  - stage: DeployPro
+    dependsOn: DeployDev
+    displayName: 'Deploy to PRO'
+    jobs:
+      - deployment: DeployToPro
+        environment: 'DeployPro'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: templates/deploy-template.yml
+                  parameters:
+                    appServiceName: 'mysitepro'
+                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+                    buildPipelineId: '54'
                     azureResourceServiceConnection: $(azureResourceServiceConnection)
                     imageRepository: $(imageRepository)
                     containerRegistry: $(containerRegistry)
