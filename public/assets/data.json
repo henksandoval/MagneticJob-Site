@@ -85,6 +85,22 @@
       }
     ]
   },
+  "portfolio": {
+    "introduction": [
+      {
+        "title": "Portfolio",
+        "about": "Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.",
+        "description": [
+          {
+            "all": "ALL",
+            "app": "APP",
+            "card": "CARD",
+            "web": "WEB"
+          }
+        ]
+      }
+    ]
+  },
   "contact": {
     "direction": "Calle Reina Fabiola, 20 9B, Zaragoza - España",
     "email": "alexandrai.marvala@gmail.com",
