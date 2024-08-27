@@ -84,20 +84,23 @@ stages:
     dependsOn: ContinuousIntegrationMaster
     displayName: 'Publish Build Artifact'
     jobs:
-      - task: DownloadPipelineArtifact@2
-        displayName: 'Download Build Artifact'
-        inputs:
-          buildType: 'specific'
-          project: $(projectId)
-          definition: $(buildPipelineId)
-          buildVersionToDownload: 'latest'
-          targetPath: '$(Pipeline.Workspace)'
+      - job: PublishBuildId
+        displayName: 'Publish Build ID Artifact'
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'specific'
+              project: $(projectId)
+              definition: $(buildPipelineId)
+              buildVersionToDownload: 'latest'
+              targetPath: '$(Pipeline.Workspace)'
 
-      - script: |
-          echo "Checking files in $(Pipeline.Workspace)/BuildId"
-          ls -l $(Pipeline.Workspace)/BuildId
-          buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
-          echo "Build ID: $buildId"
-          echo "##vso[task.setvariable variable=buildId]$buildId"
-          echo "${{ parameters.containerRegistry }}/${{ parameters.imageRepository }}:$buildId"
-        displayName: 'Extract Build ID'
+          - script: |
+              echo "Checking files in $(Pipeline.Workspace)/BuildId"
+              ls -l $(Pipeline.Workspace)/BuildId
+              buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
+              echo "Build ID: $buildId"
+              echo "##vso[task.setvariable variable=buildId]$buildId"
+              echo "$(containerRegistry)/$(imageRepository):$buildId"
+            displayName: 'Extract Build ID'
