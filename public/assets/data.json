@@ -85,22 +85,48 @@
       }
     ]
   },
-  "portfolio": {
-    "introduction": [
-      {
-        "title": "Portfolio",
-        "about": "Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.",
-        "description": [
-          {
-            "all": "ALL",
-            "app": "APP",
-            "card": "CARD",
-            "web": "WEB"
-          }
-        ]
-      }
-    ]
-  },
+  "portfolio": [
+    {
+      "position": 1,
+      "title": "Photojam",
+      "description": "Aphasia following other cerebrovascular disease",
+      "link": "http://dummyimage.com/103x100.png/ff4444/ffffff",
+      "image": "http://dummyimage.com/146x100.png/5fa2dd/ffffff",
+      "type": "APP"
+    },
+    {
+      "position": 2,
+      "title": "Aibox",
+      "description": "Underdosing of oth parasympatholytics and spasmolytics, subs",
+      "link": "http://dummyimage.com/221x100.png/dddddd/000000",
+      "image": "http://dummyimage.com/153x100.png/dddddd/000000",
+      "type": "WEB"
+    },
+    {
+      "position": 3,
+      "title": "Einti",
+      "description": "Nondisplaced intertrochanteric fracture of unsp femur, init",
+      "link": "http://dummyimage.com/187x100.png/ff4444/ffffff",
+      "image": "http://dummyimage.com/217x100.png/dddddd/000000",
+      "type": "APP"
+    },
+    {
+      "position": 4,
+      "title": "Fivebridge",
+      "description": "Oth physl fx low end rad, r arm, subs for fx w delay heal",
+      "link": "http://dummyimage.com/118x100.png/dddddd/000000",
+      "image": "http://dummyimage.com/239x100.png/ff4444/ffffff",
+      "type": "WEB"
+    },
+    {
+      "position": 5,
+      "title": "Wordware",
+      "description": "Partial traumatic amputation of unspecified ear, init encntr",
+      "link": "http://dummyimage.com/197x100.png/5fa2dd/ffffff",
+      "image": "http://dummyimage.com/149x100.png/ff4444/ffffff",
+      "type": "WEB"
+    }
+  ],
   "contact": {
     "direction": "Calle Reina Fabiola, 20 9B, Zaragoza - España",
     "email": "alexandrai.marvala@gmail.com",
