@@ -104,3 +104,13 @@ stages:
               echo "##vso[task.setvariable variable=buildId]$buildId"
               echo "$(containerRegistry)/$(imageRepository):$buildId"
             displayName: 'Extract Build ID'
+
+          - script: echo $(buildId) > $(Build.ArtifactStagingDirectory)/buildId.txt
+            displayName: 'Save TagVersion to File'
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Build ID'
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'BuildId'
+              publishLocation: 'Container'
