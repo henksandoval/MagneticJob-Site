@@ -14,6 +14,18 @@ variables:
   environment: 'PRO'
 
 stages:
+  - stage: CodeQuality
+    displayName: 'Code Quality and Testing'
+    jobs:
+      - template: templates/code-quality-template.yml
+
+  - stage: SetVersion
+    dependsOn: CodeQuality
+    jobs:
+      - job: GitVersion
+        displayName: 'Execute GitVersion'
+        steps:
+          - template: templates/execute-gitversion-template.yml
   - stage: Deploy
     displayName: 'Deploy to $(environment)'
     jobs:

@@ -19,6 +19,8 @@ variables:
   imageRepository: 'mysitefrontend'
   containerRegistry: 'hasacr.azurecr.io'
   resourceGroupName: 'HasDev'
+  projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+  buildPipelineId: '54'
 
 stages:
   - stage: Deploy
@@ -32,8 +34,8 @@ stages:
               steps:
                 - template: templates/deploy-template.yml
                   parameters:
-                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-                    buildPipelineId: '54'
+                    projectId: $(projectId)
+                    buildPipelineId: $(buildPipelineId)
                     appServiceName: $(appServiceName)
                     azureResourceServiceConnection: $(azureResourceServiceConnection)
                     imageRepository: $(imageRepository)
@@ -77,3 +79,25 @@ stages:
                   displayName: 'Push Changes'
                   env:
                     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+
+  - stage: PublishArtifact
+    dependsOn: ContinuousIntegrationMaster
+    displayName: 'Publish Build Artifact'
+    jobs:
+      - task: DownloadPipelineArtifact@2
+        displayName: 'Download Build Artifact'
+        inputs:
+          buildType: 'specific'
+          project: $(projectId)
+          definition: $(buildPipelineId)
+          buildVersionToDownload: 'latest'
+          targetPath: '$(Pipeline.Workspace)'
+
+      - script: |
+          echo "Checking files in $(Pipeline.Workspace)/BuildId"
+          ls -l $(Pipeline.Workspace)/BuildId
+          buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
+          echo "Build ID: $buildId"
+          echo "##vso[task.setvariable variable=buildId]$buildId"
+          echo "${{ parameters.containerRegistry }}/${{ parameters.imageRepository }}:$buildId"
+        displayName: 'Extract Build ID'
