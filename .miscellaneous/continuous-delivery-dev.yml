@@ -44,13 +44,16 @@ stages:
 
   - stage: ContinuousIntegrationMaster
     dependsOn: Deploy
-    environment: 'DeployPro'
     displayName: Continuous Integration Master
     jobs:
-      - steps:
+      - job: CI
+        displayName: 'Continuous Integration Job'
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
           - checkout: self
-            persistCredentials: 'true'
-            fetchDepth: '0'
+            persistCredentials: true
+            fetchDepth: 0
 
           - script: |
               echo "Switching to main branch"
