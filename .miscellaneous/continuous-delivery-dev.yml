@@ -19,15 +19,13 @@ variables:
   imageRepository: 'mysitefrontend'
   containerRegistry: 'hasacr.azurecr.io'
   resourceGroupName: 'HasDev'
-  environmentName: 'DeployDev'
-  environment: 'DEV'
 
 stages:
   - stage: Deploy
-    displayName: 'Deploy to $(environment)'
+    displayName: 'Deploy to DEV'
     jobs:
       - deployment: Deploy
-        environment: $(environmentName)
+        environment: 'DeployDev'
         strategy:
           runOnce:
             deploy:
@@ -47,7 +45,7 @@ stages:
     displayName: Continuous Integration Master
     jobs:
       - deployment: MergeApproval
-        displayName: 'Approve and Merge to Main'
+        displayName: 'Approve and Merge to Master'
         environment: 'DeployPro'
         strategy:
           runOnce:
@@ -58,14 +56,14 @@ stages:
                   fetchDepth: 0
 
                 - script: |
-                    echo "Switching to main branch"
-                    git checkout main
-                  displayName: 'Checkout Main Branch'
+                    echo "Switching to master branch"
+                    git checkout master
+                  displayName: 'Checkout Master Branch'
 
                 - script: |
-                    echo "Merging develop into main"
+                    echo "Merging develop into master"
                     git merge origin/develop
-                  displayName: 'Merge Develop into Main'
+                  displayName: 'Merge Develop into Master'
 
                 - script: |
                     echo "Configuring Git"
