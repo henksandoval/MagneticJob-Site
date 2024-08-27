@@ -73,7 +73,7 @@ stages:
 
                 - script: |
                     echo "Pushing changes"
-                    git push origin main
+                    git push origin master
                   displayName: 'Push Changes'
                   env:
                     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
