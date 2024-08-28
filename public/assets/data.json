@@ -87,6 +87,7 @@
   },
   "portfolio": [
     {
+      "portfolio": "Portfolio",
       "position": 1,
       "title": "Photojam",
       "description": "Aphasia following other cerebrovascular disease",
