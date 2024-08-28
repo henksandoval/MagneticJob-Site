@@ -26,6 +26,11 @@ describe('PortfolioComponent', () => {
     mockProfile.portfolio.forEach((mockportfolio) => {
       expect(screen.getByTestId('text')).toHaveTextContent(mockportfolio.text);
     });
+  });
 
+  it('It should show the position of the image', () => {
+    mockProfile.portfolio.forEach((mockportfolio) => {
+     expect(screen.getByTestId('position')).toHaveTextContent(mockportfolio.position.toString());
+    });
   });
 });
