@@ -23,23 +23,29 @@ variables:
   resourceGroupName: 'HasDev'
 
 stages:
-  - task: DownloadPipelineArtifact@2
-    displayName: 'Download Build Artifact'
-    inputs:
-      buildType: 'specific'
-      project: ${{ parameters.projectId }}
-      definition: ${{ parameters.buildPipelineId }}
-      buildVersionToDownload: 'latest'
-      targetPath: '$(Pipeline.Workspace)'
+  - stage: DowloadArtifact
+    displayName: 'Download Artifact Version'
+    jobs:
+      - job: DowloadArtifact
+        displayName: 'Download Version Artifact Dev'
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'specific'
+              project: $(projectId)
+              definition: $(buildPipelineId)
+              buildVersionToDownload: 'latest'
+              targetPath: '$(Pipeline.Workspace)'
 
-  - script: |
-      echo "Checking files in $(Pipeline.Workspace)/BuildId"
-      ls -l $(Pipeline.Workspace)/BuildId
-      buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
-      echo "Build ID: $buildId"
-      echo "##vso[task.setvariable variable=buildId]$buildId"
-      echo "${{ parameters.containerRegistry }}/${{ parameters.imageRepository }}:$buildId"
-    displayName: 'Extract Build ID'
+          - script: |
+              echo "Checking files in $(Pipeline.Workspace)/BuildId"
+              ls -l $(Pipeline.Workspace)/BuildId
+              buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
+              echo "Build ID: $buildId"
+              echo "##vso[task.setvariable variable=buildId]$buildId"
+              echo "$(containerRegistry)/$(imageRepository):$buildId"
+            displayName: 'Extract Build ID'
 
   - stage: CodeQuality
     displayName: 'Code Quality and Testing'
