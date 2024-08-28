@@ -18,5 +18,5 @@ export interface Profile {
   workExperience: WorkExperience;
   education: Education;
   summary: Summary;
-  portfolio: PortFolio;
+  portfolio: PortFolio[];
 }
