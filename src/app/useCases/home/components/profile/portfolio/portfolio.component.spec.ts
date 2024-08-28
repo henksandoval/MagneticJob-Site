@@ -30,7 +30,13 @@ describe('PortfolioComponent', () => {
 
   it('It should show the position of the image', () => {
     mockProfile.portfolio.forEach((mockportfolio) => {
-     expect(screen.getByTestId('position')).toHaveTextContent(mockportfolio.position.toString());
+      expect(screen.getByTestId('position')).toHaveTextContent(mockportfolio.position.toString());
+    });
+  });
+
+  it('It should show the type of the image', () => {
+    mockProfile.portfolio.forEach((mockportfolio) => {
+      expect(screen.getByTestId('type')).toHaveTextContent(mockportfolio.type);
     });
   });
 });
