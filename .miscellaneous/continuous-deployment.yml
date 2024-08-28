@@ -1,34 +1,109 @@
-trigger:
-  - master
+trigger: none
 
 pool:
   vmImage: 'ubuntu-latest'
 
+resources:
+  pipelines:
+    - pipeline: continuous-delivery-dev
+      source: FrontEnd/ContinuousDeliveryDev
+      project: MySite
+      trigger:
+        branches:
+          include:
+            - master
+
 variables:
-  appServiceName: 'mysitepro'
+  projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+  buildPipelineId: '63'
   azureResourceServiceConnection: 'Azure Resource Manager Connection'
-  imageRepository: 'mysitefrontend'
-  containerRegistry: 'hasacr.azurecr.io'
+  dockerRegistryServiceConnection: 'Azure Container Registry Connection'
+  appServiceName: 'mysitepro'
   resourceGroupName: 'HasDev'
-  environmentName: 'DeployPro'
-  environment: 'PRO'
+  containerRegistry: 'hasacr.azurecr.io'
+  imageRepository: 'mysitefrontend'
 
 stages:
+  - stage: DowloadArtifact
+    displayName: 'Download Artifact Version'
+    jobs:
+      - job: DowloadArtifact
+        displayName: 'Download Version Artifact Dev'
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'specific'
+              project: $(projectId)
+              definition: $(buildPipelineId)
+              buildVersionToDownload: 'latest'
+              targetPath: '$(Pipeline.Workspace)'
+
+          - script: |
+              echo "Checking files in $(Pipeline.Workspace)/BuildId"
+              ls -l $(Pipeline.Workspace)/BuildId
+              buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
+              echo "Build ID: $buildId"
+              echo "##vso[task.setvariable variable=buildId]$buildId"
+              echo "$(containerRegistry)/$(imageRepository):$buildId"
+            displayName: 'Extract Build ID'
+
+  - stage: CodeQuality
+    displayName: 'Code Quality and Testing'
+    jobs:
+      - template: templates/code-quality-template.yml
+
+  - stage: SetVersion
+    dependsOn: CodeQuality
+    jobs:
+      - job: GitVersion
+        displayName: 'Execute GitVersion'
+        steps:
+          - template: templates/execute-gitversion-template.yml
+
+  - stage: PushImage
+    displayName: 'Tag and Push Image to ACR'
+    dependsOn: SetVersion
+    jobs:
+      - job: TagAndPush
+        displayName: 'Tag and Push Docker Image'
+        variables:
+          gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]
+        steps:
+          - task: Docker@2
+            displayName: 'Login to ACR'
+            inputs:
+              command: 'login'
+              containerRegistry: '$(dockerRegistryServiceConnection)'
+
+          - script: |
+              echo "Container Registry: $(containerRegistry)"
+              echo "Image Repository: $(imageRepository)"
+              echo "Build ID: $(buildId)"
+              echo "Git Version Tag: $(gitVersionTag)"
+            displayName: 'Print Variables'
+
+          - script: |
+              docker tag $(containerRegistry)/$(imageRepository):$(buildId) $(containerRegistry)/$(imageRepository):$(gitVersionTag)
+              docker push $(containerRegistry)/$(imageRepository):$(gitVersionTag)
+            displayName: 'Tag and Push Image'
+
   - stage: Deploy
-    displayName: 'Deploy to $(environment)'
+    dependsOn: PushImage
+    displayName: 'Deploy to PRO'
     jobs:
       - deployment: Deploy
-        environment: $(environmentName)
+        environment: 'DeployPro'
+        variables:
+          gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]
         strategy:
           runOnce:
             deploy:
               steps:
-                - template: templates/deploy-template.yml
-                  parameters:
-                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-                    buildPipelineId: '54'
-                    appServiceName: $(appServiceName)
-                    azureResourceServiceConnection: $(azureResourceServiceConnection)
-                    imageRepository: $(imageRepository)
-                    containerRegistry: $(containerRegistry)
+                - task: AzureWebAppContainer@1
+                  displayName: 'Deploy Container to App Service'
+                  inputs:
+                    azureSubscription: $(azureResourceServiceConnection)
+                    appName: $(appServiceName)
                     resourceGroupName: $(resourceGroupName)
+                    imageName: $(containerRegistry)/$(imageRepository):$(gitVersionTag)
