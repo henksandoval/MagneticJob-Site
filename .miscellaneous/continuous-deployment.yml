@@ -11,7 +11,7 @@ resources:
       trigger:
         branches:
           include:
-            - develop
+            - master
 
 variables:
   projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
