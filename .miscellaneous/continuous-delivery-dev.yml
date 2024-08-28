@@ -14,13 +14,13 @@ resources:
             - develop
 
 variables:
-  appServiceName: 'mysitepro'
+  projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+  buildPipelineId: '54'
+  appServiceName: 'mysitedev'
   azureResourceServiceConnection: 'Azure Resource Manager Connection'
   imageRepository: 'mysitefrontend'
   containerRegistry: 'hasacr.azurecr.io'
   resourceGroupName: 'HasDev'
-  projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-  buildPipelineId: '54'
 
 stages:
   - stage: Deploy
