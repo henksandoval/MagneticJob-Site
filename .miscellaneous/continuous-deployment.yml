@@ -53,22 +53,3 @@ stages:
         displayName: 'Execute GitVersion'
         steps:
           - template: templates/execute-gitversion-template.yml
-
-  # - stage: Deploy
-  #   displayName: 'Deploy to PRO'
-  #   jobs:
-  #     - deployment: Deploy
-  #       environment: 'DeployPro'
-  #       strategy:
-  #         runOnce:
-  #           deploy:
-  #             steps:
-  #               - template: templates/deploy-template.yml
-  #                 parameters:
-  #                   projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-  #                   buildPipelineId: '54'
-  #                   appServiceName: $(appServiceName)
-  #                   azureResourceServiceConnection: $(azureResourceServiceConnection)
-  #                   imageRepository: $(imageRepository)
-  #                   containerRegistry: $(containerRegistry)
-  #                   resourceGroupName: $(resourceGroupName)
