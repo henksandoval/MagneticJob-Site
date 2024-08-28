@@ -11,7 +11,7 @@ resources:
       trigger:
         branches:
           include:
-            - master
+            - develop
 
 variables:
   projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
@@ -26,6 +26,7 @@ variables:
 stages:
   - stage: DowloadArtifact
     displayName: 'Download Artifact Version'
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
       - job: DowloadArtifact
         displayName: 'Download Version Artifact Dev'
@@ -44,7 +45,7 @@ stages:
               ls -l $(Pipeline.Workspace)/BuildId
               buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
               echo "Build ID: $buildId"
-              echo "##vso[task.setvariable variable=buildId]$buildId"
+              echo "##vso[task.setvariable variable=buildId;isOutput=true]$buildId"
               echo "$(containerRegistry)/$(imageRepository):$buildId"
             displayName: 'Extract Build ID'
 
@@ -63,12 +64,15 @@ stages:
 
   - stage: PushImage
     displayName: 'Tag and Push Image to ACR'
-    dependsOn: SetVersion
+    dependsOn:
+      - SetVersion
+      - DowloadArtifact
     jobs:
       - job: TagAndPush
         displayName: 'Tag and Push Docker Image'
         variables:
-          gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]
+          gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag']]
+          buildId: $[stageDependencies.DowloadArtifact.DowloadArtifact.outputs['buildId']]
         steps:
           - task: Docker@2
             displayName: 'Login to ACR'
@@ -95,7 +99,7 @@ stages:
       - deployment: Deploy
         environment: 'DeployPro'
         variables:
-          gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]
+          gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag']]
         strategy:
           runOnce:
             deploy:
