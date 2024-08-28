@@ -1,19 +1,46 @@
-trigger:
-  - master
+trigger: none
 
 pool:
   vmImage: 'ubuntu-latest'
 
+resources:
+  pipelines:
+    - pipeline: continuous-delivery-dev
+      source: FrontEnd/ContinuousDeliveryDev
+      project: MySite
+      trigger:
+        branches:
+          include:
+            - master
+
 variables:
+  projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+  buildPipelineId: '63'
   appServiceName: 'mysitepro'
   azureResourceServiceConnection: 'Azure Resource Manager Connection'
   imageRepository: 'mysitefrontend'
   containerRegistry: 'hasacr.azurecr.io'
   resourceGroupName: 'HasDev'
-  environmentName: 'DeployPro'
-  environment: 'PRO'
 
 stages:
+  - task: DownloadPipelineArtifact@2
+    displayName: 'Download Build Artifact'
+    inputs:
+      buildType: 'specific'
+      project: ${{ parameters.projectId }}
+      definition: ${{ parameters.buildPipelineId }}
+      buildVersionToDownload: 'latest'
+      targetPath: '$(Pipeline.Workspace)'
+
+  - script: |
+      echo "Checking files in $(Pipeline.Workspace)/BuildId"
+      ls -l $(Pipeline.Workspace)/BuildId
+      buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
+      echo "Build ID: $buildId"
+      echo "##vso[task.setvariable variable=buildId]$buildId"
+      echo "${{ parameters.containerRegistry }}/${{ parameters.imageRepository }}:$buildId"
+    displayName: 'Extract Build ID'
+
   - stage: CodeQuality
     displayName: 'Code Quality and Testing'
     jobs:
@@ -26,21 +53,22 @@ stages:
         displayName: 'Execute GitVersion'
         steps:
           - template: templates/execute-gitversion-template.yml
-  - stage: Deploy
-    displayName: 'Deploy to $(environment)'
-    jobs:
-      - deployment: Deploy
-        environment: $(environmentName)
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - template: templates/deploy-template.yml
-                  parameters:
-                    projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
-                    buildPipelineId: '54'
-                    appServiceName: $(appServiceName)
-                    azureResourceServiceConnection: $(azureResourceServiceConnection)
-                    imageRepository: $(imageRepository)
-                    containerRegistry: $(containerRegistry)
-                    resourceGroupName: $(resourceGroupName)
+
+  # - stage: Deploy
+  #   displayName: 'Deploy to PRO'
+  #   jobs:
+  #     - deployment: Deploy
+  #       environment: 'DeployPro'
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               - template: templates/deploy-template.yml
+  #                 parameters:
+  #                   projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+  #                   buildPipelineId: '54'
+  #                   appServiceName: $(appServiceName)
+  #                   azureResourceServiceConnection: $(azureResourceServiceConnection)
+  #                   imageRepository: $(imageRepository)
+  #                   containerRegistry: $(containerRegistry)
+  #                   resourceGroupName: $(resourceGroupName)
