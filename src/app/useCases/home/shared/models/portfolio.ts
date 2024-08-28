@@ -1,6 +1,6 @@
 export interface PortFolio {
-  portfolio: string;
-  position: string;
+  text: string;
+  position: number;
   title: string;
   description: string;
   link: string;
