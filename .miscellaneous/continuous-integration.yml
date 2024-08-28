@@ -1,20 +1,52 @@
-trigger:
-  - develop
+trigger: none
 
 pool:
   vmImage: 'ubuntu-latest'
 
 resources:
-  - repo: self
+  pipelines:
+    - pipeline: continuous-delivery-dev
+      source: FrontEnd/ContinuousDeliveryDev
+      project: MySite
+      trigger:
+        branches:
+          include:
+            - master
 
 variables:
-  dockerRegistryServiceConnection: 'Azure Container Registry Connection'
+  projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+  buildPipelineId: '63'
+  appServiceName: 'mysitepro'
+  azureResourceServiceConnection: 'Azure Resource Manager Connection'
   imageRepository: 'mysitefrontend'
   containerRegistry: 'hasacr.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/dockerfile'
-  tag: '$(Build.BuildId)'
+  resourceGroupName: 'HasDev'
 
 stages:
+  - stage: Deploy
+    displayName: 'Deploy to PRO'
+    jobs:
+      - job: DowloadArtifact
+        displayName: 'Download Version Artifact Dev'
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'specific'
+              project: $(projectId)
+              definition: $(buildPipelineId)
+              buildVersionToDownload: 'latest'
+              targetPath: '$(Pipeline.Workspace)'
+
+          - script: |
+              echo "Checking files in $(Pipeline.Workspace)/BuildId"
+              ls -l $(Pipeline.Workspace)/BuildId
+              buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
+              echo "Build ID: $buildId"
+              echo "##vso[task.setvariable variable=buildId]$buildId"
+              echo "$(containerRegistry)/$(imageRepository):$buildId"
+            displayName: 'Extract Build ID'
+
   - stage: CodeQuality
     displayName: 'Code Quality and Testing'
     jobs:
@@ -28,50 +60,21 @@ stages:
         steps:
           - template: templates/execute-gitversion-template.yml
 
-  - stage: ImageBuild
-    dependsOn: SetVersion
-    displayName: 'Build and Push Docker Image'
-    jobs:
-      - job: BuildImage
-        displayName: 'Build and Push Image'
-        variables:
-          gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]
-        steps:
-          - script: |
-              echo "GitVersion: $(gitVersionTag)"
-            displayName: 'Check GitVersion'
-
-          - task: Docker@2
-            displayName: 'Build and Push to Registry'
-            inputs:
-              command: buildAndPush
-              repository: $(imageRepository)
-              dockerfile: $(dockerfilePath)
-              containerRegistry: $(dockerRegistryServiceConnection)
-              tags: |
-                $(gitVersionTag)
-
-  - stage: PublishArtifact
-    dependsOn:
-      - SetVersion
-      - ImageBuild
-    displayName: 'Publish Build Artifact'
-    variables:
-      gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag'] ]
-    jobs:
-      - job: PublishBuildId
-        displayName: 'Publish Build ID Artifact'
-        steps:
-          - script: |
-              echo "GitVersion: $(gitVersionTag)"
-            displayName: 'Check GitVersion'
-
-          - script: echo $(gitVersionTag) > $(Build.ArtifactStagingDirectory)/buildId.txt
-            displayName: 'Save TagVersion to File'
-
-          - task: PublishBuildArtifacts@1
-            displayName: 'Publish Build ID'
-            inputs:
-              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-              ArtifactName: 'BuildId'
-              publishLocation: 'Container'
+  # - stage: Deploy
+  #   displayName: 'Deploy to PRO'
+  #   jobs:
+  #     - deployment: Deploy
+  #       environment: 'DeployPro'
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               - template: templates/deploy-template.yml
+  #                 parameters:
+  #                   projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
+  #                   buildPipelineId: '54'
+  #                   appServiceName: $(appServiceName)
+  #                   azureResourceServiceConnection: $(azureResourceServiceConnection)
+  #                   imageRepository: $(imageRepository)
+  #                   containerRegistry: $(containerRegistry)
+  #                   resourceGroupName: $(resourceGroupName)
