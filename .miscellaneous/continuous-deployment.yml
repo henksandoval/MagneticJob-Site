@@ -77,6 +77,13 @@ stages:
               containerRegistry: '$(dockerRegistryServiceConnection)'
 
           - script: |
+              echo "Container Registry: $(containerRegistry)"
+              echo "Image Repository: $(imageRepository)"
+              echo "Build ID: $(buildId)"
+              echo "Git Version Tag: $(gitVersionTag)"
+            displayName: 'Print Variables'
+
+          - script: |
               docker tag $(containerRegistry)/$(imageRepository):$(buildId) $(containerRegistry)/$(imageRepository):$(gitVersionTag)
               docker push $(containerRegistry)/$(imageRepository):$(gitVersionTag)
             displayName: 'Tag and Push Image'
