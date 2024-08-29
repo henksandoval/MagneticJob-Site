@@ -12,5 +12,5 @@ export const mockProfile: Profile = {
   summary: mockSummary,
   education: mockEducation,
   workExperience: mockWorkExperience,
-  portfolio: [mockPortfolio]
+  portfolio: mockPortfolio,
 };

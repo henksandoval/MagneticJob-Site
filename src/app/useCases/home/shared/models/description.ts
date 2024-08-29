@@ -1,6 +1,6 @@
-export interface Description{
-    all: string;
-    app: string;
-    card: string;
-    web: string;
+export interface Description {
+  all: string;
+  app: string;
+  card: string;
+  web: string;
 }
