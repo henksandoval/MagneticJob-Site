@@ -5,6 +5,7 @@ import { render, screen } from '@testing-library/angular';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
 import '@testing-library/jest-dom';
+import { WebPage } from '../../../shared/models/webPage';
 
 const mockProfileService = {
   profile$: of(mockProfile),
@@ -22,21 +23,14 @@ describe('PortfolioComponent', () => {
     await renderComponent();
   });
 
-  it('should show the title', () => {
-    mockProfile.portfolio.forEach((mockportfolio) => {
-      expect(screen.getByTestId('text')).toHaveTextContent(mockportfolio.text);
-    });
+  it('Must display portfolio title.', () => {
+    expect(screen.getByTestId('text')).toHaveTextContent(mockProfile.portfolio.text);
   });
 
-  it('It should show the position of the image', () => {
-    mockProfile.portfolio.forEach((mockportfolio) => {
-      expect(screen.getByTestId('position')).toHaveTextContent(mockportfolio.position.toString());
-    });
-  });
-
-  it('It should show the type of the image', () => {
-    mockProfile.portfolio.forEach((mockportfolio) => {
-      expect(screen.getByTestId('type')).toHaveTextContent(mockportfolio.type);
+  it('You must submit all records regarding the portfolio.', () => {
+    mockProfile.portfolio.webPage.forEach((webPage: WebPage, index: number) => {
+      const id: string = (++index).toString().padStart(2, '0');
+      expect(screen.getByTestId('image_' + id)).toHaveAttribute('src', webPage.image);
     });
   });
 });
