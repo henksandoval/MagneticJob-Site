@@ -85,17 +85,19 @@
       }
     ]
   },
-  "portfolio": [
-    {
-      "text": "Portfolio",
-      "position": 1,
-      "title": "Photojam",
-      "description": "Aphasia following other cerebrovascular disease",
-      "link": "http://dummyimage.com/103x100.png/ff4444/ffffff",
-      "image": "http://dummyimage.com/146x100.png/5fa2dd/ffffff",
-      "type": "APP"
-    }
-  ],
+  "portfolio": {
+    "text": "Portfolio",
+    "Webpage": [
+      {
+        "position": 1,
+        "title": "Photojam",
+        "description": "Aphasia following other cerebrovascular disease",
+        "link": "https://www.jetbrains.com/teamcity/?gdmcid=7f94a68d-ad43-4c54-ad20-364c52ae127e",
+        "image": "https://loremflickr.com/cache/resized/3177_3112100168_6d596ca165_320_240_nofilter.jpg",
+        "type": "APP"
+      }
+    ]
+  },
   "contact": {
     "direction": "Calle Reina Fabiola, 20 9B, Zaragoza - España",
     "email": "alexandrai.marvala@gmail.com",
