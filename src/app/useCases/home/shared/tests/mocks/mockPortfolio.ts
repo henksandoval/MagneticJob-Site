@@ -6,7 +6,7 @@ export const mockWebPage: WebPage = {
   title: 'Aventuras Animales',
   description: 'Cada fotografía captura momentos únicos y comportamientos fascinantes.',
   link: 'https://www.jetbrains.com/teamcity/?gdmcid=7f94a68d-ad43-4c54-ad20-364c52ae127e',
-  image: 'https://loremflickr.com/cache/resized/3177_3112100168_6d596ca165_320_240_nofilter.jpg',
+  image: 'img/portfolio/portfolio-1.jpg',
   type: 'APP',
 };
 

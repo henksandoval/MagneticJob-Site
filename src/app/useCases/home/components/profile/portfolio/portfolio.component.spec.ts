@@ -30,7 +30,13 @@ describe('PortfolioComponent', () => {
   it('You must submit all records regarding the portfolio.', () => {
     mockProfile.portfolio.webPage.forEach((webPage: WebPage, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
-      expect(screen.getByTestId('image_' + id)).toHaveAttribute('src', webPage.image);
+      expect(screen.getByTestId('image-src_' + id)).toHaveAttribute('src', webPage.image);
+      expect(screen.getByTestId('position' + id)).toHaveTextContent(webPage.position.toString());
+      expect(screen.getByTestId('title' + id)).toHaveTextContent(webPage.title);
+      expect(screen.getByTestId('type' + id)).toHaveTextContent(webPage.type);
+      expect(screen.getByTestId('description' + id)).toHaveTextContent(webPage.description);
+      expect(screen.getByTestId('image-href' + id)).toHaveAttribute('href', webPage.image);
+      expect(screen.getByTestId('link' + id)).toHaveAttribute('href', webPage.link);
     });
   });
 });
