@@ -20,24 +20,28 @@
           <div class="portfolio-wrap" *ngFor="let webPage of profile.portfolio.webPage; index as index">
             <ng-container *ngIf="(index + 1).toString().padStart(2, '0') as dataIndex">
               <img
-                [attr.data-testid]="'image_' + dataIndex"
+                [attr.data-testid]="'image-src_' + dataIndex"
                 src="{{ webPage.image }}"
                 class="img-fluid"
                 alt=""
               />
-              <!-- <div class="portfolio-info">
-                <h4 [attr.data-testid]="'title' + dataIndex">{{portfolio.title}}</h4>
-                <p [attr.data-testid]="'type' + dataIndex">{{portfolio.type}}</p>
-                <p [attr.data-testid]="'description' + dataIndex">{{portfolio.description}}</p>
+              <div class="portfolio-info">
+                <h5 [attr.data-testid]="'position' + dataIndex">{{webPage.position}}</h5>
+                <h4 [attr.data-testid]="'title' + dataIndex">{{webPage.title}}</h4>
+                <p [attr.data-testid]="'type' + dataIndex">{{webPage.type}}</p>
+                <p [attr.data-testid]="'description' + dataIndex">{{webPage.description}}</p>
                 <div class="portfolio-links">
-                  <a [attr.data-testid]="'image' + dataIndex" href="{{portfolio.image}}"
-                    data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
+                  <a [attr.data-testid]="'image-href' + dataIndex"
+                  href="{{webPage.image}}"
+                  data-gallery="portfolioGallery"
+                  class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
                   <a [attr.data-testid]="'link' + dataIndex"
-                    href="{{portfolio.link}}"
+                    href="{{webPage.link}}"
                     class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i
                       class="bx bx-link"></i></a>
                 </div>
-              </div> -->
+              </div>
+              
             </ng-container>
           </div>
         </div>
