@@ -8,9 +8,9 @@ resources:
   - repo: self
 
 variables:
-  dockerRegistryServiceConnection: 'Azure Container Registry Connection'
-  imageRepository: 'mysitefrontend'
-  containerRegistry: 'hasacr.azurecr.io'
+  acrConnection: 'Azure Container Registry Connection'
+  dockerImageRepo: 'mysitefrontend'
+  acrName: 'hasacr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/dockerfile'
   tag: '$(Build.BuildId)'
 
@@ -45,9 +45,9 @@ stages:
             displayName: 'Build and Push to Registry'
             inputs:
               command: buildAndPush
-              repository: $(imageRepository)
+              repository: $(dockerImageRepo)
               dockerfile: $(dockerfilePath)
-              containerRegistry: $(dockerRegistryServiceConnection)
+              containerRegistry: $(acrConnection)
               tags: |
                 $(gitVersionTag)
 
