@@ -16,11 +16,11 @@ resources:
 variables:
   projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
   buildPipelineId: '62'
-  appServiceName: 'mysitedev'
-  azureResourceServiceConnection: 'Azure Resource Manager Connection'
-  imageRepository: 'mysitefrontend'
-  containerRegistry: 'hasacr.azurecr.io'
-  resourceGroupName: 'HasDev'
+  webAppName: 'mysitedev'
+  azureConnection: 'Azure Resource Manager Connection'
+  dockerImageRepo: 'mysitefrontend'
+  acrName: 'hasacr.azurecr.io'
+  resourceName: 'HasDev'
 
 stages:
   - stage: Deploy
@@ -36,11 +36,11 @@ stages:
                   parameters:
                     projectId: $(projectId)
                     buildPipelineId: $(buildPipelineId)
-                    appServiceName: $(appServiceName)
-                    azureResourceServiceConnection: $(azureResourceServiceConnection)
-                    imageRepository: $(imageRepository)
-                    containerRegistry: $(containerRegistry)
-                    resourceGroupName: $(resourceGroupName)
+                    appServiceName: $(webAppName)
+                    azureResourceServiceConnection: $(azureConnection)
+                    imageRepository: $(dockerImageRepo)
+                    containerRegistry: $(acrName)
+                    resourceGroupName: $(resourceName)
 
   - stage: ContinuousIntegrationMaster
     dependsOn: Deploy
@@ -102,7 +102,7 @@ stages:
               buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
               echo "Build ID: $buildId"
               echo "##vso[task.setvariable variable=buildId]$buildId"
-              echo "$(containerRegistry)/$(imageRepository):$buildId"
+              echo "$(acrName)/$(dockerImageRepo):$buildId"
             displayName: 'Extract Build ID'
 
           - script: echo $(buildId) > $(Build.ArtifactStagingDirectory)/buildId.txt
