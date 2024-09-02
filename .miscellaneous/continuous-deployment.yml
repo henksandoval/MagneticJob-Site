@@ -82,7 +82,9 @@ stages:
             displayName: 'Pull, Tag and Push Image'
 
   - stage: Deploy
-    dependsOn: PushImage
+    dependsOn:
+      - SetVersion
+      - PushImage
     displayName: 'Deploy to PRO'
     jobs:
       - deployment: Deploy
