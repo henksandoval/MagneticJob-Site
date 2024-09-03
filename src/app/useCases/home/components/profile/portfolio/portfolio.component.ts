@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [NgIf, AsyncPipe, NgFor],
+  imports: [NgIf, AsyncPipe, NgFor, NgClass],
   templateUrl: './portfolio.component.html',
   styles: ``,
 })
