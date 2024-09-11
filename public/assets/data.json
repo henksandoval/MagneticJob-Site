@@ -20,14 +20,80 @@
     "hoursOfSupport": "Hours Of Support",
     "Awards": "Awards"
   },
-  "skills": {
-    "description": "Technical language skills such as",
-    "html": "HTML",
-    "css": "CSS",
-    "javaScript": "JavaScript",
-    "php": "PHP",
-    "WordPressCMS": "WordPress/CMS",
-    "photoshop": "Photoshop"
+  "skillSet": {
+    "overview": "I am a backend developer, I haven’t problem going out of my comfort zone to learn new languages or frameworks.",
+    "skillDetails": [
+      {
+        "name": "C#",
+        "iconUrl": "https://cdn.simpleicons.org/dotnet",
+        "rank": "1"
+      },
+      {
+        "name": "JS",
+        "iconUrl": "https://cdn.simpleicons.org/javascript",
+        "rank": "2"
+      },
+      {
+        "name": "TS",
+        "iconUrl": "https://cdn.simpleicons.org/typescript",
+        "rank": "3"
+      },
+      {
+        "name": "Angular",
+        "iconUrl": "https://cdn.simpleicons.org/angular",
+        "rank": "4"
+      },
+      {
+        "name": "PostgreSQL",
+        "iconUrl": "https://cdn.simpleicons.org/postgresql",
+        "rank": "6"
+      },
+      {
+        "name": "React",
+        "iconUrl": "https://cdn.simpleicons.org/react",
+        "rank": "7"
+      },
+      {
+        "name": "HTML5",
+        "iconUrl": "https://cdn.simpleicons.org/html5",
+        "rank": "8"
+      },
+      {
+        "name": "CSS",
+        "iconUrl": "https://cdn.simpleicons.org/css3",
+        "rank": "9"
+      },
+      {
+        "name": "Bootstrap",
+        "iconUrl": "https://cdn.simpleicons.org/bootstrap",
+        "rank": "10"
+      },
+      {
+        "name": "Vue",
+        "iconUrl": "https://cdn.simpleicons.org/vuedotjs",
+        "rank": "11"
+      },
+      {
+        "name": "Git",
+        "iconUrl": "https://cdn.simpleicons.org/git",
+        "rank": "12"
+      },
+      {
+        "name": "Blazor",
+        "iconUrl": "https://cdn.simpleicons.org/blazor",
+        "rank": "13"
+      },
+      {
+        "name": "Rabbit MQ",
+        "iconUrl": "https://cdn.simpleicons.org/rabbitmq",
+        "rank": "14"
+      },
+      {
+        "name": "Docker",
+        "iconUrl": "https://cdn.simpleicons.org/docker",
+        "rank": "15"
+      }
+    ]
   },
   "titles": {
     "resume": "Historial",
