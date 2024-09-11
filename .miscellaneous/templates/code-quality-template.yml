@@ -2,6 +2,10 @@ jobs:
   - job: RunChecks
     displayName: 'Run Code Checks'
     steps:
+      - checkout: self
+        fetchDepth: 0
+        displayName: 'Disable fetchDepth'
+
       - task: NodeTool@0
         inputs:
           versionSpec: '20.x'
