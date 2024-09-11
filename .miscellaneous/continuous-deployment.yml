@@ -102,6 +102,6 @@ stages:
                   displayName: 'Deploy Container to App Service'
                   inputs:
                     azureSubscription: $(azureConnection)
-                    appServiceName: $(webAppName)
+                    appName: $(webAppName)
                     resourceGroupName: $(resourceGroup)
                     imageName: $(acrName)/$(dockerImageRepo):$(gitVersionTag)
