@@ -7,7 +7,7 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
   standalone: true,
   imports: [NgIf, AsyncPipe, NgFor],
   templateUrl: './resume.component.html',
-  styles: ``,
+  styleUrl: './resume.component.scss',
 })
 export class ResumeComponent implements OnInit {
   private profileService: ProfileService = inject(ProfileService);
