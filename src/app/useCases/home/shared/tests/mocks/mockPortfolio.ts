@@ -58,7 +58,17 @@ export const mockWebPage6: WebPage = {
   type: 'NATURE',
 };
 
+export const mockWebPage7: WebPage = {
+  position: 4,
+  title: 'Music',
+  description:
+    'Cada imagen captura la esencia de la musica, el sonido llega al alma dando una hermosa sensacion de relajacion',
+  link: '',
+  image: 'https://i0.wp.com/www.nus.agency/wp-content/uploads/2023/03/musica-arte-scaled.jpg?ssl=1',
+  type: 'Music',
+};
+
 export const mockPortfolio: PortFolio = {
   text: 'Portfolio',
-  webPage: [mockWebPage, mockWebPage2, mockWebPage3, mockWebPage4, mockWebPage5, mockWebPage6],
+  webPage: [mockWebPage, mockWebPage2, mockWebPage3, mockWebPage4, mockWebPage5, mockWebPage6, mockWebPage7 ],
 };
