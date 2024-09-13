@@ -39,7 +39,7 @@ export class PortfolioComponent implements OnInit {
 
   filterType(type: string) {
     if (type) {
-      this.webPage.filter(webPage => webPage.type === type);
+      this.webPage.filter((webPage) => webPage.type === type);
     }
     return type;
   }
