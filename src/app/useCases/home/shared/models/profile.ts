@@ -3,7 +3,7 @@ import { WorkExperience } from './workExperience';
 import { About } from './about';
 import { Contact } from './contact';
 import { Education } from './education';
-import { Skills } from './skills';
+import { SkillSet } from './skills';
 import { Summary } from './summary';
 import { Titles } from './titles';
 import { PortFolio } from './portfolio';
@@ -13,7 +13,7 @@ export interface Profile {
   contact?: Contact;
   about: About;
   facts?: Facts;
-  skills?: Skills;
+  skillSet?: SkillSet;
   titles: Titles;
   workExperience: WorkExperience;
   education: Education;
