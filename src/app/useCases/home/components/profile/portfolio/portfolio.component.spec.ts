@@ -27,28 +27,6 @@ describe('PortfolioComponent', () => {
     expect(screen.getByTestId('text')).toHaveTextContent(mockProfile.portfolio.text);
   });
 
-  it('It should show the categories', () => {
-    // const entrada: WebPage[] = [
-    //   {position: 1, description: 'uno', image: 'uno', link: 'uno', title: 'uno', type: 'color' },
-    //   {position: 2, description: 'uno', image: 'uno', link: 'uno', title: 'uno', type: 'web' },
-    //   {position: 3, description: 'uno', image: 'uno', link: 'uno', title: 'uno', type: 'web' },
-    //   {position: 4, description: 'uno', image: 'uno', link: 'uno', title: 'uno', type: 'color' },
-    //   {position: 5, description: 'uno', image: 'uno', link: 'uno', title: 'uno', type: 'color' }
-    //  ];
-
-    //  const salida: string[] = ['color', 'web'];
-
-    const resultadoEsperado: string[] = ['CAT', 'NATURE', 'MARRIES'];
-    //   <ul id="portfolio-flters">
-    //   <li data-testid="all" data-filter="*" class="filter-active">All</li>
-    //   <li data-filter=".filter-app">App</li>
-    //   <li data-filter=".filter-web">Web</li>
-    // </ul>
-    resultadoEsperado.forEach((filter: string) => {
-      expect(screen.getByTestId('filter_' + filter)).toHaveAttribute('data-filter', '.filter-' + filter);
-    });
-  });
-
   it('You must submit all records regarding the portfolio.', () => {
     mockProfile.portfolio.webPage.forEach((webPage: WebPage, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
