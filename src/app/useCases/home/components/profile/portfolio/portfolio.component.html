@@ -9,7 +9,7 @@
           <div *ngFor="let webPage of webPage">
             <ul id="portfolio-flters">
             <!-- <li data-testid="all" data-filter="*" class="filter-active">All</li> -->
-            <li [attr.data-testid]="'filter_' + webPage.type " data-filter="''.filter-'+ webPage" >{{webPage.type}}</li>
+            <li [attr.data-testid]="'filter_' + webPage.type " data-filter="''.filter-'+ webPage.type" >{{webPage.type}}</li>
             <!-- <li data-filter=".filter-web">Web</li> -->
             </ul>
           </div>
