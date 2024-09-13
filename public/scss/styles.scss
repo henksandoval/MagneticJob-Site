@@ -347,36 +347,7 @@ section {
 }
 
 
-.skills {
-	.progress {
-		height: 60px;
-		display: block;
-		background: none;
-		border-radius: 0;
-		.skill {
-			padding: 10px 0;
-			margin: 0;
-			text-transform: uppercase;
-			display: block;
-			font-weight: 600;
-			font-family: $font-family_3;
-			color: $heading-color;
-			.val {
-				float: right;
-				font-style: normal;
-			}
-		}
-	}
-	.progress-bar-wrap {
-		background: #f2f3f5;
-	}
-	.progress-bar {
-		width: 1px;
-		height: 10px;
-		transition: 0.9s;
-		background-color: $accent-color;
-	}
-}
+
 .resume {
 	.resume-title {
 		font-size: 26px;
