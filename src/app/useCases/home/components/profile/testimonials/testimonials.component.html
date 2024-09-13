@@ -8,17 +8,29 @@
         @for (testimonal of testimonials; track $index) {
           <ng-template carouselSlide>
             <div class="testimonial-item">
-              <img
-                [attr.data-testid]="'image-src_' + $index"
-                src="{{ testimonal.photoUrl }}"
-                class="testimonial-img"
-                alt="{{ testimonal.name }}"
-              />
-              <h3 [attr.data-testid]="'name_' + $index">{{ testimonal.name }}</h3>
-              <h4 [attr.data-testid]="'jobTitle_' + $index">{{ testimonal.jobTitle }}</h4>
-              <blockquote>
-                <p [attr.data-testid]="'testimonial_' + $index">{{ testimonal.testimonial }}</p>
-              </blockquote>
+              <div class="row gy-4 justify-content-center">
+                <div class="col-lg-6">
+                  <div class="testimonial-content">
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span [attr.data-testid]="'testimonial_' + $index">{{ testimonal.testimonial }}</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                    <h3 [attr.data-testid]="'name_' + $index" class="testimonial-name">
+                      {{ testimonal.name }}
+                    </h3>
+                    <h4 [attr.data-testid]="'jobTitle_' + $index">{{ testimonal.jobTitle }}</h4>
+                  </div>
+                </div>
+                <div class="col-lg-2 text-center">
+                  <img
+                    [attr.data-testid]="'image-src_' + $index"
+                    src="{{ testimonal.photoUrl }}"
+                    class="img-fluid testimonial-img"
+                    alt="{{ testimonal.name }}"
+                  />
+                </div>
+              </div>
             </div>
           </ng-template>
         }
