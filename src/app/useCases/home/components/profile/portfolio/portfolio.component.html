@@ -8,9 +8,11 @@
         <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
           <div *ngFor="let webPage of webPage">
             <ul id="portfolio-flters">
-            <!-- <li data-testid="all" data-filter="*" class="filter-active">All</li> -->
-            <li [attr.data-testid]="'filter_' + webPage.type " data-filter="''.filter-'+ webPage.type" >{{webPage.type}}</li>
-            <!-- <li data-filter=".filter-web">Web</li> -->
+              <!-- <li data-testid="all" data-filter="*" class="filter-active">All</li> -->
+              <li [attr.data-testid]="'filter_' + webPage.type" data-filter="''.filter-'+ webPage.type">
+                {{ webPage.type }}
+              </li>
+              <!-- <li data-filter=".filter-web">Web</li> -->
             </ul>
           </div>
         </div>
@@ -20,18 +22,33 @@
           <ng-container *ngIf="(index + 1).toString().padStart(2, '0') as dataIndex">
             <div class="col-lg-4 col-md-6 portfolio-item" [ngClass]="webPage.type">
               <div class="portfolio-wrap">
-                <img [attr.data-testid]="'image-src_' + dataIndex" src="{{ webPage.image }}" class="img-fluid" alt="" />
+                <img
+                  [attr.data-testid]="'image-src_' + dataIndex"
+                  src="{{ webPage.image }}"
+                  class="img-fluid"
+                  alt=""
+                />
                 <div class="portfolio-info">
-                  <h5 [attr.data-testid]="'position_' + dataIndex">{{webPage.position}}</h5>
-                  <h4 [attr.data-testid]="'title_' + dataIndex">{{webPage.title}}</h4>
-                  <p [attr.data-testid]="'type_' + dataIndex">{{webPage.type}}</p>
-                  <p [attr.data-testid]="'description_' + dataIndex">{{webPage.description}}</p>
+                  <h5 [attr.data-testid]="'position_' + dataIndex">{{ webPage.position }}</h5>
+                  <h4 [attr.data-testid]="'title_' + dataIndex">{{ webPage.title }}</h4>
+                  <p [attr.data-testid]="'type_' + dataIndex">{{ webPage.type }}</p>
+                  <p [attr.data-testid]="'description_' + dataIndex">{{ webPage.description }}</p>
                   <div class="portfolio-links">
-                    <a [attr.data-testid]="'image-href' + dataIndex" href="{{webPage.image}}"
-                      data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
-                    <a [attr.data-testid]="'link_' + dataIndex" href="{{webPage.link}}"
-                      class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i
-                        class="bx bx-link"></i></a>
+                    <a
+                      [attr.data-testid]="'image-href' + dataIndex"
+                      href="{{ webPage.image }}"
+                      data-gallery="portfolioGallery"
+                      class="portfolio-lightbox"
+                      ><i class="bx bx-plus"></i
+                    ></a>
+                    <a
+                      [attr.data-testid]="'link_' + dataIndex"
+                      href="{{ webPage.link }}"
+                      class="portfolio-details-lightbox"
+                      data-glightbox="type: external"
+                      title="Portfolio Details"
+                      ><i class="bx bx-link"></i
+                    ></a>
                   </div>
                 </div>
               </div>

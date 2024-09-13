@@ -70,9 +70,13 @@ describe('ResumeComponent', () => {
       expect(screen.getByTestId('specialist_' + id)).toHaveTextContent(position.specialist);
       expect(screen.getByTestId('startdate_' + id)).toHaveTextContent(position.startdate);
       expect(screen.getByTestId('location_' + id)).toHaveTextContent(position.location);
-      expect(screen.getByTestId('communicationDesignLeadership_' + id)).toHaveTextContent(position.communicationDesignLeadership);
+      expect(screen.getByTestId('communicationDesignLeadership_' + id)).toHaveTextContent(
+        position.communicationDesignLeadership
+      );
       expect(screen.getByTestId('teamLeadership_' + id)).toHaveTextContent(position.teamLeadership);
-      expect(screen.getByTestId('designQualityAssurance_' + id)).toHaveTextContent(position.designQualityAssurance);
+      expect(screen.getByTestId('designQualityAssurance_' + id)).toHaveTextContent(
+        position.designQualityAssurance
+      );
       expect(screen.getByTestId('expertiseArea_' + id)).toHaveTextContent(position.expertiseArea);
     });
   });
