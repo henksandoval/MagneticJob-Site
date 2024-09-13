@@ -70,5 +70,5 @@ export const mockWebPage7: WebPage = {
 
 export const mockPortfolio: PortFolio = {
   text: 'Portfolio',
-  webPage: [mockWebPage, mockWebPage2, mockWebPage3, mockWebPage4, mockWebPage5, mockWebPage6, mockWebPage7 ],
+  webPage: [mockWebPage, mockWebPage2, mockWebPage3, mockWebPage4, mockWebPage5, mockWebPage6, mockWebPage7],
 };
