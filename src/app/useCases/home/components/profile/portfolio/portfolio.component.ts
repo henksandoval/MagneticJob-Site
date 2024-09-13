@@ -13,6 +13,7 @@ import { WebPage } from '../../../shared/models/webPage';
 export class PortfolioComponent implements OnInit {
   private profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
+  type!: string;
   webPage: WebPage[] = [];
 
   ngOnInit(): void {
@@ -20,6 +21,7 @@ export class PortfolioComponent implements OnInit {
       if (profile && profile.portfolio) {
         this.webPage = profile.portfolio.webPage;
         this.webPage = this.obtenerLosTipos();
+        // this.webPage = this.filterType(this.webPage);
       }
     });
   }
@@ -33,5 +35,12 @@ export class PortfolioComponent implements OnInit {
       }
       return reduciendo;
     }, [] as WebPage[]);
+  }
+
+  filterType(type: string) {
+    if (type) {
+      this.webPage.filter(webPage => webPage.type === type);
+    }
+    return type;
   }
 }
