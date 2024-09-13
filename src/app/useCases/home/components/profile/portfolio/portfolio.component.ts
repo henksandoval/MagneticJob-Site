@@ -18,7 +18,7 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit(): void {
     this.profile$.subscribe((profile) => {
-      if (profile && profile.portfolio) {
+      if (profile?.portfolio) {
         this.webPages = profile.portfolio.webPage;
         this.webPages = this.obtenerLosTipos();
       }
