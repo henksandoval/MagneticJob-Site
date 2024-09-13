@@ -2,6 +2,10 @@ jobs:
   - job: RunChecks
     displayName: 'Run Code Checks'
     steps:
+      - checkout: self
+        fetchDepth: 0
+        displayName: 'Disable fetchDepth'
+
       - task: NodeTool@0
         inputs:
           versionSpec: '20.x'
@@ -13,7 +17,7 @@ jobs:
       - script: npm run test:coverage
         displayName: 'Run Unit Tests with Coverage'
 
-      - task: SonarCloudPrepare@1
+      - task: SonarCloudPrepare@2
         displayName: 'Prepare SonarCloud'
         inputs:
           SonarCloud: 'SonarCloud Service Connection'
@@ -24,12 +28,12 @@ jobs:
             sonar.exclusions=**/node_modules/**,**/dist/**
             sonar.javascript.lcov.reportPaths=coverage/lcov.info
 
-      - task: SonarCloudAnalyze@1
+      - task: SonarCloudAnalyze@2
         inputs:
           jdkversion: 'JAVA_HOME_17_X64'
         displayName: 'Run SonarCloud Analyze'
 
-      - task: SonarCloudPublish@1
+      - task: SonarCloudPublish@2
         displayName: 'Publish Quality Gate Result'
         inputs:
           pollingTimeoutSec: '300'
