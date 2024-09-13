@@ -24,8 +24,7 @@ describe('TestimonialsComponent', () => {
   });
 
   it('You must submit all records regarding the Testimonials.', () => {
-    mockProfile.testimonials!.forEach((testimonial: Testimonial, index: number) => {
-      const id: string = (++index).toString().padStart(2, '0');
+    mockProfile.testimonials!.forEach((testimonial: Testimonial, id: number) => {
       expect(screen.getByTestId('image-src_' + id)).toHaveAttribute('src', testimonial.photoUrl);
       expect(screen.getByTestId('name_' + id)).toHaveTextContent(testimonial.name);
       expect(screen.getByTestId('jobTitle_' + id)).toHaveTextContent(testimonial.jobTitle);
