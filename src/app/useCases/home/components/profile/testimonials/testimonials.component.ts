@@ -8,34 +8,18 @@ import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
   standalone: true,
   imports: [NgIf, NgFor, AsyncPipe, JsonPipe, CarouselModule],
   templateUrl: './testimonials.component.html',
-  styles: ``,
+  styleUrl: './testimonials.component.scss',
 })
 export class TestimonialsComponent {
   private profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
 
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      400: {
-        items: 2,
-      },
-      740: {
-        items: 3,
-      },
-      940: {
-        items: 4,
-      },
-    },
-    nav: true,
+    nav: false,
+    items: 1,
+    autoplay: true,
+    autoplayTimeout: 5000,
   };
 }
