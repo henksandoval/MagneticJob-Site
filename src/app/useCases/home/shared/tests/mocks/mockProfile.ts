@@ -6,6 +6,7 @@ import { mockEducation } from './mockEducation';
 import { mockWorkExperience } from './mockWorkExperience';
 import { mockPortfolio } from './mockPortfolio';
 import { mockTestimonials } from './mockTestimonials';
+import { mockSkills } from './mockSkills';
 
 export const mockProfile: Profile = {
   about: mockAbout,
@@ -13,6 +14,7 @@ export const mockProfile: Profile = {
   summary: mockSummary,
   education: mockEducation,
   workExperience: mockWorkExperience,
+  skillSet: mockSkills,
   portfolio: mockPortfolio,
   testimonials: mockTestimonials,
 };
