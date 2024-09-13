@@ -1,32 +1,28 @@
 <section id="testimonials" class="testimonials section-bg">
-  <div class="container" data-aos="fade-up" *ngIf="profile$ | async as profile">
+  <div class="container" *ngIf="profile$ | async as profile">
     <ng-container *ngIf="profile.testimonials as testimonials">
       <div class="section-title">
         <h2>Testimonials</h2>
       </div>
-
-      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-        <div *ngFor="let testimonal of testimonials; index as index" class="swiper-wrapper">
-          <ng-container *ngIf="(index + 1).toString().padStart(2, '0') as dataIndex">
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img
-                  [attr.data-testid]="'image-src_' + dataIndex"
-                  src="{{ testimonal.photoUrl }}"
-                  class="testimonial-img"
-                  alt="{{ testimonal.name }}"
-                />
-                <h3 [attr.data-testid]="'name_' + dataIndex">{{ testimonal.name }}</h3>
-                <h4 [attr.data-testid]="'jobTitle_' + dataIndex">{{ testimonal.jobTitle }}</h4>
-                <blockquote>
-                  <p [attr.data-testid]="'testimonial_' + dataIndex">{{ testimonal.testimonial }}</p>
-                </blockquote>
-              </div>
+      <owl-carousel-o [options]="customOptions">
+        @for (testimonal of testimonials; track $index) {
+          <ng-template carouselSlide>
+            <div class="testimonial-item">
+              <img
+                [attr.data-testid]="'image-src_' + $index"
+                src="{{ testimonal.photoUrl }}"
+                class="testimonial-img"
+                alt="{{ testimonal.name }}"
+              />
+              <h3 [attr.data-testid]="'name_' + $index">{{ testimonal.name }}</h3>
+              <h4 [attr.data-testid]="'jobTitle_' + $index">{{ testimonal.jobTitle }}</h4>
+              <blockquote>
+                <p [attr.data-testid]="'testimonial_' + $index">{{ testimonal.testimonial }}</p>
+              </blockquote>
             </div>
-          </ng-container>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
+          </ng-template>
+        }
+      </owl-carousel-o>
     </ng-container>
   </div>
 </section>
