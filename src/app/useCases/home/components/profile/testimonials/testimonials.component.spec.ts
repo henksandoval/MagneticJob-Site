@@ -24,11 +24,22 @@ describe('TestimonialsComponent', () => {
   });
 
   it('You must submit all records regarding the Testimonials.', () => {
-    mockProfile.testimonials!.forEach((testimonial: Testimonial, id: number) => {
-      expect(screen.getByTestId('image-src_' + id)).toHaveAttribute('src', testimonial.photoUrl);
-      expect(screen.getByTestId('name_' + id)).toHaveTextContent(testimonial.name);
-      expect(screen.getByTestId('jobTitle_' + id)).toHaveTextContent(testimonial.jobTitle);
-      expect(screen.getByTestId('testimonial_' + id)).toHaveTextContent(testimonial.testimonial);
+    mockProfile.testimonials.forEach((testimonial: Testimonial, id: number) => {
+      const images = screen.getAllByTestId('image-src_' + id);
+      const names = screen.getAllByTestId('name_' + id);
+      const jobTitles = screen.getAllByTestId('jobTitle_' + id);
+      const testimonials = screen.getAllByTestId('testimonial_' + id);
+
+      expect(images.length).toBeGreaterThan(0);
+      expect(names.length).toBeGreaterThan(0);
+      expect(jobTitles.length).toBeGreaterThan(0);
+      expect(testimonials.length).toBeGreaterThan(0);
+
+      expect(images[0]).toHaveAttribute('src', testimonial.photoUrl);
+      expect(names[0]).toHaveTextContent(testimonial.name);
+      expect(jobTitles[0]).toHaveTextContent(testimonial.jobTitle);
+      expect(testimonials[0]).toHaveTextContent(testimonial.testimonial);
+      id++;
     });
   });
 });
