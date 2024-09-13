@@ -155,5 +155,37 @@
     "direction": "Calle Reina Fabiola, 20 9B, Zaragoza - España",
     "email": "alexandrai.marvala@gmail.com",
     "phoneNumber": "+34641051233"
-  }
+  },
+  "testimonials": [
+    {
+      "name": "Jane Doe",
+      "jobTitle": "Software Engineer",
+      "photoUrl": "https://randomuser.me/api/portraits/women/28.jpg",
+      "testimonial": "Working with this team has been a fantastic experience. Their dedication to quality is unmatched."
+    },
+    {
+      "name": "John Smith",
+      "jobTitle": "Project Manager",
+      "photoUrl": "https://randomuser.me/api/portraits/men/31.jpg",
+      "testimonial": "The project was delivered on time and exceeded our expectations. Highly recommend!"
+    },
+    {
+      "name": "Alice Johnson",
+      "jobTitle": "UX Designer",
+      "photoUrl": "https://randomuser.me/api/portraits/women/82.jpg",
+      "testimonial": "A creative team that brings ideas to life with exceptional design skills."
+    },
+    {
+      "name": "Michael Brown",
+      "jobTitle": "CTO",
+      "photoUrl": "https://randomuser.me/api/portraits/men/82.jpg",
+      "testimonial": "The team consistently delivered beyond expectations and maintained excellent communication."
+    },
+    {
+      "name": "Emily Davis",
+      "jobTitle": "Product Owner",
+      "photoUrl": "https://randomuser.me/api/portraits/women/11.jpg",
+      "testimonial": "Their innovative solutions and commitment to quality have been pivotal in our project’s success, making them an invaluable partner in our journey."
+    }
+  ]
 }
