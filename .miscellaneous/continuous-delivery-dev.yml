@@ -16,11 +16,11 @@ resources:
 variables:
   projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
   buildPipelineId: '62'
-  appServiceName: 'mysitedev'
-  azureResourceServiceConnection: 'Azure Resource Manager Connection'
-  imageRepository: 'mysitefrontend'
-  containerRegistry: 'hasacr.azurecr.io'
-  resourceGroupName: 'HasDev'
+  webAppName: 'mysitedev'
+  azureConnection: 'Azure Resource Manager Connection'
+  dockerImageRepo: 'mysitefrontend'
+  acrName: 'hasacr.azurecr.io'
+  resourceName: 'HasDev'
 
 stages:
   - stage: Deploy
@@ -36,14 +36,49 @@ stages:
                   parameters:
                     projectId: $(projectId)
                     buildPipelineId: $(buildPipelineId)
-                    appServiceName: $(appServiceName)
-                    azureResourceServiceConnection: $(azureResourceServiceConnection)
-                    imageRepository: $(imageRepository)
-                    containerRegistry: $(containerRegistry)
-                    resourceGroupName: $(resourceGroupName)
+                    appServiceName: $(webAppName)
+                    azureResourceServiceConnection: $(azureConnection)
+                    imageRepository: $(dockerImageRepo)
+                    containerRegistry: $(acrName)
+                    resourceGroupName: $(resourceName)
+
+  - stage: PublishArtifact
+    dependsOn: Deploy
+    displayName: 'Publish Build Artifact'
+    jobs:
+      - job: PublishBuildId
+        displayName: 'Publish Build ID Artifact'
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'specific'
+              project: $(projectId)
+              definition: $(buildPipelineId)
+              buildVersionToDownload: 'latest'
+              targetPath: '$(Pipeline.Workspace)'
+
+          - script: |
+              echo "Checking files in $(Pipeline.Workspace)/BuildId"
+              ls -l $(Pipeline.Workspace)/BuildId
+              buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
+              echo "Build ID: $buildId"
+              echo "##vso[task.setvariable variable=buildId]$buildId"
+              echo "$(acrName)/$(dockerImageRepo):$buildId"
+            displayName: 'Extract Build ID'
+
+          - script: echo $(buildId) > $(Build.ArtifactStagingDirectory)/buildId.txt
+            displayName: 'Save TagVersion to File'
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Build ID'
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'BuildId'
+              publishLocation: 'Container'
 
   - stage: ContinuousIntegrationMaster
-    dependsOn: Deploy
+    dependsOn: PublishArtifact
     displayName: Continuous Integration Master
     jobs:
       - deployment: MergeApproval
@@ -79,38 +114,3 @@ stages:
                   displayName: 'Push Changes'
                   env:
                     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-
-  - stage: PublishArtifact
-    dependsOn: ContinuousIntegrationMaster
-    displayName: 'Publish Build Artifact'
-    jobs:
-      - job: PublishBuildId
-        displayName: 'Publish Build ID Artifact'
-        steps:
-          - task: DownloadPipelineArtifact@2
-            displayName: 'Download Build Artifact'
-            inputs:
-              buildType: 'specific'
-              project: $(projectId)
-              definition: $(buildPipelineId)
-              buildVersionToDownload: 'latest'
-              targetPath: '$(Pipeline.Workspace)'
-
-          - script: |
-              echo "Checking files in $(Pipeline.Workspace)/BuildId"
-              ls -l $(Pipeline.Workspace)/BuildId
-              buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
-              echo "Build ID: $buildId"
-              echo "##vso[task.setvariable variable=buildId]$buildId"
-              echo "$(containerRegistry)/$(imageRepository):$buildId"
-            displayName: 'Extract Build ID'
-
-          - script: echo $(buildId) > $(Build.ArtifactStagingDirectory)/buildId.txt
-            displayName: 'Save TagVersion to File'
-
-          - task: PublishBuildArtifacts@1
-            displayName: 'Publish Build ID'
-            inputs:
-              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-              ArtifactName: 'BuildId'
-              publishLocation: 'Container'

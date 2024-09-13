@@ -1,34 +1,27 @@
-trigger: none
+trigger:
+  branches:
+    include:
+      - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
-resources:
-  pipelines:
-    - pipeline: continuous-delivery-dev
-      source: FrontEnd/ContinuousDeliveryDev
-      project: MySite
-      trigger:
-        branches:
-          include:
-            - develop
-
 variables:
   projectId: '4c1f4cba-da43-4422-a077-8b7a47bb1cf2'
   buildPipelineId: '63'
-  azureResourceServiceConnection: 'Azure Resource Manager Connection'
-  dockerRegistryServiceConnection: 'Azure Container Registry Connection'
-  appServiceName: 'mysitepro'
-  resourceGroupName: 'HasDev'
-  containerRegistry: 'hasacr.azurecr.io'
-  imageRepository: 'mysitefrontend'
+  azureConnection: 'Azure Resource Manager Connection'
+  acrConnection: 'Azure Container Registry Connection'
+  webAppName: 'mysitepro'
+  resourceGroup: 'HasDev'
+  acrName: 'hasacr.azurecr.io'
+  dockerImageRepo: 'mysitefrontend'
 
 stages:
-  - stage: DowloadArtifact
+  - stage: DownloadArtifact
     displayName: 'Download Artifact Version'
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     jobs:
-      - job: DowloadArtifact
+      - job: Download
         displayName: 'Download Version Artifact Dev'
         steps:
           - task: DownloadPipelineArtifact@2
@@ -46,7 +39,8 @@ stages:
               buildId=$(cat $(Pipeline.Workspace)/BuildId/buildId.txt)
               echo "Build ID: $buildId"
               echo "##vso[task.setvariable variable=buildId;isOutput=true]$buildId"
-              echo "$(containerRegistry)/$(imageRepository):$buildId"
+              echo "$(acrName)/$(dockerImageRepo):$buildId"
+            name: ExtractBuildId
             displayName: 'Extract Build ID'
 
   - stage: CodeQuality
@@ -66,34 +60,34 @@ stages:
     displayName: 'Tag and Push Image to ACR'
     dependsOn:
       - SetVersion
-      - DowloadArtifact
+      - DownloadArtifact
     jobs:
       - job: TagAndPush
         displayName: 'Tag and Push Docker Image'
         variables:
           gitVersionTag: $[stageDependencies.SetVersion.GitVersion.outputs['GitVersion.tag']]
-          buildId: $[stageDependencies.DowloadArtifact.DowloadArtifact.outputs['buildId']]
+          buildId: $[stageDependencies.DownloadArtifact.Download.outputs['ExtractBuildId.buildId']]
         steps:
           - task: Docker@2
             displayName: 'Login to ACR'
             inputs:
               command: 'login'
-              containerRegistry: '$(dockerRegistryServiceConnection)'
+              containerRegistry: '$(acrConnection)'
 
           - script: |
-              echo "Container Registry: $(containerRegistry)"
-              echo "Image Repository: $(imageRepository)"
-              echo "Build ID: $(buildId)"
-              echo "Git Version Tag: $(gitVersionTag)"
-            displayName: 'Print Variables'
-
-          - script: |
-              docker tag $(containerRegistry)/$(imageRepository):$(buildId) $(containerRegistry)/$(imageRepository):$(gitVersionTag)
-              docker push $(containerRegistry)/$(imageRepository):$(gitVersionTag)
-            displayName: 'Tag and Push Image'
+              docker pull $(acrName)/$(dockerImageRepo):$(buildId)
+              echo "Tagging the image"
+              echo "docker tag $(acrName)/$(dockerImageRepo):$(buildId) $(acrName)/$(dockerImageRepo):$(gitVersionTag)"
+              docker tag $(acrName)/$(dockerImageRepo):$(buildId) $(acrName)/$(dockerImageRepo):$(gitVersionTag)
+              echo "Pushing the new tag"
+              echo "docker push $(acrName)/$(dockerImageRepo):$(gitVersionTag)"
+              docker push $(acrName)/$(dockerImageRepo):$(gitVersionTag)
+            displayName: 'Pull, Tag and Push Image'
 
   - stage: Deploy
-    dependsOn: PushImage
+    dependsOn:
+      - SetVersion
+      - PushImage
     displayName: 'Deploy to PRO'
     jobs:
       - deployment: Deploy
@@ -107,7 +101,7 @@ stages:
                 - task: AzureWebAppContainer@1
                   displayName: 'Deploy Container to App Service'
                   inputs:
-                    azureSubscription: $(azureResourceServiceConnection)
-                    appName: $(appServiceName)
-                    resourceGroupName: $(resourceGroupName)
-                    imageName: $(containerRegistry)/$(imageRepository):$(gitVersionTag)
+                    azureSubscription: $(azureConnection)
+                    appName: $(webAppName)
+                    resourceGroupName: $(resourceGroup)
+                    imageName: $(acrName)/$(dockerImageRepo):$(gitVersionTag)
