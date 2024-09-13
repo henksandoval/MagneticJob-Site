@@ -6,6 +6,7 @@ import { Education } from './education';
 import { SkillSet } from './skills';
 import { Summary } from './summary';
 import { Titles } from './titles';
+import { Testimonial } from './testimonial';
 import { PortFolio } from './portfolio';
 
 export interface Profile {
@@ -18,5 +19,6 @@ export interface Profile {
   workExperience: WorkExperience;
   education: Education;
   summary: Summary;
+  testimonials: Testimonial[];
   portfolio: PortFolio;
 }
