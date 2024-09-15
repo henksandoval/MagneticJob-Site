@@ -13,7 +13,6 @@ import { WebPage } from '../../../shared/models/webPage';
 export class PortfolioComponent implements OnInit {
   private profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
-  type!: string;
   webPages: WebPage[] = [];
 
   ngOnInit(): void {
@@ -34,12 +33,5 @@ export class PortfolioComponent implements OnInit {
       }
       return reduciendo;
     }, [] as WebPage[]);
-  }
-
-  filterType(type: string) {
-    if (type) {
-      this.webPages.filter((webPage) => webPage.type === type);
-    }
-    return type;
   }
 }
