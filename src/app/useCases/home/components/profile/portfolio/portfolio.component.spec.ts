@@ -27,6 +27,13 @@ describe('PortfolioComponent', () => {
     expect(screen.getByTestId('text')).toHaveTextContent(mockProfile.portfolio.text);
   });
 
+  it('I should filter by type', () => {
+    mockProfile.portfolio.webPage.forEach((webPage) => {
+      expect(screen.getByTestId('filter_' + webPage.type )).toHaveTextContent(webPage.type);
+    });
+  });
+
+
   it('You must submit all records regarding the portfolio.', () => {
     mockProfile.portfolio.webPage.forEach((webPage: WebPage, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
