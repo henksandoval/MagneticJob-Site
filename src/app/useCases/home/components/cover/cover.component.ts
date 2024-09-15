@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './cover.component.html',
-  styles: ``,
+  styleUrl: './cover.component.scss',
 })
 export class CoverComponent {}
