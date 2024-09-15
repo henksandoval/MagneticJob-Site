@@ -57,6 +57,9 @@ describe('ResumeComponent', () => {
       (academicBackground: AcademicBackground, index: number) => {
         const id: string = (++index).toString().padStart(2, '0');
         expect(screen.getByTestId('experience_' + id)).toHaveTextContent(academicBackground.experience);
+        expect(screen.getByTestId('startdate-date' + id)).toHaveTextContent(academicBackground.startdate);
+        expect(screen.getByTestId('academy-formation' + id)).toHaveTextContent(academicBackground.Academy);
+        expect(screen.getByTestId('description_' + id)).toHaveTextContent(academicBackground.description);
       }
     );
   });
@@ -65,6 +68,16 @@ describe('ResumeComponent', () => {
     mockProfile.workExperience.position.forEach((position: Position, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
       expect(screen.getByTestId('specialist_' + id)).toHaveTextContent(position.specialist);
+      expect(screen.getByTestId('startdate_' + id)).toHaveTextContent(position.startdate);
+      expect(screen.getByTestId('location_' + id)).toHaveTextContent(position.location);
+      expect(screen.getByTestId('communicationDesignLeadership_' + id)).toHaveTextContent(
+        position.communicationDesignLeadership
+      );
+      expect(screen.getByTestId('teamLeadership_' + id)).toHaveTextContent(position.teamLeadership);
+      expect(screen.getByTestId('designQualityAssurance_' + id)).toHaveTextContent(
+        position.designQualityAssurance
+      );
+      expect(screen.getByTestId('expertiseArea_' + id)).toHaveTextContent(position.expertiseArea);
     });
   });
 });
