@@ -8,7 +8,7 @@ import { WebPage } from '../../../shared/models/webPage';
   standalone: true,
   imports: [NgIf, AsyncPipe, NgFor, NgClass],
   templateUrl: './portfolio.component.html',
-  styles: ``,
+  styleUrl: './portfolio.component.scss',
 })
 export class PortfolioComponent implements OnInit {
   private profileService: ProfileService = inject(ProfileService);
