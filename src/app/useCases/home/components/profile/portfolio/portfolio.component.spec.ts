@@ -30,6 +30,7 @@ describe('PortfolioComponent', () => {
   it('I should filter by type', () => {
     mockProfile.portfolio.webPage.forEach((webPage) => {
       expect(screen.getByTestId('filter_' + webPage.type )).toHaveTextContent(webPage.type);
+      expect(screen.getByTestId('filter_' + webPage.type )).toHaveAttribute('data-filter', '.filter-' + webPage.type);
     });
   });
 
