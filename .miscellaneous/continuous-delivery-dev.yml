@@ -81,36 +81,58 @@ stages:
     dependsOn: PublishArtifact
     displayName: Continuous Integration Master
     jobs:
-      - deployment: MergeApproval
+      - deployment: ApprovalAndMerge
         displayName: 'Approve and Merge to Master'
         environment: 'DeployPro'
         strategy:
           runOnce:
             deploy:
               steps:
-                - checkout: self
-                  persistCredentials: true
-                  fetchDepth: 0
-
                 - script: |
-                    echo "Switching to master branch"
-                    git checkout master
-                  displayName: 'Checkout Master Branch'
+                    echo $(System.StageAttempt)
+                    if [ "$(System.StageAttempt)" -eq "1" ]; then
+                      echo "approved"
+                      echo "##vso[task.setvariable variable=status;isOutput=true]approved"
+                    else
+                      echo "rejected"
+                      echo "##vso[task.setvariable variable=status;isOutput=true]rejected"
+                    fi
+                  name: DetermineApprovalStatus
+                  continueOnError: true
 
-                - script: |
-                    echo "Configuring Git"
-                    git config user.name "Henk Sandoval"
-                    git config user.email "henk.sandoval@outlook.com"
-                  displayName: 'Configure Git User'
+      - job: IntegrationJob
+        dependsOn: ApprovalAndMerge
+        variables:
+          deployJobVar: $[dependencies.ApprovalAndMerge.outputs['ApprovalAndMerge.DetermineApprovalStatus.status']]
+        steps:
+          - script: |
+              echo $(deployJobVar)
+            displayName: 'Output Approval Status'
 
-                - script: |
-                    echo "Merging develop into master"
-                    git merge origin/develop
-                  displayName: 'Merge Develop into Master'
+          - checkout: self
+            persistCredentials: true
+            fetchDepth: 0
+            displayName: 'Checkout Repository'
 
-                - script: |
-                    echo "Pushing changes"
-                    git push origin master
-                  displayName: 'Push Changes'
-                  env:
-                    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+          - script: |
+              echo "Switching to master branch"
+              git checkout master
+            displayName: 'Switching to master branch'
+
+          - script: |
+              echo "Configuring Git"
+              git config user.name "Henk Sandoval"
+              git config user.email "henk.sandoval@outlook.com"
+            displayName: 'Set Git User Config'
+
+          - script: |
+              echo "Merging develop into master"
+              git merge origin/develop
+            displayName: 'Merge Develop into Master Branch'
+
+          - script: |
+              echo "Pushing changes to master"
+              git push origin master
+            displayName: 'Push to Master Branch'
+            env:
+              SYSTEM_ACCESSTOKEN: $(System.AccessToken)
