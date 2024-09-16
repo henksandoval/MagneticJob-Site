@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { ProfileService } from '../../../shared/services/profile/profile.service';
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [],
+  imports: [NgIf, AsyncPipe],
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss',
 })
-export class ServicesComponent {}
+export class ServicesComponent {
+  private profileService: ProfileService = inject(ProfileService);
+  profile$ = this.profileService.profile$;
+}
