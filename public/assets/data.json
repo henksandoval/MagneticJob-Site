@@ -212,6 +212,36 @@
       }
     ]
   },
+  "Services": {
+    "text": "Services",
+    "introduction": "Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.",
+    "": [
+      {
+        "title": "Lorem Ipsum",
+        "description": "Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi"
+      },
+      {
+        "title": "Sed Perspiciatis",
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore"
+      },
+      {
+        "title": "Magni Dolores",
+        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia"
+      },
+      {
+        "title": "Nemo Enim",
+        "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis"
+      },
+      {
+        "title": "Dele Cardo",
+        "description": "Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur"
+      },
+      {
+        "title": "Divera Don",
+        "description": "Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur"
+      }
+    ]
+  },
   "contact": {
     "direction": "Calle Reina Fabiola, 20 9B, Zaragoza - España",
     "email": "alexandrai.marvala@gmail.com",
