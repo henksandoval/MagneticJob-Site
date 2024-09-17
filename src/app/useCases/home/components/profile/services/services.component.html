@@ -20,7 +20,7 @@
                   <i class="bx bxl-dribbble"></i>
                 </div>
                 <h4 [attr.data-testid]="'name_' + dataIndex"><a href="">{{serviceDetails.name}}</a></h4>
-                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                <p [attr.data-testid]="'description_' + dataIndex">{{serviceDetails.description}}</p>
               </div>
             </ng-container>
           </div>
