@@ -18,11 +18,16 @@ const renderComponent = async () => {
 };
 
 describe('ServicesComponent', () => {
-    beforeEach(async () => {
-      await renderComponent();
-    });
+  beforeEach(async () => {
+    await renderComponent();
+  });
 
-    it('It should show the title in the view', () => {
-        expect(screen.getByTestId('text')).toHaveTextContent(mockProfile.service.title);
-    });
+  it('It should show the title in the view', () => {
+    expect(screen.getByTestId('text')).toHaveTextContent(mockProfile.service.title);
+  });
+
+  it('It should show overview in the view', () => {
+    expect(screen.getByTestId('overview')).toHaveTextContent(mockProfile.service.overview);
+  });
+
 });
