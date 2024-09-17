@@ -29,11 +29,13 @@ describe('PortfolioComponent', () => {
 
   it('I should filter by type', () => {
     mockProfile.portfolio.webPage.forEach((webPage) => {
-      expect(screen.getByTestId('filter_' + webPage.type )).toHaveTextContent(webPage.type);
-      expect(screen.getByTestId('filter_' + webPage.type )).toHaveAttribute('data-filter', '.filter-' + webPage.type);
+      expect(screen.getByTestId('filter_' + webPage.type)).toHaveTextContent(webPage.type);
+      expect(screen.getByTestId('filter_' + webPage.type)).toHaveAttribute(
+        'data-filter',
+        '.filter-' + webPage.type
+      );
     });
   });
-
 
   it('You must submit all records regarding the portfolio.', () => {
     mockProfile.portfolio.webPage.forEach((webPage: WebPage, index: number) => {
