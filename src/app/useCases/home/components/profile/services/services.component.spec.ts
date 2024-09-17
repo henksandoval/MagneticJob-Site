@@ -5,6 +5,7 @@ import { ProfileService } from '../../../shared/services/profile/profile.service
 import { render, screen } from '@testing-library/angular';
 import '@testing-library/jest-dom';
 import { ServicesComponent } from './services.component';
+import { ServiceDetails } from '../../../shared/models/service';
 
 const mockProfileService = {
   profile$: of(mockProfile),
@@ -30,4 +31,10 @@ describe('ServicesComponent', () => {
     expect(screen.getByTestId('overview')).toHaveTextContent(mockProfile.service.overview);
   });
 
+  it('It should show the name', () => {
+    mockProfile.service.serviceDetails.forEach((serviceDetails: ServiceDetails, index: number) => {
+      const id: string = (++index).toString().padStart(2, '0');
+      expect(screen.getByTestId('name_' + id)).toHaveTextContent(serviceDetails.name);
+    });
+  });
 });
