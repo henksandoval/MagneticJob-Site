@@ -7,7 +7,7 @@ import { mockWorkExperience } from './mockWorkExperience';
 import { mockPortfolio } from './mockPortfolio';
 import { mockTestimonials } from './mockTestimonials';
 import { mockSkills } from './mockSkills';
-import { mockService } from '../../../components/profile/services/services.component.spec';
+import { mockService } from './mockService';
 
 export const mockProfile: Profile = {
   about: mockAbout,
