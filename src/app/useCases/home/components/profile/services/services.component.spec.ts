@@ -36,6 +36,7 @@ describe('ServicesComponent', () => {
       const id: string = (++index).toString().padStart(2, '0');
       expect(screen.getByTestId('name_' + id)).toHaveTextContent(serviceDetails.name);
       expect(screen.getByTestId('description_' + id)).toHaveTextContent(serviceDetails.description);
+      expect(screen.getByTestId('backgroundUrl_' + id)).toHaveAttribute('src', serviceDetails.backgroundUrl);
     });
   });
 });
