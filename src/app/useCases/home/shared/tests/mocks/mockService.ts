@@ -4,12 +4,27 @@ export const mockServiceDetails: ServiceDetails = {
   name: 'SEO Consulting',
   description:
     "We optimize your website's performance and develop strategies to attract users interested in purchasing your products or hiring your services.",
+  backgroundUrl: 'https://www.educaciontrespuntocero.com/recursos/programas-gratis-para-editar-imagenes/',
+};
+
+export const mockServiceDetails2: ServiceDetails = {
+  name: 'Web and Brand Graphic Design',
+  description:
+    "Tell us your idea, and we'll make it a reality. We create a custom design based on your brand image, attractive for your visitors and efficient to ensure smooth navigation through your website.",
+  backgroundUrl: 'https://www.educaciontrespuntocero.com/recursos/programas-gratis-para-editar-imagenes/',
+};
+
+export const mockServiceDetails3: ServiceDetails = {
+  name: 'Web Development',
+  description:
+    'We bring your digital business vision to life with a 100% scalable website that you can update to stay current and ensure you are one step ahead of your competition.',
   backgroundUrl:
-    'https://www.bing.com/images/search?view=detailV2&ccid=KfOHRb47&id=0FD86363309638790692EF7C087E0578B8C18CB8&thid=OIP.KfOHRb47qEB8y3vbKpTifQHaEU&mediaurl=https%3a%2f%2fwww.campustraining.es%2fwp-content%2fuploads%2f2020%2f12%2ffunciones-fotografo-profesional.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.29f38745be3ba8407ccb7bdb2a94e27d%3frik%3duIzBuHgFfgh87w%26pid%3dImgRaw%26r%3d0&exph=918&expw=1571&q=imagen+de+fotografo&simid=608028028367489008&FORM=IRPRST&ck=5264DEF23DC72764EC24610924AC8C9E&selectedIndex=18&itb=0',
+    'https://www.shutterstock.com/es/image-photo/poznan-pol-feb-25-2022-laptop-2259576401?consentChanged=true',
 };
 
 export const mockService: Service = {
-    title: "Services",
-    overview: "We focus on understanding your company's needs to create a website tailored to your clients. You also have the support of our specialists in programming, design, and digital marketing to guide you through the process and resolve any questions you may have.",
-    serviceDetails: [mockServiceDetails]
-}
+  title: 'Services',
+  overview:
+    "We focus on understanding your company's needs to create a website tailored to your clients. You also have the support of our specialists in programming, design, and digital marketing to guide you through the process and resolve any questions you may have.",
+  serviceDetails: [mockServiceDetails, mockServiceDetails2, mockServiceDetails3],
+};
