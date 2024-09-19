@@ -30,6 +30,9 @@
               }
             ],
             "styles": ["src/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["public/scss"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -84,6 +87,9 @@
               }
             ],
             "styles": ["src/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["public/scss"]
+            },
             "scripts": []
           }
         },
