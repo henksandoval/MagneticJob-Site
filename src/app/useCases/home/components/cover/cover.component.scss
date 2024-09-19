@@ -1,7 +1,5 @@
 $hero-bg-url: "https://bootstrapmade.com/content/demo/Kelly/assets/img/hero-bg.jpg";
-$heading-color: #45505b;
-$font-family_3: "Poppins", sans-serif;
-$accent-color: #0563bb;
+@import 'variables';
 
 #hero {
 	width: 100%;
