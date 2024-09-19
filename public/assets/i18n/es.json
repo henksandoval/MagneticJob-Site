@@ -1,4 +1,10 @@
 {
-  "home": "Inicio",
-  "hello": "¡Hola Mundo!"
+  "labels": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "resume": "Currículum",
+    "portfolio": "Portafolio",
+    "services": "Servicios",
+    "contact": "Contacto"
+  }
 }
