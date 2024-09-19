@@ -7,12 +7,12 @@
       </div>
 
       <div class="row">
-        <div class="fase col-lg-10 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="fase col-lg-10 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
           <div *ngFor="let serviceDetails of Service.serviceDetails; index as index">
             <ng-container *ngIf="(index + 1).toString().padStart(2, '0') as dataIndex">
               <div class="icon-box h-100">
                 <div class="img-fluid">
-                  <img [attr.data-testid]="'backgroundUrl_' + dataIndex" src="{{ serviceDetails.backgroundUrl }}" alt="" />
+                  <img [attr.data-testid]="'backgroundUrl_' + dataIndex" src="{{ serviceDetails.backgroundUrl }}" alt="image" class="" />
                 </div>
                 <h4 [attr.data-testid]="'name_' + dataIndex"><a href="">{{serviceDetails.name}}</a></h4>
                 <p [attr.data-testid]="'description_' + dataIndex">{{serviceDetails.description}}</p>
