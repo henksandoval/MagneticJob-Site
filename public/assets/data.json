@@ -219,17 +219,22 @@
       {
         "name": "SEO Consulting",
         "description": "We optimize your website's performance and develop strategies to attract users interested in purchasing your products or hiring your services.",
-        "backgroundUrl": "https://www.educaciontrespuntocero.com/recursos/programas-gratis-para-editar-imagenes/"
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2024/08/06/10/43/wine-8949009_1280.jpg"
       },
       {
         "name": "Web and Brand Graphic Design",
         "description": "Tell us your idea, and we'll make it a reality. We create a custom design based on your brand image, attractive for your visitors and efficient to ensure smooth navigation through your website.",
-        "backgroundUrl": "https://www.educaciontrespuntocero.com/recursos/programas-gratis-para-editar-imagenes/"
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2023/08/11/08/29/highland-cattle-8183107_1280.jpg"
       },
       {
         "name": "Web Development",
         "description": "We bring your digital business vision to life with a 100% scalable website that you can update to stay current and ensure you are one step ahead of your competition.",
-        "backgroundUrl": "https://www.shutterstock.com/es/image-photo/poznan-pol-feb-25-2022-laptop-2259576401?consentChanged=true"
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2024/02/20/13/21/mountains-8585535_1280.jpg"
+      },
+      {
+        "name": "App",
+        "description": "We capture your unique vision with stunning, scalable photography that you can update to keep your portfolio fresh and stay ahead of the competition.",
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2024/01/25/10/50/mosque-8531576_1280.jpg"
       }
     ]
   },
