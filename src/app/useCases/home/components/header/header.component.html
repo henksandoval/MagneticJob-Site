@@ -2,15 +2,14 @@
   <nav id="navbar" class="navbar nav-menu">
     <ul>
       <li *ngFor="let section of sections">
-        <a
+        <button
           [attr.data-testid]="'a_' + section.target"
-          role="none"
           (click)="scrollTo(section.target)"
           [class.active]="activeSectionId === section.target"
           class="nav-link"
         >
           <i class="bx" [ngClass]="section.icon"></i> <span>{{ section.label }}</span>
-        </a>
+        </button>
       </li>
     </ul>
   </nav>
