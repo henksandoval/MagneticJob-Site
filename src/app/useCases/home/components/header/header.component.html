@@ -1,35 +1,16 @@
 <header id="header" class="d-flex flex-column justify-content-center">
   <nav id="navbar" class="navbar nav-menu">
     <ul>
-      <li>
-        <a pageScroll href="#hero" class="nav-link scrollto active"
-          ><i class="bx bx-home"></i> <span>{{ 'labels.home' | translate }}</span></a
+      <li *ngFor="let section of sections">
+        <a
+          [attr.data-testid]="'a_' + section.target"
+          role="none"
+          (click)="scrollTo(section.target)"
+          [class.active]="activeSectionId === section.target"
+          class="nav-link"
         >
-      </li>
-      <li>
-        <a pageScroll href="#about" class="nav-link scrollto"
-          ><i class="bx bx-user"></i> <span>{{ 'labels.about' | translate }}</span></a
-        >
-      </li>
-      <li>
-        <a pageScroll href="#resume" class="nav-link scrollto"
-          ><i class="bx bx-file-blank"></i> <span>{{ 'labels.resume' | translate }}</span></a
-        >
-      </li>
-      <li>
-        <a pageScroll href="#portfolio" class="nav-link scrollto"
-          ><i class="bx bx-book-content"></i> <span>{{ 'labels.portfolio' | translate }}</span></a
-        >
-      </li>
-      <li>
-        <a pageScroll href="#services" class="nav-link scrollto"
-          ><i class="bx bx-server"></i> <span>{{ 'labels.services' | translate }}</span></a
-        >
-      </li>
-      <li>
-        <a pageScroll href="#contact" class="nav-link scrollto"
-          ><i class="bx bx-envelope"></i> <span>{{ 'labels.contact' | translate }}</span></a
-        >
+          <i class="bx" [ngClass]="section.icon"></i> <span>{{ section.label }}</span>
+        </a>
       </li>
     </ul>
   </nav>
