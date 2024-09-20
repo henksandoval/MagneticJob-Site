@@ -6,6 +6,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,8 +14,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
     provideAnimations(),
-    importProvidersFrom(CarouselModule),
     importProvidersFrom(
+      CarouselModule,
+      NgxPageScrollModule,
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
