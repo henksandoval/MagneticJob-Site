@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
-import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { Component, inject } from '@angular/core';
+import { PageScrollService } from 'ngx-page-scroll-core';
+import { SECTIONS } from './section';
+import { DOCUMENT, NgClass, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgxPageScrollModule, TranslateModule],
+  imports: [NgClass, NgFor],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  sections = SECTIONS;
+  activeSectionId = 'hero';
+
+  private pageScrollService: PageScrollService = inject(PageScrollService);
+  private document: Document = inject(DOCUMENT);
+
+  scrollTo(target: string) {
+    this.activeSectionId = target;
+    this.pageScrollService.scroll({ document: this.document, scrollTarget: `#${this.activeSectionId}` });
+  }
+}
