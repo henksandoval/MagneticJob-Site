@@ -52,7 +52,7 @@ describe('ResumeComponent', () => {
     });
   });
 
-  it('You should get all the records about education.', () => {
+  it('should get all the records about education.', () => {
     mockProfile.education.academicBackground.forEach(
       (academicBackground: AcademicBackground, index: number) => {
         const id: string = (++index).toString().padStart(2, '0');
