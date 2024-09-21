@@ -5,10 +5,10 @@ export interface Section {
 }
 
 export const SECTIONS: Section[] = [
-  { target: 'hero', icon: 'bx-home', label: 'labels.home' },
-  { target: 'about', icon: 'bx-user', label: 'labels.about' },
-  { target: 'resume', icon: 'bx-file-blank', label: 'labels.resume' },
-  { target: 'portfolio', icon: 'bx-book-content', label: 'labels.portfolio' },
-  { target: 'services', icon: 'bx-server', label: 'labels.services' },
-  { target: 'contact', icon: 'bx-envelope', label: 'labels.contact' },
+  { target: 'hero', icon: 'bx-home', label: 'Home' },
+  { target: 'about', icon: 'bx-user', label: 'About' },
+  { target: 'resume', icon: 'bx-file-blank', label: 'Resume' },
+  { target: 'portfolio', icon: 'bx-book-content', label: 'Portfolio' },
+  { target: 'services', icon: 'bx-server', label: 'Services' },
+  { target: 'contact', icon: 'bx-envelope', label: 'Contact' },
 ];
