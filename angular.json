@@ -5,6 +5,12 @@
   "projects": {
     "MySite": {
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "es-ES": "src/assets/i18n/messages.es.xlf"
+        }
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -17,6 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "localize": ["es-ES"],
             "outputPath": "dist/my-site",
             "index": "src/index.html",
             "browser": "src/main.ts",
