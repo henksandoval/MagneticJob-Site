@@ -1,11 +1,9 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 
 export const appConfig: ApplicationConfig = {
@@ -14,20 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(routes),
     provideAnimations(),
-    importProvidersFrom(
-      CarouselModule,
-      NgxPageScrollModule,
-      TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: httpTranslateLoader,
-          deps: [HttpClient],
-        },
-      })
-    ),
+    importProvidersFrom(CarouselModule, NgxPageScrollModule),
   ],
 };
-
-export function httpTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
-}
