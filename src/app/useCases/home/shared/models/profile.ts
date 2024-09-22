@@ -8,6 +8,7 @@ import { Summary } from './summary';
 import { Titles } from './titles';
 import { Testimonial } from './testimonial';
 import { PortFolio } from './portfolio';
+import { Service } from './service';
 
 export interface Profile {
   birthday?: string;
@@ -21,4 +22,5 @@ export interface Profile {
   summary: Summary;
   testimonials: Testimonial[];
   portfolio: PortFolio;
+  service: Service;
 }
