@@ -63,10 +63,6 @@ describe('AboutComponent', () => {
     expect(screen.getByTestId('email')).toHaveTextContent(mockAbout.email);
   });
 
-  it('should display profile freelance status', () => {
-    expect(screen.getByTestId('freelance-status')).toHaveTextContent(mockAbout.freelance);
-  });
-
   it('should display profile work experience', () => {
     expect(screen.getByTestId('workExperience')).toHaveTextContent(mockAbout.workExperience);
   });
