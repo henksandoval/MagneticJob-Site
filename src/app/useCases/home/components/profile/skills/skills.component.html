@@ -13,8 +13,8 @@
         data-aos-delay="100"
         data-aos-duration="1000"
       >
-        <ng-container *ngFor="let skill of skills; index as index">
-          <ng-container *ngIf="(index + 1).toString().padStart(2, '0') as dataIndex">
+         @for (skill of skills; track $index) {
+          <ng-container *ngIf="($index + 1).toString().padStart(2, '0') as dataIndex">
             <div class="skill_item">
               <img
                 [attr.data-testid]="'image-src_' + dataIndex"
@@ -25,7 +25,7 @@
               <span [attr.data-testid]="'name_' + dataIndex" class="skill_text">{{ skill.name }}</span>
             </div>
           </ng-container>
-        </ng-container>
+         }
       </div>
     </ng-container>
   </div>
