@@ -1,0 +1,14 @@
+{
+  "locale": "en",
+  "translations": {
+    "about": "About",
+    "about_imageUrl": "This is profile image",
+    "birthday": "Birthday:",
+    "webSite": "Website:",
+    "phone": "Phone:",
+    "city": "City:",
+    "age": "Age:",
+    "degree": "Degree:",
+    "email": "Email:"
+  }
+}
