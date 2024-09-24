@@ -1,3 +1,4 @@
+import '@angular/localize/init';
 import { render, screen } from '@testing-library/angular';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { of } from 'rxjs';
