@@ -6,26 +6,17 @@
         <p data-testid="skill_overview">{{ skillSet.overview }}</p>
       </div>
 
-      <div
-        *ngIf="skillSet.skillDetails as skills"
-        class="skills_container aos-init aos-animate"
-        data-aos="fade-up"
-        data-aos-delay="100"
-        data-aos-duration="1000"
-      >
-         @for (skill of skills; track $index) {
-          <ng-container *ngIf="($index + 1).toString().padStart(2, '0') as dataIndex">
-            <div class="skill_item">
-              <img
-                [attr.data-testid]="'image-src_' + dataIndex"
-                src="{{ skill.iconUrl }}"
-                alt="{{ skill.name }}"
-                class="skill_icon"
-              />
-              <span [attr.data-testid]="'name_' + dataIndex" class="skill_text">{{ skill.name }}</span>
-            </div>
-          </ng-container>
-         }
+      <div *ngIf="skillSet.skillDetails as skills" class="skills_container aos-init aos-animate" data-aos="fade-up"
+        data-aos-delay="100" data-aos-duration="1000">
+        @for (skill of skills; track $index) {
+        <ng-container *ngIf="($index + 1).toString().padStart(2, '0') as dataIndex">
+          <div class="skill_item">
+            <img [attr.data-testid]="'image-src_' + dataIndex" src="{{ skill.iconUrl }}" alt="{{ skill.name }}"
+              class="skill_icon" />
+            <span [attr.data-testid]="'name_' + dataIndex" class="skill_text">{{ skill.name }}</span>
+          </div>
+        </ng-container>
+        }
       </div>
     </ng-container>
   </div>
