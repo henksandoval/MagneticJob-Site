@@ -1,5 +1,6 @@
 export interface About {
   description: string;
+  imageUrl: string;
   text: string;
   hobbies: string;
   birthday: string;

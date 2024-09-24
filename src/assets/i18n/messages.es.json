@@ -1,0 +1,14 @@
+{
+  "locale": "es",
+  "translations": {
+    "about": "Acerca de",
+    "about_imageUrl": "Esta es la imagen de perfil",
+    "birthday": "Fecha nacimiento:",
+    "webSite": "Página web:",
+    "phone": "Teléfono:",
+    "city": "Ciudad:",
+    "age": "Edad:",
+    "degree": "Título:",
+    "email": "Correo electrónico:"
+  }
+}
