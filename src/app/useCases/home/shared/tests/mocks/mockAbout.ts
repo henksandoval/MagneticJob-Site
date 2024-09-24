@@ -2,6 +2,7 @@ import { About } from '../../../shared/models/about';
 
 export const mockAbout: About = {
   description: 'Test Description',
+  imageUrl: 'https://example.com/photo1.jpg',
   text: 'Test Text',
   hobbies: 'Test Hobbies',
   birthday: '01/01/2000',

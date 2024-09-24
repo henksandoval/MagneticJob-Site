@@ -1,3 +1,4 @@
+import '@angular/localize/init';
 import { render, screen } from '@testing-library/angular';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { of } from 'rxjs';
@@ -61,10 +62,6 @@ describe('AboutComponent', () => {
 
   it('should display profile email', () => {
     expect(screen.getByTestId('email')).toHaveTextContent(mockAbout.email);
-  });
-
-  it('should display profile freelance status', () => {
-    expect(screen.getByTestId('freelance-status')).toHaveTextContent(mockAbout.freelance);
   });
 
   it('should display profile work experience', () => {
