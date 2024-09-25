@@ -14,24 +14,23 @@ export class PortfolioComponent implements OnInit {
   private profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
   webPages: WebPage[] = [];
+  webPagesByTypes: string[] = [];
 
   ngOnInit(): void {
     this.profile$.subscribe((profile) => {
       if (profile?.portfolio) {
         this.webPages = profile.portfolio.webPage;
-        this.webPages = this.obtenerLosTipos();
+        this.groupWebPagesByType();
       }
     });
   }
 
-  obtenerLosTipos(): WebPage[] {
-    const unicos: string[] = [];
-    return this.webPages.reduce((reduciendo, valor) => {
-      if (!unicos.includes(valor.type)) {
-        unicos.push(valor.type);
-        reduciendo.push({ type: valor.type, position: 1, title: '', description: '', link: '', image: '' });
+  private groupWebPagesByType() {
+    this.webPages.forEach((webPage: WebPage) => {
+      if (this.webPagesByTypes.includes(webPage.type)) {
+        return;
       }
-      return reduciendo;
-    }, [] as WebPage[]);
+      this.webPagesByTypes.push(webPage.type);
+    });
   }
 }

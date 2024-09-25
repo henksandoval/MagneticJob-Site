@@ -9,12 +9,12 @@
           <div>
             <ul id="portfolio-flters">
               <li data-testid="all" data-filter="*" class="filter-active">All</li>
-              @for (webPage of webPages; track $index) {
+              @for (webPageType of webPagesByTypes; track $index) {
                 <li
-                  [attr.data-testid]="'filter_' + webPage.type"
-                  [attr.data-filter]="'.filter-' + webPage.type"
+                  [attr.data-testid]="'filter_' + webPageType"
+                  [attr.data-filter]="'.filter-' + webPageType"
                 >
-                  {{ webPage.type }}
+                  {{ webPageType }}
                 </li>
               }
             </ul>
