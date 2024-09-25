@@ -4,7 +4,7 @@ export const mockServiceDetails: ServiceDetails = {
   name: 'SEO Consulting',
   description:
     "We optimize your website's performance and develop strategies to attract users interested in purchasing your products or hiring your services.",
-  backgroundUrl: 'https://cdn.pixabay.com/photo/2024/08/06/10/43/wine-8949009_1280.jpg'
+  backgroundUrl: 'https://cdn.pixabay.com/photo/2024/08/06/10/43/wine-8949009_1280.jpg',
 };
 
 export const mockServiceDetails2: ServiceDetails = {
@@ -18,17 +18,13 @@ export const mockServiceDetails3: ServiceDetails = {
   name: 'Web Development',
   description:
     'We bring your digital business vision to life with a 100% scalable website that you can update to stay current and ensure you are one step ahead of your competition.',
-  backgroundUrl:
-    'https://cdn.pixabay.com/photo/2024/02/20/13/21/mountains-8585535_1280.jpg',
+  backgroundUrl: 'https://cdn.pixabay.com/photo/2024/02/20/13/21/mountains-8585535_1280.jpg',
 };
-
 
 export const mockServiceDetails4: ServiceDetails = {
   name: 'App',
-  description:
-    'We bring your digital business vision to life with a 100%',
-  backgroundUrl:
-    'https://cdn.pixabay.com/photo/2024/01/25/10/50/mosque-8531576_1280.jpg',
+  description: 'We bring your digital business vision to life with a 100%',
+  backgroundUrl: 'https://cdn.pixabay.com/photo/2024/01/25/10/50/mosque-8531576_1280.jpg',
 };
 
 export const mockService: Service = {
