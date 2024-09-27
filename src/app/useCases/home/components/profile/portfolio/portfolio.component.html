@@ -33,25 +33,39 @@
                   alt=""
                 />
                 <div class="portfolio-info">
-                  <h5 [attr.data-testid]="'position_' + dataIndex">{{ webPage.position }}</h5>
                   <h4 [attr.data-testid]="'title_' + dataIndex">{{ webPage.title }}</h4>
                   <p [attr.data-testid]="'type_' + dataIndex">{{ webPage.type }}</p>
                   <p [attr.data-testid]="'description_' + dataIndex">{{ webPage.description }}</p>
                   <div class="portfolio-links">
-                    <a
-                      [attr.data-testid]="'image-href' + dataIndex"
-                      href="{{ webPage.image }}"
-                      class="glightbox"
-                      [attr.data-gallery]="dataIndex"
-                      ><i class="bx bx-plus"></i
-                    ></a>
-                    <a
-                      [attr.data-testid]="'link_' + dataIndex"
-                      href="{{ webPage.link }}"
-                      data-glightbox="type: external"
-                      title="Portfolio Details"
-                      ><i class="bx bx-link"></i
-                    ></a>
+                    @if (webPage.image) {
+                      <a
+                        [attr.data-testid]="'image-href' + dataIndex"
+                        href="{{ webPage.image }}"
+                        class="glightbox glightbox-image"
+                        [attr.data-gallery]="'image_' + dataIndex"
+                        ><i class="bx bx-plus"></i
+                      ></a>
+                    }
+                    @if (webPage.video) {
+                      <a
+                        [attr.data-testid]="'image-href' + dataIndex"
+                        href="{{ webPage.video }}"
+                        class="glightbox glightbox-image"
+                        [attr.data-gallery]="'image_' + dataIndex"
+                        ><i class="bx bx-video"></i
+                      ></a>
+                    }
+                    @if (webPage.link) {
+                      <a
+                        [attr.data-testid]="'link_' + dataIndex"
+                        href="{{ webPage.link }}"
+                        class="glightbox glightbox-web"
+                        data-glightbox="type: external"
+                        [attr.data-gallery]="'web_' + dataIndex"
+                        title="Portfolio Details"
+                        ><i class="bx bx-link"></i
+                      ></a>
+                    }
                   </div>
                 </div>
               </div>

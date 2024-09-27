@@ -159,7 +159,7 @@
         "position": 1,
         "title": "Aventuras Animales",
         "description": "Cada fotografía captura momentos únicos y comportamientos fascinantes.",
-        "link": "https://www.jetbrains.com/teamcity/?gdmcid=7f94a68d-ad43-4c54-ad20-364c52ae127e",
+        "link": "https://waylet.es/",
         "image": "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg",
         "type": "CAT"
       },
@@ -167,23 +167,22 @@
         "position": 2,
         "title": "Horizontes Naturales",
         "description": "Cada imagen captura la esencia de lugares únicos, desde montañas imponentes hasta costas tranquilas, invitándote a explorar la belleza del mundo",
-        "link": "https://pixabay.com/es/videos/oceano-playa-ondas-rompiendo-olas-160767/",
+        "link": "https://biati-digital.github.io/glightbox/",
         "image": "https://th.bing.com/th/id/OIP.iwFhHHKPOqAJUDO-iSov_wHaE8?rs=1&pid=ImgDetMain",
         "type": "NATURE"
       },
       {
         "position": 3,
-        "title": "Instantes Eternos",
-        "description": "Cada fotografía captura la esencia y la alegría de un día tan especial, transformando recuerdos en arte eterno.",
-        "link": "https://www.istockphoto.com/es/v%C3%ADdeo/reci%C3%A9n-casados-bailando-vals-en-la-pista-de-baile-gm1180011493-330411869",
-        "image": "https://1.bp.blogspot.com/-j-w8B3RW3qI/VwgTezGX_6I/AAAAAAAAFag/-bUAYbTtqzorWspGeEgjbCq41iLIOC9Tw/s1600/Wedding06-main.jpg",
-        "type": "MARRIES"
+        "title": "Movil Truck",
+        "description": "Plataforma de transporte inteligente; solución tecnológica diseñada para abordar de manera eficiente el transporte de mercancías por carretera.",
+        "link": "https://moviltruck.com/",
+        "image": "https://moviltruck.com/wp-content/uploads/2023/11/Hero-1-.png",
+        "type": "WebPage"
       },
       {
         "position": 1,
         "title": "Aventuras Animales",
         "description": "Cada fotografía captura momentos únicos y comportamientos fascinantes.",
-        "link": "https://www.jetbrains.com/teamcity/?gdmcid=7f94a68d-ad43-4c54-ad20-364c52ae127e",
         "image": "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg",
         "type": "CAT"
       },
@@ -191,16 +190,15 @@
         "position": 1,
         "title": "Aventuras Animales",
         "description": "Cada fotografía captura momentos únicos y comportamientos fascinantes.",
-        "link": "https://www.jetbrains.com/teamcity/?gdmcid=7f94a68d-ad43-4c54-ad20-364c52ae127e",
         "image": "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg",
         "type": "CAT"
       },
       {
         "position": 2,
-        "title": "Horizontes Naturales",
-        "description": "Cada imagen captura la esencia de lugares únicos, desde montañas imponentes hasta costas tranquilas, invitándote a explorar la belleza del mundo",
-        "link": "https://pixabay.com/es/videos/oceano-playa-ondas-rompiendo-olas-160767/",
-        "image": "https://th.bing.com/th/id/OIP.iwFhHHKPOqAJUDO-iSov_wHaE8?rs=1&pid=ImgDetMain",
+        "title": "Red And Blue Parrot",
+        "description": "Hermosos y encantadores Guacamayas en ambiente natural.",
+        "image": "https://images.pexels.com/photos/1427447/pexels-photo-1427447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "video": "https://videos.pexels.com/video-files/17325162/17325162-uhd_1440_2560_30fps.mp4",
         "type": "NATURE"
       },
       {
