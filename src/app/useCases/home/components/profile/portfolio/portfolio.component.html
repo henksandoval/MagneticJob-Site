@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-        @for (webPage of Portfolio.webPage; track $index) {
+        @for (webPage of webPages; track $index) {
           <ng-container *ngIf="($index + 1).toString().padStart(2, '0') as dataIndex">
             <div class="col-lg-4 col-md-6 portfolio-item" [ngClass]="'filter-' + webPage.type">
               <div class="portfolio-wrap">
@@ -41,14 +41,13 @@
                     <a
                       [attr.data-testid]="'image-href' + dataIndex"
                       href="{{ webPage.image }}"
-                      data-gallery="portfolioGallery"
-                      class="portfolio-lightbox"
+                      class="glightbox"
+                      [attr.data-gallery]="dataIndex"
                       ><i class="bx bx-plus"></i
                     ></a>
                     <a
                       [attr.data-testid]="'link_' + dataIndex"
                       href="{{ webPage.link }}"
-                      class="portfolio-details-lightbox"
                       data-glightbox="type: external"
                       title="Portfolio Details"
                       ><i class="bx bx-link"></i
