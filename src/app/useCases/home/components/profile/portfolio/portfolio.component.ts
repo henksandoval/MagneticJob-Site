@@ -4,6 +4,7 @@ import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { WebPage } from '../../../shared/models/webPage';
 import { delay, map } from 'rxjs';
 import GLightbox from 'glightbox';
+import { Profile } from '../../../shared/models/profile';
 
 @Component({
   selector: 'app-portfolio',
@@ -23,7 +24,7 @@ export class PortfolioComponent implements OnInit {
       .pipe(
         map((profile) => {
           if (profile?.portfolio) {
-            this.webPages = profile.portfolio.webPage;
+            this.sortWebPages(profile);
             this.groupWebPagesByType();
           }
 
@@ -32,8 +33,29 @@ export class PortfolioComponent implements OnInit {
         delay(3000)
       )
       .subscribe(() => {
-        GLightbox({});
+        GLightbox({
+          selector: '.glightbox-image',
+        });
+        GLightbox({
+          selector: '.glightbox-web',
+          width: '90%',
+          height: '90vh',
+        });
       });
+  }
+
+  private sortWebPages(profile: Profile) {
+    this.webPages = profile.portfolio.webPage.sort((current: WebPage, next: WebPage) => {
+      if (current.position > next.position) {
+        return 1;
+      }
+
+      if (current.position < next.position) {
+        return -1;
+      }
+
+      return 0;
+    });
   }
 
   private groupWebPagesByType() {

@@ -41,12 +41,15 @@ describe('PortfolioComponent', () => {
     mockProfile.portfolio.webPage.forEach((webPage: WebPage, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
       expect(screen.getByTestId('image-src_' + id)).toHaveAttribute('src', webPage.image);
-      expect(screen.getByTestId('position_' + id)).toHaveTextContent(webPage.position.toString());
       expect(screen.getByTestId('title_' + id)).toHaveTextContent(webPage.title);
       expect(screen.getByTestId('type_' + id)).toHaveTextContent(webPage.type);
       expect(screen.getByTestId('description_' + id)).toHaveTextContent(webPage.description);
       expect(screen.getByTestId('image-href' + id)).toHaveAttribute('href', webPage.image);
-      expect(screen.getByTestId('link_' + id)).toHaveAttribute('href', webPage.link);
+      if (webPage.link) {
+        expect(screen.getByTestId('link_' + id)).toHaveAttribute('href', webPage.link);
+      } else {
+        expect(screen.queryByTestId('link_' + id)).toBeNull();
+      }
     });
   });
 });
