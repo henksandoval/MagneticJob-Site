@@ -2,6 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { WebPage } from '../../../shared/models/webPage';
+import { delay, map, tap } from 'rxjs';
+import GLightbox from 'glightbox';
 
 @Component({
   selector: 'app-portfolio',
@@ -11,27 +13,35 @@ import { WebPage } from '../../../shared/models/webPage';
   styleUrl: './portfolio.component.scss',
 })
 export class PortfolioComponent implements OnInit {
-  private profileService: ProfileService = inject(ProfileService);
+  private readonly profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
   webPages: WebPage[] = [];
+  webPagesByTypes: string[] = [];
 
   ngOnInit(): void {
-    this.profile$.subscribe((profile) => {
-      if (profile?.portfolio) {
-        this.webPages = profile.portfolio.webPage;
-        this.webPages = this.obtenerLosTipos();
-      }
-    });
+    this.profile$
+      .pipe(
+        map((profile) => profile?.portfolio?.webPage ?? []),
+        tap((webPages) => {
+          this.webPages = this.sortWebPages(webPages);
+          this.webPagesByTypes = this.groupWebPagesByType(webPages);
+        }),
+        delay(1500),
+        tap(() => this.initializeGLightbox())
+      )
+      .subscribe();
   }
 
-  obtenerLosTipos(): WebPage[] {
-    const unicos: string[] = [];
-    return this.webPages.reduce((reduciendo, valor) => {
-      if (!unicos.includes(valor.type)) {
-        unicos.push(valor.type);
-        reduciendo.push({ type: valor.type, position: 1, title: '', description: '', link: '', image: '' });
-      }
-      return reduciendo;
-    }, [] as WebPage[]);
+  private sortWebPages(webPages: WebPage[]): WebPage[] {
+    return [...webPages].sort((a, b) => a.position - b.position);
+  }
+
+  private groupWebPagesByType(webPages: WebPage[]): string[] {
+    return Array.from(new Set(webPages.map((webPage) => webPage.type)));
+  }
+
+  private initializeGLightbox(): void {
+    GLightbox({ selector: '.glightbox-image' });
+    GLightbox({ selector: '.glightbox-web', width: '90%', height: '90vh' });
   }
 }
