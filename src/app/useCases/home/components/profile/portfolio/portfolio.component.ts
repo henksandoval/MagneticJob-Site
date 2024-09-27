@@ -2,9 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { WebPage } from '../../../shared/models/webPage';
-import { delay, map } from 'rxjs';
+import { delay, map, tap } from 'rxjs';
 import GLightbox from 'glightbox';
-import { Profile } from '../../../shared/models/profile';
 
 @Component({
   selector: 'app-portfolio',
@@ -22,48 +21,27 @@ export class PortfolioComponent implements OnInit {
   ngOnInit(): void {
     this.profile$
       .pipe(
-        map((profile) => {
-          if (profile?.portfolio) {
-            this.sortWebPages(profile);
-            this.groupWebPagesByType();
-          }
-
-          return profile;
+        map((profile) => profile?.portfolio?.webPage ?? []),
+        tap((webPages) => {
+          this.webPages = this.sortWebPages(webPages);
+          this.webPagesByTypes = this.groupWebPagesByType(webPages);
         }),
-        delay(3000)
+        delay(1500),
+        tap(() => this.initializeGLightbox())
       )
-      .subscribe(() => {
-        GLightbox({
-          selector: '.glightbox-image',
-        });
-        GLightbox({
-          selector: '.glightbox-web',
-          width: '90%',
-          height: '90vh',
-        });
-      });
+      .subscribe();
   }
 
-  private sortWebPages(profile: Profile) {
-    this.webPages = profile.portfolio.webPage.sort((current: WebPage, next: WebPage) => {
-      if (current.position > next.position) {
-        return 1;
-      }
-
-      if (current.position < next.position) {
-        return -1;
-      }
-
-      return 0;
-    });
+  private sortWebPages(webPages: WebPage[]): WebPage[] {
+    return [...webPages].sort((a, b) => a.position - b.position);
   }
 
-  private groupWebPagesByType() {
-    this.webPages.forEach((webPage: WebPage) => {
-      if (this.webPagesByTypes.includes(webPage.type)) {
-        return;
-      }
-      this.webPagesByTypes.push(webPage.type);
-    });
+  private groupWebPagesByType(webPages: WebPage[]): string[] {
+    return Array.from(new Set(webPages.map((webPage) => webPage.type)));
+  }
+
+  private initializeGLightbox(): void {
+    GLightbox({ selector: '.glightbox-image' });
+    GLightbox({ selector: '.glightbox-web', width: '90%', height: '90vh' });
   }
 }
