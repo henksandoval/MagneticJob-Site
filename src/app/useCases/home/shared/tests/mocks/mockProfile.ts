@@ -18,5 +18,5 @@ export const mockProfile: Profile = {
   skillSet: mockSkills,
   portfolio: mockPortfolio,
   testimonials: mockTestimonials,
-  service: mockService
+  service: mockService,
 };

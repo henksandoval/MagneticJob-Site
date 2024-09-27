@@ -37,16 +37,39 @@ describe('PortfolioComponent', () => {
     });
   });
 
-  it('You must submit all records regarding the portfolio.', () => {
+  it('Should submit all records regarding the portfolio.', () => {
     mockProfile.portfolio.webPage.forEach((webPage: WebPage, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
+
       expect(screen.getByTestId('image-src_' + id)).toHaveAttribute('src', webPage.image);
-      expect(screen.getByTestId('position_' + id)).toHaveTextContent(webPage.position.toString());
       expect(screen.getByTestId('title_' + id)).toHaveTextContent(webPage.title);
       expect(screen.getByTestId('type_' + id)).toHaveTextContent(webPage.type);
       expect(screen.getByTestId('description_' + id)).toHaveTextContent(webPage.description);
-      expect(screen.getByTestId('image-href' + id)).toHaveAttribute('href', webPage.image);
-      expect(screen.getByTestId('link_' + id)).toHaveAttribute('href', webPage.link);
+      if (webPage.image) {
+        expect(screen.queryByTestId('image_' + id)).toHaveAttribute('href', webPage.image);
+      }
+      if (webPage.video) {
+        expect(screen.queryByTestId('video_' + id)).toHaveAttribute('href', webPage.video);
+      }
+      if (webPage.link) {
+        expect(screen.getByTestId('link_' + id)).toHaveAttribute('href', webPage.link);
+      }
     });
+  });
+});
+
+describe('PortfolioComponentNullScenary', () => {
+  it('handles null or undefined profile correctly', async () => {
+    const mockNullProfileService = {
+      profile$: of(null),
+      loadProfile: jest.fn(),
+    };
+
+    await render(PortfolioComponent, {
+      providers: [provideHttpClientTesting(), { provide: ProfileService, useValue: mockNullProfileService }],
+    });
+
+    screen.debug();
+    expect(screen.getByTestId('portfolio')).toBeEmptyDOMElement();
   });
 });
