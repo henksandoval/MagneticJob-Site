@@ -39,7 +39,7 @@
                   <div class="portfolio-links">
                     @if (webPage.image) {
                       <a
-                        [attr.data-testid]="'image-href' + dataIndex"
+                        [attr.data-testid]="'image_' + dataIndex"
                         href="{{ webPage.image }}"
                         class="glightbox glightbox-image"
                         [attr.data-gallery]="'image_' + dataIndex"
@@ -48,7 +48,7 @@
                     }
                     @if (webPage.video) {
                       <a
-                        [attr.data-testid]="'image-href' + dataIndex"
+                        [attr.data-testid]="'video_' + dataIndex"
                         href="{{ webPage.video }}"
                         class="glightbox glightbox-image"
                         [attr.data-gallery]="'image_' + dataIndex"
