@@ -13,7 +13,7 @@ import GLightbox from 'glightbox';
   styleUrl: './portfolio.component.scss',
 })
 export class PortfolioComponent implements OnInit {
-  private profileService: ProfileService = inject(ProfileService);
+  private readonly profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
   webPages: WebPage[] = [];
   webPagesByTypes: string[] = [];
