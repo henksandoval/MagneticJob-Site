@@ -59,7 +59,7 @@ export const mockWebPage6: WebPage = {
 };
 
 export const mockWebPage7: WebPage = {
-  position: 4,
+  position: 7,
   title: 'Music',
   description:
     'Cada imagen captura la esencia de la musica, el sonido llega al alma dando una hermosa sensacion de relajacion',
