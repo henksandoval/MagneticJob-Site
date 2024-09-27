@@ -1,4 +1,4 @@
-<section id="portfolio" class="portfolio section-bg">
+<section data-testid="portfolio" id="portfolio" class="portfolio section-bg">
   <div class="container" data-aos="fade-up" *ngIf="profile$ | async as profile">
     <ng-container *ngIf="profile.portfolio as Portfolio">
       <div class="section-title">
@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
           <div>
-            <ul id="portfolio-flters">
+            <ul data-testid="all" id="portfolio-flters">
               <li data-testid="all" data-filter="*" class="filter-active">All</li>
               @for (webPageType of webPagesByTypes; track $index) {
                 <li
@@ -48,7 +48,7 @@
                     }
                     @if (webPage.video) {
                       <a
-                        [attr.data-testid]="'video_' + dataIndex"
+                        [attr.data-testid]="'' + dataIndex"
                         href="{{ webPage.video }}"
                         class="glightbox glightbox-image"
                         [attr.data-gallery]="'image_' + dataIndex"

@@ -37,7 +37,7 @@ describe('PortfolioComponent', () => {
     });
   });
 
-  it('You must submit all records regarding the portfolio.', () => {
+  it('Should submit all records regarding the portfolio.', () => {
     mockProfile.portfolio.webPage.forEach((webPage: WebPage, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
 
@@ -55,5 +55,21 @@ describe('PortfolioComponent', () => {
         expect(screen.getByTestId('link_' + id)).toHaveAttribute('href', webPage.link);
       }
     });
+  });
+});
+
+describe('PortfolioComponentNullScenary', () => {
+  it('handles null or undefined profile correctly', async () => {
+    const mockNullProfileService = {
+      profile$: of(null),
+      loadProfile: jest.fn(),
+    };
+
+    await render(PortfolioComponent, {
+      providers: [provideHttpClientTesting(), { provide: ProfileService, useValue: mockNullProfileService }],
+    });
+
+    screen.debug();
+    expect(screen.getByTestId('portfolio')).toBeEmptyDOMElement();
   });
 });
