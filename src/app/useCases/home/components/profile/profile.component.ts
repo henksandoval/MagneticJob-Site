@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ProfileService } from 'src/app/useCases/home/shared/services/profile/profile.service';
 import { CoverComponent } from '../cover/cover.component';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
@@ -31,14 +32,16 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
     <main id="main">
       <app-about />
       <app-fact />
-      <app-skills />
+      <app-skills [skillSet]="profile$()?.skillSet" />
       <app-resume />
       <app-portfolio />
       <app-services />
-      <app-testimonials />
+      <app-testimonials [testimonials]="profile$()?.testimonials" />
       <app-contact />
     </main>
   `,
-  styles: ``,
 })
-export class ProfileComponent {}
+export class ProfileComponent {
+  private profileService: ProfileService = inject(ProfileService);
+  profile$ = this.profileService.profile$;
+}
