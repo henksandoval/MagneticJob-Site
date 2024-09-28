@@ -1,71 +1,78 @@
+@let profile = profile$();
 <section id="resume" class="resume">
-  <div class="container" data-aos="fade-up" *ngIf="profile$ | async as profile">
-    <ng-container *ngIf="profile.titles as titles">
-      <div class="section-title">
-        <h2 data-testid="resume">{{ titles.resume }}</h2>
-        <p data-testid="about">{{ profile.summary.about }}</p>
-      </div>
-    </ng-container>
+  @if (profile) {
+  <div class="container" data-aos="fade-up">
+    @if (profile.titles; as titles) {
+    <div class="section-title">
+      <h2 data-testid="resume">{{ titles.resume }}</h2>
+      <p data-testid="about">{{ profile.summary.about }}</p>
+    </div>
+    }
     <div class="row">
       <div class="col-6">
-        <ng-container *ngIf="profile.summary as summary">
-          <h3 data-testid="summary" class="resume-title">{{ profile.titles.summary }}</h3>
-          <div class="resume-item pb-0">
-            <h4 data-testid="name">{{ summary.name }}</h4>
-            <p>
-              <em data-testid="introduction">{{ summary.introduction }}</em>
-            </p>
-            <ul *ngFor="let contact of summary.contact">
-              <li data-testid="location">{{ contact.location }}</li>
-              <li data-testid="phoneNumber">{{ contact.phoneNumber }}</li>
-              <li data-testid="aliceBarkle">{{ contact.aliceBarkle }}</li>
-            </ul>
-          </div>
-        </ng-container>
-        <ng-container *ngIf="profile.education as education">
-          <h3 data-testid="education" class="resume-title">{{ profile.titles.education }}</h3>
-          <div class="resume-item" *ngFor="let education of education.academicBackground; index as index">
-            <ng-container *ngIf="(index + 1).toString().padStart(2, '0') as dataIndex">
-              <h4 [attr.data-testid]="'experience_' + dataIndex">{{ education.experience }}</h4>
-              <h5 [attr.data-testid]="'startdate-date' + dataIndex">{{ education.startdate }}</h5>
-              <p [attr.data-testid]="'academy-formation' + dataIndex">
-                <em>{{ education.Academy }}</em>
-              </p>
-              <p [attr.data-testid]="'description_' + dataIndex">{{ education.description }}</p>
-            </ng-container>
-          </div>
-        </ng-container>
+        @if (profile.summary; as summary) {
+        <h3 data-testid="summary" class="resume-title">{{ profile.titles.summary }}</h3>
+        <div class="resume-item pb-0">
+          <h4 data-testid="name">{{ summary.name }}</h4>
+          <p>
+            <em data-testid="introduction">{{ summary.introduction }}</em>
+          </p>
+          <ul>
+            @for (contact of summary.contact; track $index) {
+            <li data-testid="location">{{ contact.location }}</li>
+            <li data-testid="phoneNumber">{{ contact.phoneNumber }}</li>
+            <li data-testid="aliceBarkle">{{ contact.aliceBarkle }}</li>
+            }
+          </ul>
+        </div>
+        }
+        @if (profile.education; as education) {
+        <h3 data-testid="education" class="resume-title">{{ profile.titles.education }}</h3>
+        @for (edu of education.academicBackground; track edu.experience) {
+        @let dataIndex = ($index + 1).toString().padStart(2, '0');
+        <div class="resume-item">
+          <h4 [attr.data-testid]="'experience_' + dataIndex">{{ edu.experience }}</h4>
+          <h5 [attr.data-testid]="'startdate-date' + dataIndex">{{ edu.startdate }}</h5>
+          <p [attr.data-testid]="'academy-formation' + dataIndex">
+            <em>{{ edu.Academy }}</em>
+          </p>
+          <p [attr.data-testid]="'description_' + dataIndex">{{ edu.description }}</p>
+        </div>
+        }
+        }
       </div>
       <div class="col-6">
-        <ng-container *ngIf="profile.workExperience as workExperience">
-          <h3 data-testid="workExperience" class="resume-title">
-            {{ profile.titles.workExperience }}
-          </h3>
-          <div class="resume-item" *ngFor="let workExperience of workExperience.position; index as index">
-            <ng-container *ngIf="(index + 1).toString().padStart(2, '0') as dataIndex">
-              <h4 [attr.data-testid]="'specialist_' + dataIndex">
-                {{ workExperience.specialist }}
-              </h4>
-              <h5 [attr.data-testid]="'startdate_' + dataIndex">{{ workExperience.startdate }}</h5>
-              <p [attr.data-testid]="'location_' + dataIndex">
-                <em>{{ workExperience.location }}</em>
-              </p>
-              <ul>
-                <li [attr.data-testid]="'communicationDesignLeadership_' + dataIndex">
-                  {{ workExperience.communicationDesignLeadership }}
-                </li>
-                <li [attr.data-testid]="'teamLeadership_' + dataIndex">
-                  {{ workExperience.teamLeadership }}
-                </li>
-                <li [attr.data-testid]="'designQualityAssurance_' + dataIndex">
-                  {{ workExperience.designQualityAssurance }}
-                </li>
-                <li [attr.data-testid]="'expertiseArea_' + dataIndex">{{ workExperience.expertiseArea }}</li>
-              </ul>
-            </ng-container>
-          </div>
-        </ng-container>
+        @if (profile.workExperience; as workExperience) {
+        <h3 data-testid="workExperience" class="resume-title">
+          {{ profile.titles.workExperience }}
+        </h3>
+        @for (work of workExperience.position; track work.specialist) {
+        @let dataIndex = ($index + 1).toString().padStart(2, '0');
+        <div class="resume-item">
+          <h4 [attr.data-testid]="'specialist_' + dataIndex">
+            {{ work.specialist }}
+          </h4>
+          <h5 [attr.data-testid]="'startdate_' + dataIndex">{{ work.startdate }}</h5>
+          <p [attr.data-testid]="'location_' + dataIndex">
+            <em>{{ work.location }}</em>
+          </p>
+          <ul>
+            <li [attr.data-testid]="'communicationDesignLeadership_' + dataIndex">
+              {{ work.communicationDesignLeadership }}
+            </li>
+            <li [attr.data-testid]="'teamLeadership_' + dataIndex">
+              {{ work.teamLeadership }}
+            </li>
+            <li [attr.data-testid]="'designQualityAssurance_' + dataIndex">
+              {{ work.designQualityAssurance }}
+            </li>
+            <li [attr.data-testid]="'expertiseArea_' + dataIndex">{{ work.expertiseArea }}</li>
+          </ul>
+        </div>
+        }
+        }
       </div>
     </div>
   </div>
+  }
 </section>

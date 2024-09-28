@@ -1,78 +1,56 @@
+@let profile = profile$();
 <section data-testid="portfolio" id="portfolio" class="portfolio section-bg">
-  <div class="container" data-aos="fade-up" *ngIf="profile$ | async as profile">
-    <ng-container *ngIf="profile.portfolio as Portfolio">
-      <div class="section-title">
-        <h2 data-testid="text">{{ Portfolio.text }}</h2>
+  @if (profile) {
+  <div class="container" data-aos="fade-up">
+    @if (profile.portfolio; as Portfolio) {
+    <div class="section-title">
+      <h2 data-testid="text">{{ Portfolio.text }}</h2>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+        <div>
+          <ul data-testid="all" id="portfolio-flters">
+            <li data-testid="all" data-filter="*" class="filter-active">All</li>
+            @for (webPageType of webPagesByTypes(); track webPageType) {
+            <li [attr.data-testid]="'filter_' + webPageType" [attr.data-filter]="'.filter-' + webPageType">
+              {{ webPageType }}
+            </li>
+            }
+          </ul>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-          <div>
-            <ul data-testid="all" id="portfolio-flters">
-              <li data-testid="all" data-filter="*" class="filter-active">All</li>
-              @for (webPageType of webPagesByTypes; track $index) {
-                <li
-                  [attr.data-testid]="'filter_' + webPageType"
-                  [attr.data-filter]="'.filter-' + webPageType"
-                >
-                  {{ webPageType }}
-                </li>
+    </div>
+    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+      @for (webPage of webPages(); track webPage.title) {
+      @let dataIndex = ($index + 1).toString().padStart(2, '0');
+      <div class="col-lg-4 col-md-6 portfolio-item" [ngClass]="'filter-' + webPage.type">
+        <div class="portfolio-wrap">
+          <img [attr.data-testid]="'image-src_' + dataIndex" [src]="webPage.image" class="img-fluid" alt="" />
+          <div class="portfolio-info">
+            <h4 [attr.data-testid]="'title_' + dataIndex">{{ webPage.title }}</h4>
+            <p [attr.data-testid]="'type_' + dataIndex">{{ webPage.type }}</p>
+            <p [attr.data-testid]="'description_' + dataIndex">{{ webPage.description }}</p>
+            <div class="portfolio-links">
+              @if (webPage.image) {
+              <a [attr.data-testid]="'image_' + dataIndex" [href]="webPage.image" class="glightbox glightbox-image"
+                [attr.data-gallery]="'image_' + dataIndex"><i class="bx bx-plus"></i></a>
               }
-            </ul>
+              @if (webPage.video) {
+              <a [attr.data-testid]="'video_' + dataIndex" [href]="webPage.video" class="glightbox glightbox-image"
+                [attr.data-gallery]="'image_' + dataIndex"><i class="bx bx-video"></i></a>
+              }
+              @if (webPage.link) {
+              <a [attr.data-testid]="'link_' + dataIndex" [href]="webPage.link" class="glightbox glightbox-web"
+                data-glightbox="type: external" [attr.data-gallery]="'web_' + dataIndex" title="Portfolio Details"><i
+                  class="bx bx-link"></i></a>
+              }
+            </div>
           </div>
         </div>
       </div>
-      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-        @for (webPage of webPages; track $index) {
-          <ng-container *ngIf="($index + 1).toString().padStart(2, '0') as dataIndex">
-            <div class="col-lg-4 col-md-6 portfolio-item" [ngClass]="'filter-' + webPage.type">
-              <div class="portfolio-wrap">
-                <img
-                  [attr.data-testid]="'image-src_' + dataIndex"
-                  src="{{ webPage.image }}"
-                  class="img-fluid"
-                  alt=""
-                />
-                <div class="portfolio-info">
-                  <h4 [attr.data-testid]="'title_' + dataIndex">{{ webPage.title }}</h4>
-                  <p [attr.data-testid]="'type_' + dataIndex">{{ webPage.type }}</p>
-                  <p [attr.data-testid]="'description_' + dataIndex">{{ webPage.description }}</p>
-                  <div class="portfolio-links">
-                    @if (webPage.image) {
-                      <a
-                        [attr.data-testid]="'image_' + dataIndex"
-                        href="{{ webPage.image }}"
-                        class="glightbox glightbox-image"
-                        [attr.data-gallery]="'image_' + dataIndex"
-                        ><i class="bx bx-plus"></i
-                      ></a>
-                    }
-                    @if (webPage.video) {
-                      <a
-                        [attr.data-testid]="'' + dataIndex"
-                        href="{{ webPage.video }}"
-                        class="glightbox glightbox-image"
-                        [attr.data-gallery]="'image_' + dataIndex"
-                        ><i class="bx bx-video"></i
-                      ></a>
-                    }
-                    @if (webPage.link) {
-                      <a
-                        [attr.data-testid]="'link_' + dataIndex"
-                        href="{{ webPage.link }}"
-                        class="glightbox glightbox-web"
-                        data-glightbox="type: external"
-                        [attr.data-gallery]="'web_' + dataIndex"
-                        title="Portfolio Details"
-                        ><i class="bx bx-link"></i
-                      ></a>
-                    }
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-container>
-        }
-      </div>
-    </ng-container>
+      }
+    </div>
+    }
   </div>
+  }
 </section>
