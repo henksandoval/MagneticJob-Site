@@ -1,16 +1,16 @@
-@let profile = profile$();
+@let skills = skillSet();
 <section id="skills" class="skills section-bg">
-  @if (profile) {
+  @if (skills) {
   <div class="container" data-aos="fade-up">
-    @if (profile.skillSet; as skillSet) {
+    <!-- @if (profile.skillSet; as skillSet) { -->
     <div class="section-title">
       <h2>Skills</h2>
-      <p data-testid="skill_overview">{{ skillSet.overview }}</p>
+      <p data-testid="skill_overview">{{ skills.overview }}</p>
     </div>
 
-    @if (skillSet.skillDetails; as skills) {
+    @if (skills.skillDetails; as details) {
     <div class="skills_container" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
-      @for (skill of skills; track skill.name) {
+      @for (skill of details; track skill.name) {
       @let dataIndex = ($index + 1).toString().padStart(2, '0');
       <div class="skill_item">
         <img [attr.data-testid]="'image-src_' + dataIndex" [src]="skill.iconUrl" [alt]="skill.name"
@@ -20,7 +20,7 @@
       }
     </div>
     }
-    }
+    <!-- } -->
   </div>
   }
 </section>

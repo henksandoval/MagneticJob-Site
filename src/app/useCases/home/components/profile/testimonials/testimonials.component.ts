@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { ProfileService } from '../../../shared/services/profile/profile.service';
+import { Testimonial } from 'src/app/useCases/home/shared/models/testimonial';
 
 @Component({
   selector: 'app-testimonials',
@@ -8,10 +8,10 @@ import { ProfileService } from '../../../shared/services/profile/profile.service
   imports: [CarouselModule],
   templateUrl: './testimonials.component.html',
   styleUrl: './testimonials.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestimonialsComponent {
-  private profileService: ProfileService = inject(ProfileService);
-  profile$ = this.profileService.profile$;
+  testimonials = input.required<Testimonial[] | undefined>();
 
   customOptions: OwlOptions = {
     loop: true,
