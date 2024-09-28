@@ -1,24 +1,34 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { tap } from 'rxjs';
 import { Profile } from '../../models/profile';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
-  private profileSource = new BehaviorSubject<Profile | null>(null);
-  private profileLoaded = false;
-  profile$: Observable<Profile | null> = this.profileSource.asObservable();
+  private profileSource = signal<Profile | null>(null);
+  private profileLoaded = signal(false);
 
-  constructor(private http: HttpClient) {}
+  profile$ = computed(() => this.profileSource());
 
-  public loadProfile(): void {
-    if (!this.profileLoaded) {
-      this.http.get<Profile>('assets/data.json').subscribe((data) => {
-        this.profileSource.next(data);
-      });
-      this.profileLoaded = true;
+  private readonly http = inject(HttpClient);
+
+  constructor() {
+    this.loadProfile();
+  }
+
+  private loadProfile(): void {
+    if (!this.profileLoaded()) {
+      this.http
+        .get<Profile>('assets/data.json')
+        .pipe(
+          tap((data: Profile) => {
+            this.profileSource.set(data);
+            this.profileLoaded.set(true);
+          })
+        )
+        .subscribe();
     }
   }
 }

@@ -1,11 +1,9 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
 })
