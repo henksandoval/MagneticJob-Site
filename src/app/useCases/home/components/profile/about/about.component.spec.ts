@@ -1,16 +1,15 @@
 import '@angular/localize/init';
 import { render, screen } from '@testing-library/angular';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { of } from 'rxjs';
 import { AboutComponent } from './about.component';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
 import { mockAbout } from '../../../shared/tests/mocks/mockAbout';
 import { mockProfile } from '../../../shared/tests/mocks/mockProfile';
 import '@testing-library/jest-dom';
+import { signal } from '@angular/core';
 
 const mockProfileService = {
-  profile$: of(mockProfile),
-  loadProfile: jest.fn(),
+  profile$: signal(mockProfile)
 };
 
 const renderComponent = async () => {
@@ -66,9 +65,5 @@ describe('AboutComponent', () => {
 
   it('should display profile work experience', () => {
     expect(screen.getByTestId('workExperience')).toHaveTextContent(mockAbout.workExperience);
-  });
-
-  it('should call loadProfile', () => {
-    expect(mockProfileService.loadProfile).toHaveBeenCalled();
   });
 });

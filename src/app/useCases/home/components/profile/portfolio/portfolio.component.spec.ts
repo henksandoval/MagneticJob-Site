@@ -1,4 +1,3 @@
-import { of } from 'rxjs';
 import { mockProfile } from '../../../shared/tests/mocks/mockProfile';
 import { PortfolioComponent } from './portfolio.component';
 import { render, screen } from '@testing-library/angular';
@@ -6,10 +5,10 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ProfileService } from '../../../shared/services/profile/profile.service';
 import '@testing-library/jest-dom';
 import { WebPage } from '../../../shared/models/webPage';
+import { signal } from '@angular/core';
 
 const mockProfileService = {
-  profile$: of(mockProfile),
-  loadProfile: jest.fn(),
+  profile$: signal(mockProfile),
 };
 
 const renderComponent = async () => {
@@ -61,8 +60,7 @@ describe('PortfolioComponent', () => {
 describe('PortfolioComponentNullScenary', () => {
   it('handles null or undefined profile correctly', async () => {
     const mockNullProfileService = {
-      profile$: of(null),
-      loadProfile: jest.fn(),
+      profile$: signal(null),
     };
 
     await render(PortfolioComponent, {
