@@ -13,7 +13,6 @@ export class ProfileService {
   profile$ = computed(() => this.profileSource());
   private readonly http = inject(HttpClient);
 
-
   loadProfile(): void {
     if (!this.profileLoaded()) {
       this.http
@@ -23,7 +22,7 @@ export class ProfileService {
             this.profileSource.set(data);
             this.profileLoaded.set(true);
           }),
-          catchError(error => {
+          catchError((error) => {
             console.error('Error loading profile:', error);
             return of(null);
           })
