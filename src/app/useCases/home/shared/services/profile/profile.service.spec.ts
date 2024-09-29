@@ -25,23 +25,38 @@ describe('ProfileService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should load profile data', () => {
+  it('should load profile data successfully', () => {
     service.loadProfile();
 
     const testRequest = httpMock.expectOne('assets/data.json');
     expect(testRequest.request.method).toBe('GET');
+
     testRequest.flush(mockProfile);
 
-    service.profile$.subscribe((profile) => {
-      expect(profile).toEqual(mockProfile);
-    });
+    expect(service.profile$()).toEqual(mockProfile);
+    expect(service.profile$()).not.toBeNull();
+  });
+
+  it('should handle errors when loading profile data', () => {
+    service.loadProfile();
+
+    const testRequest = httpMock.expectOne('assets/data.json');
+    expect(testRequest.request.method).toBe('GET');
+
+    testRequest.error(new ProgressEvent('Network error'));
+
+    expect(service.profile$()).toBeNull();
   });
 
   it('should not reload the profile if already loaded', () => {
-    service['profileLoaded'] = true;
+    service.loadProfile();
+
+    const testRequest = httpMock.expectOne('assets/data.json');
+    testRequest.flush(mockProfile);
 
     service.loadProfile();
 
     httpMock.expectNone('assets/data.json');
+    expect(service.profile$()).toEqual(mockProfile);
   });
 });
