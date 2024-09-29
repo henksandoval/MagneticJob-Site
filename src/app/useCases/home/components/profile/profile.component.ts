@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ProfileService } from 'src/app/useCases/home/shared/services/profile/profile.service';
 import { CoverComponent } from '../cover/cover.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -41,7 +41,11 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
     </main>
   `,
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   private profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
+
+  ngOnInit(): void {
+    this.profileService.loadProfile();
+  }
 }
