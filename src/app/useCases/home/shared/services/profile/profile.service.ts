@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { tap } from 'rxjs';
+import { catchError, of, tap } from 'rxjs';
 import { Profile } from '../../models/profile';
 
 @Injectable({
@@ -11,14 +11,10 @@ export class ProfileService {
   private profileLoaded = signal(false);
 
   profile$ = computed(() => this.profileSource());
-
   private readonly http = inject(HttpClient);
 
-  constructor() {
-    this.loadProfile();
-  }
 
-  private loadProfile(): void {
+  loadProfile(): void {
     if (!this.profileLoaded()) {
       this.http
         .get<Profile>('assets/data.json')
@@ -26,6 +22,10 @@ export class ProfileService {
           tap((data: Profile) => {
             this.profileSource.set(data);
             this.profileLoaded.set(true);
+          }),
+          catchError(error => {
+            console.error('Error loading profile:', error);
+            return of(null);
           })
         )
         .subscribe();
