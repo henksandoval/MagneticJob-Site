@@ -3,36 +3,40 @@
   <!-- @if (testimonials()) { -->
   <div class="container" data-aos="fade-up">
     @if (testimonials()) {
-    <div class="section-title">
-      <h2>Testimonials</h2>
-    </div>
-    <owl-carousel-o [options]="customOptions">
-      @for (testimonial of testimonials(); track testimonial.name) {
-      <ng-template carouselSlide>
-        <div class="testimonial-item">
-          <div class="row gy-4 justify-content-center">
-            <div class="col-lg-6">
-              <div class="testimonial-content">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span [attr.data-testid]="'testimonial_' + $index">{{ testimonial.testimonial }}</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <h3 [attr.data-testid]="'name_' + $index" class="testimonial-name">
-                  {{ testimonial.name }}
-                </h3>
-                <h4 [attr.data-testid]="'jobTitle_' + $index">{{ testimonial.jobTitle }}</h4>
+      <div class="section-title">
+        <h2>Testimonials</h2>
+      </div>
+      <owl-carousel-o [options]="customOptions">
+        @for (testimonial of testimonials(); track testimonial.name) {
+          <ng-template carouselSlide>
+            <div class="testimonial-item">
+              <div class="row gy-4 justify-content-center">
+                <div class="col-lg-6">
+                  <div class="testimonial-content">
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span [attr.data-testid]="'testimonial_' + $index">{{ testimonial.testimonial }}</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                    <h3 [attr.data-testid]="'name_' + $index" class="testimonial-name">
+                      {{ testimonial.name }}
+                    </h3>
+                    <h4 [attr.data-testid]="'jobTitle_' + $index">{{ testimonial.jobTitle }}</h4>
+                  </div>
+                </div>
+                <div class="col-lg-2 text-center">
+                  <img
+                    [attr.data-testid]="'image-src_' + $index"
+                    [src]="testimonial.photoUrl"
+                    class="img-fluid testimonial-img"
+                    [alt]="testimonial.name"
+                  />
+                </div>
               </div>
             </div>
-            <div class="col-lg-2 text-center">
-              <img [attr.data-testid]="'image-src_' + $index" [src]="testimonial.photoUrl"
-                class="img-fluid testimonial-img" [alt]="testimonial.name" />
-            </div>
-          </div>
-        </div>
-      </ng-template>
-      }
-    </owl-carousel-o>
+          </ng-template>
+        }
+      </owl-carousel-o>
     }
   </div>
   <!-- } -->
