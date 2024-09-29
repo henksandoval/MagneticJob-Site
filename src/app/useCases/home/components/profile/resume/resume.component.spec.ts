@@ -1,4 +1,3 @@
-import { of } from 'rxjs';
 import { ResumeComponent } from './resume.component';
 import { render, screen } from '@testing-library/angular';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -7,10 +6,10 @@ import { mockProfile } from '../../../shared/tests/mocks/mockProfile';
 import { Position } from '../../../shared/models/position';
 import '@testing-library/jest-dom';
 import { AcademicBackground } from '../../../shared/models/academicBackground';
+import { signal } from '@angular/core';
 
 const mockProfileService = {
-  profile$: of(mockProfile),
-  loadProfile: jest.fn(),
+  profile$: signal(mockProfile),
 };
 
 const renderComponent = async () => {
