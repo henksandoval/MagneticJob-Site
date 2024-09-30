@@ -1,20 +1,14 @@
-import { of } from 'rxjs';
-import { mockProfile } from '../../../shared/tests/mocks/mockProfile';
 import { render, screen } from '@testing-library/angular';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { ProfileService } from '../../../shared/services/profile/profile.service';
-import '@testing-library/jest-dom';
 import { TestimonialsComponent } from './testimonials.component';
 import { Testimonial } from '../../../shared/models/testimonial';
-
-const mockProfileService = {
-  profile$: of(mockProfile),
-  loadProfile: jest.fn(),
-};
+import { mockTestimonials } from '../../../shared/tests/mocks/mockTestimonials';
+import '@testing-library/jest-dom';
 
 const renderComponent = async () => {
   await render(TestimonialsComponent, {
-    providers: [provideHttpClientTesting(), { provide: ProfileService, useValue: mockProfileService }],
+    inputs: {
+      testimonials: mockTestimonials,
+    },
   });
 };
 
@@ -24,7 +18,7 @@ describe('TestimonialsComponent', () => {
   });
 
   it('You must submit all records regarding the Testimonials.', () => {
-    mockProfile.testimonials.forEach((testimonial: Testimonial, id: number) => {
+    mockTestimonials.forEach((testimonial: Testimonial, id: number) => {
       const images = screen.getAllByTestId('image-src_' + id);
       const names = screen.getAllByTestId('name_' + id);
       const jobTitles = screen.getAllByTestId('jobTitle_' + id);
