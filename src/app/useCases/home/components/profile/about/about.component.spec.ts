@@ -9,7 +9,7 @@ import '@testing-library/jest-dom';
 import { signal } from '@angular/core';
 
 const mockProfileService = {
-  profile$: signal(mockProfile)
+  profile$: signal(mockProfile),
 };
 
 const renderComponent = async () => {
