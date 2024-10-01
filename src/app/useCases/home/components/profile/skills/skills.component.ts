@@ -1,15 +1,13 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { ProfileService } from '../../../shared/services/profile/profile.service';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { SkillSet } from 'src/app/useCases/home/shared/models/skills';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [NgIf, NgFor, AsyncPipe],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SkillsComponent {
-  private profileService: ProfileService = inject(ProfileService);
-  profile$ = this.profileService.profile$;
+  skillSet = input.required<SkillSet | undefined>();
 }

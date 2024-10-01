@@ -1,35 +1,39 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { ProfileService } from '../../../shared/services/profile/profile.service';
-import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
-import { WebPage } from '../../../shared/models/webPage';
-import { delay, map, tap } from 'rxjs';
+import { NgClass } from '@angular/common';
+import { Component, Signal, computed, effect, inject } from '@angular/core';
 import GLightbox from 'glightbox';
+import { Profile } from 'src/app/useCases/home/shared/models/profile';
+import { WebPage } from '../../../shared/models/webPage';
+import { ProfileService } from '../../../shared/services/profile/profile.service';
 
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [NgIf, AsyncPipe, NgFor, NgClass],
+  imports: [NgClass],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.scss',
 })
-export class PortfolioComponent implements OnInit {
+export class PortfolioComponent {
   private readonly profileService: ProfileService = inject(ProfileService);
-  profile$ = this.profileService.profile$;
-  webPages: WebPage[] = [];
-  webPagesByTypes: string[] = [];
+  profile$: Signal<Profile | null> = this.profileService.profile$;
 
-  ngOnInit(): void {
-    this.profile$
-      .pipe(
-        map((profile) => profile?.portfolio?.webPage ?? []),
-        tap((webPages) => {
-          this.webPages = this.sortWebPages(webPages);
-          this.webPagesByTypes = this.groupWebPagesByType(webPages);
-        }),
-        delay(1500),
-        tap(() => this.initializeGLightbox())
-      )
-      .subscribe();
+  webPages = computed(() => {
+    const webPages = this.profile$()?.portfolio?.webPage ?? [];
+    return this.sortWebPages(webPages);
+  });
+
+  webPagesByTypes = computed(() => {
+    const webPages = this.profile$()?.portfolio?.webPage ?? [];
+    return this.groupWebPagesByType(webPages);
+  });
+
+  constructor() {
+    effect(() => {
+      if (this.profile$()) {
+        setTimeout(() => {
+          this.initializeGLightbox();
+        }, 1500);
+      }
+    });
   }
 
   private sortWebPages(webPages: WebPage[]): WebPage[] {
