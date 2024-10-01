@@ -42,7 +42,7 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
   `,
 })
 export class ProfileComponent implements OnInit {
-  private profileService: ProfileService = inject(ProfileService);
+  private readonly profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
 
   ngOnInit(): void {
