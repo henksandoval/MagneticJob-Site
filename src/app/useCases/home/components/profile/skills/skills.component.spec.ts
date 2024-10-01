@@ -18,11 +18,11 @@ describe('SkillsComponent', () => {
   });
 
   it('Must display Skills title.', () => {
-    expect(screen.getByTestId('skill_overview')).toHaveTextContent(mockSkills!.overview);
+    expect(screen.getByTestId('skill_overview')).toHaveTextContent(mockSkills.overview);
   });
 
   it('You must submit all records regarding the Skills.', () => {
-    mockSkills!.skillDetails.forEach((skill: SkillDetail, index: number) => {
+    mockSkills.skillDetails.forEach((skill: SkillDetail, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
       expect(screen.getByTestId('image-src_' + id)).toHaveAttribute('src', skill.iconUrl);
       expect(screen.getByTestId('name_' + id)).toHaveTextContent(skill.name);
