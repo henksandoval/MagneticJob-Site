@@ -1,64 +1,67 @@
+@let profile = profile$();
 <section id="facts" class="facts">
-  <div class="container" data-aos="fade-up" *ngIf="profile$ | async as profile">
-    <ng-container *ngIf="profile.facts as facts">
-      <div class="section-title">
-        <h2>Facts</h2>
-        <p>{{ facts.description }}</p>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-3 col-md-6">
-          <div class="count-box">
-            <i class="bi bi-emoji-smile"></i>
-            <span
-              data-purecounter-start="0"
-              data-purecounter-end="232"
-              data-purecounter-duration="1"
-              class="purecounter"
-            ></span>
-            <p>{{ facts.happyClients }}</p>
-          </div>
+  @if (profile) {
+    <div class="container" data-aos="fade-up">
+      @if (profile.facts; as facts) {
+        <div class="section-title">
+          <h2>Facts</h2>
+          <p>{{ facts.description }}</p>
         </div>
 
-        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-          <div class="count-box">
-            <i class="bi bi-journal-richtext"></i>
-            <span
-              data-purecounter-start="0"
-              data-purecounter-end="521"
-              data-purecounter-duration="1"
-              class="purecounter"
-            ></span>
-            <p>{{ facts.projects }}</p>
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile"></i>
+              <span
+                data-purecounter-start="0"
+                data-purecounter-end="232"
+                data-purecounter-duration="1"
+                class="purecounter"
+              ></span>
+              <p>{{ facts.happyClients }}</p>
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="bi bi-headset"></i>
-            <span
-              data-purecounter-start="0"
-              data-purecounter-end="1463"
-              data-purecounter-duration="1"
-              class="purecounter"
-            ></span>
-            <p>{{ facts.hoursOfSupport }}</p>
+          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+            <div class="count-box">
+              <i class="bi bi-journal-richtext"></i>
+              <span
+                data-purecounter-start="0"
+                data-purecounter-end="521"
+                data-purecounter-duration="1"
+                class="purecounter"
+              ></span>
+              <p>{{ facts.projects }}</p>
+            </div>
           </div>
-        </div>
 
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="bi bi-award"></i>
-            <span
-              data-purecounter-start="0"
-              data-purecounter-end="25"
-              data-purecounter-duration="1"
-              class="purecounter"
-            ></span>
-            <p>{{ facts.Awards }}</p>
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="bi bi-headset"></i>
+              <span
+                data-purecounter-start="0"
+                data-purecounter-end="1463"
+                data-purecounter-duration="1"
+                class="purecounter"
+              ></span>
+              <p>{{ facts.hoursOfSupport }}</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="bi bi-award"></i>
+              <span
+                data-purecounter-start="0"
+                data-purecounter-end="25"
+                data-purecounter-duration="1"
+                class="purecounter"
+              ></span>
+              <p>{{ facts.Awards }}</p>
+            </div>
           </div>
         </div>
-      </div>
-    </ng-container>
-  </div>
+      }
+    </div>
+  }
 </section>
