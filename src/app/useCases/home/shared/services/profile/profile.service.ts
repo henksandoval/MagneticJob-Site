@@ -8,7 +8,7 @@ import { Profile } from '../../models/profile';
 })
 export class ProfileService {
   private profileSource = signal<Profile | null>(null);
-  private profileLoaded = signal(false);
+  private readonly profileLoaded = signal(false);
 
   profile$ = computed(() => this.profileSource());
   private readonly http = inject(HttpClient);
