@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-          @for (webPage of webPages(); track webPage.title) {
+          @for (webPage of webPages(); track webPage) {
             @let dataIndex = ($index + 1).toString().padStart(2, '0');
             <div class="col-lg-4 col-md-6 portfolio-item" [ngClass]="'filter-' + webPage.type">
               <div class="portfolio-wrap">
