@@ -180,21 +180,21 @@
         "type": "WebPage"
       },
       {
-        "position": 1,
+        "position": 4,
         "title": "Aventuras Animales",
         "description": "Cada fotografía captura momentos únicos y comportamientos fascinantes.",
         "image": "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg",
         "type": "CAT"
       },
       {
-        "position": 1,
+        "position": 5,
         "title": "Aventuras Animales",
         "description": "Cada fotografía captura momentos únicos y comportamientos fascinantes.",
         "image": "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg",
         "type": "CAT"
       },
       {
-        "position": 2,
+        "position": 7,
         "title": "Red And Blue Parrot",
         "description": "Hermosos y encantadores Guacamayas en ambiente natural.",
         "image": "https://images.pexels.com/photos/1427447/pexels-photo-1427447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
@@ -202,7 +202,7 @@
         "type": "NATURE"
       },
       {
-        "position": 4,
+        "position": 6,
         "title": "Music",
         "description": "Cada imagen captura la esencia de la musica, el sonido llega al alma dando una hermosa sensacion de relajacion",
         "link": "",
