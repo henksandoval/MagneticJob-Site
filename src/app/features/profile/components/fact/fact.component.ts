@@ -10,6 +10,6 @@ import { ProfileService } from '../../services/profile.service';
   styleUrl: 'fact.component.scss',
 })
 export class FactComponent {
-  private profileService: ProfileService = inject(ProfileService);
+  private readonly profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
 }
