@@ -14,8 +14,8 @@ export class HeaderComponent {
   sections = SECTIONS;
   activeSectionId = 'hero';
 
-  private pageScrollService: PageScrollService = inject(PageScrollService);
-  private document: Document = inject(DOCUMENT);
+  private readonly pageScrollService: PageScrollService = inject(PageScrollService);
+  private readonly document: Document = inject(DOCUMENT);
 
   scrollTo(target: string) {
     this.activeSectionId = target;
