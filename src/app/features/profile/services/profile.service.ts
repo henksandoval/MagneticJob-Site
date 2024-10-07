@@ -7,7 +7,7 @@ import { Profile } from '../interfaces/profile';
   providedIn: 'root',
 })
 export class ProfileService {
-  private profileSource = signal<Profile | null>(null);
+  private readonly profileSource = signal<Profile | null>(null);
   private readonly profileLoaded = signal(false);
 
   profile$ = computed(() => this.profileSource());
