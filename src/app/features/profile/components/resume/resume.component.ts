@@ -8,6 +8,6 @@ import { ProfileService } from '../../services/profile.service';
   styleUrl: './resume.component.scss',
 })
 export class ResumeComponent {
-  private profileService: ProfileService = inject(ProfileService);
+  private readonly profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
 }

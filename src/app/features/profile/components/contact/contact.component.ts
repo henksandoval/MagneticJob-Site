@@ -10,6 +10,6 @@ import { ProfileService } from '../../services/profile.service';
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent {
-  private profileService: ProfileService = inject(ProfileService);
+  private readonly profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
 }
