@@ -1,9 +1,8 @@
 import { NgClass } from '@angular/common';
-import { Component, Signal, computed, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input } from '@angular/core';
 import GLightbox from 'glightbox';
-import { ProfileService } from '../../services/profile.service';
-import { Profile } from '../../interfaces/profile';
-import { WebPage } from '../../interfaces/webPage';
+import { Gallery } from '../../interfaces/webPage';
+import { PortFolio } from './portfolio';
 
 @Component({
   selector: 'app-portfolio',
@@ -11,24 +10,24 @@ import { WebPage } from '../../interfaces/webPage';
   imports: [NgClass],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioComponent {
-  private readonly profileService: ProfileService = inject(ProfileService);
-  profile$: Signal<Profile | null> = this.profileService.profile$;
+  portfolioSet = input.required<PortFolio | undefined>();
 
   webPages = computed(() => {
-    const webPages = this.profile$()?.portfolio?.webPage ?? [];
-    return this.sortWebPages(webPages);
+    const gallery = this.portfolioSet()?.gallery ?? [];
+    return this.sortWebPages(gallery);
   });
 
   webPagesByTypes = computed(() => {
-    const webPages = this.profile$()?.portfolio?.webPage ?? [];
-    return this.groupWebPagesByType(webPages);
+    const gallery = this.portfolioSet()?.gallery ?? [];
+    return this.groupWebPagesByType(gallery);
   });
 
   constructor() {
     effect(() => {
-      if (this.profile$()) {
+      if (this.portfolioSet()) {
         setTimeout(() => {
           this.initializeGLightbox();
         }, 1500);
@@ -36,11 +35,11 @@ export class PortfolioComponent {
     });
   }
 
-  private sortWebPages(webPages: WebPage[]): WebPage[] {
+  private sortWebPages(webPages: Gallery[]): Gallery[] {
     return [...webPages].sort((a, b) => a.position - b.position);
   }
 
-  private groupWebPagesByType(webPages: WebPage[]): string[] {
+  private groupWebPagesByType(webPages: Gallery[]): string[] {
     return Array.from(new Set(webPages.map((webPage) => webPage.type)));
   }
 
