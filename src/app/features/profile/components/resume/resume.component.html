@@ -4,14 +4,14 @@
     <div class="container" data-aos="fade-up">
       @if (profile.titles; as titles) {
         <div class="section-title">
-          <h2 data-testid="resume">{{ titles.resume }}</h2>
+          <h2 i18n="@@resume">Resume</h2>
           <p data-testid="about">{{ profile.summary.about }}</p>
         </div>
       }
       <div class="row">
         <div class="col-6">
           @if (profile.summary; as summary) {
-            <h3 data-testid="summary" class="resume-title">{{ profile.titles.summary }}</h3>
+            <h3 i18n="@@summary" class="resume-title">Summary</h3>
             <div class="resume-item pb-0">
               <h4 data-testid="name">{{ summary.name }}</h4>
               <p>
@@ -27,7 +27,7 @@
             </div>
           }
           @if (profile.education; as education) {
-            <h3 data-testid="education" class="resume-title">{{ profile.titles.education }}</h3>
+            <h3 i18n="@@education" class="resume-title">Education</h3>
             @for (edu of education.academicBackground; track edu.experience) {
               @let dataIndex = ($index + 1).toString().padStart(2, '0');
               <div class="resume-item">
@@ -43,9 +43,7 @@
         </div>
         <div class="col-6">
           @if (profile.workExperience; as workExperience) {
-            <h3 data-testid="workExperience" class="resume-title">
-              {{ profile.titles.workExperience }}
-            </h3>
+            <h3 i18n="@@workExperience" class="resume-title">Work Experience</h3>
             @for (work of workExperience.position; track work.specialist) {
               @let dataIndex = ($index + 1).toString().padStart(2, '0');
               <div class="resume-item">
