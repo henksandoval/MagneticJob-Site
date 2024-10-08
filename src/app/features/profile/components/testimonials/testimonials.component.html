@@ -1,10 +1,8 @@
-<!-- @let tes = testimonial(); -->
 <section id="testimonials" class="testimonials section-bg">
-  <!-- @if (testimonials()) { -->
   <div class="container" data-aos="fade-up">
     @if (testimonials()) {
       <div class="section-title">
-        <h2>Testimonials</h2>
+        <h2 i18n="@@testimonials">Testimonials</h2>
       </div>
       <owl-carousel-o [options]="customOptions">
         @for (testimonial of testimonials(); track testimonial.name) {
@@ -39,5 +37,4 @@
       </owl-carousel-o>
     }
   </div>
-  <!-- } -->
 </section>

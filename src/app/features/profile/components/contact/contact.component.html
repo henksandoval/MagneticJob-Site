@@ -4,7 +4,7 @@
     <div class="container" data-aos="fade-up">
       @if (profile.contact; as contact) {
         <div class="section-title">
-          <h2>Contact</h2>
+          <h2 i18n="@@contact">Contact</h2>
         </div>
 
         <div class="row mt-1">
@@ -12,19 +12,19 @@
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
-                <h4>Location:</h4>
+                <h4 i18n="@@location">Location:</h4>
                 <p>{{ contact.direction }}</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
-                <h4>Email:</h4>
+                <h4 i18n="@@email">Email:</h4>
                 <p>{{ contact.email }}</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
-                <h4>Call:</h4>
+                <h4 i18n="@@call">Call:</h4>
                 <p>{{ contact.phoneNumber }}</p>
               </div>
             </div>
@@ -39,6 +39,7 @@
                     name="name"
                     class="form-control"
                     id="name"
+                    i18n-placeholder="@@yourName"
                     placeholder="Your Name"
                     required
                   />
@@ -49,6 +50,7 @@
                     class="form-control"
                     name="email"
                     id="email"
+                    i18n-placeholder="@@yourEmail"
                     placeholder="Your Email"
                     required
                   />
@@ -60,6 +62,7 @@
                   class="form-control"
                   name="subject"
                   id="subject"
+                  i18n-placeholder="@@subject"
                   placeholder="Subject"
                   required
                 />
@@ -69,17 +72,18 @@
                   class="form-control"
                   name="message"
                   rows="5"
+                  i18n-placeholder="@@message"
                   placeholder="Message"
                   required
                 ></textarea>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
+                <div i18n="@@loading" class="loading">Loading</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div i18n="@@sentMessage" class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center">
-                <button type="submit">Send Message</button>
+                <button i18n="@@sendMessage" type="submit">Send Message</button>
               </div>
             </form>
           </div>
