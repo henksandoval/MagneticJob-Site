@@ -9,6 +9,9 @@
     "city": "Ciudad:",
     "age": "Edad:",
     "degree": "Título:",
-    "email": "Correo electrónico:"
+    "email": "Correo electrónico:",
+    "Facts": "Hechos",
+    "Portfolio": "Portafolio",
+    "All": "Todos"
   }
 }

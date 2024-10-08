@@ -153,8 +153,7 @@
     ]
   },
   "portfolio": {
-    "text": "Portfolio",
-    "webPage": [
+    "gallery": [
       {
         "position": 1,
         "title": "Aventuras Animales",
