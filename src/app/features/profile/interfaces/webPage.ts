@@ -1,4 +1,4 @@
-export interface WebPage {
+export interface Gallery {
   position: number;
   title: string;
   description: string;

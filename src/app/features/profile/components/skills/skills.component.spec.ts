@@ -29,3 +29,15 @@ describe('SkillsComponent', () => {
     });
   });
 });
+
+describe('SkillComponentNullScenary', () => {
+  it('handles undefined correctly', async () => {
+    await render(SkillsComponent, {
+      inputs: {
+        skillSet: undefined,
+      },
+    });
+
+    expect(screen.getByTestId('skills')).toBeEmptyDOMElement();
+  });
+});
