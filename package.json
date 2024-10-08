@@ -4,15 +4,18 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:en": "ng serve --configuration=en",
+    "start:es": "ng serve --configuration=es",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "watch": "ng build --watch --configuration=development",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "lint": "eslint",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "lint:autofix": "run-p lint:fix prettier:write",
-    "lint:fix": "eslint --fix",
-    "prettier:write": "prettier --write \"**/*.{ts,html,js,json,md,yml,yaml}\""
+    "prettier:write": "prettier --write \"**/*.{ts,html,js,json,md,yml,yaml}\"",
+    "validate": "run-s lint test"
   },
   "private": true,
   "dependencies": {
