@@ -1,6 +1,5 @@
-import { WebPage } from '../../interfaces/webPage';
+import { Gallery } from '../../interfaces/webPage';
 
 export interface PortFolio {
-  text: string;
-  webPage: WebPage[];
+  gallery: Gallery[];
 }

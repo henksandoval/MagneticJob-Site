@@ -1,19 +1,16 @@
 import { PortfolioComponent } from './portfolio.component';
 import { render, screen } from '@testing-library/angular';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import '@testing-library/jest-dom';
-import { signal } from '@angular/core';
 import { mockProfile } from '../../mocks/mockProfile';
-import { ProfileService } from '../../services/profile.service';
-import { WebPage } from '../../interfaces/webPage';
-
-const mockProfileService = {
-  profile$: signal(mockProfile),
-};
+import { Gallery } from '../../interfaces/webPage';
+import { mockPortfolio } from './mockPortfolio';
+import '@angular/localize/init';
 
 const renderComponent = async () => {
   await render(PortfolioComponent, {
-    providers: [provideHttpClientTesting(), { provide: ProfileService, useValue: mockProfileService }],
+    inputs: {
+      portfolioSet: mockPortfolio,
+    },
   });
 };
 
@@ -22,12 +19,8 @@ describe('PortfolioComponent', () => {
     await renderComponent();
   });
 
-  it('Must display portfolio title.', () => {
-    expect(screen.getByTestId('text')).toHaveTextContent(mockProfile.portfolio.text);
-  });
-
   it('I should filter by type', () => {
-    mockProfile.portfolio.webPage.forEach((webPage) => {
+    mockProfile.portfolio.gallery.forEach((webPage) => {
       expect(screen.getByTestId('filter_' + webPage.type)).toHaveTextContent(webPage.type);
       expect(screen.getByTestId('filter_' + webPage.type)).toHaveAttribute(
         'data-filter',
@@ -37,34 +30,32 @@ describe('PortfolioComponent', () => {
   });
 
   it('Should submit all records regarding the portfolio.', () => {
-    mockProfile.portfolio.webPage.forEach((webPage: WebPage, index: number) => {
+    mockProfile.portfolio.gallery.forEach((gallery: Gallery, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
 
-      expect(screen.getByTestId('image-src_' + id)).toHaveAttribute('src', webPage.image);
-      expect(screen.getByTestId('title_' + id)).toHaveTextContent(webPage.title);
-      expect(screen.getByTestId('type_' + id)).toHaveTextContent(webPage.type);
-      expect(screen.getByTestId('description_' + id)).toHaveTextContent(webPage.description);
-      if (webPage.image) {
-        expect(screen.queryByTestId('image_' + id)).toHaveAttribute('href', webPage.image);
+      expect(screen.getByTestId('image-src_' + id)).toHaveAttribute('src', gallery.image);
+      expect(screen.getByTestId('title_' + id)).toHaveTextContent(gallery.title);
+      expect(screen.getByTestId('type_' + id)).toHaveTextContent(gallery.type);
+      expect(screen.getByTestId('description_' + id)).toHaveTextContent(gallery.description);
+      if (gallery.image) {
+        expect(screen.queryByTestId('image_' + id)).toHaveAttribute('href', gallery.image);
       }
-      if (webPage.video) {
-        expect(screen.queryByTestId('video_' + id)).toHaveAttribute('href', webPage.video);
+      if (gallery.video) {
+        expect(screen.queryByTestId('video_' + id)).toHaveAttribute('href', gallery.video);
       }
-      if (webPage.link) {
-        expect(screen.getByTestId('link_' + id)).toHaveAttribute('href', webPage.link);
+      if (gallery.link) {
+        expect(screen.getByTestId('link_' + id)).toHaveAttribute('href', gallery.link);
       }
     });
   });
 });
 
 describe('PortfolioComponentNullScenary', () => {
-  it('handles null or undefined profile correctly', async () => {
-    const mockNullProfileService = {
-      profile$: signal(null),
-    };
-
+  it('handles undefined correctly', async () => {
     await render(PortfolioComponent, {
-      providers: [provideHttpClientTesting(), { provide: ProfileService, useValue: mockNullProfileService }],
+      inputs: {
+        portfolioSet: undefined,
+      },
     });
 
     expect(screen.getByTestId('portfolio')).toBeEmptyDOMElement();

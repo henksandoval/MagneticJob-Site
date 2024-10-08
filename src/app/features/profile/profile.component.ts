@@ -34,7 +34,7 @@ import { ProfileService } from './services/profile.service';
       <app-fact />
       <app-skills [skillSet]="profile$()?.skillSet" />
       <app-resume />
-      <app-portfolio />
+      <app-portfolio [portfolioSet]="profile$()?.portfolio" />
       <app-services />
       <app-testimonials [testimonials]="profile$()?.testimonials" />
       <app-contact />

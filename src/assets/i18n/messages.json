@@ -9,6 +9,9 @@
     "city": "City:",
     "age": "Age:",
     "degree": "Degree:",
-    "email": "Email:"
+    "email": "Email:",
+    "Facts": "Facts",
+    "Portfolio": "Portfolio",
+    "All": "All"
   }
 }

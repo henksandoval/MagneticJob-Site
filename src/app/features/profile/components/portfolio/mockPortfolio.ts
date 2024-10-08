@@ -1,7 +1,7 @@
-import { WebPage } from '../../interfaces/webPage';
+import { Gallery } from '../../interfaces/webPage';
 import { PortFolio } from './portfolio';
 
-export const mockWebPage: WebPage = {
+export const mockGallery: Gallery = {
   position: 1,
   title: 'Aventuras Animales',
   description: 'Cada fotografía captura momentos únicos y comportamientos fascinantes.',
@@ -10,7 +10,7 @@ export const mockWebPage: WebPage = {
   type: 'CAT',
 };
 
-export const mockWebPage2: WebPage = {
+export const mockGallery2: Gallery = {
   position: 2,
   title: 'Horizontes Naturales',
   description:
@@ -20,7 +20,7 @@ export const mockWebPage2: WebPage = {
   type: 'NATURE',
 };
 
-export const mockWebPage3: WebPage = {
+export const mockGallery3: Gallery = {
   position: 3,
   title: 'Instantes Eternos',
   description:
@@ -31,7 +31,7 @@ export const mockWebPage3: WebPage = {
   type: 'MARRIES',
 };
 
-export const mockWebPage4: WebPage = {
+export const mockGallery4: Gallery = {
   position: 4,
   title: 'Aventuras Animales',
   description: 'Cada fotografía captura momentos únicos y comportamientos fascinantes.',
@@ -40,7 +40,7 @@ export const mockWebPage4: WebPage = {
   type: 'CAT',
 };
 
-export const mockWebPage5: WebPage = {
+export const mockGallery5: Gallery = {
   position: 5,
   title: 'Aventuras Animales',
   description: 'Cada fotografía captura momentos únicos y comportamientos fascinantes.',
@@ -49,7 +49,7 @@ export const mockWebPage5: WebPage = {
   type: 'CAT',
 };
 
-export const mockWebPage6: WebPage = {
+export const mockGallery6: Gallery = {
   position: 6,
   title: 'Aventuras Animales',
   description: 'Cada fotografía captura momentos únicos y comportamientos fascinantes.',
@@ -58,7 +58,7 @@ export const mockWebPage6: WebPage = {
   type: 'NATURE',
 };
 
-export const mockWebPage7: WebPage = {
+export const mockGallery7: Gallery = {
   position: 7,
   title: 'Music',
   description:
@@ -69,6 +69,5 @@ export const mockWebPage7: WebPage = {
 };
 
 export const mockPortfolio: PortFolio = {
-  text: 'Portfolio',
-  webPage: [mockWebPage, mockWebPage2, mockWebPage3, mockWebPage4, mockWebPage5, mockWebPage6, mockWebPage7],
+  gallery: [mockGallery, mockGallery2, mockGallery3, mockGallery4, mockGallery5, mockGallery6, mockGallery7],
 };
