@@ -1,5 +1,4 @@
 export interface Service {
-  title: string;
   overview: string;
   serviceDetails: ServiceDetails[];
 }
