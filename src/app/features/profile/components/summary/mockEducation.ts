@@ -1,4 +1,4 @@
-import { AcademicBackground } from '../../interfaces/academicBackground';
+import { AcademicBackground } from './academicBackground';
 import { Education } from './education';
 
 export const mockAcademicBackground: AcademicBackground = {

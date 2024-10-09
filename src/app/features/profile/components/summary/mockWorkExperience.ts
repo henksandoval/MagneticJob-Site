@@ -1,4 +1,4 @@
-import { Position } from '../../interfaces/position';
+import { Position } from './position';
 import { WorkExperience } from './workExperience';
 
 export const mockPosition1: Position = {
