@@ -7,7 +7,6 @@ import { PortFolio } from '../components/portfolio/portfolio';
 import { Service } from '../components/services/service';
 import { Summary } from '../components/contact/summary';
 import { Education } from '../components/summary/education';
-import { WorkExperience } from '../components/summary/workExperience';
 
 export interface Profile {
   birthday?: string;
@@ -15,7 +14,6 @@ export interface Profile {
   about: About;
   facts?: Facts;
   skillSet?: SkillSet;
-  workExperience: WorkExperience;
   education: Education;
   summary: Summary;
   testimonials: Testimonial[];

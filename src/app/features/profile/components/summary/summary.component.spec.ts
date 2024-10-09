@@ -1,6 +1,5 @@
 import { SummaryComponent } from './summary.component';
 import { render, screen } from '@testing-library/angular';
-import { mockProfile } from '../../mocks/mockProfile';
 import { AcademicBackground } from '../../interfaces/academicBackground';
 import { Position } from '../../interfaces/position';
 import { mockSummary } from './mockSummary';
@@ -41,7 +40,7 @@ describe('summaryComponent', () => {
   });
 
   it('should get all the records about education.', () => {
-    mockProfile.education.academicBackground.forEach(
+    mockSummary.education.academicBackground.forEach(
       (academicBackground: AcademicBackground, index: number) => {
         const id: string = (++index).toString().padStart(2, '0');
         expect(screen.getByTestId('experience_' + id)).toHaveTextContent(academicBackground.experience);
@@ -53,7 +52,7 @@ describe('summaryComponent', () => {
   });
 
   it('should render all records about work experience', () => {
-    mockProfile.workExperience.position.forEach((position: Position, index: number) => {
+    mockSummary.workExperience.position.forEach((position: Position, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
       expect(screen.getByTestId('specialist_' + id)).toHaveTextContent(position.specialist);
       expect(screen.getByTestId('startDate_' + id)).toHaveTextContent(position.startdate);
