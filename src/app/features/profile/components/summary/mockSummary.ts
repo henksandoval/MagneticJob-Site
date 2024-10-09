@@ -1,6 +1,6 @@
-import { mockWorkExperience } from '../../mocks/mockWorkExperience';
 import { mockContactProfile } from '../contact/mockContactProfile';
 import { mockEducation } from './mockEducation';
+import { mockWorkExperience } from './mockWorkExperience';
 import { Summary } from './summary';
 
 export const mockSummary: Summary = {
