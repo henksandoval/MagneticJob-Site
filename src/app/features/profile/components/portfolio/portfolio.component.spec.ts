@@ -1,9 +1,9 @@
 import { PortfolioComponent } from './portfolio.component';
 import { render, screen } from '@testing-library/angular';
-import '@testing-library/jest-dom';
 import { mockProfile } from '../../mocks/mockProfile';
-import { Gallery } from '../../interfaces/webPage';
 import { mockPortfolio } from './mockPortfolio';
+import { Gallery } from './webPage';
+import '@testing-library/jest-dom';
 import '@angular/localize/init';
 
 const renderComponent = async () => {
