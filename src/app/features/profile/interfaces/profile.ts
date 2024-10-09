@@ -1,5 +1,3 @@
-import { WorkExperience } from './workExperience';
-import { Education } from './education';
 import { Titles } from './titles';
 import { Contact } from '../components/contact/contact';
 import { About } from '../components/about/about';
@@ -9,6 +7,8 @@ import { Testimonial } from '../components/testimonials/testimonial';
 import { PortFolio } from '../components/portfolio/portfolio';
 import { Service } from '../components/services/service';
 import { Summary } from '../components/contact/summary';
+import { Education } from '../components/summary/education';
+import { WorkExperience } from '../components/summary/workExperience';
 
 export interface Profile {
   birthday?: string;
