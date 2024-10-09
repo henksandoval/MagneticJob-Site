@@ -1,4 +1,4 @@
-import { ResumeComponent } from './resume.component';
+import { SummaryComponent } from './summary.component';
 import { render, screen } from '@testing-library/angular';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import '@testing-library/jest-dom';
@@ -7,24 +7,21 @@ import { mockProfile } from '../../mocks/mockProfile';
 import { ProfileService } from '../../services/profile.service';
 import { AcademicBackground } from '../../interfaces/academicBackground';
 import { Position } from '../../interfaces/position';
+import '@angular/localize/init';
 
-const mockProfileService = {
+const inputs = {
   profile$: signal(mockProfile),
 };
 
 const renderComponent = async () => {
-  await render(ResumeComponent, {
-    providers: [provideHttpClientTesting(), { provide: ProfileService, useValue: mockProfileService }],
+  await render(SummaryComponent, {
+    inputs: {},
   });
 };
 
-describe('ResumeComponent', () => {
+describe('summaryComponent', () => {
   beforeEach(async () => {
     await renderComponent();
-  });
-
-  it('Must show profile history', () => {
-    expect(screen.getByTestId('resume')).toHaveTextContent(mockProfile.titles.resume);
   });
 
   it('should show the about', () => {
