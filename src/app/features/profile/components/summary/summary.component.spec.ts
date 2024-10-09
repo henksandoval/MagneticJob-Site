@@ -1,21 +1,17 @@
 import { SummaryComponent } from './summary.component';
 import { render, screen } from '@testing-library/angular';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import '@testing-library/jest-dom';
-import { signal } from '@angular/core';
 import { mockProfile } from '../../mocks/mockProfile';
-import { ProfileService } from '../../services/profile.service';
 import { AcademicBackground } from '../../interfaces/academicBackground';
 import { Position } from '../../interfaces/position';
 import '@angular/localize/init';
-
-const inputs = {
-  profile$: signal(mockProfile),
-};
+import { mockSummary } from '../../mocks/mockSummary';
 
 const renderComponent = async () => {
   await render(SummaryComponent, {
-    inputs: {},
+    inputs: {
+      summarySet: mockSummary,
+    },
   });
 };
 
@@ -25,23 +21,19 @@ describe('summaryComponent', () => {
   });
 
   it('should show the about', () => {
-    expect(screen.getByTestId('about')).toHaveTextContent(mockProfile.summary.about);
-  });
-
-  it('should show the title summary', () => {
-    expect(screen.getByText(mockProfile.titles.summary)).toBeInTheDocument();
+    expect(screen.getByTestId('about')).toHaveTextContent(mockSummary.about);
   });
 
   it('should show the name', () => {
-    expect(screen.getByTestId('name')).toHaveTextContent(mockProfile.summary.name);
+    expect(screen.getByTestId('name')).toHaveTextContent(mockSummary.name);
   });
 
   it('should show the introduction', () => {
-    expect(screen.getByTestId('introduction')).toHaveTextContent(mockProfile.summary.introduction);
+    expect(screen.getByTestId('introduction')).toHaveTextContent(mockSummary.introduction);
   });
 
   it('should render contact list', () => {
-    mockProfile.summary.contact.forEach((mockContact) => {
+    mockSummary.contact.forEach((mockContact) => {
       expect(screen.getByText(mockContact.location)).toBeInTheDocument();
       expect(screen.getByText(mockContact.phoneNumber)).toBeInTheDocument();
       expect(screen.getByText(mockContact.aliceBarkle)).toBeInTheDocument();
@@ -75,5 +67,17 @@ describe('summaryComponent', () => {
       );
       expect(screen.getByTestId('expertiseArea_' + id)).toHaveTextContent(position.expertiseArea);
     });
+  });
+});
+
+describe('SummaryComponentNullScenary', () => {
+  it('handles undefined correctly', async () => {
+    await render(SummaryComponent, {
+      inputs: {
+        summarySet: undefined,
+      },
+    });
+
+    expect(screen.getByTestId('summary')).toBeEmptyDOMElement();
   });
 });
