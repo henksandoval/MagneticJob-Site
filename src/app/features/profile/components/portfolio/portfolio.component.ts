@@ -1,8 +1,8 @@
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, input } from '@angular/core';
 import GLightbox from 'glightbox';
-import { Gallery } from '../../interfaces/webPage';
 import { PortFolio } from './portfolio';
+import { Gallery } from './webPage';
 
 @Component({
   selector: 'app-portfolio',

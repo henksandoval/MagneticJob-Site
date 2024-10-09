@@ -1,8 +1,8 @@
 import { SummaryComponent } from './summary.component';
 import { render, screen } from '@testing-library/angular';
-import { AcademicBackground } from '../../interfaces/academicBackground';
-import { Position } from '../../interfaces/position';
 import { mockSummary } from './mockSummary';
+import { AcademicBackground } from './academicBackground';
+import { Position } from './position';
 import '@testing-library/jest-dom';
 import '@angular/localize/init';
 
