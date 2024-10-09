@@ -1,5 +1,5 @@
-import { Education } from '../components/summary/education';
-import { AcademicBackground } from '../interfaces/academicBackground';
+import { AcademicBackground } from '../../interfaces/academicBackground';
+import { Education } from './education';
 
 export const mockAcademicBackground: AcademicBackground = {
   experience: 'Master of Fine Arts & Graphic Design',

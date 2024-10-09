@@ -1,11 +1,11 @@
 import { SummaryComponent } from './summary.component';
 import { render, screen } from '@testing-library/angular';
-import '@testing-library/jest-dom';
 import { mockProfile } from '../../mocks/mockProfile';
 import { AcademicBackground } from '../../interfaces/academicBackground';
 import { Position } from '../../interfaces/position';
+import { mockSummary } from './mockSummary';
+import '@testing-library/jest-dom';
 import '@angular/localize/init';
-import { mockSummary } from '../../mocks/mockSummary';
 
 const renderComponent = async () => {
   await render(SummaryComponent, {
