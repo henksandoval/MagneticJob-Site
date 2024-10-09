@@ -1,11 +1,12 @@
-<section id="testimonials" class="testimonials section-bg">
-  <div class="container" data-aos="fade-up">
-    @if (testimonials()) {
+@let testimonials = testimonialSet();
+<section data-testid="testimonials" id="testimonials" class="testimonials section-bg">
+  @if (testimonials) {
+    <div class="container" data-aos="fade-up">
       <div class="section-title">
         <h2 i18n="@@testimonials">Testimonials</h2>
       </div>
       <owl-carousel-o [options]="customOptions">
-        @for (testimonial of testimonials(); track testimonial.name) {
+        @for (testimonial of testimonials; track testimonial.name) {
           <ng-template carouselSlide>
             <div class="testimonial-item">
               <div class="row gy-4 justify-content-center">
@@ -35,6 +36,6 @@
           </ng-template>
         }
       </owl-carousel-o>
-    }
-  </div>
+    </div>
+  }
 </section>

@@ -11,7 +11,7 @@ import { Testimonial } from './testimonial';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestimonialsComponent {
-  testimonials = input.required<Testimonial[] | undefined>();
+  testimonialSet = input.required<Testimonial[] | undefined>();
 
   customOptions: OwlOptions = {
     loop: true,
