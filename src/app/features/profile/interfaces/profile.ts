@@ -1,4 +1,3 @@
-import { Titles } from './titles';
 import { Contact } from '../components/contact/contact';
 import { About } from '../components/about/about';
 import { Facts } from '../components/fact/facts';
@@ -16,7 +15,6 @@ export interface Profile {
   about: About;
   facts?: Facts;
   skillSet?: SkillSet;
-  titles: Titles;
   workExperience: WorkExperience;
   education: Education;
   summary: Summary;
