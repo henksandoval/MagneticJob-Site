@@ -37,12 +37,12 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets"
               }
             ],
             "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": ["public/scss"]
+              "includePaths": ["src/assets/scss"]
             },
             "scripts": []
           },
@@ -114,12 +114,12 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets"
               }
             ],
             "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": ["public/scss"]
+              "includePaths": ["src/assets/scss"]
             },
             "scripts": []
           }
