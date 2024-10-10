@@ -1,39 +1,37 @@
-@let profile = profile$();
-<section id="services" class="services">
-  @if (profile) {
+@let service = serviceSet();
+<section data-testid="services" id="services" class="services">
+  @if (service) {
     <div class="container" data-aos="fade-up">
-      @if (profile.service; as service) {
-        <div class="section-title">
-          <h2 data-testid="text">{{ service.title }}</h2>
-          <p data-testid="overview">{{ service.overview }}</p>
-        </div>
+      <div class="section-title">
+        <h2 i18n="@@services">Services</h2>
+        <p data-testid="overview">{{ service.overview }}</p>
+      </div>
 
-        @if (service.serviceDetails; as serviceDetails) {
-          <div class="row">
-            <div
-              class="fase col-lg-10 col-md-6 d-flex align-items-stretch"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-            >
-              @for (serviceDetail of serviceDetails; track serviceDetail.name) {
-                @let dataIndex = ($index + 1).toString().padStart(2, '0');
-                <div class="icon-box h-100">
-                  <div class="img-fluid">
-                    <img
-                      [attr.data-testid]="'backgroundUrl_' + dataIndex"
-                      [src]="serviceDetail.backgroundUrl"
-                      alt=""
-                    />
-                  </div>
-                  <h4 [attr.data-testid]="'name_' + dataIndex">
-                    <a href="">{{ serviceDetail.name }}</a>
-                  </h4>
-                  <p [attr.data-testid]="'description_' + dataIndex">{{ serviceDetail.description }}</p>
+      @if (service.serviceDetails; as serviceDetails) {
+        <div class="row">
+          <div
+            class="fase col-lg-10 col-md-6 d-flex align-items-stretch"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+          >
+            @for (serviceDetail of serviceDetails; track serviceDetail.name) {
+              @let dataIndex = ($index + 1).toString().padStart(2, '0');
+              <div class="icon-box h-100">
+                <div class="img-fluid">
+                  <img
+                    [attr.data-testid]="'backgroundUrl_' + dataIndex"
+                    [src]="serviceDetail.backgroundUrl"
+                    alt=""
+                  />
                 </div>
-              }
-            </div>
+                <h4 [attr.data-testid]="'name_' + dataIndex">
+                  <a href="">{{ serviceDetail.name }}</a>
+                </h4>
+                <p [attr.data-testid]="'description_' + dataIndex">{{ serviceDetail.description }}</p>
+              </div>
+            }
           </div>
-        }
+        </div>
       }
     </div>
   }

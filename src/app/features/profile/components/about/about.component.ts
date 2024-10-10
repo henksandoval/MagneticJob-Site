@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { ProfileService } from '../../services/profile.service';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { About } from './interfaces/about';
 
 @Component({
   selector: 'app-about',
@@ -8,8 +8,8 @@ import { NgOptimizedImage } from '@angular/common';
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss',
   imports: [NgOptimizedImage],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutComponent {
-  private readonly profileService: ProfileService = inject(ProfileService);
-  profile$ = this.profileService.profile$;
+  aboutSet = input.required<About | undefined>();
 }

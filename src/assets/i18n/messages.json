@@ -9,6 +9,26 @@
     "city": "City:",
     "age": "Age:",
     "degree": "Degree:",
-    "email": "Email:"
+    "email": "Email:",
+    "contact": "Contact",
+    "location": "Location:",
+    "call": "Call:",
+    "yourName": "Your Name",
+    "yourEmail": "Your Email",
+    "subject": "Subject",
+    "message": "Message",
+    "loading": "Loading",
+    "sentMessage": "Your message has been sent. Thank you!",
+    "sendMessage": "Send Message",
+    "facts": "Facts",
+    "portfolio": "Portfolio",
+    "all": "All",
+    "resume": "Resume",
+    "summary": "Summary",
+    "education": "Education",
+    "workExperience": "Work Experience",
+    "services": "Services",
+    "skills": "Skills",
+    "testimonials": "Testimonials"
   }
 }
