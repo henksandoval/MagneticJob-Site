@@ -1,4 +1,4 @@
-import { mockContactProfile } from '../contact/mockContactProfile';
+import { contactProfile } from '../contact/mocks/contactProfile';
 import { mockEducation } from './mockEducation';
 import { mockWorkExperience } from './mockWorkExperience';
 import { Summary } from './summary';
@@ -8,7 +8,7 @@ export const mockSummary: Summary = {
   name: 'Brahando test',
   introduction:
     'Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.',
-  contact: [mockContactProfile],
+  contact: [contactProfile],
   workExperience: mockWorkExperience,
   education: mockEducation,
 };
