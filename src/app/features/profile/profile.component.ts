@@ -30,14 +30,15 @@ import { ProfileService } from './services/profile.service';
   ],
   template: `
     <main id="main">
-      <app-about [aboutSet]="profile$()?.about" />
-      <app-fact [factSet]="profile$()?.facts" />
-      <app-skills [skillSet]="profile$()?.skillSet" />
-      <app-summary [summarySet]="profile$()?.summary" />
-      <app-portfolio [portfolioSet]="profile$()?.portfolio" />
-      <app-services [serviceSet]="profile$()?.service" />
-      <app-testimonials [testimonialSet]="profile$()?.testimonials" />
-      <app-contact />
+      @let profile = profile$();
+      <app-about [aboutSet]="profile?.about" />
+      <app-fact [factSet]="profile?.facts" />
+      <app-skills [skillSet]="profile?.skillSet" />
+      <app-summary [summarySet]="profile?.summary" />
+      <app-portfolio [portfolioSet]="profile?.portfolio" />
+      <app-services [serviceSet]="profile?.service" />
+      <app-testimonials [testimonialSet]="profile?.testimonials" />
+      <app-contact [contactSet]="profile?.contact" />
     </main>
   `,
 })
