@@ -1,4 +1,4 @@
-import { Testimonial } from './testimonial';
+import { Testimonial } from '../interfaces/testimonial';
 
 const mockTestimonial01: Testimonial = {
   name: 'Jane Doe',

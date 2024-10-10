@@ -1,12 +1,11 @@
-import { Contact } from '../components/contact/contact';
-import { About } from '../components/about/about';
 import { Facts } from '../components/fact/facts';
-import { SkillSet } from '../components/skills/skills';
-import { Testimonial } from '../components/testimonials/testimonial';
-import { PortFolio } from '../components/portfolio/portfolio';
-import { Service } from '../components/services/service';
-import { Summary } from '../components/contact/summary';
-import { Education } from '../components/summary/education';
+import { SkillSet } from '../components/skills/interfaces/skills';
+import { Testimonial } from '../components/testimonials/interfaces/testimonial';
+import { PortFolio } from '../components/portfolio/interfaces/portfolio';
+import { Service } from '../components/services/interfaces/service';
+import { About } from '../components/about/interfaces/about';
+import { Contact } from '../components/contact/interfaces/contact';
+import { Summary } from '../components/summary/interfaces/summary';
 
 export interface Profile {
   birthday?: string;
@@ -14,7 +13,6 @@ export interface Profile {
   about: About;
   facts?: Facts;
   skillSet?: SkillSet;
-  education: Education;
   summary: Summary;
   testimonials: Testimonial[];
   portfolio: PortFolio;

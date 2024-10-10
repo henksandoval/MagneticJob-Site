@@ -1,4 +1,5 @@
-import { SkillDetail, SkillSet } from './skills';
+import { SkillDetail } from '../interfaces/skillDetail';
+import { SkillSet } from '../interfaces/skills';
 
 const csharpSkill: SkillDetail = {
   name: 'C #',

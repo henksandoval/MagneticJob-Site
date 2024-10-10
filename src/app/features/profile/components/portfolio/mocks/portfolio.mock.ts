@@ -1,5 +1,5 @@
-import { Gallery } from './webPage';
-import { PortFolio } from './portfolio';
+import { Gallery } from '../interfaces/gallery';
+import { PortFolio } from '../interfaces/portfolio';
 
 export const mockGallery: Gallery = {
   position: 1,

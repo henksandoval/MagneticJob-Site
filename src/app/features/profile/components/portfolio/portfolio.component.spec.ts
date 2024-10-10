@@ -1,8 +1,8 @@
 import { PortfolioComponent } from './portfolio.component';
 import { render, screen } from '@testing-library/angular';
-import { mockProfile } from '../../mocks/mockProfile';
-import { mockPortfolio } from './mockPortfolio';
-import { Gallery } from './webPage';
+import { mockProfile } from '../../mocks/profile.mock';
+import { mockPortfolio } from './mocks/portfolio.mock';
+import { Gallery } from './interfaces/gallery';
 import '@testing-library/jest-dom';
 import '@angular/localize/init';
 

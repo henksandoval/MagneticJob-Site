@@ -1,4 +1,4 @@
-import { ContactProfile } from '../contact/contactProfile';
+import { Contact } from '../../contact/interfaces/contact';
 import { Education } from './education';
 import { WorkExperience } from './workExperience';
 
@@ -6,7 +6,7 @@ export interface Summary {
   about: string;
   name: string;
   introduction: string;
-  contact: ContactProfile[];
-  workExperience: WorkExperience;
+  contactProfile: Contact;
   education: Education;
+  workExperience: WorkExperience;
 }
