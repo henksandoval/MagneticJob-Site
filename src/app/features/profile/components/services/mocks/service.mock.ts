@@ -1,4 +1,5 @@
-import { Service, ServiceDetails } from './service';
+import { Service } from '../interfaces/service';
+import { ServiceDetails } from '../interfaces/ServiceDetails';
 
 export const mockServiceDetails: ServiceDetails = {
   name: 'SEO Consulting',
@@ -28,7 +29,6 @@ export const mockServiceDetails4: ServiceDetails = {
 };
 
 export const mockService: Service = {
-  title: 'Services',
   overview:
     "We focus on understanding your company's needs to create a website tailored to your clients. You also have the support of our specialists in programming, design, and digital marketing to guide you through the process and resolve any questions you may have.",
   serviceDetails: [mockServiceDetails, mockServiceDetails2, mockServiceDetails3, mockServiceDetails4],

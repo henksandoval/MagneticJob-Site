@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/angular';
 import { SkillsComponent } from './skills.component';
+import { SkillDetail } from './interfaces/skillDetail';
 import '@testing-library/jest-dom';
-import { mockSkills } from './mockSkills';
-import { SkillDetail } from './skills';
+import '@angular/localize/init';
+import { mockSkills } from './mocks/skills.mock';
 
 const renderComponent = async () => {
   await render(SkillsComponent, {
@@ -27,5 +28,17 @@ describe('SkillsComponent', () => {
       expect(screen.getByTestId('image-src_' + id)).toHaveAttribute('src', skill.iconUrl);
       expect(screen.getByTestId('name_' + id)).toHaveTextContent(skill.name);
     });
+  });
+});
+
+describe('SkillComponentNullScenary', () => {
+  it('handles undefined correctly', async () => {
+    await render(SkillsComponent, {
+      inputs: {
+        skillSet: undefined,
+      },
+    });
+
+    expect(screen.getByTestId('skills')).toBeEmptyDOMElement();
   });
 });
