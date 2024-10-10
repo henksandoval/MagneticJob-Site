@@ -1,6 +1,6 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { ProfileService } from '../../services/profile.service';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Facts } from './facts';
 
 @Component({
   selector: 'app-fact',
@@ -8,8 +8,8 @@ import { ProfileService } from '../../services/profile.service';
   imports: [NgIf, AsyncPipe],
   templateUrl: './fact.component.html',
   styleUrl: 'fact.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FactComponent {
-  private readonly profileService: ProfileService = inject(ProfileService);
-  profile$ = this.profileService.profile$;
+  factSet = input.required<Facts | undefined>();
 }
