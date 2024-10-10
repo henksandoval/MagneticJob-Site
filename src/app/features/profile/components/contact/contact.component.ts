@@ -1,6 +1,6 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { ProfileService } from '../../services/profile.service';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Contact } from './interfaces/contact';
 
 @Component({
   selector: 'app-contact',
@@ -8,8 +8,8 @@ import { ProfileService } from '../../services/profile.service';
   imports: [NgIf, AsyncPipe],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
-  private readonly profileService: ProfileService = inject(ProfileService);
-  profile$ = this.profileService.profile$;
+  contactSet = input.required<Contact | undefined>();
 }
