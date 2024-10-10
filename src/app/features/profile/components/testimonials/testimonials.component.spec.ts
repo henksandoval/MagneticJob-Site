@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/angular';
 import { TestimonialsComponent } from './testimonials.component';
-import { mockTestimonials } from './mockTestimonials';
-import { Testimonial } from './testimonial';
+import { Testimonial } from './interfaces/testimonial';
 import '@testing-library/jest-dom';
 import '@angular/localize/init';
+import { mockTestimonials } from './mocks/testimonials.mocks';
 
 const renderComponent = async () => {
   await render(TestimonialsComponent, {

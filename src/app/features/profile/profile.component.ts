@@ -35,8 +35,8 @@ import { ProfileService } from './services/profile.service';
       <app-skills [skillSet]="profile$()?.skillSet" />
       <app-summary [summarySet]="profile$()?.summary" />
       <app-portfolio [portfolioSet]="profile$()?.portfolio" />
-      <app-services />
-      <app-testimonials [testimonials]="profile$()?.testimonials" />
+      <app-services [serviceSet]="profile$()?.service" />
+      <app-testimonials [testimonialSet]="profile$()?.testimonials" />
       <app-contact />
     </main>
   `,

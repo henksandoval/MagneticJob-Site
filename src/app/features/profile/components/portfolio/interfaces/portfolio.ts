@@ -1,4 +1,4 @@
-import { Gallery } from '../../interfaces/webPage';
+import { Gallery } from './gallery';
 
 export interface PortFolio {
   gallery: Gallery[];

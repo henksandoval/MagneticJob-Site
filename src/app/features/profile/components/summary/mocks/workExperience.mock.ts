@@ -1,5 +1,5 @@
-import { Position } from './position';
-import { WorkExperience } from './workExperience';
+import { Position } from '../interfaces/position';
+import { WorkExperience } from '../interfaces/workExperience';
 
 export const mockPosition1: Position = {
   specialist: 'Senior UX Designer',

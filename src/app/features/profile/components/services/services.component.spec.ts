@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/angular';
 import { ServicesComponent } from './services.component';
-import { mockProfile } from '../../mocks/mockProfile';
-import { ServiceDetails } from './service';
-import { mockService } from './mockService';
+import { mockProfile } from '../../mocks/profile.mock';
+import { ServiceDetails } from './interfaces/ServiceDetails';
 import '@testing-library/jest-dom';
 import '@angular/localize/init';
+import { mockService } from './mocks/service.mock';
 
 const renderComponent = async () => {
   await render(ServicesComponent, {
