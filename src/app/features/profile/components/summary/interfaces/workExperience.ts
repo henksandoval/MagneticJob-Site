@@ -1,4 +1,4 @@
-import { Position } from '../../interfaces/position';
+import { Position } from './position';
 
 export interface WorkExperience {
   position: Position[];

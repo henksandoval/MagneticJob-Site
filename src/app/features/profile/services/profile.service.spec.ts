@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { ProfileService } from './profile.service';
-import { mockProfile } from '../mocks/mockProfile';
+import { mockProfile } from '../mocks/profile.mock';
 
 describe('ProfileService', () => {
   let service: ProfileService;

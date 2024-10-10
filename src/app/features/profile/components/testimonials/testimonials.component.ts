@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { Testimonial } from './testimonial';
+import { Testimonial } from './interfaces/testimonial';
 
 @Component({
   selector: 'app-testimonials',

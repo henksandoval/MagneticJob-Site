@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/angular';
 import { SkillsComponent } from './skills.component';
-import { mockSkills } from './mockSkills';
-import { SkillDetail } from './skills';
+import { SkillDetail } from './interfaces/skillDetail';
 import '@testing-library/jest-dom';
 import '@angular/localize/init';
+import { mockSkills } from './mocks/skills.mock';
 
 const renderComponent = async () => {
   await render(SkillsComponent, {

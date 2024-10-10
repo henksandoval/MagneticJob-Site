@@ -5,8 +5,8 @@ import { AboutComponent } from './about.component';
 import '@testing-library/jest-dom';
 import { signal } from '@angular/core';
 import { ProfileService } from '../../services/profile.service';
-import { mockProfile } from '../../mocks/mockProfile';
-import { mockAbout } from './mocks/about';
+import { mockProfile } from '../../mocks/profile.mock';
+import { mockAbout } from './mocks/about.mock';
 
 const mockProfileService = {
   profile$: signal(mockProfile),

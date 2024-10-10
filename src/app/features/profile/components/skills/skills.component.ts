@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { SkillSet } from './skills';
+import { SkillSet } from './interfaces/skills';
 
 @Component({
   selector: 'app-skills',

@@ -1,8 +1,8 @@
 import { SummaryComponent } from './summary.component';
 import { render, screen } from '@testing-library/angular';
-import { mockSummary } from './mockSummary';
-import { AcademicBackground } from './academicBackground';
-import { Position } from './position';
+import { mockSummary } from './mocks/summary.mock';
+import { AcademicBackground } from './interfaces/academicBackground';
+import { Position } from './interfaces/position';
 import '@testing-library/jest-dom';
 import '@angular/localize/init';
 
@@ -32,11 +32,9 @@ describe('summaryComponent', () => {
   });
 
   it('should render contact list', () => {
-    mockSummary.contact.forEach((mockContact) => {
-      expect(screen.getByText(mockContact.location)).toBeInTheDocument();
-      expect(screen.getByText(mockContact.phoneNumber)).toBeInTheDocument();
-      expect(screen.getByText(mockContact.aliceBarkle)).toBeInTheDocument();
-    });
+    expect(screen.getByTestId('direction')).toHaveTextContent(mockSummary.contactProfile.direction);
+    expect(screen.getByTestId('phoneNumber')).toHaveTextContent(mockSummary.contactProfile.phoneNumber);
+    expect(screen.getByTestId('email')).toHaveTextContent(mockSummary.contactProfile.email);
   });
 
   it('should get all the records about education.', () => {
