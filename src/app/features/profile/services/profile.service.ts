@@ -16,7 +16,7 @@ export class ProfileService {
   loadProfile(): void {
     if (!this.profileLoaded()) {
       this.http
-        .get<Profile>('assets/data.json')
+        .get<Profile>('stubs/data.json')
         .pipe(
           tap((data: Profile) => {
             this.profileSource.set(data);

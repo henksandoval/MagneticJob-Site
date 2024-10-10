@@ -28,7 +28,7 @@ describe('ProfileService', () => {
   it('should load profile data successfully', () => {
     service.loadProfile();
 
-    const testRequest = httpMock.expectOne('assets/data.json');
+    const testRequest = httpMock.expectOne('stubs/data.json');
     expect(testRequest.request.method).toBe('GET');
 
     testRequest.flush(mockProfile);
@@ -40,7 +40,7 @@ describe('ProfileService', () => {
   it('should handle errors when loading profile data', () => {
     service.loadProfile();
 
-    const testRequest = httpMock.expectOne('assets/data.json');
+    const testRequest = httpMock.expectOne('stubs/data.json');
     expect(testRequest.request.method).toBe('GET');
 
     testRequest.error(new ProgressEvent('Network error'));
@@ -51,7 +51,7 @@ describe('ProfileService', () => {
   it('should not reload the profile if already loaded', () => {
     service.loadProfile();
 
-    const testRequest = httpMock.expectOne('assets/data.json');
+    const testRequest = httpMock.expectOne('stubs/data.json');
     testRequest.flush(mockProfile);
 
     service.loadProfile();
