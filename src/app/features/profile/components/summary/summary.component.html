@@ -15,13 +15,13 @@
             <p>
               <em data-testid="introduction">{{ summary.introduction }}</em>
             </p>
-            <ul>
-              @for (contact of summary.contact; track $index) {
-                <li data-testid="location">{{ contact.location }}</li>
+            @if (summary.contactProfile; as contact) {
+              <ul>
+                <li data-testid="direction">{{ contact.direction }}</li>
+                <li data-testid="email">{{ contact.email }}</li>
                 <li data-testid="phoneNumber">{{ contact.phoneNumber }}</li>
-                <li data-testid="aliceBarkle">{{ contact.aliceBarkle }}</li>
-              }
-            </ul>
+              </ul>
+            }
           </div>
           @if (summary.education; as education) {
             <h3 i18n="@@education" class="resume-title">Education</h3>

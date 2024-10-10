@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { Summary } from '../contact/summary';
-
+import { Summary } from './interfaces/summary';
 @Component({
   selector: 'app-summary',
   standalone: true,
