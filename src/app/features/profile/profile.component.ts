@@ -31,7 +31,7 @@ import { ProfileService } from './services/profile.service';
   template: `
     <main id="main">
       <app-about [aboutSet]="profile$()?.about" />
-      <app-fact />
+      <app-fact [factSet]="profile$()?.facts" />
       <app-skills [skillSet]="profile$()?.skillSet" />
       <app-summary [summarySet]="profile$()?.summary" />
       <app-portfolio [portfolioSet]="profile$()?.portfolio" />
