@@ -106,55 +106,52 @@
     "about": "I am a software developer with experience in designing and developing web and backend applications. I am fluent in languages ​​such as Python, JavaScript and Java, and have a solid knowledge of using modern frameworks such as React and Node.js. I have experience managing SQL and NoSQL databases, and am proficient in using Git for version control. I have worked in agile environments, applying methodologies such as Scrum to optimize collaboration and project delivery. My communication and problem-solving skills allow me to work effectively in a team and quickly adapt to new technologies and challenges.",
     "name": "Brandon Johnson",
     "introduction": "Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.",
-    "contact": [
-      {
-        "location": "Portland par 127,Orlando, FL",
-        "phoneNumber": "(123) 456-7891",
-        "aliceBarkle": "alice.barkley"
-      }
-    ]
-  },
-  "education": {
-    "academicBackground": [
-      {
-        "experience": "Master of Fine Arts & Graphic Design",
-        "startdate": "2015 - 2016",
-        "Academy": "Rochester Institute of Technology, Rochester, NY",
-        "description": "Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend"
-      },
-      {
-        "experience": "Bachelor of Fine Arts & Graphic Design",
-        "startdate": "2010 - 2014",
-        "Academy": "Rochester Institute of Technology, Rochester, NY",
-        "description": "Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila"
-      }
-    ]
-  },
-  "workExperience": {
-    "position": [
-      {
-        "specialist": "Senior graphic design specialist",
-        "startdate": "2019 - Present",
-        "location": "Experion, New York, NY",
-        "communicationDesignLeadership": "Lead in the design, development, and implementation of the graphic, layout, and production communication materials",
-        "teamLeadership": "Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project.",
-        "designQualityAssurance": "Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design",
-        "expertiseArea": "Oversee the efficient use of production project budgets ranging from $2,000 - $25,000"
-      },
-      {
-        "specialist": "Graphic design specialist",
-        "startdate": "2017 - 2018",
-        "location": "Stepping Stone Advertising, New York, NY",
-        "communicationDesignLeadership": "Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).",
-        "teamLeadership": "Managed up to 5 projects or tasks at a given time while under pressure",
-        "designQualityAssurance": "Recommended and consulted with clients on the most appropriate graphic design",
-        "expertiseArea": "Created 4+ design presentations and proposals a month for clients and account managers"
-      }
-    ]
+    "contactProfile": {
+      "direction": "Calle Reina Fabiola, 20 9B, Zaragoza - España",
+      "email": "alexandrai.marvala@gmail.com",
+      "phoneNumber": "+34641051233"
+    },
+    "education": {
+      "academicBackground": [
+        {
+          "experience": "Master of Fine Arts & Graphic Design",
+          "startdate": "2015 - 2016",
+          "Academy": "Rochester Institute of Technology, Rochester, NY",
+          "description": "Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend"
+        },
+        {
+          "experience": "Bachelor of Fine Arts & Graphic Design",
+          "startdate": "2010 - 2014",
+          "Academy": "Rochester Institute of Technology, Rochester, NY",
+          "description": "Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila"
+        }
+      ]
+    },
+    "workExperience": {
+      "position": [
+        {
+          "specialist": "Senior graphic design specialist",
+          "startdate": "2019 - Present",
+          "location": "Experion, New York, NY",
+          "communicationDesignLeadership": "Lead in the design, development, and implementation of the graphic, layout, and production communication materials",
+          "teamLeadership": "Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project.",
+          "designQualityAssurance": "Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design",
+          "expertiseArea": "Oversee the efficient use of production project budgets ranging from $2,000 - $25,000"
+        },
+        {
+          "specialist": "Graphic design specialist",
+          "startdate": "2017 - 2018",
+          "location": "Stepping Stone Advertising, New York, NY",
+          "communicationDesignLeadership": "Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).",
+          "teamLeadership": "Managed up to 5 projects or tasks at a given time while under pressure",
+          "designQualityAssurance": "Recommended and consulted with clients on the most appropriate graphic design",
+          "expertiseArea": "Created 4+ design presentations and proposals a month for clients and account managers"
+        }
+      ]
+    }
   },
   "portfolio": {
-    "text": "Portfolio",
-    "webPage": [
+    "gallery": [
       {
         "position": 1,
         "title": "Aventuras Animales",

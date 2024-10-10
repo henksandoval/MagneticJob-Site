@@ -1,10 +1,9 @@
 @let skills = skillSet();
-<section id="skills" class="skills section-bg">
+<section data-testid="skills" id="skills" class="skills section-bg">
   @if (skills) {
     <div class="container" data-aos="fade-up">
-      <!-- @if (profile.skillSet; as skillSet) { -->
       <div class="section-title">
-        <h2>Skills</h2>
+        <h2 i18n="@@skills">Skills</h2>
         <p data-testid="skill_overview">{{ skills.overview }}</p>
       </div>
 
@@ -24,7 +23,6 @@
           }
         </div>
       }
-      <!-- } -->
     </div>
   }
 </section>

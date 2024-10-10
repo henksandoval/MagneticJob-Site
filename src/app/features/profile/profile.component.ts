@@ -5,7 +5,7 @@ import { FooterComponent } from '../../shared/layout/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { FactComponent } from './components/fact/fact.component';
 import { SkillsComponent } from './components/skills/skills.component';
-import { ResumeComponent } from './components/resume/resume.component';
+import { SummaryComponent } from './components/summary/summary.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { ServicesComponent } from './components/services/services.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
@@ -22,7 +22,7 @@ import { ProfileService } from './services/profile.service';
     AboutComponent,
     FactComponent,
     SkillsComponent,
-    ResumeComponent,
+    SummaryComponent,
     PortfolioComponent,
     ServicesComponent,
     TestimonialsComponent,
@@ -30,14 +30,15 @@ import { ProfileService } from './services/profile.service';
   ],
   template: `
     <main id="main">
-      <app-about />
-      <app-fact />
-      <app-skills [skillSet]="profile$()?.skillSet" />
-      <app-resume />
-      <app-portfolio />
-      <app-services />
-      <app-testimonials [testimonials]="profile$()?.testimonials" />
-      <app-contact />
+      @let profile = profile$();
+      <app-about [aboutSet]="profile?.about" />
+      <app-fact [factSet]="profile?.facts" />
+      <app-skills [skillSet]="profile?.skillSet" />
+      <app-summary [summarySet]="profile?.summary" />
+      <app-portfolio [portfolioSet]="profile?.portfolio" />
+      <app-services [serviceSet]="profile?.service" />
+      <app-testimonials [testimonialSet]="profile?.testimonials" />
+      <app-contact [contactSet]="profile?.contact" />
     </main>
   `,
 })
