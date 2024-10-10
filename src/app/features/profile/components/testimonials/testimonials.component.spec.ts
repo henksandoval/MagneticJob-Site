@@ -1,13 +1,14 @@
 import { render, screen } from '@testing-library/angular';
 import { TestimonialsComponent } from './testimonials.component';
+import { Testimonial } from './interfaces/testimonial';
 import '@testing-library/jest-dom';
-import { mockTestimonials } from './mockTestimonials';
-import { Testimonial } from './testimonial';
+import '@angular/localize/init';
+import { mockTestimonials } from './mocks/testimonials.mocks';
 
 const renderComponent = async () => {
   await render(TestimonialsComponent, {
     inputs: {
-      testimonials: mockTestimonials,
+      testimonialSet: mockTestimonials,
     },
   });
 };
@@ -35,5 +36,17 @@ describe('TestimonialsComponent', () => {
       expect(testimonials[0]).toHaveTextContent(testimonial.testimonial);
       id++;
     });
+  });
+});
+
+describe('TestimonialsComponentNullScenary', () => {
+  it('handles undefined correctly', async () => {
+    await render(TestimonialsComponent, {
+      inputs: {
+        testimonialSet: undefined,
+      },
+    });
+
+    expect(screen.getByTestId('testimonials')).toBeEmptyDOMElement();
   });
 });

@@ -1,20 +1,14 @@
 import '@angular/localize/init';
 import { render, screen } from '@testing-library/angular';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { AboutComponent } from './about.component';
 import '@testing-library/jest-dom';
-import { signal } from '@angular/core';
-import { ProfileService } from '../../services/profile.service';
-import { mockProfile } from '../../mocks/mockProfile';
-import { mockAbout } from './mockAbout';
-
-const mockProfileService = {
-  profile$: signal(mockProfile),
-};
+import { mockAbout } from './mocks/about.mock';
 
 const renderComponent = async () => {
   await render(AboutComponent, {
-    providers: [provideHttpClientTesting(), { provide: ProfileService, useValue: mockProfileService }],
+    inputs: {
+      aboutSet: mockAbout,
+    },
   });
 };
 
@@ -65,5 +59,17 @@ describe('AboutComponent', () => {
 
   it('should display profile work experience', () => {
     expect(screen.getByTestId('workExperience')).toHaveTextContent(mockAbout.workExperience);
+  });
+});
+
+describe('AboutComponentNullScenary', () => {
+  it('handles undefined correctly', async () => {
+    await render(AboutComponent, {
+      inputs: {
+        aboutSet: undefined,
+      },
+    });
+
+    expect(screen.getByTestId('about')).toBeEmptyDOMElement();
   });
 });

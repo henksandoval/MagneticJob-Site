@@ -1,58 +1,44 @@
-import { ResumeComponent } from './resume.component';
+import { SummaryComponent } from './summary.component';
 import { render, screen } from '@testing-library/angular';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { mockSummary } from './mocks/summary.mock';
+import { AcademicBackground } from './interfaces/academicBackground';
+import { Position } from './interfaces/position';
 import '@testing-library/jest-dom';
-import { signal } from '@angular/core';
-import { mockProfile } from '../../mocks/mockProfile';
-import { ProfileService } from '../../services/profile.service';
-import { AcademicBackground } from '../../interfaces/academicBackground';
-import { Position } from '../../interfaces/position';
-
-const mockProfileService = {
-  profile$: signal(mockProfile),
-};
+import '@angular/localize/init';
 
 const renderComponent = async () => {
-  await render(ResumeComponent, {
-    providers: [provideHttpClientTesting(), { provide: ProfileService, useValue: mockProfileService }],
+  await render(SummaryComponent, {
+    inputs: {
+      summarySet: mockSummary,
+    },
   });
 };
 
-describe('ResumeComponent', () => {
+describe('summaryComponent', () => {
   beforeEach(async () => {
     await renderComponent();
   });
 
-  it('Must show profile history', () => {
-    expect(screen.getByTestId('resume')).toHaveTextContent(mockProfile.titles.resume);
-  });
-
   it('should show the about', () => {
-    expect(screen.getByTestId('about')).toHaveTextContent(mockProfile.summary.about);
-  });
-
-  it('should show the title summary', () => {
-    expect(screen.getByText(mockProfile.titles.summary)).toBeInTheDocument();
+    expect(screen.getByTestId('about')).toHaveTextContent(mockSummary.about);
   });
 
   it('should show the name', () => {
-    expect(screen.getByTestId('name')).toHaveTextContent(mockProfile.summary.name);
+    expect(screen.getByTestId('name')).toHaveTextContent(mockSummary.name);
   });
 
   it('should show the introduction', () => {
-    expect(screen.getByTestId('introduction')).toHaveTextContent(mockProfile.summary.introduction);
+    expect(screen.getByTestId('introduction')).toHaveTextContent(mockSummary.introduction);
   });
 
   it('should render contact list', () => {
-    mockProfile.summary.contact.forEach((mockContact) => {
-      expect(screen.getByText(mockContact.location)).toBeInTheDocument();
-      expect(screen.getByText(mockContact.phoneNumber)).toBeInTheDocument();
-      expect(screen.getByText(mockContact.aliceBarkle)).toBeInTheDocument();
-    });
+    expect(screen.getByTestId('direction')).toHaveTextContent(mockSummary.contactProfile.direction);
+    expect(screen.getByTestId('phoneNumber')).toHaveTextContent(mockSummary.contactProfile.phoneNumber);
+    expect(screen.getByTestId('email')).toHaveTextContent(mockSummary.contactProfile.email);
   });
 
   it('should get all the records about education.', () => {
-    mockProfile.education.academicBackground.forEach(
+    mockSummary.education.academicBackground.forEach(
       (academicBackground: AcademicBackground, index: number) => {
         const id: string = (++index).toString().padStart(2, '0');
         expect(screen.getByTestId('experience_' + id)).toHaveTextContent(academicBackground.experience);
@@ -64,7 +50,7 @@ describe('ResumeComponent', () => {
   });
 
   it('should render all records about work experience', () => {
-    mockProfile.workExperience.position.forEach((position: Position, index: number) => {
+    mockSummary.workExperience.position.forEach((position: Position, index: number) => {
       const id: string = (++index).toString().padStart(2, '0');
       expect(screen.getByTestId('specialist_' + id)).toHaveTextContent(position.specialist);
       expect(screen.getByTestId('startDate_' + id)).toHaveTextContent(position.startdate);
@@ -78,5 +64,17 @@ describe('ResumeComponent', () => {
       );
       expect(screen.getByTestId('expertiseArea_' + id)).toHaveTextContent(position.expertiseArea);
     });
+  });
+});
+
+describe('SummaryComponentNullScenary', () => {
+  it('handles undefined correctly', async () => {
+    await render(SummaryComponent, {
+      inputs: {
+        summarySet: undefined,
+      },
+    });
+
+    expect(screen.getByTestId('summary')).toBeEmptyDOMElement();
   });
 });
