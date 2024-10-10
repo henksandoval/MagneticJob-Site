@@ -1,11 +1,11 @@
 import { Profile } from '../interfaces/profile';
-import { mockAbout } from '../components/about/mockAbout';
 import { mockSkills } from '../components/skills/mockSkills';
 import { mockPortfolio } from '../components/portfolio/mockPortfolio';
 import { mockTestimonials } from '../components/testimonials/mockTestimonials';
 import { mockService } from '../components/services/mockService';
 import { mockSummary } from '../components/summary/mockSummary';
 import { mockEducation } from '../components/summary/mockEducation';
+import { mockAbout } from '../components/about/mocks/about';
 
 export const mockProfile: Profile = {
   about: mockAbout,

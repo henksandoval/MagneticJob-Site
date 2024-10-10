@@ -1,4 +1,4 @@
-import { About } from './about';
+import { About } from '../interfaces/about';
 
 export const mockAbout: About = {
   description: 'Test Description',
