@@ -5,6 +5,7 @@ const jestConfig: Config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',
+    '^@core/(.*)$': '<rootDir>/src/app/core/$1',
   },
   reporters: [
     'default',

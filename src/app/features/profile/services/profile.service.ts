@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { catchError, of, tap } from 'rxjs';
 import { Profile } from '../interfaces/profile';
-import { HttpService } from 'src/app/core/services/http/http.service';
+import { HttpService } from '@core/services/http/http.service';
 
 @Injectable({
   providedIn: 'root',
