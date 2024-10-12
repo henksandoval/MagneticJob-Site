@@ -1,49 +1,65 @@
 import { MockBuilder, MockInstance, ngMocks } from 'ng-mocks';
 import { ProfileService } from './profile.service';
 import { HttpService } from '@core/services/http/http.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { mockProfile } from '../mocks/profile.mock';
-import { HttpClient } from '@angular/common/http';
 
 describe('ProfileService', () => {
-  let service: ProfileService;
-  let httpService: HttpService;
+  MockInstance.scope('case');
 
-  beforeEach(() => {
-    return MockBuilder(ProfileService)
-      .mock(HttpService)
-      .mock(HttpClient)
-      .then(() => {
-        service = ngMocks.findInstance(ProfileService);
-        httpService = ngMocks.findInstance(HttpService);
-
-        //aqui use as unknow as Profile para que se  lo coma el Out ese que creaste
-        MockInstance(HttpService, 'get', () => of(mockProfile));
-        // MockInstance(HttpService, (instance) => {
-        //   instance.get = jest.fn().mockReturnValue(of(mockProfile));
-        // });
-      });
+  beforeEach(async () => {
+    await MockBuilder(ProfileService).mock(HttpService);
   });
 
   it('should be created', () => {
+    const service = ngMocks.findInstance(ProfileService);
+
     expect(service).toBeTruthy();
   });
 
   it('should load profile details successfully', () => {
+    shouldLoadProfileSuccessfully();
+  });
+
+  it('should not load profile again if already loaded', () => {
+    shouldLoadProfileSuccessfully();
+
+    jest.clearAllMocks();
+    const service = ngMocks.findInstance(ProfileService);
+    const httpService = ngMocks.findInstance(HttpService);
+
+    service.loadProfile();
+
+    expect(httpService.get).not.toHaveBeenCalled();
+    expect(service.profile$()).toEqual(mockProfile);
+  });
+
+  it('should handle error when loading profile', () => {
+    MockInstance(HttpService, (instance) => {
+      jest.spyOn(instance, 'get').mockReturnValue(throwError(() => new Error('Network error')));
+    });
+
+    const service = ngMocks.findInstance(ProfileService);
+    service.loadProfile();
+
+    const httpService = ngMocks.findInstance(HttpService);
+    expect(service['profileLoaded']()).toBe(false);
+    expect(httpService.get).toHaveBeenCalledTimes(1);
+    expect(service.profile$()).toBeNull();
+  });
+
+  function shouldLoadProfileSuccessfully() {
+    MockInstance(HttpService, (instance) => {
+      jest.spyOn(instance, 'get').mockReturnValue(of(mockProfile));
+    });
+
+    const service = ngMocks.findInstance(ProfileService);
+    const httpService = ngMocks.findInstance(HttpService);
+
     service.loadProfile();
 
     expect(service.profile$()).toEqual(mockProfile);
     expect(service['profileLoaded']()).toBe(true);
-  });
-
-  it('should not load profile again if already loaded', () => {
-    service.loadProfile();
-    expect(service['profileLoaded']()).toBe(true);
-
-    const httpGetSpy = jest.spyOn(httpService, 'get');
-
-    service.loadProfile();
-
-    expect(httpGetSpy).not.toHaveBeenCalled();
-  });
+    expect(httpService.get).toHaveBeenCalledTimes(1);
+  }
 });
