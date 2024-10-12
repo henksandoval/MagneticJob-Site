@@ -1,6 +1,12 @@
-module.exports = {
+import type { Config } from 'jest';
+
+const jestConfig: Config = {
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  moduleNameMapper: {
+    '^src/(.*)$': '<rootDir>/src/$1',
+    '^@core/(.*)$': '<rootDir>/src/app/core/$1',
+  },
   reporters: [
     'default',
     [
@@ -14,3 +20,5 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ['lcov'],
 };
+
+export default jestConfig;

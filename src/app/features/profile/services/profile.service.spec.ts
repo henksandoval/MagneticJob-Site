@@ -1,62 +1,65 @@
-import { TestBed } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
+import { MockBuilder, MockInstance, ngMocks } from 'ng-mocks';
 import { ProfileService } from './profile.service';
+import { HttpService } from '@core/services/http/http.service';
+import { of, throwError } from 'rxjs';
 import { mockProfile } from '../mocks/profile.mock';
 
 describe('ProfileService', () => {
-  let service: ProfileService;
-  let httpMock: HttpTestingController;
+  MockInstance.scope('case');
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [ProfileService, provideHttpClient(), provideHttpClientTesting()],
-    });
-
-    service = TestBed.inject(ProfileService);
-    httpMock = TestBed.inject(HttpTestingController);
-  });
-
-  afterEach(() => {
-    httpMock.verify();
+  beforeEach(async () => {
+    await MockBuilder(ProfileService).mock(HttpService);
   });
 
   it('should be created', () => {
+    const service = ngMocks.findInstance(ProfileService);
+
     expect(service).toBeTruthy();
   });
 
-  it('should load profile data successfully', () => {
-    service.loadProfile();
-
-    const testRequest = httpMock.expectOne('stubs/data.json');
-    expect(testRequest.request.method).toBe('GET');
-
-    testRequest.flush(mockProfile);
-
-    expect(service.profile$()).toEqual(mockProfile);
-    expect(service.profile$()).not.toBeNull();
+  it('should load profile details successfully', () => {
+    shouldLoadProfileSuccessfully();
   });
 
-  it('should handle errors when loading profile data', () => {
+  it('should not load profile again if already loaded', () => {
+    shouldLoadProfileSuccessfully();
+
+    jest.clearAllMocks();
+    const service = ngMocks.findInstance(ProfileService);
+    const httpService = ngMocks.findInstance(HttpService);
+
     service.loadProfile();
 
-    const testRequest = httpMock.expectOne('stubs/data.json');
-    expect(testRequest.request.method).toBe('GET');
+    expect(httpService.get).not.toHaveBeenCalled();
+    expect(service.profile$()).toEqual(mockProfile);
+  });
 
-    testRequest.error(new ProgressEvent('Network error'));
+  it('should handle error when loading profile', () => {
+    MockInstance(HttpService, (instance) => {
+      jest.spyOn(instance, 'get').mockReturnValue(throwError(() => new Error('Network error')));
+    });
 
+    const service = ngMocks.findInstance(ProfileService);
+    service.loadProfile();
+
+    const httpService = ngMocks.findInstance(HttpService);
+    expect(service['profileLoaded']()).toBe(false);
+    expect(httpService.get).toHaveBeenCalledTimes(1);
     expect(service.profile$()).toBeNull();
   });
 
-  it('should not reload the profile if already loaded', () => {
+  function shouldLoadProfileSuccessfully() {
+    MockInstance(HttpService, (instance) => {
+      jest.spyOn(instance, 'get').mockReturnValue(of(mockProfile));
+    });
+
+    const service = ngMocks.findInstance(ProfileService);
+    const httpService = ngMocks.findInstance(HttpService);
+
     service.loadProfile();
 
-    const testRequest = httpMock.expectOne('stubs/data.json');
-    testRequest.flush(mockProfile);
-
-    service.loadProfile();
-
-    httpMock.expectNone('assets/data.json');
     expect(service.profile$()).toEqual(mockProfile);
-  });
+    expect(service['profileLoaded']()).toBe(true);
+    expect(httpService.get).toHaveBeenCalledTimes(1);
+  }
 });
