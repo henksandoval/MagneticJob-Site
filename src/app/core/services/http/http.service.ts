@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
 export class HttpService {
   private readonly http = inject(HttpClient);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  get<TOut>(url: string, params?: HttpParams): Observable<any> {
+  get<TOut>(url: string, params?: HttpParams): Observable<TOut> {
     return this.http.get<TOut>(url, { params });
   }
 
