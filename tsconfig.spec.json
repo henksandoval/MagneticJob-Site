@@ -3,6 +3,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "paths": {
+      "@core/*": ["src/app/core/*"]
+    },
     "outDir": "./out-tsc/spec",
     "types": ["jest", "@angular/localize"]
   },
