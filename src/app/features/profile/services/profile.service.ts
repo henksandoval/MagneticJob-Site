@@ -7,11 +7,11 @@ import { HttpService } from '@core/services/http/http.service';
   providedIn: 'root',
 })
 export class ProfileService {
+  private readonly http = inject(HttpService);
   private readonly profileSource = signal<Profile | null>(null);
   private readonly profileLoaded = signal(false);
 
   profile$ = computed(() => this.profileSource());
-  private readonly http = inject(HttpService);
 
   loadProfile(): void {
     if (!this.profileLoaded()) {
