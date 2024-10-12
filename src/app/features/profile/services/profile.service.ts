@@ -1,17 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { catchError, of, tap } from 'rxjs';
 import { Profile } from '../interfaces/profile';
+import { HttpService } from '@core/services/http/http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
+  private readonly http = inject(HttpService);
   private readonly profileSource = signal<Profile | null>(null);
   private readonly profileLoaded = signal(false);
 
   profile$ = computed(() => this.profileSource());
-  private readonly http = inject(HttpClient);
 
   loadProfile(): void {
     if (!this.profileLoaded()) {
