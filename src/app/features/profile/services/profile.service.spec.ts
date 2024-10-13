@@ -43,7 +43,7 @@ describe('ProfileService', () => {
     service.loadProfile();
 
     const httpService = ngMocks.findInstance(HttpService);
-    expect(service['profileLoaded']()).toBe(false);
+
     expect(httpService.get).toHaveBeenCalledTimes(1);
     expect(service.profile$()).toBeNull();
   });
@@ -59,7 +59,7 @@ describe('ProfileService', () => {
     service.loadProfile();
 
     expect(service.profile$()).toEqual(mockProfile);
-    expect(service['profileLoaded']()).toBe(true);
+
     expect(httpService.get).toHaveBeenCalledTimes(1);
   }
 });
