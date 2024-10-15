@@ -42,8 +42,7 @@ import { ProfileService } from './services/profile.service';
     </main>
   `,
 })
-export class ProfileComponent  {
+export class ProfileComponent {
   private readonly profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
-
 }

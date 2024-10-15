@@ -10,7 +10,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class ProfileService {
   private readonly http = inject(HttpService);
 
-  profile$ = toSignal(this.loadProfile());
+  // profile$ = toSignal(this.loadProfile());
 
   loadProfile(): Observable<Profile> {
     return this.http.get<Profile>('stubs/data.json').pipe(
