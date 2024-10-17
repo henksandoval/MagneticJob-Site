@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeaderComponent } from '../../shared/layout/header/header.component';
 import { CoverComponent } from '../../shared/layout/cover/cover.component';
 import { FooterComponent } from '../../shared/layout/footer/footer.component';
@@ -42,11 +42,7 @@ import { ProfileService } from './services/profile.service';
     </main>
   `,
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   private readonly profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
-
-  ngOnInit(): void {
-    this.profileService.loadProfile();
-  }
 }
