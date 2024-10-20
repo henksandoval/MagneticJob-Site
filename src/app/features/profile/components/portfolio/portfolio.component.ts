@@ -13,7 +13,7 @@ import { Gallery } from './interfaces/gallery';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioComponent {
-  portfolioSet = input.required<PortFolio | undefined>();
+  portfolioSet = input<PortFolio>();
 
   webPages = computed(() => {
     const gallery = this.portfolioSet()?.gallery ?? [];
