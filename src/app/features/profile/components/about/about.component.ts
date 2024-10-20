@@ -11,5 +11,5 @@ import { About } from './interfaces/about';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutComponent {
-  aboutSet = input.required<About | undefined>();
+  aboutSet = input<About>();
 }
