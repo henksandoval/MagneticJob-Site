@@ -37,7 +37,7 @@ import { NgIf } from '@angular/common';
       <app-fact *ngIf="profile?.facts" [factSet]="profile?.facts" />
       <app-skills *ngIf="profile?.skillSet" [skillSet]="profile?.skillSet" />
       <app-summary *ngIf="profile?.summary" [summarySet]="profile?.summary" />
-      <app-portfolio *ngIf="profile?.portfolio" [portfolioSet]="profile?.portfolio" />
+      <app-portfolio *ngIf="profile?.portfolio" [portfolioSet]="profile!.portfolio" />
       <app-services *ngIf="profile?.service" [serviceSet]="profile?.service" />
       <app-testimonials *ngIf="profile?.testimonials" [testimonialSet]="profile?.testimonials" />
       <app-contact *ngIf="profile?.contact" [contactSet]="profile?.contact" />
