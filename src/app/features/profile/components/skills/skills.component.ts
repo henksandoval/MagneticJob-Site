@@ -9,5 +9,5 @@ import { SkillSet } from './interfaces/skills';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SkillsComponent {
-  skillSet = input.required<SkillSet | undefined>();
+  skillSet = input<SkillSet>();
 }
