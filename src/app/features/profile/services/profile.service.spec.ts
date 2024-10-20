@@ -25,7 +25,7 @@ describe('ProfileService', () => {
     const httpService = ngMocks.findInstance(HttpService);
 
     const profile = service.profile$();
-    
+
     expect(profile).toEqual(mockProfile);
     expect(httpService.get).toHaveBeenCalledTimes(1);
   });

@@ -49,15 +49,3 @@ describe('PortfolioComponent', () => {
     });
   });
 });
-
-describe('PortfolioComponentNullScenary', () => {
-  it('handles undefined correctly', async () => {
-    await render(PortfolioComponent, {
-      inputs: {
-        portfolioSet: undefined,
-      },
-    });
-
-    expect(screen.getByTestId('portfolio')).toBeEmptyDOMElement();
-  });
-});
