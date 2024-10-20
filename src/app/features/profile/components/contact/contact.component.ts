@@ -11,5 +11,5 @@ import { Contact } from './interfaces/contact';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
-  contactSet = input.required<Contact | undefined>();
+  contactSet = input<Contact>();
 }
