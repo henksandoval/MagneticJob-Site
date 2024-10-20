@@ -9,5 +9,5 @@ import { Service } from './interfaces/service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServicesComponent {
-  serviceSet = input.required<Service | undefined>();
+  serviceSet = input<Service>();
 }

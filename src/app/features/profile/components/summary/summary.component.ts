@@ -8,5 +8,5 @@ import { Summary } from './interfaces/summary';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SummaryComponent {
-  summarySet = input.required<Summary | undefined>();
+  summarySet = input<Summary>();
 }
