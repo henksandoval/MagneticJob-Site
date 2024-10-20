@@ -11,11 +11,13 @@ import { ServicesComponent } from './components/services/services.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ProfileService } from './services/profile.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
+    NgIf,
     HeaderComponent,
     CoverComponent,
     FooterComponent,
@@ -31,14 +33,14 @@ import { ProfileService } from './services/profile.service';
   template: `
     <main id="main">
       @let profile = profile$();
-      <app-about [aboutSet]="profile?.about" />
-      <app-fact [factSet]="profile?.facts" />
-      <app-skills [skillSet]="profile?.skillSet" />
-      <app-summary [summarySet]="profile?.summary" />
-      <app-portfolio [portfolioSet]="profile?.portfolio" />
-      <app-services [serviceSet]="profile?.service" />
-      <app-testimonials [testimonialSet]="profile?.testimonials" />
-      <app-contact [contactSet]="profile?.contact" />
+      <app-about *ngIf="profile?.about" [aboutSet]="profile?.about" />
+      <app-fact *ngIf="profile?.facts" [factSet]="profile?.facts" />
+      <app-skills *ngIf="profile?.skillSet" [skillSet]="profile?.skillSet" />
+      <app-summary *ngIf="profile?.summary" [summarySet]="profile?.summary" />
+      <app-portfolio *ngIf="profile?.portfolio" [portfolioSet]="profile?.portfolio" />
+      <app-services *ngIf="profile?.service" [serviceSet]="profile?.service" />
+      <app-testimonials *ngIf="profile?.testimonials" [testimonialSet]="profile?.testimonials" />
+      <app-contact *ngIf="profile?.contact" [contactSet]="profile?.contact" />
     </main>
   `,
 })

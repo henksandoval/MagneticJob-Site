@@ -11,5 +11,5 @@ import { Facts } from './facts';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FactComponent {
-  factSet = input.required<Facts | undefined>();
+  factSet = input<Facts>();
 }
