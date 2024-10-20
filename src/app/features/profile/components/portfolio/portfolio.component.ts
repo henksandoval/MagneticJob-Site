@@ -1,8 +1,9 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, input } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, input } from '@angular/core';
 import GLightbox from 'glightbox';
 import { PortFolio } from './interfaces/portfolio';
 import { Gallery } from './interfaces/gallery';
+import { PortfolioOverview } from './interfaces/portfolioOverview';
 
 @Component({
   selector: 'app-portfolio',
@@ -12,28 +13,10 @@ import { Gallery } from './interfaces/gallery';
   styleUrl: './portfolio.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PortfolioComponent {
-  portfolioSet = input<PortFolio>();
-
-  webPages = computed(() => {
-    const gallery = this.portfolioSet()?.gallery ?? [];
-    return this.sortWebPages(gallery);
+export class PortfolioComponent implements AfterViewInit {
+  portfolioSet = input.required<PortfolioOverview, PortFolio>({
+    transform: this.toPortfolioOverview.bind(this),
   });
-
-  webPagesByTypes = computed(() => {
-    const gallery = this.portfolioSet()?.gallery ?? [];
-    return this.groupWebPagesByType(gallery);
-  });
-
-  constructor() {
-    effect(() => {
-      if (this.portfolioSet()) {
-        setTimeout(() => {
-          this.initializeGLightbox();
-        }, 1500);
-      }
-    });
-  }
 
   private sortWebPages(webPages: Gallery[]): Gallery[] {
     return [...webPages].sort((a, b) => a.position - b.position);
@@ -41,6 +24,17 @@ export class PortfolioComponent {
 
   private groupWebPagesByType(webPages: Gallery[]): string[] {
     return Array.from(new Set(webPages.map((webPage) => webPage.type)));
+  }
+
+  toPortfolioOverview(portfolio: PortFolio): PortfolioOverview {
+    return {
+      pagesByType: this.groupWebPagesByType(portfolio.gallery),
+      sortedPages: this.sortWebPages(portfolio.gallery),
+    };
+  }
+
+  ngAfterViewInit() {
+    this.initializeGLightbox();
   }
 
   private initializeGLightbox(): void {
