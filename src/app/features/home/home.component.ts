@@ -5,13 +5,6 @@ import { FooterComponent } from '../../shared/layout/footer/footer.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { JsonPipe } from '@angular/common';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-export type menuSection = {
-  key: string;
-  icon: string;
-  label: string;
-  isActive: boolean;
-};
 @Component({
   selector: 'app-home',
   standalone: true,
