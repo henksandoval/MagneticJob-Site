@@ -1,11 +1,11 @@
-export interface Section {
+export interface MenuSection {
   key: string;
   icon: string;
   label: string;
   isActive: boolean;
 }
 
-export const SECTIONS: Section[] = [
+export const SECTIONS: MenuSection[] = [
   { key: 'hero', icon: 'bx-home', label: 'Home', isActive: true },
   { key: 'about', icon: 'bx-user', label: 'About', isActive: false },
   { key: 'resume', icon: 'bx-file-blank', label: 'Resume', isActive: false },
