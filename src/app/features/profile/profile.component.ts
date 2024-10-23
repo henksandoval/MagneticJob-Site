@@ -12,6 +12,7 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
 import { ContactComponent } from './components/contact/contact.component';
 import { ProfileService } from './services/profile.service';
 import { NgIf } from '@angular/common';
+import { MenuSection } from 'src/app/shared/layout/header/section';
 
 @Component({
   selector: 'app-profile',
@@ -35,6 +36,5 @@ import { NgIf } from '@angular/common';
 export class ProfileComponent {
   private readonly profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  sections = model<any>();
+  sections = model<Map<string, MenuSection>>();
 }
