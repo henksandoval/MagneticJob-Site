@@ -17,11 +17,19 @@ export class HeaderComponent {
   private readonly pageScrollService: PageScrollService = inject(PageScrollService);
   private readonly document: Document = inject(DOCUMENT);
 
-  setActive(section: MenuSection) {
+  setActive(section: MenuSection): void {
+    this.deactivateAllSections();
     section.isActive = true;
+    setTimeout(() => this.scrollTo(section.target), 250);
   }
 
-  scrollTo(target: string) {
+  private deactivateAllSections(): void {
+    this.sections()?.forEach((section) => {
+      section.isActive = false;
+    });
+  }
+
+  scrollTo(target: string): void {
     this.activeSectionId = target;
     this.pageScrollService.scroll({ document: this.document, scrollTarget: `#${this.activeSectionId}` });
   }
