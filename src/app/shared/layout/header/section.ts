@@ -4,9 +4,6 @@ export interface MenuSection {
   label?: string;
   isActive: boolean;
 }
-export const DEFAULT_SECTION: MenuSection = {
-  isActive: false,
-};
 
 export const MENU_SECTIONS = new Map<string, MenuSection>([
   ['hero', { target: 'hero', icon: 'bx-home', label: 'Home', isActive: true }],
