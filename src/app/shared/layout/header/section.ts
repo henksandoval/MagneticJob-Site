@@ -1,16 +1,21 @@
 export interface MenuSection {
-  key: string;
-  icon: string;
-  label: string;
+  target?: string;
+  icon?: string;
+  label?: string;
   isActive: boolean;
 }
+export const DEFAULT_SECTION: MenuSection = {
+  isActive: false,
+};
 
-export const SECTIONS: MenuSection[] = [
-  { key: 'hero', icon: 'bx-home', label: 'Home', isActive: true },
-  { key: 'about', icon: 'bx-user', label: 'About', isActive: false },
-  { key: 'resume', icon: 'bx-file-blank', label: 'Resume', isActive: false },
-  { key: 'portfolio', icon: 'bx-book-content', label: 'Portfolio', isActive: false },
-  { key: 'skills', icon: 'bx-brain', label: 'Skills', isActive: false },
-  { key: 'services', icon: 'bx-server', label: 'Services', isActive: false },
-  { key: 'contact', icon: 'bx-envelope', label: 'Contact', isActive: false },
-];
+export const MENU_SECTIONS = new Map<string, MenuSection>([
+  ['hero', { target: 'hero', icon: 'bx-home', label: 'Home', isActive: true }],
+  ['about', { target: 'about', icon: 'bx-user', label: 'About', isActive: false }],
+  ['resume', { target: 'resume', icon: 'bx-file-blank', label: 'Resume', isActive: false }],
+  ['portfolio', { target: 'portfolio', icon: 'bx-book-content', label: 'Portfolio', isActive: false }],
+  ['skills', { target: 'skills', icon: 'bx-brain', label: 'Skills', isActive: false }],
+  ['facts', { target: 'facts', icon: 'bx-user', label: 'Facts', isActive: false }],
+  ['services', { target: 'services', icon: 'bx-server', label: 'Services', isActive: false }],
+  ['testimonials', { target: 'testimonials', icon: 'bx-server', label: 'Testimonials', isActive: false }],
+  ['contact', { target: 'contact', icon: 'bx-envelope', label: 'Contact', isActive: false }],
+]);
