@@ -16,12 +16,12 @@ describe('HeaderComponent', () => {
 
   it('should set an anchor by each section defined', () => {
     SECTIONS.forEach((section) => {
-      const anchor = screen.getByTestId(`a_${section.target}`);
+      const anchor = screen.getByTestId(`a_${section.key}`);
 
       anchor.click();
       expect(mockPageScrollService.scroll).toHaveBeenCalledWith({
         document: expect.anything(),
-        scrollTarget: `#${section.target}`,
+        scrollTarget: `#${section.key}`,
       });
     });
   });
