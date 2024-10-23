@@ -3,85 +3,92 @@
     <ul>
       <li>
         <button
-          (click)="setActive(sections().hero)"
-          [class.active]="sections().hero.isActive"
+          (click)="setActive(sections()?.get('hero') ?? defaultSection)"
+          [class.active]="sections()?.get('hero')?.isActive"
           class="nav-link"
         >
-          <i class="bx" [ngClass]="sections().hero.icon"></i> <span>{{ sections().hero.label }}</span>
+          <i class="bx" [ngClass]="sections()?.get('hero')?.icon"></i>
+          <span>{{ sections()?.get('hero')?.label }}</span>
         </button>
       </li>
       <li>
         <button
-          (click)="setActive(sections().about)"
-          [class.active]="sections().about.isActive"
+          (click)="setActive(sections()?.get('about') ?? defaultSection)"
+          [class.active]="sections()?.get('about')?.isActive"
           class="nav-link"
         >
-          <i class="bx" [ngClass]="sections().about.icon"></i> <span>{{ sections().about.label }}</span>
+          <i class="bx" [ngClass]="sections()?.get('about')?.icon"></i>
+          <span>{{ sections()?.get('about')?.label }}</span>
         </button>
       </li>
       <li>
         <button
-          (click)="setActive(sections().resume)"
-          [class.active]="sections().resume.isActive"
+          (click)="setActive(sections()?.get('resume') ?? defaultSection)"
+          [class.active]="sections()?.get('resume')?.isActive"
           class="nav-link"
         >
-          <i class="bx" [ngClass]="sections().resume.icon"></i> <span>{{ sections().resume.label }}</span>
+          <i class="bx" [ngClass]="sections()?.get('resume')?.icon"></i>
+          <span>{{ sections()?.get('resume')?.label }}</span>
         </button>
       </li>
       <li>
         <button
-          (click)="setActive(sections().portfolio)"
-          [class.active]="sections().portfolio.isActive"
+          (click)="setActive(sections()?.get('portfolio') ?? defaultSection)"
+          [class.active]="sections()?.get('portfolio')?.isActive"
           class="nav-link"
         >
-          <i class="bx" [ngClass]="sections().portfolio.icon"></i>
-          <span>{{ sections().portfolio.label }}</span>
+          <i class="bx" [ngClass]="sections()?.get('portfolio')?.icon"></i>
+          <span>{{ sections()?.get('portfolio')?.label }}</span>
         </button>
       </li>
       <li>
         <button
-          (click)="setActive(sections().skills)"
-          [class.active]="sections().skills.isActive"
+          (click)="setActive(sections()?.get('skills') ?? defaultSection)"
+          [class.active]="sections()?.get('skills')?.isActive"
           class="nav-link"
         >
-          <i class="bx" [ngClass]="sections().skills.icon"></i> <span>{{ sections().skills.label }}</span>
+          <i class="bx" [ngClass]="sections()?.get('skills')?.icon"></i>
+          <span>{{ sections()?.get('skills')?.label }}</span>
         </button>
       </li>
       <li>
         <button
-          (click)="setActive(sections().facts)"
-          [class.active]="sections().facts.isActive"
+          (click)="setActive(sections()?.get('facts') ?? defaultSection)"
+          [class.active]="sections()?.get('facts')?.isActive"
           class="nav-link"
         >
-          <i class="bx" [ngClass]="sections().facts.icon"></i> <span>{{ sections().facts.label }}</span>
+          <i class="bx" [ngClass]="sections()?.get('facts')?.icon"></i>
+          <span>{{ sections()?.get('facts')?.label }}</span>
         </button>
       </li>
       <li>
         <button
-          (click)="setActive(sections().services)"
-          [class.active]="sections().services.isActive"
+          (click)="setActive(sections()?.get('services') ?? defaultSection)"
+          [class.active]="sections()?.get('services')?.isActive"
           class="nav-link"
         >
-          <i class="bx" [ngClass]="sections().services.icon"></i> <span>{{ sections().services.label }}</span>
+          <i class="bx" [ngClass]="sections()?.get('services')?.icon"></i>
+          <span>{{ sections()?.get('services')?.label }}</span>
         </button>
       </li>
       <li>
         <button
-          (click)="setActive(sections().testimonials)"
-          [class.active]="sections().testimonials.isActive"
+          (click)="setActive(sections()?.get('testimonials') ?? defaultSection)"
+          [class.active]="sections()?.get('testimonials')?.isActive"
           class="nav-link"
         >
-          <i class="bx" [ngClass]="sections().testimonials.icon"></i>
-          <span>{{ sections().testimonials.label }}</span>
+          <i class="bx" [ngClass]="sections()?.get('testimonials')?.icon"></i>
+          <span>{{ sections()?.get('testimonials')?.label }}</span>
         </button>
       </li>
       <li>
         <button
-          (click)="setActive(sections().contact)"
-          [class.active]="sections().contact.isActive"
+          (click)="setActive(sections()?.get('contact') ?? defaultSection)"
+          [class.active]="sections()?.get('contact')?.isActive"
           class="nav-link"
         >
-          <i class="bx" [ngClass]="sections().contact.icon"></i> <span>{{ sections().contact.label }}</span>
+          <i class="bx" [ngClass]="sections()?.get('contact')?.icon"></i>
+          <span>{{ sections()?.get('contact')?.label }}</span>
         </button>
       </li>
     </ul>
