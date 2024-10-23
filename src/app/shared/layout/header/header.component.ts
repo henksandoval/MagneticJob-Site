@@ -1,7 +1,7 @@
 import { Component, inject, model } from '@angular/core';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT, JsonPipe, NgClass, NgFor } from '@angular/common';
-import { menuSection } from 'src/app/features/home/home.component';
+import { MenuSection } from './section';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +18,7 @@ export class HeaderComponent {
   private readonly pageScrollService: PageScrollService = inject(PageScrollService);
   private readonly document: Document = inject(DOCUMENT);
 
-  setActive(section: menuSection) {
+  setActive(section: MenuSection) {
     section.isActive = true;
   }
 
