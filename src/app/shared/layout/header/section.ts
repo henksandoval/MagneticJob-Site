@@ -1,14 +1,14 @@
 export interface MenuSection {
-  target?: string;
-  icon?: string;
-  label?: string;
+  target: string;
+  icon: string;
+  label: string;
   isActive: boolean;
 }
 
 export const MENU_SECTIONS = new Map<string, MenuSection>([
   ['hero', { target: 'hero', icon: 'bx-home', label: 'Home', isActive: true }],
   ['about', { target: 'about', icon: 'bx-user', label: 'About', isActive: false }],
-  ['resume', { target: 'resume', icon: 'bx-file-blank', label: 'Resume', isActive: false }],
+  ['resume', { target: 'summary', icon: 'bx-file-blank', label: 'Resume', isActive: false }],
   ['portfolio', { target: 'portfolio', icon: 'bx-book-content', label: 'Portfolio', isActive: false }],
   ['skills', { target: 'skills', icon: 'bx-brain', label: 'Skills', isActive: false }],
   ['facts', { target: 'facts', icon: 'bx-user', label: 'Facts', isActive: false }],
