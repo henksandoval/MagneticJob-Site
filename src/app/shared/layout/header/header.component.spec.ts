@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/angular';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { HeaderComponent } from './header.component';
-import { SECTIONS } from './section';
+import { MENU_SECTIONS } from './section';
 
 const mockPageScrollService = {
   scroll: jest.fn(),
@@ -15,13 +15,29 @@ describe('HeaderComponent', () => {
   });
 
   it('should set an anchor by each section defined', () => {
-    SECTIONS.forEach((section) => {
-      const anchor = screen.getByTestId(`a_${section.key}`);
+    MENU_SECTIONS.forEach((section) => {
+      const anchor = screen.getByTestId(`a_${section.target}`);
 
       anchor.click();
       expect(mockPageScrollService.scroll).toHaveBeenCalledWith({
         document: expect.anything(),
-        scrollTarget: `#${section.key}`,
+        scrollTarget: `#${section.target}`,
+      });
+    });
+  });
+
+  it('should deactivate all sections and activate the clicked one', () => {
+    MENU_SECTIONS.forEach((section) => {
+      const anchor = screen.getByTestId(`a_${section.target}`);
+
+      anchor.click();
+
+      MENU_SECTIONS.forEach((sec) => {
+        if (sec.target === section.target) {
+          expect(sec.isActive).toBe(true);
+        } else {
+          expect(sec.isActive).toBe(false);
+        }
       });
     });
   });
