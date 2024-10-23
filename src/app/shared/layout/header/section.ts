@@ -1,15 +1,16 @@
 export interface Section {
-  target: string;
+  key: string;
   icon: string;
   label: string;
+  isActive: boolean;
 }
 
 export const SECTIONS: Section[] = [
-  { target: 'hero', icon: 'bx-home', label: 'Home' },
-  { target: 'about', icon: 'bx-user', label: 'About' },
-  { target: 'resume', icon: 'bx-file-blank', label: 'Resume' },
-  { target: 'portfolio', icon: 'bx-book-content', label: 'Portfolio' },
-  { target: 'skills', icon: 'bx-brain', label: 'Skills' },
-  { target: 'services', icon: 'bx-server', label: 'Services' },
-  { target: 'contact', icon: 'bx-envelope', label: 'Contact' },
+  { key: 'hero', icon: 'bx-home', label: 'Home', isActive: true },
+  { key: 'about', icon: 'bx-user', label: 'About', isActive: false },
+  { key: 'resume', icon: 'bx-file-blank', label: 'Resume', isActive: false },
+  { key: 'portfolio', icon: 'bx-book-content', label: 'Portfolio', isActive: false },
+  { key: 'skills', icon: 'bx-brain', label: 'Skills', isActive: false },
+  { key: 'services', icon: 'bx-server', label: 'Services', isActive: false },
+  { key: 'contact', icon: 'bx-envelope', label: 'Contact', isActive: false },
 ];

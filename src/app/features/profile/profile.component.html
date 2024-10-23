@@ -1,0 +1,26 @@
+<main id="main">
+  @let profile = profile$();
+
+  <app-about *ngIf="profile?.about" [aboutSet]="profile!.about" />
+  @defer (when sections().resume.isActive) {
+    <app-summary *ngIf="profile?.summary" [summarySet]="profile!.summary" />
+  }
+  @defer (when sections().portfolio.isActive) {
+    <app-portfolio *ngIf="profile?.portfolio" [portfolioSet]="profile!.portfolio" />
+  }
+  @defer (when sections().skills.isActive) {
+    <app-skills *ngIf="profile?.skillSet" [skillSet]="profile!.skillSet" />
+  }
+  @defer (when sections().facts.isActive) {
+    <app-fact *ngIf="profile?.facts" [factSet]="profile!.facts" />
+  }
+  @defer (when sections().services.isActive) {
+    <app-services *ngIf="profile?.service" [serviceSet]="profile!.service" />
+  }
+  @defer (when sections().testimonials.isActive) {
+    <app-testimonials *ngIf="profile?.testimonials" [testimonialSet]="profile!.testimonials" />
+  }
+  @defer (when sections().contact.isActive) {
+    <app-contact *ngIf="profile?.contact" [contactSet]="profile!.contact" />
+  }
+</main>
