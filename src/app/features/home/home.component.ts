@@ -3,7 +3,7 @@ import { HeaderComponent } from '../../shared/layout/header/header.component';
 import { CoverComponent } from '../../shared/layout/cover/cover.component';
 import { FooterComponent } from '../../shared/layout/footer/footer.component';
 import { ProfileComponent } from '../profile/profile.component';
-import { MENU_SECTIONS } from 'src/app/shared/layout/header/section';
+import { MENU_SECTIONS } from 'src/app/shared/layout/header/constants';
 
 @Component({
   selector: 'app-home',
