@@ -13,7 +13,7 @@ export class ProfileService {
   profile$ = toSignal(this.loadProfile());
 
   private loadProfile(): Observable<Profile> {
-    return this.http.get<Profile>('stubs/data.json').pipe(
+    return this.http.get<Profile>('stubs/data.jane.json').pipe(
       catchError(() => {
         return EMPTY;
       })
