@@ -1,7 +1,8 @@
 import { Component, inject, model } from '@angular/core';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { DOCUMENT, NgClass, NgFor } from '@angular/common';
-import { MenuSection } from './section';
+import { MenuSection } from './interfaces/menu-section';
+import { SCROLL_DELAY_MS } from './constants';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent {
   setActive(section: MenuSection): void {
     this.deactivateAllSections();
     section.isActive = true;
-    setTimeout(() => this.scrollTo(section.target), 250);
+    setTimeout(() => this.scrollTo(section.target), SCROLL_DELAY_MS);
   }
 
   private deactivateAllSections(): void {

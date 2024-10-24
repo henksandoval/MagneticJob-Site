@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/angular';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { HeaderComponent } from './header.component';
-import { MENU_SECTIONS } from './section';
+import { MENU_SECTIONS, SCROLL_DELAY_MS } from './constants';
+
+jest.useFakeTimers();
 
 const mockPageScrollService = {
   scroll: jest.fn(),
@@ -11,6 +13,9 @@ describe('HeaderComponent', () => {
   beforeEach(async () => {
     await render(HeaderComponent, {
       providers: [{ provide: PageScrollService, useValue: mockPageScrollService }],
+      componentInputs: {
+        sections: MENU_SECTIONS,
+      },
     });
   });
 
@@ -19,6 +24,9 @@ describe('HeaderComponent', () => {
       const anchor = screen.getByTestId(`a_${section.target}`);
 
       anchor.click();
+
+      jest.advanceTimersByTime(SCROLL_DELAY_MS);
+
       expect(mockPageScrollService.scroll).toHaveBeenCalledWith({
         document: expect.anything(),
         scrollTarget: `#${section.target}`,
