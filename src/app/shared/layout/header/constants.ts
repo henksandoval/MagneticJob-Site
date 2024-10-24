@@ -1,9 +1,6 @@
-export interface MenuSection {
-  target: string;
-  icon: string;
-  label: string;
-  isActive: boolean;
-}
+import { MenuSection } from './interfaces/menu-section';
+
+export const SCROLL_DELAY_MS = 250;
 
 export const MENU_SECTIONS = new Map<string, MenuSection>([
   ['hero', { target: 'hero', icon: 'bx-home', label: 'Home', isActive: true }],

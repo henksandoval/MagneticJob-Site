@@ -12,7 +12,7 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
 import { ContactComponent } from './components/contact/contact.component';
 import { ProfileService } from './services/profile.service';
 import { NgIf } from '@angular/common';
-import { MenuSection } from 'src/app/shared/layout/header/section';
+import { MenuSection } from 'src/app/shared/layout/header/interfaces/menu-section';
 
 @Component({
   selector: 'app-profile',
