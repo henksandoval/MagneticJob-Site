@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, model } from '@angular/core';
 import { HeaderComponent } from '../../shared/layout/header/header.component';
 import { CoverComponent } from '../../shared/layout/cover/cover.component';
 import { FooterComponent } from '../../shared/layout/footer/footer.component';
@@ -12,6 +12,7 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
 import { ContactComponent } from './components/contact/contact.component';
 import { ProfileService } from './services/profile.service';
 import { NgIf } from '@angular/common';
+import { MenuSection } from 'src/app/shared/layout/header/interfaces/menu-section';
 
 @Component({
   selector: 'app-profile',
@@ -30,21 +31,10 @@ import { NgIf } from '@angular/common';
     TestimonialsComponent,
     ContactComponent,
   ],
-  template: `
-    <main id="main">
-      @let profile = profile$();
-      <app-about *ngIf="profile?.about" [aboutSet]="profile!.about" />
-      <app-fact *ngIf="profile?.facts" [factSet]="profile!.facts" />
-      <app-skills *ngIf="profile?.skillSet" [skillSet]="profile!.skillSet" />
-      <app-summary *ngIf="profile?.summary" [summarySet]="profile!.summary" />
-      <app-portfolio *ngIf="profile?.portfolio" [portfolioSet]="profile!.portfolio" />
-      <app-services *ngIf="profile?.service" [serviceSet]="profile!.service" />
-      <app-testimonials *ngIf="profile?.testimonials" [testimonialSet]="profile!.testimonials" />
-      <app-contact *ngIf="profile?.contact" [contactSet]="profile!.contact" />
-    </main>
-  `,
+  templateUrl: './profile.component.html',
 })
 export class ProfileComponent {
   private readonly profileService: ProfileService = inject(ProfileService);
   profile$ = this.profileService.profile$;
+  sections = model<Map<string, MenuSection>>();
 }

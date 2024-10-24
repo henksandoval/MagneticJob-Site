@@ -1,0 +1,41 @@
+<main id="main">
+  @let profile = profile$();
+
+  <app-about *ngIf="profile?.about" [aboutSet]="profile!.about" />
+
+  @defer (on viewport; when sections()?.get('resume')?.isActive) {
+    <app-summary *ngIf="profile?.summary" [summarySet]="profile!.summary" />
+  } @placeholder {
+    <div>loading...</div>
+  }
+  @defer (on viewport; when sections()?.get('portfolio')?.isActive) {
+    <app-portfolio *ngIf="profile?.portfolio" [portfolioSet]="profile!.portfolio" />
+  } @placeholder {
+    <div>loading...</div>
+  }
+  @defer (on viewport; when sections()?.get('skills')?.isActive) {
+    <app-skills *ngIf="profile?.skillSet" [skillSet]="profile!.skillSet" />
+  } @placeholder {
+    <div>loading...</div>
+  }
+  @defer (on viewport; when sections()?.get('facts')?.isActive) {
+    <app-fact *ngIf="profile?.facts" [factSet]="profile!.facts" />
+  } @placeholder {
+    <div>loading...</div>
+  }
+  @defer (on viewport; when sections()?.get('services')?.isActive) {
+    <app-services *ngIf="profile?.service" [serviceSet]="profile!.service" />
+  } @placeholder {
+    <div>loading...</div>
+  }
+  @defer (on viewport; when sections()?.get('testimonials')?.isActive) {
+    <app-testimonials *ngIf="profile?.testimonials" [testimonialSet]="profile!.testimonials" />
+  } @placeholder {
+    <div>loading...</div>
+  }
+  @defer (on viewport; when sections()?.get('contact')?.isActive) {
+    <app-contact *ngIf="profile?.contact" [contactSet]="profile!.contact" />
+  } @placeholder {
+    <div>loading...</div>
+  }
+</main>
