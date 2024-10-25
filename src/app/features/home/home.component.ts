@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
-import { HeaderComponent } from '../../shared/layout/header/header.component';
-import { CoverComponent } from '../../shared/layout/cover/cover.component';
-import { FooterComponent } from '../../shared/layout/footer/footer.component';
+import { HeaderComponent } from '../../shared/layouts/header/header.component';
+import { CoverComponent } from '../../shared/layouts/cover/cover.component';
+import { FooterComponent } from '../../shared/layouts/footer/footer.component';
 import { ProfileComponent } from '../profile/profile.component';
-import { MENU_SECTIONS } from 'src/app/shared/layout/header/constants';
+import { MENU_SECTIONS } from 'src/app/shared/layouts/header/constants';
 import { ActivatedRoute } from '@angular/router';
 import { StateService } from '@core/services/state/state.service';
 
