@@ -1,0 +1,264 @@
+{
+  "about": {
+    "imageUrl": "https://example.com/images/profile-img-another.jpg",
+    "description": "Hello! I'm Alex Martinez, a dedicated software engineer with a knack for developing efficient and robust systems. With 8 years in the tech world, I thrive on solving complex problems and creating seamless digital experiences.",
+    "text": "Software Engineer & System Architect.",
+    "hobbies": "I enjoy cycling, photography, and exploring the latest tech trends. Continuous learning is a core part of my life, and I love tackling new challenges.",
+    "birthday": "22/11/1988",
+    "website": "www.alexmartinez.dev",
+    "phoneNumber": "+34987654322",
+    "city": "Valencia, España",
+    "age": "35",
+    "Degree": "PhD",
+    "email": "alex.martinez@example.com",
+    "freelance": "Available",
+    "workExperience": "Led multiple teams in developing scalable web applications, focusing on backend architecture and API design. Passionate about optimizing performance and enhancing user experience."
+  },
+  "facts": {
+    "description": "I once built a fully functional robot in a weekend hackathon.",
+    "happyClients": "200+ Happy Clients",
+    "projects": "300+ Projects",
+    "hoursOfSupport": "2000+ Hours Of Support",
+    "Awards": "10 Awards"
+  },
+  "skillSet": {
+    "overview": "As a full-stack developer, I love diving into both frontend and backend technologies to create comprehensive solutions.",
+    "skillDetails": [
+      {
+        "name": "android",
+        "iconUrl": "https://cdn.simpleicons.org/android",
+        "rank": "1"
+      },
+      {
+        "name": "Kotlin",
+        "iconUrl": "https://cdn.simpleicons.org/kotlin",
+        "rank": "2"
+      },
+      {
+        "name": "Spring Boot",
+        "iconUrl": "https://cdn.simpleicons.org/spring",
+        "rank": "3"
+      },
+      {
+        "name": "Angular",
+        "iconUrl": "https://cdn.simpleicons.org/angular",
+        "rank": "4"
+      },
+      {
+        "name": "GraphQL",
+        "iconUrl": "https://cdn.simpleicons.org/graphql",
+        "rank": "5"
+      },
+      {
+        "name": "MySQL",
+        "iconUrl": "https://cdn.simpleicons.org/mysql",
+        "rank": "6"
+      },
+      {
+        "name": "TypeScript",
+        "iconUrl": "https://cdn.simpleicons.org/typescript",
+        "rank": "7"
+      },
+      {
+        "name": "Sass",
+        "iconUrl": "https://cdn.simpleicons.org/sass",
+        "rank": "8"
+      },
+      {
+        "name": "Git",
+        "iconUrl": "https://cdn.simpleicons.org/git",
+        "rank": "9"
+      },
+      {
+        "name": "Kubernetes",
+        "iconUrl": "https://cdn.simpleicons.org/kubernetes",
+        "rank": "10"
+      },
+      {
+        "name": "Terraform",
+        "iconUrl": "https://cdn.simpleicons.org/terraform",
+        "rank": "11"
+      },
+      {
+        "name": "CI/CD",
+        "iconUrl": "https://cdn.simpleicons.org/jenkins",
+        "rank": "12"
+      }
+    ]
+  },
+  "titles": {
+    "resume": "Curriculum Vitae",
+    "summary": "Overview",
+    "education": "Academic Background",
+    "workExperience": "Career History"
+  },
+  "summary": {
+    "about": "I am an experienced software engineer with expertise in designing and implementing scalable systems. Skilled in languages like Java and Kotlin, with a deep understanding of frameworks such as Spring Boot and Angular. Experienced with relational and non-relational databases, and proficient in version control using Git. I thrive in agile environments, employing methodologies like Scrum to enhance productivity and collaboration. My strong problem-solving abilities and communication skills make me a valuable team player, always ready to adapt to new challenges.",
+    "name": "Chris Thompson",
+    "introduction": "Dynamic and results-oriented Software Architect with over 10 years of experience in developing and leading high-performance applications.",
+    "contactProfile": {
+      "direction": "Calle Mayor, 15, Valencia - España",
+      "email": "chris.thompson@example.com",
+      "phoneNumber": "+34987654323"
+    },
+    "education": {
+      "academicBackground": [
+        {
+          "experience": "PhD in Computer Science",
+          "startdate": "2013 - 2017",
+          "Academy": "Massachusetts Institute of Technology, Cambridge, MA",
+          "description": "Research focused on distributed systems and cloud computing technologies."
+        },
+        {
+          "experience": "Bachelor of Science in Software Engineering",
+          "startdate": "2008 - 2012",
+          "Academy": "University of Illinois, Urbana-Champaign, IL",
+          "description": "Comprehensive study of software development practices and methodologies."
+        }
+      ]
+    },
+    "workExperience": {
+      "position": [
+        {
+          "specialist": "Chief Technology Officer",
+          "startdate": "2021 - Present",
+          "location": "Innovatech Solutions, Madrid, España",
+          "communicationDesignLeadership": "Directed the development of cutting-edge tech solutions, driving innovation across all projects.",
+          "teamLeadership": "Led a team of 50+ engineers, fostering a culture of continuous improvement.",
+          "designQualityAssurance": "Ensured all deliverables exceeded industry standards for quality and performance.",
+          "expertiseArea": "Specialized in cloud architecture and microservices design."
+        },
+        {
+          "specialist": "Senior Software Developer",
+          "startdate": "2017 - 2021",
+          "location": "TechWorld, Barcelona, España",
+          "communicationDesignLeadership": "Developed and optimized backend services, enhancing system efficiency.",
+          "teamLeadership": "Collaborated with cross-functional teams to deliver seamless integrations.",
+          "designQualityAssurance": "Implemented robust testing strategies to ensure software reliability.",
+          "expertiseArea": "Focused on API development and system scalability."
+        }
+      ]
+    }
+  },
+  "portfolio": {
+    "gallery": [
+      {
+        "position": 1,
+        "title": "Tech Innovations",
+        "description": "Exploring future technology trends through engaging content.",
+        "link": "https://techinnovations.com/",
+        "image": "https://images.pexels.com/photos/5432109/pexels-photo-5432109.jpeg",
+        "type": "BLOG"
+      },
+      {
+        "position": 2,
+        "title": "Nature's Beauty",
+        "description": "Capturing the stunning beauty of nature through photography.",
+        "link": "https://naturesbeauty.com/",
+        "image": "https://images.pexels.com/photos/8765432/pexels-photo-8765432.jpeg",
+        "type": "PHOTOGRAPHY"
+      },
+      {
+        "position": 3,
+        "title": "Cityscapes",
+        "description": "A visual journey through the world's most vibrant cities.",
+        "link": "https://cityscapes.com/",
+        "image": "https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg",
+        "type": "ART"
+      },
+      {
+        "position": 4,
+        "title": "Culinary Delights",
+        "description": "Showcasing the art of culinary creations through imagery.",
+        "image": "https://images.pexels.com/photos/2345678/pexels-photo-2345678.jpeg",
+        "type": "FOOD"
+      },
+      {
+        "position": 5,
+        "title": "Melodic Moments",
+        "description": "Visual interpretations of music's emotional impact.",
+        "image": "https://images.pexels.com/photos/3456789/pexels-photo-3456789.jpeg",
+        "type": "MUSIC"
+      },
+      {
+        "position": 6,
+        "title": "Adventure Awaits",
+        "description": "Inspiring wanderlust through travel photography.",
+        "link": "",
+        "image": "https://images.pexels.com/photos/4567890/pexels-photo-4567890.jpeg",
+        "type": "TRAVEL"
+      },
+      {
+        "position": 7,
+        "title": "Architectural Wonders",
+        "description": "Exploring the world's most iconic structures.",
+        "image": "https://images.pexels.com/photos/6543210/pexels-photo-6543210.jpeg",
+        "video": "https://videos.pexels.com/video/9876543/9876543-uhd.mp4",
+        "type": "ARCHITECTURE"
+      }
+    ]
+  },
+  "service": {
+    "title": "Our Expertise",
+    "overview": "We excel in delivering tailored digital solutions that meet your business objectives. Our experts in software development, design, and marketing are committed to guiding you through every step of the process.",
+    "serviceDetails": [
+      {
+        "name": "Cloud Solutions",
+        "description": "We design and implement cloud architectures that are secure and scalable.",
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2024/08/06/10/43/cloud-8949009_1280.jpg"
+      },
+      {
+        "name": "Custom Software Development",
+        "description": "Develop software solutions tailored to your specific business needs.",
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2023/08/11/08/29/software-8183107_1280.jpg"
+      },
+      {
+        "name": "Cybersecurity",
+        "description": "Ensure the security and integrity of your digital assets with our cybersecurity services.",
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2024/02/20/13/21/cybersecurity-8585535_1280.jpg"
+      },
+      {
+        "name": "Digital Transformation",
+        "description": "Transform your business processes with our digital solutions.",
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2024/01/25/10/50/digital-8531576_1280.jpg"
+      }
+    ]
+  },
+  "contact": {
+    "direction": "Calle Mayor, 15, Valencia - España",
+    "email": "alex.martinez@example.com",
+    "phoneNumber": "+34987654322"
+  },
+  "testimonials": [
+    {
+      "name": "Maria Lopez",
+      "jobTitle": "Chief Marketing Officer",
+      "photoUrl": "https://randomuser.me/api/portraits/women/75.jpg",
+      "testimonial": "Their innovative solutions have transformed our business operations remarkably."
+    },
+    {
+      "name": "David Kim",
+      "jobTitle": "Operations Manager",
+      "photoUrl": "https://randomuser.me/api/portraits/men/80.jpg",
+      "testimonial": "An amazing team to work with, delivering results beyond expectations."
+    },
+    {
+      "name": "Sarah Taylor",
+      "jobTitle": "Creative Director",
+      "photoUrl": "https://randomuser.me/api/portraits/women/85.jpg",
+      "testimonial": "Their expertise in design and development is truly exceptional."
+    },
+    {
+      "name": "Edward Johnson",
+      "jobTitle": "IT Director",
+      "photoUrl": "https://randomuser.me/api/portraits/men/90.jpg",
+      "testimonial": "Highly recommend for their professionalism and technical skills."
+    },
+    {
+      "name": "Olivia Brown",
+      "jobTitle": "Business Analyst",
+      "photoUrl": "https://randomuser.me/api/portraits/women/95.jpg",
+      "testimonial": "Their strategic approach and execution are unparalleled."
+    }
+  ]
+}

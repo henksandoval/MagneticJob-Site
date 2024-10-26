@@ -1,7 +1,7 @@
 import { Component, inject, model } from '@angular/core';
-import { HeaderComponent } from '../../shared/layout/header/header.component';
-import { CoverComponent } from '../../shared/layout/cover/cover.component';
-import { FooterComponent } from '../../shared/layout/footer/footer.component';
+import { HeaderComponent } from '../../shared/layouts/header/header.component';
+import { CoverComponent } from '../../shared/layouts/cover/cover.component';
+import { FooterComponent } from '../../shared/layouts/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { FactComponent } from './components/fact/fact.component';
 import { SkillsComponent } from './components/skills/skills.component';
@@ -12,7 +12,7 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
 import { ContactComponent } from './components/contact/contact.component';
 import { ProfileService } from './services/profile.service';
 import { NgIf } from '@angular/common';
-import { MenuSection } from 'src/app/shared/layout/header/interfaces/menu-section';
+import { MenuSection } from 'src/app/shared/layouts/header/interfaces/menu-section';
 
 @Component({
   selector: 'app-profile',
