@@ -1,0 +1,146 @@
+// Variables
+$primary-font: Arial, sans-serif;
+$white-color: #fff;
+$black-color: #000;
+$circle-background: #34495e;
+$circle-border-gradient: linear-gradient(#2c3e50, #2c3e50),
+linear-gradient(45deg, #e74c3c, #8e44ad, #3498db, #27ae60);
+
+/* Estilos generales para el cuerpo y el HTML */
+body,
+html {
+  height: 100%; /* Ocupan toda la altura de la ventana del navegador */
+  margin: 0; /* Elimina márgenes por defecto */
+  display: flex; /* Usa Flexbox para organizar elementos */
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  text-align: center; /* Centra el texto dentro de los elementos */
+  font-family: $primary-font; /* Fuente del texto */
+  color: $white-color; /* Color del texto en blanco */
+  overflow: hidden; /* Oculta cualquier contenido que se desborde */
+  padding: 20px; /* Añade espacio alrededor del contenido */
+  box-sizing: border-box; /* Incluye padding y border en el tamaño total del elemento */
+  background-color: $black-color; /* Fondo negro para contraste */
+}
+
+/* Fondo animado */
+.background {
+  position: absolute; /* Posiciona el elemento en relación al primer elemento posicionado */
+  width: 200%; /* Doble del ancho de la ventana */
+  height: 200%; /* Doble de la altura de la ventana */
+  background: radial-gradient(circle at 20% 20%, #2c3e50, transparent 20%),
+  radial-gradient(circle at 80% 80%, #8e44ad, transparent 20%),
+  radial-gradient(circle at 50% 50%, #2980b9, transparent 20%),
+  radial-gradient(circle at 80% 20%, #c0392b, transparent 20%);
+  background-size: 200% 200%; /* Escala el fondo para cubrir el área */
+  animation: gradient 15s ease infinite; /* Aplica la animación definida a continuación */
+  z-index: -1; /* Coloca el fondo detrás de otros elementos */
+}
+
+/* Animación para el fondo */
+@keyframes gradient {
+  0% {
+    background-position: 0 0;
+  } /* Posición inicial del fondo */
+  25% {
+    background-position: 100% 50%;
+  } /* Desplazamiento del fondo */
+  50% {
+    background-position: 50% 100%;
+  } /* Desplazamiento del fondo */
+  75% {
+    background-position: 0 50%;
+  } /* Desplazamiento del fondo */
+  100% {
+    background-position: 50% 0;
+  } /* Posición final del fondo */
+}
+
+/* Contenedor de los círculos */
+.circle-container {
+  display: flex; /* Usa Flexbox para organizar los círculos */
+  gap: 40px; /* Espacio entre los círculos */
+  padding: 20px; /* Añade espacio alrededor del contenido */
+}
+
+/* Estilo de los círculos */
+.circle {
+  width: 150px; /* Ancho del círculo */
+  height: 150px; /* Altura del círculo */
+  background-color: $circle-background; /* Color de fondo del círculo */
+  border-radius: 50%; /* Hace que el elemento sea circular */
+  display: flex; /* Usa Flexbox para centrar el contenido */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  position: relative; /* Permite posicionar elementos hijos relativos a este */
+
+  /* Efecto de borde en los círculos */
+  &::before {
+    content: ""; /* Crea un pseudo-elemento vacío */
+    position: absolute; /* Posiciona en relación al círculo */
+    width: 180px; /* Ancho del borde decorativo */
+    height: 180px; /* Altura del borde decorativo */
+    border-radius: 50%; /* Hace que sea circular */
+    border: 5px solid transparent; /* Borde transparente inicial */
+    background-image: $circle-border-gradient;
+    background-origin: border-box; /* Define dónde se origina el fondo */
+    background-clip: content-box, border-box; /* Ajusta el fondo al contenido y borde */
+    animation: borderColorChange 5s linear infinite; /* Aplica animación de rotación */
+  }
+
+  /* Efecto hover para los círculos */
+  &:hover {
+    transform: scale(1.1); /* Aumenta el tamaño cuando el ratón pasa sobre el círculo */
+  }
+
+  /* Estilo del texto dentro de los círculos */
+  p {
+    font-size: 5rem; /* Tamaño del texto grande */
+    margin: 0; /* Elimina márgenes por defecto */
+    z-index: 2; /* Asegura que el texto esté encima de otros elementos */
+    position: relative; /* Posiciona en relación al círculo */
+  }
+}
+
+/* Animación de rotación para el borde de los círculos */
+@keyframes borderColorChange {
+  0% {
+    transform: rotate(0deg);
+  } /* Inicio de la rotación */
+  100% {
+    transform: rotate(360deg);
+  } /* Rotación completa */
+}
+
+/* Animación para el círculo de la izquierda */
+.pendulum-left {
+  animation: pendulum-left 1s infinite ease-in-out; /* Aplica animación de péndulo */
+}
+
+/* Keyframes para el movimiento de péndulo del círculo izquierdo */
+@keyframes pendulum-left {
+  0%,
+  100% {
+    transform: translate(-60px, -20px);
+  } /* Mueve el círculo a la izquierda */
+  50% {
+    transform: translate(10px, 0px);
+  } /* Mueve el círculo hacia el centro */
+}
+
+/* Animación para el círculo de la derecha */
+.pendulum-right {
+  animation: pendulum-right 1s infinite ease-in-out; /* Aplica animación de péndulo */
+  animation-delay: 0.5s; /* Retrasa la animación para sincronizar con el izquierdo */
+}
+
+/* Keyframes para el movimiento de péndulo del círculo derecho */
+@keyframes pendulum-right {
+  0%,
+  100% {
+    transform: translate(60px, -20px);
+  } /* Mueve el círculo a la derecha */
+  50% {
+    transform: translate(-10px, 0px);
+  } /* Mueve el círculo hacia el centro */
+}
