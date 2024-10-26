@@ -1,0 +1,264 @@
+{
+  "about": {
+    "imageUrl": "https://example.com/content/demo/MyResume/assets/img/profile-img-new.jpg",
+    "description": "Hi! I'm Jane Smith, a creative web developer with a love for building sleek, user-friendly websites. With over 6 years in the tech industry, I help clients turn their ideas into reality.",
+    "text": "Full Stack Developer & Graphic Designer.",
+    "hobbies": "In my free time, I enjoy painting, playing guitar, and exploring new design trends. I'm always looking to expand my skills and tackle exciting projects.",
+    "birthday": "12/08/1990",
+    "website": "www.janesmith.dev",
+    "phoneNumber": "+1234567890",
+    "city": "Barcelona, España",
+    "age": "34",
+    "Degree": "Bachelor",
+    "email": "jane.smith@example.com",
+    "freelance": "Not Available",
+    "workExperience": "Specialized in developing high-performance web applications. Assisted various startups in improving their digital presence, focusing on back-end development and API integration."
+  },
+  "facts": {
+    "description": "I can play the guitar and sing simultaneously.",
+    "happyClients": "150+ Happy Clients",
+    "projects": "200+ Projects",
+    "hoursOfSupport": "1000+ Hours Of Support",
+    "Awards": "5 Awards"
+  },
+  "skillSet": {
+    "overview": "I'm a versatile developer, eager to dive into new technologies and frameworks.",
+    "skillDetails": [
+      {
+        "name": "Python",
+        "iconUrl": "https://cdn.simpleicons.org/python",
+        "rank": "1"
+      },
+      {
+        "name": "JavaScript",
+        "iconUrl": "https://cdn.simpleicons.org/javascript",
+        "rank": "2"
+      },
+      {
+        "name": "React",
+        "iconUrl": "https://cdn.simpleicons.org/react",
+        "rank": "3"
+      },
+      {
+        "name": "Node.js",
+        "iconUrl": "https://cdn.simpleicons.org/nodedotjs",
+        "rank": "4"
+      },
+      {
+        "name": "MongoDB",
+        "iconUrl": "https://cdn.simpleicons.org/mongodb",
+        "rank": "5"
+      },
+      {
+        "name": "HTML5",
+        "iconUrl": "https://cdn.simpleicons.org/html5",
+        "rank": "6"
+      },
+      {
+        "name": "CSS3",
+        "iconUrl": "https://cdn.simpleicons.org/css3",
+        "rank": "7"
+      },
+      {
+        "name": "Vue.js",
+        "iconUrl": "https://cdn.simpleicons.org/vuedotjs",
+        "rank": "8"
+      },
+      {
+        "name": "Sass",
+        "iconUrl": "https://cdn.simpleicons.org/sass",
+        "rank": "9"
+      },
+      {
+        "name": "Git",
+        "iconUrl": "https://cdn.simpleicons.org/git",
+        "rank": "10"
+      },
+      {
+        "name": "Docker",
+        "iconUrl": "https://cdn.simpleicons.org/docker",
+        "rank": "11"
+      },
+      {
+        "name": "AWS",
+        "iconUrl": "https://cdn.simpleicons.org/amazonwebservices",
+        "rank": "12"
+      }
+    ]
+  },
+  "titles": {
+    "resume": "Resume",
+    "summary": "Summary",
+    "education": "Education",
+    "workExperience": "Professional Experience"
+  },
+  "summary": {
+    "about": "I am a seasoned software engineer experienced in designing and developing web and backend solutions. Proficient in languages like Python and JavaScript, with expertise in frameworks such as React and Node.js. Skilled in managing both SQL and NoSQL databases, and experienced with Git for version control. Worked in agile environments, leveraging methodologies like Scrum for optimal project delivery. Strong communication and problem-solving skills enable effective teamwork and adaptability to new technologies.",
+    "name": "Jessica Brown",
+    "introduction": "Creative and deadline-driven Web Developer with 5+ years of experience developing engaging digital solutions from concept to finish.",
+    "contactProfile": {
+      "direction": "Avenida de América, 30, Madrid - España",
+      "email": "jessica.brown@example.com",
+      "phoneNumber": "+34987654321"
+    },
+    "education": {
+      "academicBackground": [
+        {
+          "experience": "Master of Science in Computer Science",
+          "startdate": "2016 - 2018",
+          "Academy": "Stanford University, Stanford, CA",
+          "description": "Focused on software engineering principles, data structures, and algorithms."
+        },
+        {
+          "experience": "Bachelor of Science in Computer Science",
+          "startdate": "2012 - 2016",
+          "Academy": "University of California, Berkeley, CA",
+          "description": "Studied core computer science concepts with a focus on web technologies."
+        }
+      ]
+    },
+    "workExperience": {
+      "position": [
+        {
+          "specialist": "Lead Developer",
+          "startdate": "2020 - Present",
+          "location": "Tech Solutions, San Francisco, CA",
+          "communicationDesignLeadership": "Led the development and implementation of web solutions, ensuring adherence to best practices in coding and design.",
+          "teamLeadership": "Managed a team of developers, overseeing project milestones and deliverables.",
+          "designQualityAssurance": "Ensured all web applications met performance and security standards.",
+          "expertiseArea": "Expert in API design and integration, focusing on scalability and performance."
+        },
+        {
+          "specialist": "Software Developer",
+          "startdate": "2018 - 2020",
+          "location": "Innovatech, New York, NY",
+          "communicationDesignLeadership": "Developed and maintained web applications, collaborating closely with the design team.",
+          "teamLeadership": "Handled multiple projects simultaneously, delivering quality results under tight deadlines.",
+          "designQualityAssurance": "Worked with clients to refine and improve user experience and interface design.",
+          "expertiseArea": "Specialized in front-end development, enhancing user interaction and accessibility."
+        }
+      ]
+    }
+  },
+  "portfolio": {
+    "gallery": [
+      {
+        "position": 1,
+        "title": "Urban Exploration",
+        "description": "Capturing the essence of city life through dynamic photography.",
+        "link": "https://urbanexploration.com/",
+        "image": "https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg",
+        "type": "PHOTOGRAPHY"
+      },
+      {
+        "position": 2,
+        "title": "Digital Landscapes",
+        "description": "Showcasing captivating landscapes through digital art.",
+        "link": "https://digitallandscapes.com/",
+        "image": "https://images.pexels.com/photos/7654321/pexels-photo-7654321.jpeg",
+        "type": "ART"
+      },
+      {
+        "position": 3,
+        "title": "Tech Innovations",
+        "description": "Exploring the latest in technology and innovation.",
+        "link": "https://techinnovations.com/",
+        "image": "https://images.pexels.com/photos/5432109/pexels-photo-5432109.jpeg",
+        "type": "BLOG"
+      },
+      {
+        "position": 4,
+        "title": "Wildlife Wonders",
+        "description": "A glimpse into the fascinating world of wildlife through photography.",
+        "image": "https://images.pexels.com/photos/8765432/pexels-photo-8765432.jpeg",
+        "type": "PHOTOGRAPHY"
+      },
+      {
+        "position": 5,
+        "title": "Culinary Creations",
+        "description": "Exploring the art of cooking and presentation through stunning imagery.",
+        "image": "https://images.pexels.com/photos/2345678/pexels-photo-2345678.jpeg",
+        "type": "FOOD"
+      },
+      {
+        "position": 6,
+        "title": "Melodic Harmony",
+        "description": "Capturing the beauty of music and sound through visual art.",
+        "link": "",
+        "image": "https://images.pexels.com/photos/3456789/pexels-photo-3456789.jpeg",
+        "type": "MUSIC"
+      },
+      {
+        "position": 7,
+        "title": "Tropical Paradise",
+        "description": "Discover the vibrant colors and serene beauty of tropical destinations.",
+        "image": "https://images.pexels.com/photos/4567890/pexels-photo-4567890.jpeg",
+        "video": "https://videos.pexels.com/video/9876543/9876543-uhd.mp4",
+        "type": "TRAVEL"
+      }
+    ]
+  },
+  "service": {
+    "title": "Our Services",
+    "overview": "We specialize in understanding your business needs to create a tailored digital presence. Our team of experts in programming, design, and digital marketing are here to support you every step of the way.",
+    "serviceDetails": [
+      {
+        "name": "Content Marketing",
+        "description": "We create engaging content strategies to attract and retain your target audience.",
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2024/08/06/10/43/marketing-8949009_1280.jpg"
+      },
+      {
+        "name": "Custom Web Design",
+        "description": "Bring your vision to life with a bespoke design that reflects your brand and engages your audience.",
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2023/08/11/08/29/design-8183107_1280.jpg"
+      },
+      {
+        "name": "eCommerce Solutions",
+        "description": "Develop a scalable eCommerce platform that enhances your online business and customer experience.",
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2024/02/20/13/21/ecommerce-8585535_1280.jpg"
+      },
+      {
+        "name": "Mobile Applications",
+        "description": "Design and develop mobile apps that provide seamless user experiences across all devices.",
+        "backgroundUrl": "https://cdn.pixabay.com/photo/2024/01/25/10/50/mobile-app-8531576_1280.jpg"
+      }
+    ]
+  },
+  "contact": {
+    "direction": "Avenida de América, 30, Madrid - España",
+    "email": "jessica.brown@example.com",
+    "phoneNumber": "+34987654321"
+  },
+  "testimonials": [
+    {
+      "name": "Robert Lee",
+      "jobTitle": "Data Analyst",
+      "photoUrl": "https://randomuser.me/api/portraits/men/50.jpg",
+      "testimonial": "Their innovative approach and dedication have greatly contributed to our project's success."
+    },
+    {
+      "name": "Linda White",
+      "jobTitle": "Marketing Director",
+      "photoUrl": "https://randomuser.me/api/portraits/women/55.jpg",
+      "testimonial": "Professional and creative, the team delivered exceptional results quickly."
+    },
+    {
+      "name": "Kevin Nguyen",
+      "jobTitle": "Product Manager",
+      "photoUrl": "https://randomuser.me/api/portraits/men/60.jpg",
+      "testimonial": "Their expertise in web development is unmatched. Highly recommend!"
+    },
+    {
+      "name": "Sophia Turner",
+      "jobTitle": "Graphic Designer",
+      "photoUrl": "https://randomuser.me/api/portraits/women/65.jpg",
+      "testimonial": "A pleasure to work with, bringing creativity and precision to every project."
+    },
+    {
+      "name": "James Wilson",
+      "jobTitle": "CTO",
+      "photoUrl": "https://randomuser.me/api/portraits/men/70.jpg",
+      "testimonial": "The team consistently impresses us with their dedication to quality and innovation."
+    }
+  ]
+}
