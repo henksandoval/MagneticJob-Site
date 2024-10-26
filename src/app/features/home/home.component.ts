@@ -13,7 +13,6 @@ import { StateService } from '@core/services/state/state.service';
   imports: [HeaderComponent, CoverComponent, FooterComponent, ProfileComponent],
   templateUrl: './home.component.html',
   styleUrls: [
-    './home.component.scss',
     '../../../assets/vendor/aos/aos.css',
     '../../../assets/vendor/bootstrap/css/bootstrap.min.css',
     '../../../assets/vendor/bootstrap-icons/bootstrap-icons.min.css',
