@@ -15,7 +15,7 @@ export class ProfileService {
   profile$ = toSignal(this.loadProfile(this.stateService.userName()));
 
   private loadProfile(userName: string): Observable<Profile> {
-    const url = `stubs/data.${userName || 'jane'}.json`;
+    const url = `stubs/data.${userName || 'john'}.json`;
     return this.http.get<Profile>(url).pipe(
       catchError(() => {
         return EMPTY;
