@@ -1,11 +1,11 @@
-@import 'variables';
+@import '../../../../../../../assets/scss/variables';
 
 .services {
 	.icon-box {
 		text-align: center;
 		transition: all ease-in-out 0.3s;
 		background: #fff;
-		box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05);
+		box-shadow: 0 5px 90px 0 rgba(110, 123, 131, 0.05);
 
 		.img-fluid {
 			margin: 0 auto;
@@ -50,7 +50,7 @@
 
 		&:hover {
 			border-color: $border-color_1;
-			box-shadow: 0px 0 35px 0 rgba(0, 0, 0, 0.08);
+			box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.08);
 		}
 
 	}
