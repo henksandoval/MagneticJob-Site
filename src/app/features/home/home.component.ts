@@ -12,12 +12,7 @@ import { StateService } from '@core/services/state/state.service';
   standalone: true,
   imports: [HeaderComponent, CoverComponent, FooterComponent, ProfileComponent],
   templateUrl: './home.component.html',
-  styleUrls: [
-    '../../../assets/vendor/aos/aos.css',
-    '../../../assets/vendor/bootstrap/css/bootstrap.min.css',
-    '../../../assets/vendor/bootstrap-icons/bootstrap-icons.min.css',
-    '../../../assets/vendor/boxicons/css/boxicons.min.css',
-  ],
+  styles: ``,
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent {
@@ -31,11 +26,13 @@ export class HomeComponent {
       this.stateService.userName.set(userName);
     });
 
-    this.loadScript('vendor/aos/aos.js');
-    this.loadScript('vendor/bootstrap/js/bootstrap.bundle.min.js');
-    this.loadScript('vendor/isotope-layout/isotope.pkgd.min.js');
-    this.loadScript('vendor/typed.js/typed.umd.js');
+    this.loadScript('https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js');
+    this.loadScript('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js');
     this.loadScript('js/main.js');
+    this.loadStyle('https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css');
+    this.loadStyle('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
+    this.loadStyle('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css');
+    this.loadStyle('https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css');
   }
 
   private loadScript(src: string): void {
@@ -43,5 +40,12 @@ export class HomeComponent {
     script.src = src;
     script.async = true;
     document.body.appendChild(script);
+  }
+
+  loadStyle(url: string): void {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = url;
+    document.head.appendChild(link);
   }
 }
