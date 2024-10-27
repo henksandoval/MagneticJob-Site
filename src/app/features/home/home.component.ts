@@ -31,7 +31,9 @@ export class HomeComponent {
     this.loadScript('js/main.js');
     this.loadStyle('https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css');
     this.loadStyle('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
-    this.loadStyle('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css');
+    this.loadStyle(
+      'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css'
+    );
     this.loadStyle('https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css');
   }
 
