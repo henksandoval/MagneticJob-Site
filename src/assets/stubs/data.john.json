@@ -1,7 +1,33 @@
 {
+  "personalData": {
+    "name": "Brandon Paul Johnson",
+    "professions": ["Developer", "Photographer", "Designer", "Freelancer"],
+    "socialNetworks": [
+      {
+        "name": "Twitter",
+        "url": ""
+      },
+      {
+        "name": "Facebook",
+        "url": ""
+      },
+      {
+        "name": "Instagram",
+        "url": ""
+      },
+      {
+        "name": "Skype",
+        "url": ""
+      },
+      {
+        "name": "Linkedin",
+        "url": ""
+      }
+    ]
+  },
   "about": {
     "imageUrl": "https://bootstrapmade.com/content/demo/MyResume/assets/img/profile-img.jpg",
-    "description": "¡Hello! I'm John Doe, a passionate web developer who loves creating dynamic, easy-to-use websites. I have over 5 years of experience in the technology industry, working with a variety of clients to make their visions a reality.",
+    "description": "¡Hello! I'm Johnson Brandon, a passionate web developer who loves creating dynamic, easy-to-use websites. I have over 5 years of experience in the technology industry, working with a variety of clients to make their visions a reality.",
     "text": "UI/UX Designer & Web Developer.",
     "hobbies": "In my free time I enjoy hiking, reading science fiction novels, and experimenting with new technologies. I am always eager to learn new things and take on exciting challenges.",
     "birthday": "16/05/1995",
@@ -107,9 +133,9 @@
     "name": "Brandon Johnson",
     "introduction": "Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.",
     "contactProfile": {
-      "direction": "Calle Reina Fabiola, 20 9B, Zaragoza - España",
-      "email": "alexandrai.marvala@gmail.com",
-      "phoneNumber": "+34641051233"
+      "direction": "Avenida de América, 30, Madrid - España",
+      "email": "johnson.brandon@gmail.com",
+      "phoneNumber": "+34641765233"
     },
     "education": {
       "academicBackground": [
@@ -235,9 +261,9 @@
     ]
   },
   "contact": {
-    "direction": "Calle Reina Fabiola, 20 9B, Zaragoza - España",
-    "email": "alexandrai.marvala@gmail.com",
-    "phoneNumber": "+34641051233"
+    "direction": "Avenida de América, 30, Madrid - España",
+    "email": "johnson.brandon@gmail.com",
+    "phoneNumber": "+34641765233"
   },
   "testimonials": [
     {

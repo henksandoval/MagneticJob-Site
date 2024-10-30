@@ -6,8 +6,10 @@ import { Service } from '../components/services/interfaces/service';
 import { About } from '../components/about/interfaces/about';
 import { Contact } from '../components/contact/interfaces/contact';
 import { Summary } from '../components/summary/interfaces/summary';
+import { PersonalData } from '../../cover/interfaces/personalData';
 
 export interface Profile {
+  personalData: PersonalData;
   birthday?: string;
   contact?: Contact;
   about: About;
