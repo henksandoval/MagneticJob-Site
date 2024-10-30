@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { catchError, EMPTY, Observable } from 'rxjs';
-import { Profile } from '../interfaces/profile';
+import { Profile } from '../components/profile/interfaces/profile';
 import { HttpService } from '@core/services/http/http.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { StateService } from '@core/services/state/state.service';
