@@ -1,13 +1,17 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { ProfileService } from '../../services/profile.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-cover',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './cover.component.html',
   styleUrl: './cover.component.scss',
 })
 export class CoverComponent implements OnInit, OnDestroy {
+  private readonly profileService: ProfileService = inject(ProfileService);
+  profile$ = this.profileService.profile$;
   professions: string[] = ['Designer', 'Developer', 'Freelancer', 'Photographer'];
   currentProfessionIndex = 0;
   currentProfession = '';

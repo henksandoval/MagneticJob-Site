@@ -4,7 +4,7 @@ import { HttpService } from '@core/services/http/http.service';
 import { of, throwError } from 'rxjs';
 import { mockProfile } from '../components/profile/mocks/profile.mock';
 
-describe('ProfileService', () => {
+describe(ProfileService.name, () => {
   MockInstance.scope('case');
 
   beforeEach(async () => {
