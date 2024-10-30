@@ -2,7 +2,7 @@ import { MockBuilder, MockInstance, ngMocks } from 'ng-mocks';
 import { ProfileService } from './profile.service';
 import { HttpService } from '@core/services/http/http.service';
 import { of, throwError } from 'rxjs';
-import { mockProfile } from '../mocks/profile.mock';
+import { mockProfile } from '../components/profile/mocks/profile.mock';
 
 describe('ProfileService', () => {
   MockInstance.scope('case');
