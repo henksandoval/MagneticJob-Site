@@ -12,30 +12,40 @@ import { interval, Subscription } from 'rxjs';
 })
 export class CoverComponent implements OnInit, OnDestroy {
   private subscription: Subscription | undefined;
+  private typeSubscription: Subscription | undefined;
   private readonly profileService: ProfileService = inject(ProfileService);
   private professionIndex = 0;
+  private charIndex = 0;
   profile$ = this.profileService.profile$;
-  professions$ = computed(() => this.profile$()?.personalData.professions || []);
+  professions$ = computed(() => this.profile$()?.personalData?.professions || []);
   currentProfession$ = signal<string>('');
 
   ngOnInit() {
-    this.subscription = interval(500).subscribe(() => {
-      this.updateCurrentProfession();
+    this.subscription = interval(1000).subscribe(() => {
+      this.startTyping();
     });
   }
 
   ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.subscription?.unsubscribe();
+    this.typeSubscription?.unsubscribe();
   }
 
-  private updateCurrentProfession(): void {
+  private startTyping(): void {
     const professions = this.professions$();
-
     if (professions && professions.length > 0) {
-      this.currentProfession$.set(professions[this.professionIndex]);
-      this.professionIndex = (this.professionIndex + 1) % professions.length;
+      const profession = professions[this.professionIndex];
+      this.typeSubscription?.unsubscribe();
+      this.typeSubscription = interval(250).subscribe((): void => {
+        if (this.charIndex < profession.length) {
+          this.currentProfession$.set(profession.substring(0, this.charIndex + 1));
+          this.charIndex++;
+        } else {
+          this.typeSubscription?.unsubscribe();
+          this.charIndex = 0;
+          this.professionIndex = (this.professionIndex + 1) % professions.length;
+        }
+      });
     }
   }
 }
