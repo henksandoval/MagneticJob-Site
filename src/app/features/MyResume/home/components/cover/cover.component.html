@@ -1,11 +1,8 @@
 @let personalData = profile$()?.personalData;
 <section id="hero" class="d-flex flex-column justify-content-center">
   <div class="container" data-aos="zoom-in" data-aos-delay="100">
-    <h1>{{ personalData!.name }}</h1>
-    <p>
-      I'm {{ currentProfession$() }}
-      <span>|</span>
-    </p>
+    <h1>{{ personalData?.name }}</h1>
+    <p>I'm {{ currentProfession$() }}<span class="blink">|</span></p>
     <div class="social-links">
       @for (network of personalData?.socialNetworks; track network.name) {
         <a href="{{ network.url }}" [ngClass]="network.name"><i class="bx bxl-twitter"></i></a>

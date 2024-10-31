@@ -28,10 +28,20 @@ $hero-bg-url: "https://bootstrapmade.com/content/demo/Kelly/assets/img/hero-bg.j
 		margin: 15px 0 0 0;
 		font-size: 26px;
 		font-family: $font-family_3;
-		span {
+    .blink {
 			color: $accent-color;
 			letter-spacing: 1px;
-		}
+      animation: blink-animation 1s steps(1, end) infinite;
+    }
+
+    @keyframes blink-animation {
+      0%, 50% {
+        opacity: 1;
+      }
+      50.01%, 100% {
+        opacity: 0;
+      }
+    }
 	}
 	.social-links {
 		margin-top: 30px;
