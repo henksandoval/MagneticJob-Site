@@ -1,6 +1,6 @@
 @let portfolio = portfolioSet();
 
-<section data-testid="portfolio" id="portfolio" class="portfolio section-bg">
+<section appId="portfolio" id="portfolio" class="portfolio section-bg">
   @if (portfolio) {
     <div class="container" data-aos="fade-up">
       <div class="section-title">
@@ -9,10 +9,10 @@
       <div class="row">
         <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
           <div>
-            <ul data-testid="all" id="portfolio-flters">
-              <li i18n="@@all" data-testid="all" data-filter="*" class="filter-active">All</li>
+            <ul appId="all" id="portfolio-flters">
+              <li i18n="@@all" appId="all" data-filter="*" class="filter-active">All</li>
               @for (pageType of portfolio.pagesByType; track pageType) {
-                <li [attr.data-testid]="'filter_' + pageType" [attr.data-filter]="'.filter-' + pageType">
+                <li [appId]="'filter_' + pageType" [attr.data-filter]="'.filter-' + pageType">
                   {{ pageType }}
                 </li>
               }
@@ -26,19 +26,19 @@
           <div class="col-lg-4 col-md-6 portfolio-item" [ngClass]="'filter-' + page.type">
             <div class="portfolio-wrap">
               <img
-                [attr.data-testid]="'image-src_' + dataIndex"
+                [appId]="'image-src_' + dataIndex"
                 [src]="page.image"
                 class="img-fluid"
                 alt=""
               />
               <div class="portfolio-info">
-                <h4 [attr.data-testid]="'title_' + dataIndex">{{ page.title }}</h4>
-                <p [attr.data-testid]="'type_' + dataIndex">{{ page.type }}</p>
-                <p [attr.data-testid]="'description_' + dataIndex">{{ page.description }}</p>
+                <h4 [appId]="'title_' + dataIndex">{{ page.title }}</h4>
+                <p [appId]="'type_' + dataIndex">{{ page.type }}</p>
+                <p [appId]="'description_' + dataIndex">{{ page.description }}</p>
                 <div class="portfolio-links">
                   @if (page.image) {
                     <a
-                      [attr.data-testid]="'image_' + dataIndex"
+                      [appId]="'image_' + dataIndex"
                       [href]="page.image"
                       class="glightbox glightbox-image"
                       [attr.data-gallery]="'image_' + dataIndex"
@@ -47,7 +47,7 @@
                   }
                   @if (page.video) {
                     <a
-                      [attr.data-testid]="'video_' + dataIndex"
+                      [appId]="'video_' + dataIndex"
                       [href]="page.video"
                       class="glightbox glightbox-image"
                       [attr.data-gallery]="'image_' + dataIndex"
@@ -56,7 +56,7 @@
                   }
                   @if (page.link) {
                     <a
-                      [attr.data-testid]="'link_' + dataIndex"
+                      [appId]="'link_' + dataIndex"
                       [href]="page.link"
                       class="glightbox glightbox-web"
                       data-glightbox="type: external"

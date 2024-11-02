@@ -3,7 +3,7 @@ import { AppIdDirective } from './app-id.directive';
 import '@testing-library/jest-dom';
 
 describe(AppIdDirective.name, () => {
-  it('should set the id and data-testid attributes', async () => {
+  it('should set the id and appId attributes', async () => {
     const idValue = 'test-id';
 
     await render(`<div appId="${idValue}"></div>`, {
@@ -16,6 +16,6 @@ describe(AppIdDirective.name, () => {
     const divElement = screen.getByTestId(idValue);
 
     expect(divElement).toHaveAttribute('id', idValue);
-    expect(divElement).toHaveAttribute('data-testid', idValue);
+    expect(divElement).toHaveAttribute('appId', idValue);
   });
 });
