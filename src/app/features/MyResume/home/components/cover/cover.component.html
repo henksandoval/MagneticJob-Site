@@ -5,7 +5,9 @@
     <p>I'm {{ currentProfession$() }}<span class="blink">|</span></p>
     <div class="social-links">
       @for (network of personalData?.socialNetworks; track $index) {
-        <a href="{{ network.url }}" [ngClass]="network.type.name"><i [ngClass]="['bxl', network.type.icon]"></i></a>
+        <a href="{{ network.url }}" [ngClass]="network.type.name"
+          ><i [ngClass]="['bxl', network.type.icon]"></i
+        ></a>
       }
     </div>
   </div>
