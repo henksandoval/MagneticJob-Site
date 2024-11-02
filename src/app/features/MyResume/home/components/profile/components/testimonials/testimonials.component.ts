@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Testimonial } from './interfaces/testimonial';
+import { AppIdDirective } from '@core/directives/app-id/app-id.directive';
 
 @Component({
   selector: 'app-testimonials',
   standalone: true,
-  imports: [CarouselModule],
+  imports: [CarouselModule, AppIdDirective],
   templateUrl: './testimonials.component.html',
   styleUrl: './testimonials.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

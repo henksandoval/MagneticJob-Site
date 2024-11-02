@@ -1,12 +1,12 @@
 @let testimonials = testimonialSet();
-<section data-testid="testimonials" id="testimonials" class="testimonials section-bg">
+<section appId="testimonials" id="testimonials" class="testimonials section-bg">
   @if (testimonials) {
     <div class="container" data-aos="fade-up">
       <div class="section-title">
         <h2 i18n="@@testimonials">Testimonials</h2>
       </div>
       <owl-carousel-o [options]="customOptions">
-        @for (testimonial of testimonials; track testimonial.name) {
+        @for (testimonial of testimonials; track $index) {
           <ng-template carouselSlide>
             <div class="testimonial-item">
               <div class="row gy-4 justify-content-center">
@@ -14,18 +14,18 @@
                   <div class="testimonial-content">
                     <p>
                       <i class="bi bi-quote quote-icon-left"></i>
-                      <span [attr.data-testid]="'testimonial_' + $index">{{ testimonial.testimonial }}</span>
+                      <span [appId]="'testimonial_' + $index">{{ testimonial.testimonial }}</span>
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
-                    <h3 [attr.data-testid]="'name_' + $index" class="testimonial-name">
+                    <h3 [appId]="'name_' + $index" class="testimonial-name">
                       {{ testimonial.name }}
                     </h3>
-                    <h4 [attr.data-testid]="'jobTitle_' + $index">{{ testimonial.jobTitle }}</h4>
+                    <h4 [appId]="'jobTitle_' + $index">{{ testimonial.jobTitle }}</h4>
                   </div>
                 </div>
                 <div class="col-lg-2 text-center">
                   <img
-                    [attr.data-testid]="'image-src_' + $index"
+                    [appId]="'image-src_' + $index"
                     [src]="testimonial.photoUrl"
                     class="img-fluid testimonial-img"
                     [alt]="testimonial.name"
