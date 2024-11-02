@@ -4,11 +4,12 @@ import GLightbox from 'glightbox';
 import { PortFolio } from './interfaces/portfolio';
 import { Gallery } from './interfaces/gallery';
 import { PortfolioOverview } from './interfaces/portfolioOverview';
+import { AppIdDirective } from '@core/directives/app-id/app-id.directive';
 
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, AppIdDirective],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
