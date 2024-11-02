@@ -25,12 +25,7 @@
           @let dataIndex = ($index + 1).toString().padStart(2, '0');
           <div class="col-lg-4 col-md-6 portfolio-item" [ngClass]="'filter-' + page.type">
             <div class="portfolio-wrap">
-              <img
-                [appId]="'image-src_' + dataIndex"
-                [src]="page.image"
-                class="img-fluid"
-                alt=""
-              />
+              <img [appId]="'image-src_' + dataIndex" [src]="page.image" class="img-fluid" alt="" />
               <div class="portfolio-info">
                 <h4 [appId]="'title_' + dataIndex">{{ page.title }}</h4>
                 <p [appId]="'type_' + dataIndex">{{ page.type }}</p>

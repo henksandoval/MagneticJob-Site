@@ -18,11 +18,7 @@
               @let dataIndex = ($index + 1).toString().padStart(2, '0');
               <div class="icon-box h-100">
                 <div class="img-fluid">
-                  <img
-                    [appId]="'backgroundUrl_' + dataIndex"
-                    [src]="serviceDetail.backgroundUrl"
-                    alt=""
-                  />
+                  <img [appId]="'backgroundUrl_' + dataIndex" [src]="serviceDetail.backgroundUrl" alt="" />
                 </div>
                 <h4 [appId]="'name_' + dataIndex">
                   <a href="">{{ serviceDetail.name }}</a>

@@ -5,23 +5,23 @@
     "socialNetworks": [
       {
         "name": "Twitter",
-        "url": ""
+        "url": "https://x.com/brandonjohnson"
       },
       {
         "name": "Facebook",
-        "url": ""
+        "url": "https://facebook.com/brandonjohnson"
       },
       {
         "name": "Instagram",
-        "url": ""
+        "url": "https://instagram.com/brandonjohnson"
       },
       {
         "name": "Skype",
-        "url": ""
+        "url": "https://microsoft.com/brandonjohnson"
       },
       {
-        "name": "Linkedin",
-        "url": ""
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/brandonjohnson"
       }
     ]
   },
