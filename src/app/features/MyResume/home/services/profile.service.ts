@@ -32,7 +32,7 @@ export class ProfileService {
 
   transformData(data: ProfileContract): Profile {
     const personalData: UserPersonalData = this.transformPersonaData(data.personalData);
-    const contract: Profile = {
+    return {
       personalData: personalData,
       about: data.about,
       service: data.service,
@@ -44,11 +44,10 @@ export class ProfileService {
       summary: data.summary,
       testimonials: data.testimonials,
     };
-    return contract;
   }
 
   transformPersonaData(data: UserPersonalDataContract): UserPersonalData {
-    const personalData: UserPersonalData = {
+    return {
       name: data.name,
       professions: data.professions,
       socialNetworks: data.socialNetworks.reduce((accumulator, network) => {
@@ -64,6 +63,5 @@ export class ProfileService {
         return accumulator;
       }, [] as UserSocialNetwork[]),
     };
-    return personalData;
   }
 }
