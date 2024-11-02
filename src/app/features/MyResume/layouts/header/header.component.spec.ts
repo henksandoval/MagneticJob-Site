@@ -13,10 +13,15 @@ describe('HeaderComponent', () => {
   beforeEach(async () => {
     await render(HeaderComponent, {
       providers: [{ provide: PageScrollService, useValue: mockPageScrollService }],
-      componentInputs: {
+      inputs: {
         sections: MENU_SECTIONS,
       },
     });
+  });
+
+  it('should create the component', async () => {
+    const component = await screen.findByTestId('header');
+    expect(component).toBeTruthy();
   });
 
   it('should set an anchor by each section defined', () => {
