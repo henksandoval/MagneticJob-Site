@@ -1,6 +1,6 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { Facts } from './facts';
+import { Facts } from './interfaces/facts';
 import { AppIdDirective } from '@core/directives/app-id/app-id.directive';
 
 @Component({
