@@ -1,10 +1,10 @@
 @let service = serviceSet();
-<section data-testid="services" id="services" class="services">
+<section appId="services" id="services" class="services">
   @if (service) {
     <div class="container" data-aos="fade-up">
       <div class="section-title">
         <h2 i18n="@@services">Services</h2>
-        <p data-testid="overview">{{ service.overview }}</p>
+        <p appId="overview">{{ service.overview }}</p>
       </div>
 
       @if (service.serviceDetails; as serviceDetails) {
@@ -18,16 +18,12 @@
               @let dataIndex = ($index + 1).toString().padStart(2, '0');
               <div class="icon-box h-100">
                 <div class="img-fluid">
-                  <img
-                    [attr.data-testid]="'backgroundUrl_' + dataIndex"
-                    [src]="serviceDetail.backgroundUrl"
-                    alt=""
-                  />
+                  <img [appId]="'backgroundUrl_' + dataIndex" [src]="serviceDetail.backgroundUrl" alt="" />
                 </div>
-                <h4 [attr.data-testid]="'name_' + dataIndex">
+                <h4 [appId]="'name_' + dataIndex">
                   <a href="">{{ serviceDetail.name }}</a>
                 </h4>
-                <p [attr.data-testid]="'description_' + dataIndex">{{ serviceDetail.description }}</p>
+                <p [appId]="'description_' + dataIndex">{{ serviceDetail.description }}</p>
               </div>
             }
           </div>
