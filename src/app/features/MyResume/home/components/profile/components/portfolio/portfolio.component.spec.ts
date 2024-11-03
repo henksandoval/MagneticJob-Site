@@ -14,7 +14,7 @@ const renderComponent = async () => {
   });
 };
 
-describe('PortfolioComponent', () => {
+describe(PortfolioComponent.name, () => {
   beforeEach(async () => {
     await renderComponent();
   });

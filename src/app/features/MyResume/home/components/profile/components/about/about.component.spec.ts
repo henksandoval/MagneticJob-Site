@@ -12,7 +12,7 @@ const renderComponent = async () => {
   });
 };
 
-describe('AboutComponent', () => {
+describe(AboutComponent.name, () => {
   beforeEach(async () => {
     await renderComponent();
   });
@@ -62,7 +62,7 @@ describe('AboutComponent', () => {
   });
 });
 
-describe('AboutComponentNullScenary', () => {
+describe(AboutComponent.name, () => {
   it('handles undefined correctly', async () => {
     await render(AboutComponent, {
       inputs: {

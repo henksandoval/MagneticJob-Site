@@ -13,7 +13,7 @@ const renderComponent = async () => {
   });
 };
 
-describe('SkillsComponent', () => {
+describe(SkillsComponent.name, () => {
   beforeEach(async () => {
     await renderComponent();
   });
@@ -31,7 +31,7 @@ describe('SkillsComponent', () => {
   });
 });
 
-describe('SkillComponentNullScenary', () => {
+describe(SkillsComponent.name, () => {
   it('handles undefined correctly', async () => {
     await render(SkillsComponent, {
       inputs: {
