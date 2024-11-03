@@ -1,4 +1,4 @@
-import { mockContact } from '../../contact/mocks/contactProfile.mock';
+import { mockContact } from '../../contact/mocks/contact-profile.mock';
 import { Summary } from '../interfaces/summary';
 import { mockEducation } from './education.mock';
 import { mockWorkExperience } from './workExperience.mock';

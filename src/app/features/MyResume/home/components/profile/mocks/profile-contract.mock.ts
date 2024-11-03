@@ -5,7 +5,7 @@ import { mockPortfolio } from '../components/portfolio/mocks/portfolio.mock';
 import { mockService } from '../components/services/mocks/service.mock';
 import { mockSkills } from '../components/skils/mocks/skills.mock';
 import { mockTestimonials } from '../components/testimonials/mocks/testimonials.mocks';
-import { mockContact } from '../components/contact/mocks/contactProfile.mock';
+import { mockContact } from '../components/contact/mocks/contact-profile.mock';
 import { mockPersonalDataContract } from '../../cover/mocks/personal-data-contract.mocks';
 
 export const mockProfileContract: ProfileContract = {
