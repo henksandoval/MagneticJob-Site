@@ -19,7 +19,6 @@ describe(TestimonialsComponent.name, () => {
   });
 
   it('You must submit all records regarding the Testimonials.', () => {
-    screen.debug();
     mockTestimonials.forEach((testimonial: Testimonial, id: number) => {
       const images = screen.getAllByTestId('image-src_' + id);
       const names = screen.getAllByTestId('name_' + id);
