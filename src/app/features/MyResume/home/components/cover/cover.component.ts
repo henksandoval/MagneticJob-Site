@@ -1,44 +1,51 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, computed, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { ProfileService } from '../../services/profile.service';
+import { NgClass } from '@angular/common';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cover',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './cover.component.html',
   styleUrl: './cover.component.scss',
 })
 export class CoverComponent implements OnInit, OnDestroy {
-  professions: string[] = ['Designer', 'Developer', 'Freelancer', 'Photographer'];
-  currentProfessionIndex = 0;
-  currentProfession = '';
-  intervalId = 0;
+  private professionSubscription: Subscription | undefined;
+  private typeProfessionSubscription: Subscription | undefined;
+  private readonly profileService: ProfileService = inject(ProfileService);
+  private professionIndex = 0;
+  private charIndex = 0;
+  profile$ = this.profileService.profile$;
+  professions$ = computed(() => this.profile$()?.personalData?.professions || []);
+  currentProfession$ = signal<string>('');
 
   ngOnInit() {
-    this.typeProfession();
+    this.professionSubscription = interval(1000).subscribe(() => {
+      this.startTyping();
+    });
   }
 
   ngOnDestroy() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    this.professionSubscription?.unsubscribe();
+    this.typeProfessionSubscription?.unsubscribe();
   }
 
-  typeProfession() {
-    let charIndex = 0;
-    const type = () => {
-      if (charIndex < this.professions[this.currentProfessionIndex].length) {
-        this.currentProfession += this.professions[this.currentProfessionIndex][charIndex];
-        charIndex++;
-        setTimeout(type, 100);
-      } else {
-        setTimeout(() => {
-          this.currentProfession = '';
-          this.currentProfessionIndex = (this.currentProfessionIndex + 1) % this.professions.length;
-          charIndex = 0;
-          setTimeout(type, 500);
-        }, 1000);
-      }
-    };
-    type();
+  private startTyping(): void {
+    const professions = this.professions$();
+    if (professions && professions.length > 0) {
+      const profession = professions[this.professionIndex];
+      this.typeProfessionSubscription?.unsubscribe();
+      this.typeProfessionSubscription = interval(250).subscribe((): void => {
+        if (this.charIndex < profession.length) {
+          this.currentProfession$.set(profession.substring(0, this.charIndex + 1));
+          this.charIndex++;
+        } else {
+          this.typeProfessionSubscription?.unsubscribe();
+          this.charIndex = 0;
+          this.professionIndex = (this.professionIndex + 1) % professions.length;
+        }
+      });
+    }
   }
 }

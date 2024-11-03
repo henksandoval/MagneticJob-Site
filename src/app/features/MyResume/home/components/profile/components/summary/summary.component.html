@@ -1,25 +1,25 @@
 @let summary = summarySet();
 
-<section data-testid="summary" id="summary" class="resume">
+<section appId="summary" id="summary" class="resume">
   @if (summary) {
     <div class="container" data-aos="fade-up">
       <div class="section-title">
         <h2 i18n="@@resume">Resume</h2>
-        <p data-testid="about">{{ summary.about }}</p>
+        <p appId="about">{{ summary.about }}</p>
       </div>
       <div class="row">
         <div class="col-6">
           <h3 i18n="@@summary" class="resume-title">Summary</h3>
           <div class="resume-item pb-0">
-            <h4 data-testid="name">{{ summary.name }}</h4>
+            <h4 appId="name">{{ summary.name }}</h4>
             <p>
-              <em data-testid="introduction">{{ summary.introduction }}</em>
+              <em appId="introduction">{{ summary.introduction }}</em>
             </p>
             @if (summary.contactProfile; as contact) {
               <ul>
-                <li data-testid="direction">{{ contact.direction }}</li>
-                <li data-testid="email">{{ contact.email }}</li>
-                <li data-testid="phoneNumber">{{ contact.phoneNumber }}</li>
+                <li appId="direction">{{ contact.direction }}</li>
+                <li appId="email">{{ contact.email }}</li>
+                <li appId="phoneNumber">{{ contact.phoneNumber }}</li>
               </ul>
             }
           </div>
@@ -28,12 +28,12 @@
             @for (edu of education.academicBackground; track edu.experience) {
               @let dataIndex = ($index + 1).toString().padStart(2, '0');
               <div class="resume-item">
-                <h4 [attr.data-testid]="'experience_' + dataIndex">{{ edu.experience }}</h4>
-                <h5 [attr.data-testid]="'startDate-date' + dataIndex">{{ edu.startDate }}</h5>
-                <p [attr.data-testid]="'academy-formation' + dataIndex">
+                <h4 [appId]="'experience_' + dataIndex">{{ edu.experience }}</h4>
+                <h5 [appId]="'startDate-date' + dataIndex">{{ edu.startDate }}</h5>
+                <p [appId]="'academy-formation' + dataIndex">
                   <em>{{ edu.Academy }}</em>
                 </p>
-                <p [attr.data-testid]="'description_' + dataIndex">{{ edu.description }}</p>
+                <p [appId]="'description_' + dataIndex">{{ edu.description }}</p>
               </div>
             }
           }
@@ -44,24 +44,24 @@
             @for (work of workExperience.position; track work.specialist) {
               @let dataIndex = ($index + 1).toString().padStart(2, '0');
               <div class="resume-item">
-                <h4 [attr.data-testid]="'specialist_' + dataIndex">
+                <h4 [appId]="'specialist_' + dataIndex">
                   {{ work.specialist }}
                 </h4>
-                <h5 [attr.data-testid]="'startDate_' + dataIndex">{{ work.startdate }}</h5>
-                <p [attr.data-testid]="'location_' + dataIndex">
+                <h5 [appId]="'startDate_' + dataIndex">{{ work.startdate }}</h5>
+                <p [appId]="'location_' + dataIndex">
                   <em>{{ work.location }}</em>
                 </p>
                 <ul>
-                  <li [attr.data-testid]="'communicationDesignLeadership_' + dataIndex">
+                  <li [appId]="'communicationDesignLeadership_' + dataIndex">
                     {{ work.communicationDesignLeadership }}
                   </li>
-                  <li [attr.data-testid]="'teamLeadership_' + dataIndex">
+                  <li [appId]="'teamLeadership_' + dataIndex">
                     {{ work.teamLeadership }}
                   </li>
-                  <li [attr.data-testid]="'designQualityAssurance_' + dataIndex">
+                  <li [appId]="'designQualityAssurance_' + dataIndex">
                     {{ work.designQualityAssurance }}
                   </li>
-                  <li [attr.data-testid]="'expertiseArea_' + dataIndex">{{ work.expertiseArea }}</li>
+                  <li [appId]="'expertiseArea_' + dataIndex">{{ work.expertiseArea }}</li>
                 </ul>
               </div>
             }

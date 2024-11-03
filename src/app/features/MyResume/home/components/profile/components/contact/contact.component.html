@@ -1,5 +1,5 @@
 @let contact = contactSet();
-<section data-testid="contact" id="contact" class="contact">
+<section appId="contact" id="contact" class="contact">
   @if (contact) {
     <div class="container" data-aos="fade-up">
       <div class="section-title">
@@ -12,19 +12,19 @@
             <div class="address">
               <i class="bi bi-geo-alt"></i>
               <h4 i18n="@@location">Location:</h4>
-              <p data-testid="direction">{{ contact.direction }}</p>
+              <p appId="direction">{{ contact.direction }}</p>
             </div>
 
             <div class="email">
               <i class="bi bi-envelope"></i>
               <h4 i18n="@@email">Email:</h4>
-              <p data-testid="email">{{ contact.email }}</p>
+              <p appId="email">{{ contact.email }}</p>
             </div>
 
             <div class="phone">
               <i class="bi bi-phone"></i>
               <h4 i18n="@@call">Call:</h4>
-              <p data-testid="phoneNumber">{{ contact.phoneNumber }}</p>
+              <p appId="phoneNumber">{{ contact.phoneNumber }}</p>
             </div>
           </div>
         </div>

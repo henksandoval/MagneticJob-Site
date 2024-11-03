@@ -6,7 +6,7 @@ export const routes: Routes = [
   ...homeRoutes,
   {
     path: '',
-    redirectTo: '/home/jane',
+    redirectTo: '/home/john',
     pathMatch: 'full',
   },
   {
