@@ -14,7 +14,7 @@ const renderComponent = async () => {
   });
 };
 
-describe('ServicesComponent', () => {
+describe(ServicesComponent.name, () => {
   beforeEach(async () => {
     await renderComponent();
   });
@@ -33,7 +33,7 @@ describe('ServicesComponent', () => {
   });
 });
 
-describe('ServicesComponentNullScenary', () => {
+describe(ServicesComponent.name, () => {
   it('handles undefined correctly', async () => {
     await render(ServicesComponent, {
       inputs: {

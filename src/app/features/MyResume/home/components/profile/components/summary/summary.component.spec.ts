@@ -14,7 +14,7 @@ const renderComponent = async () => {
   });
 };
 
-describe('summaryComponent', () => {
+describe(SummaryComponent.name, () => {
   beforeEach(async () => {
     await renderComponent();
   });
@@ -67,7 +67,7 @@ describe('summaryComponent', () => {
   });
 });
 
-describe('SummaryComponentNullScenary', () => {
+describe(SummaryComponent.name, () => {
   it('handles undefined correctly', async () => {
     await render(SummaryComponent, {
       inputs: {
