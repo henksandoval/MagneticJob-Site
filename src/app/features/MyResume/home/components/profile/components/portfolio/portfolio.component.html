@@ -9,8 +9,8 @@
       <div class="row">
         <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
           <div>
-            <ul appId="all" id="portfolio-flters">
-              <li i18n="@@all" appId="all" data-filter="*" class="filter-active">All</li>
+            <ul appId="portfolio-filters">
+              <li i18n="@@all" appId="filter_all" data-filter="*" class="filter-active">All</li>
               @for (pageType of portfolio.pagesByType; track pageType) {
                 <li [appId]="'filter_' + pageType" [attr.data-filter]="'.filter-' + pageType">
                   {{ pageType }}
