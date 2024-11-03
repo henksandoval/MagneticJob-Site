@@ -2,7 +2,7 @@ import '@angular/localize/init';
 import { render, screen } from '@testing-library/angular';
 import '@testing-library/jest-dom';
 import { ContactComponent } from './contact.component';
-import { mockContact } from './mocks/contactProfile.mock';
+import { mockContact } from './mocks/contact-profile.mock';
 
 const renderComponent = async () => {
   await render(ContactComponent, {
@@ -12,7 +12,7 @@ const renderComponent = async () => {
   });
 };
 
-describe('ContactComponent', () => {
+describe(ContactComponent.name, () => {
   beforeEach(async () => {
     await renderComponent();
   });
@@ -24,7 +24,7 @@ describe('ContactComponent', () => {
   });
 });
 
-describe('ContactComponentNullScenary', () => {
+describe(ContactComponent.name, () => {
   it('handles undefined correctly', async () => {
     await render(ContactComponent, {
       inputs: {

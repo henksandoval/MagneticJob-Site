@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { HttpService } from './http.service';
 import { HttpHeaders, HttpParams, provideHttpClient } from '@angular/common/http';
 
-describe('HttpService', () => {
+describe(HttpService.name, () => {
   let service: HttpService;
   let httpMock: HttpTestingController;
 

@@ -3,7 +3,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, input } from '@angul
 import GLightbox from 'glightbox';
 import { PortFolio } from './interfaces/portfolio';
 import { Gallery } from './interfaces/gallery';
-import { PortfolioOverview } from './interfaces/portfolioOverview';
+import { PortfolioOverview } from './interfaces/portfolio-overview';
 import { AppIdDirective } from '@core/directives/app-id/app-id.directive';
 
 @Component({

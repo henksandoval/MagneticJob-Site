@@ -1,7 +1,7 @@
 import { SummaryComponent } from './summary.component';
 import { render, screen } from '@testing-library/angular';
 import { mockSummary } from './mocks/summary.mock';
-import { AcademicBackground } from './interfaces/academicBackground';
+import { AcademicBackground } from './interfaces/academic-background';
 import { Position } from './interfaces/position';
 import '@testing-library/jest-dom';
 import '@angular/localize/init';
@@ -14,7 +14,7 @@ const renderComponent = async () => {
   });
 };
 
-describe('summaryComponent', () => {
+describe(SummaryComponent.name, () => {
   beforeEach(async () => {
     await renderComponent();
   });
@@ -67,7 +67,7 @@ describe('summaryComponent', () => {
   });
 });
 
-describe('SummaryComponentNullScenary', () => {
+describe(SummaryComponent.name, () => {
   it('handles undefined correctly', async () => {
     await render(SummaryComponent, {
       inputs: {
