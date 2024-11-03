@@ -1,10 +1,10 @@
 @let facts = factSet();
-<section appId="facts" id="facts" class="facts">
-  @if (facts) {
+@if (facts) {
+  <section appId="facts" class="facts">
     <div class="container" data-aos="fade-up">
       <div class="section-title">
         <h2 i18n="@@facts">Facts</h2>
-        <p>{{ facts.description }}</p>
+        <p appId="factDescription">{{ facts.description }}</p>
       </div>
 
       <div class="row">
@@ -61,5 +61,5 @@
         </div>
       </div>
     </div>
-  }
-</section>
+  </section>
+}
