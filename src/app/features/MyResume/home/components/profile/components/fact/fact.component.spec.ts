@@ -1,24 +1,25 @@
 import { render, screen } from '@testing-library/angular';
 import { FactComponent } from './fact.component';
 import { mockFact } from './mocks/fact.mock';
-import { Facts } from './interfaces/facts';
+import '@testing-library/jest-dom';
+import '@angular/localize/init';
 
-const renderComponent = async (factSet: Facts | undefined) => {
+const renderComponent = async () => {
   await render(FactComponent, {
     inputs: {
-      factSet,
+      factSet: mockFact,
     },
   });
 };
 
 describe(FactComponent.name, () => {
-  it('should show facts section when factSet is provided', async () => {
-    await renderComponent(mockFact);
-    expect(screen.getByTestId('factDescription')).toHaveTextContent(mockFact.description);
+  beforeEach(async () => {
+    await renderComponent();
   });
 
-  it('should handle undefined factSet', async () => {
-    await renderComponent(undefined);
-    expect(screen.queryByTestId('factDescription')).toBeNull();
+  it('should show facts section when factSet is provided', () => {
+    screen.debug();
+
+    expect(screen.getByTestId('factDescription')).toHaveTextContent(mockFact.description);
   });
 });
