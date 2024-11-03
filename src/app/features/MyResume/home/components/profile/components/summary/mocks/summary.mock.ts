@@ -1,7 +1,7 @@
 import { mockContact } from '../../contact/mocks/contact-profile.mock';
 import { Summary } from '../interfaces/summary';
 import { mockEducation } from './education.mock';
-import { mockWorkExperience } from './workExperience.mock';
+import { mockWorkExperience } from './work-experience.mock';
 
 export const mockSummary: Summary = {
   about: 'I am a software developer',
