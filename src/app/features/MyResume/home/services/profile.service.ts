@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Signal } from '@angular/core';
 import { catchError, EMPTY, map, Observable } from 'rxjs';
 import { Profile } from '../components/profile/interfaces/profile';
 import { ProfileContract } from '../components/profile/contracts/profile-contract';
@@ -7,7 +7,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { StateService } from '@core/services/state/state.service';
 import { UserPersonalDataContract } from '../components/cover/contracts/user-personal-data-contract';
 import { UserPersonalData } from '../components/cover/interfaces/user-personal-data';
-import { SocialNetworkTypes } from '@core/Constants/social-network-def';
+import { SocialNetworkTypes } from '@core/constants/social-network-def';
 import { UserSocialNetwork } from '../components/cover/interfaces/user-social-network';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class ProfileService {
   private readonly http = inject(HttpService);
   private readonly stateService = inject(StateService);
 
-  profile$ = toSignal(this.loadProfile(this.stateService.userName()));
+  profile$: Signal<Profile | undefined> = toSignal(this.loadProfile(this.stateService.userName()));
 
   private loadProfile(userName: string): Observable<Profile> {
     const url = `stubs/data.${userName || 'john'}.json`;

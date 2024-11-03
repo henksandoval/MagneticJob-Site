@@ -1,5 +1,5 @@
 ﻿import { UserPersonalData } from '../interfaces/user-personal-data';
-import { SocialNetworkTypes } from '@core/Constants/social-network-def';
+import { SocialNetworkTypes } from '@core/constants/social-network-def';
 
 export const mockPersonalData: UserPersonalData = {
   name: 'Test Name',
