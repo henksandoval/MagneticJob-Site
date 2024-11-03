@@ -1,4 +1,4 @@
-import {Facts} from "../interfaces/facts";
+import { Facts } from '../interfaces/facts';
 
 export const mockFact: Facts = {
   description: 'Innovative solutions for modern problems.',
@@ -6,4 +6,4 @@ export const mockFact: Facts = {
   projects: '50',
   hoursOfSupport: '5000',
   Awards: '10',
-}
+};
