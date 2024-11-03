@@ -1,4 +1,4 @@
-import { ServiceDetails } from './ServiceDetails';
+import { ServiceDetails } from './service-details';
 
 export interface Service {
   overview: string;
