@@ -5,8 +5,8 @@ import { mockPortfolio } from '../components/portfolio/mocks/portfolio.mock';
 import { mockService } from '../components/services/mocks/service.mock';
 import { mockSkills } from '../components/skils/mocks/skills.mock';
 import { mockTestimonials } from '../components/testimonials/mocks/testimonials.mocks';
-import { mockContact } from '../components/contact/mocks/contactProfile.mock';
-import { mockPersonalData } from '../../cover/mocks/personalData.mocks';
+import { mockContact } from '../components/contact/mocks/contact-profile.mock';
+import { mockPersonalData } from '../../cover/mocks/personal-data.mocks';
 
 export const mockProfile: Profile = {
   personalData: mockPersonalData,

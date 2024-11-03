@@ -13,13 +13,12 @@ const renderComponent = async () => {
   });
 };
 
-describe('TestimonialsComponent', () => {
+describe(TestimonialsComponent.name, () => {
   beforeEach(async () => {
     await renderComponent();
   });
 
   it('You must submit all records regarding the Testimonials.', () => {
-    screen.debug();
     mockTestimonials.forEach((testimonial: Testimonial, id: number) => {
       const images = screen.getAllByTestId('image-src_' + id);
       const names = screen.getAllByTestId('name_' + id);
@@ -40,7 +39,7 @@ describe('TestimonialsComponent', () => {
   });
 });
 
-describe('TestimonialsComponentNullScenary', () => {
+describe(TestimonialsComponent.name, () => {
   it('handles undefined correctly', async () => {
     await render(TestimonialsComponent, {
       inputs: {

@@ -1,5 +1,5 @@
 import { Service } from '../interfaces/service';
-import { ServiceDetails } from '../interfaces/ServiceDetails';
+import { ServiceDetails } from '../interfaces/service-details';
 
 export const mockServiceDetails: ServiceDetails = {
   name: 'SEO Consulting',

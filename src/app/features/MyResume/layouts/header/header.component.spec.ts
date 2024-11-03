@@ -10,7 +10,7 @@ const mockPageScrollService = {
   scroll: jest.fn(),
 };
 
-describe('HeaderComponent', () => {
+describe(HeaderComponent.name, () => {
   beforeEach(async () => {
     await render(HeaderComponent, {
       providers: [{ provide: PageScrollService, useValue: mockPageScrollService }],

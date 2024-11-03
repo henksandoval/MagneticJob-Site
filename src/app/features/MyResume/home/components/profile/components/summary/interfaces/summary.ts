@@ -1,6 +1,6 @@
 import { Contact } from '../../contact/interfaces/contact';
 import { Education } from './education';
-import { WorkExperience } from './workExperience';
+import { WorkExperience } from './work-experience';
 
 export interface Summary {
   about: string;
