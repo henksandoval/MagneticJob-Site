@@ -3,6 +3,7 @@ import { ProfileService } from './profile.service';
 import { HttpService } from '@core/services/http/http.service';
 import { of, throwError } from 'rxjs';
 import { mockProfile } from '../components/profile/mocks/profile.mock';
+import { mockProfileContract } from '../components/profile/mocks/profile-contract.mock';
 
 describe(ProfileService.name, () => {
   MockInstance.scope('case');
@@ -11,7 +12,7 @@ describe(ProfileService.name, () => {
     await MockBuilder(ProfileService).mock(HttpService);
 
     MockInstance(HttpService, (instance) => {
-      jest.spyOn(instance, 'get').mockReturnValue(of(mockProfile));
+      jest.spyOn(instance, 'get').mockReturnValue(of(mockProfileContract));
     });
   });
 

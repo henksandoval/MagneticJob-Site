@@ -5,8 +5,8 @@ export const mockPersonalData: UserPersonalData = {
   name: 'Test Name',
   professions: ['Developer', 'QA', 'DevOps'],
   socialNetworks: [
-    { type: SocialNetworkTypes.Facebook, url: 'http://facebook.com/userprofile' },
-    { type: SocialNetworkTypes.Twitter, url: 'http://twitter.com/userprofile' },
-    { type: SocialNetworkTypes.LinkedIn, url: 'http://linkedin.com/userprofile' },
+    { type: SocialNetworkTypes.Twitter, url: 'https://twitter.com/developer' },
+    { type: SocialNetworkTypes.Facebook, url: 'https://facebook.com/developer' },
+    { type: SocialNetworkTypes.LinkedIn, url: 'https://linkedin.com/developer' },
   ],
 };
