@@ -12,7 +12,7 @@ const renderComponent = async () => {
   });
 };
 
-describe('ContactComponent', () => {
+describe(ContactComponent.name, () => {
   beforeEach(async () => {
     await renderComponent();
   });
@@ -24,7 +24,7 @@ describe('ContactComponent', () => {
   });
 });
 
-describe('ContactComponentNullScenary', () => {
+describe(ContactComponent.name, () => {
   it('handles undefined correctly', async () => {
     await render(ContactComponent, {
       inputs: {
