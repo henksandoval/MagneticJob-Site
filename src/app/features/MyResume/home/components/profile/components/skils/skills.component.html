@@ -1,10 +1,10 @@
 @let skills = skillSet();
-<section data-testid="skills" id="skills" class="skills section-bg">
+<section appId="skills" id="skills" class="skills section-bg">
   @if (skills) {
     <div class="container" data-aos="fade-up">
       <div class="section-title">
         <h2 i18n="@@skills">Skills</h2>
-        <p data-testid="skill_overview">{{ skills.overview }}</p>
+        <p appId="skill_overview">{{ skills.overview }}</p>
       </div>
 
       @if (skills.skillDetails; as details) {
@@ -13,12 +13,12 @@
             @let dataIndex = ($index + 1).toString().padStart(2, '0');
             <div class="skill_item">
               <img
-                [attr.data-testid]="'image-src_' + dataIndex"
+                [appId]="'image-src_' + dataIndex"
                 [src]="skill.iconUrl"
                 [alt]="skill.name"
                 class="skill_icon"
               />
-              <span [attr.data-testid]="'name_' + dataIndex" class="skill_text">{{ skill.name }}</span>
+              <span [appId]="'name_' + dataIndex" class="skill_text">{{ skill.name }}</span>
             </div>
           }
         </div>

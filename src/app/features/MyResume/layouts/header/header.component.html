@@ -1,10 +1,10 @@
-<header id="header" class="d-flex flex-column justify-content-center">
-  <nav id="navbar" class="navbar nav-menu">
+<header appId="header" class="d-flex flex-column justify-content-center">
+  <nav appId="navbar" class="navbar nav-menu">
     <ul>
       @for (section of sections()?.values(); track $index) {
         <li>
           <button
-            [attr.data-testid]="'a_' + section.target"
+            [appId]="'a_' + section.target"
             (click)="setActive(section)"
             [class.active]="section.isActive"
             class="nav-link"

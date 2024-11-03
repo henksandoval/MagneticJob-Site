@@ -6,11 +6,12 @@ import { MENU_SECTIONS } from '../layouts/header/constants';
 import { ActivatedRoute } from '@angular/router';
 import { StateService } from '@core/services/state/state.service';
 import { FooterComponent } from '../layouts/footer/footer.component';
+import { AppIdDirective } from '@core/directives/app-id/app-id.directive';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, CoverComponent, FooterComponent, ProfileComponent],
+  imports: [HeaderComponent, CoverComponent, FooterComponent, ProfileComponent, AppIdDirective],
   templateUrl: './home.component.html',
   styles: ``,
   encapsulation: ViewEncapsulation.None,

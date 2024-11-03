@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/angular';
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { HeaderComponent } from './header.component';
 import { MENU_SECTIONS, SCROLL_DELAY_MS } from './constants';
+import { fakeAsync, tick } from '@angular/core/testing';
 
 jest.useFakeTimers();
 
@@ -13,26 +14,31 @@ describe('HeaderComponent', () => {
   beforeEach(async () => {
     await render(HeaderComponent, {
       providers: [{ provide: PageScrollService, useValue: mockPageScrollService }],
-      componentInputs: {
+      inputs: {
         sections: MENU_SECTIONS,
       },
     });
   });
 
-  it('should set an anchor by each section defined', () => {
+  it('should create the component', async () => {
+    const component = await screen.findByTestId('header');
+    expect(component).toBeTruthy();
+  });
+
+  it('should set an anchor by each section defined', fakeAsync(() => {
     MENU_SECTIONS.forEach((section) => {
       const anchor = screen.getByTestId(`a_${section.target}`);
 
       anchor.click();
 
-      jest.advanceTimersByTime(SCROLL_DELAY_MS);
+      tick(SCROLL_DELAY_MS);
 
       expect(mockPageScrollService.scroll).toHaveBeenCalledWith({
         document: expect.anything(),
         scrollTarget: `#${section.target}`,
       });
     });
-  });
+  }));
 
   it('should deactivate all sections and activate the clicked one', () => {
     MENU_SECTIONS.forEach((section) => {
