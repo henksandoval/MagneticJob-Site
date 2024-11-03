@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/angular';
 import { SkillsComponent } from './skills.component';
-import { SkillDetail } from './interfaces/skillDetail';
+import { SkillDetail } from './interfaces/skill-detail';
 import '@testing-library/jest-dom';
 import '@angular/localize/init';
 import { mockSkills } from './mocks/skills.mock';
@@ -13,7 +13,7 @@ const renderComponent = async () => {
   });
 };
 
-describe('SkillsComponent', () => {
+describe(SkillsComponent.name, () => {
   beforeEach(async () => {
     await renderComponent();
   });
@@ -31,7 +31,7 @@ describe('SkillsComponent', () => {
   });
 });
 
-describe('SkillComponentNullScenary', () => {
+describe(SkillsComponent.name, () => {
   it('handles undefined correctly', async () => {
     await render(SkillsComponent, {
       inputs: {
