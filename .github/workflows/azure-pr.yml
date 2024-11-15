@@ -31,7 +31,12 @@ jobs:
           https://hsandoval.visualstudio.com/JobMagnetic/_apis/git/repositories/FrontEnd/refs?api-version=6.0
 
     - name: Push Changes to New Branch
+      env:
+        REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
       run: |
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
+        git remote set-url origin https://x-access-token:${REPO_ACCESS_TOKEN}@github.com/henksandoval/JobMagnetic-Site.git
         git push origin HEAD:${{ env.BRANCH_NAME }}
 
     - name: Create Pull Request
