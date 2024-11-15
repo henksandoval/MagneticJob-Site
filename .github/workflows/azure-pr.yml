@@ -1,0 +1,28 @@
+name: Create PR in Azure DevOps
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Create Pull Request
+        env:
+          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+        run: |
+          curl -u :${{ secrets.AZURE_DEVOPS_PAT }} \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -d '{
+              "sourceRefName": "refs/heads/develop",
+              "targetRefName": "refs/heads/main",
+              "title": "Auto PR from GitHub",
+              "description": "This pull request was automatically created from GitHub."
+            }' \
+            https://hsandoval.visualstudio.com/JobMagnetic/_apis/git/repositories/FrontEnd/pullrequests?api-version=6.0
