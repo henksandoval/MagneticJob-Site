@@ -30,10 +30,7 @@ jobs:
 
     - name: Create New Branch and Push to Azure DevOps
       run: |
-        # Crea un commit vacío en la nueva rama en Azure DevOps
         git push azure HEAD:refs/heads/${{ env.BRANCH_NAME }}
-
-        # Fuerza la subida de todos los archivos al nuevo branch en Azure DevOps
         git push azure --force HEAD:${{ env.BRANCH_NAME }}
 
 
