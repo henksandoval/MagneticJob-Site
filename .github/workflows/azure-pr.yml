@@ -3,26 +3,48 @@ name: Create PR in Azure DevOps
 on:
   push:
     branches: [develop]
+  workflow_dispatch:
 
 jobs:
   create-pr:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Create Pull Request
-        env:
-          AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
-        run: |
-          curl -u :${{ secrets.AZURE_DEVOPS_PAT }} \
-            -X POST \
-            -H "Content-Type: application/json" \
-            -d '{
-              "sourceRefName": "refs/heads/develop",
-              "targetRefName": "refs/heads/main",
-              "title": "Auto PR from GitHub",
-              "description": "This pull request was automatically created from GitHub."
-            }' \
-            https://hsandoval.visualstudio.com/JobMagnetic/_apis/git/repositories/FrontEnd/pullrequests?api-version=6.0
+    - name: Set Branch Name
+      id: vars
+      run: echo "BRANCH_NAME=feature/github-pr-$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+
+    - name: Create New Branch
+      env:
+        AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+      run: |
+        curl -u :${{ secrets.AZURE_DEVOPS_PAT }} \
+          -X POST \
+          -H "Content-Type: application/json" \
+          -d "{
+            \"name\": \"refs/heads/${{ env.BRANCH_NAME }}\",
+            \"oldObjectId\": \"$(git rev-parse origin/develop)\"
+          }" \
+          https://hsandoval.visualstudio.com/JobMagnetic/_apis/git/repositories/FrontEnd/refs?api-version=6.0
+
+    - name: Push Changes to New Branch
+      run: |
+        git push origin HEAD:${{ env.BRANCH_NAME }}
+
+    - name: Create Pull Request
+      env:
+        AZURE_DEVOPS_PAT: ${{ secrets.AZURE_DEVOPS_PAT }}
+      run: |
+        curl -u :${{ secrets.AZURE_DEVOPS_PAT }} \
+          -X POST \
+          -H "Content-Type: application/json" \
+          -d '{
+            "sourceRefName": "refs/heads/${{ env.BRANCH_NAME }}",
+            "targetRefName": "refs/heads/develop",
+            "title": "Auto PR from GitHub",
+            "description": "This pull request was automatically created from GitHub."
+          }' \
+          https://hsandoval.visualstudio.com/JobMagnetic/_apis/git/repositories/FrontEnd/pullrequests?api-version=6.0
