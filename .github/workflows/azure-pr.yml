@@ -17,7 +17,7 @@ jobs:
 
     - name: Set Branch Name
       id: vars
-      run: echo "BRANCH_NAME=feature/github-pr-$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
+      run: echo "BRANCH_NAME=features/github-pr-$(date +%Y-%m-%d-%H-%M)" >> $GITHUB_ENV
 
     - name: Set Git User
       run: |
