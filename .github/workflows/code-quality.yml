@@ -27,8 +27,8 @@ jobs:
 
       - name: Set SonarQube properties
         run: |
-          echo "sonar.projectKey=${{ env.PROJECT_KEY }}" > sonar-project.properties
-          echo "sonar.organization=${{ env.ORGANIZATION }}" >> sonar-project.properties
+          echo "sonar.projectKey=${{ vars.PROJECT_KEY }}" > sonar-project.properties
+          echo "sonar.organization=${{ vars.ORGANIZATION }}" >> sonar-project.properties
           echo "sonar.javascript.lcov.reportPaths=coverage/lcov.info" >> sonar-project.properties
           echo "sonar.typescript.tsconfigPaths=path/to/tsconfig.json" >> sonar-project.properties
 
