@@ -13,14 +13,28 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
+
       - name: Install Dependencies
         run: npm install
+
       - name: Run Tests with Coverage
         run: npm run test:coverage
+
+      - name: Set SonarQube properties
+        run: |
+          echo "sonar.projectKey=${{ env.PROJECT_KEY }}" > sonar-project.properties
+          echo "sonar.organization=${{ env.ORGANIZATION }}" >> sonar-project.properties
+          echo "sonar.javascript.lcov.reportPaths=coverage/lcov.info" >> sonar-project.properties
+          echo "sonar.typescript.tsconfigPaths=path/to/tsconfig.json" >> sonar-project.properties
+
+      - name: Print sonar-project.properties
+        run: cat sonar-project.properties
+
       - name: SonarQube Cloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
